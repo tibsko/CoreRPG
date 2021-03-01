@@ -8,9 +8,13 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] Transform weaponSlot;
     private int activeWeapon = 0;
     List<GameObject> equipedWeapons;
+
+    PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         equipedWeapons = new List<GameObject>();
         foreach (var weapon in weaponPrefabs)
         {
@@ -28,6 +32,17 @@ public class PlayerWeapons : MonoBehaviour
         {
             activeWeapon++;
             EquipWeapon();
+        }
+
+        if (player.isShooting)
+        {
+            Shoot();
+        }
+        Weapon w = GetActiveWeapon();
+        if (w.nbBulletsShooted>=w.weaponData.nbBulletToShoot)
+        {
+            player.isShooting = false;
+            w.nbBulletsShooted = 0;
         }
     }
 
@@ -48,12 +63,22 @@ public class PlayerWeapons : MonoBehaviour
         equipedWeapons[activeWeapon].SetActive(true);
     }
 
-    public void AimAndShoot(float rotation) {
+    public void AimAndShoot(float rotation)
+    {
 
     }
 
     public void Shoot()
     {
+        Weapon weapon = GetActiveWeapon();
+        if (weapon && weapon.CanShoot())
+        {
+            weapon.Shoot();
+        }
+    }
 
+    private Weapon GetActiveWeapon()
+    {
+        return equipedWeapons[activeWeapon].GetComponent<Weapon>();
     }
 }

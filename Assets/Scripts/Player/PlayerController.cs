@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     private Rect aimJoystickZone;
     private Rect moveJoystickZone;
 
-    public int nbBulletsShooted;
     public bool isShooting = false;
     public bool isAiming = false;
     public bool interactableDetected = false;
@@ -196,7 +195,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isShooting = false;
-        nbBulletsShooted = 0;
     }
 
 

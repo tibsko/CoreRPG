@@ -6,14 +6,8 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform firePoint;
-    PlayerController player;
-
-    [SerializeField] float fireRate;
-    [SerializeField] float force = 10f;
-
-    private int nbBulletToShoot = 1;
-
-
+    public WeaponData weaponData;
+    [HideInInspector] public int nbBulletsShooted = 0;
 
     //private float timeShoot = 0.2f;
 
@@ -21,24 +15,26 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.isShooting && player.nbBulletsShooted < nbBulletToShoot)
-        {
-            Shoot();
-        }
+   
     }
 
-    private void Shoot()
+    public void Shoot()
     {
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
-        myRigidBody.AddForce(firePoint.forward * force, ForceMode.Impulse);
-        player.nbBulletsShooted += 1;
+        myRigidBody.AddForce(firePoint.forward * weaponData.force, ForceMode.Impulse);
+        nbBulletsShooted += 1;
+    }
+
+    public bool CanShoot()
+    {
+        return nbBulletsShooted < weaponData.nbBulletToShoot;
     }
 }
 
