@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2680ee9de733837438c5d3571791ec30, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  animation: {fileID: 7400000, guid: e1321f9fb03c04247940d713d22421da, type: 2}
+  overideAnimator: {fileID: 22100000, guid: 6560e2e3d647db848bc0306642df333a, type: 2}
   damages: 10
   fireRate: 2
   force: 50

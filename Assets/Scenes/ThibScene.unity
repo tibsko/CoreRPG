@@ -5398,6 +5398,11 @@ PrefabInstance:
       propertyPath: m_IsContraintActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7618126829240535257, guid: 686cea36e647d734bb0c83cd96eb09c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.407
+      objectReference: {fileID: 0}
     - target: {fileID: 7618126829376842260, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: joystickAim
@@ -5468,6 +5473,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7618126829376842287, guid: 686cea36e647d734bb0c83cd96eb09c6,
+        type: 3}
+      propertyPath: weaponPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5675909864428604342, guid: 3d6b6bd773d3c224a8f026faaaa09018,
+        type: 3}
     - target: {fileID: 7618126830638750325, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -5493,5 +5504,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7618126830638750326, guid: 686cea36e647d734bb0c83cd96eb09c6,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 686cea36e647d734bb0c83cd96eb09c6, type: 3}

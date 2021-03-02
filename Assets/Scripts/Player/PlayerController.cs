@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<CharacterController>();
 
         moveJoystickZone = new Rect(0, 0, Screen.width * 0.5f, Screen.height);
-        aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height);
+        aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height*0.8f);
 
         playerWeapons = GetComponent<PlayerWeapons>();
     }

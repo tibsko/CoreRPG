@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapons : MonoBehaviour
 {
+    Animator animator;
     [SerializeField] GameObject[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
     private int activeWeapon = 0;
@@ -14,8 +15,11 @@ public class PlayerWeapons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
+        player = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
         equipedWeapons = new List<GameObject>();
+
+
         foreach (var weapon in weaponPrefabs)
         {
             GameObject go = Instantiate(weapon, weaponSlot.position, Quaternion.identity, weaponSlot);
@@ -39,7 +43,7 @@ public class PlayerWeapons : MonoBehaviour
             Shoot();
         }
         Weapon w = GetActiveWeapon();
-        if (w.nbBulletsShooted>=w.weaponData.nbBulletToShoot)
+        if (w.nbBulletsShooted >= w.weaponData.nbBulletToShoot)
         {
             player.isShooting = false;
             w.nbBulletsShooted = 0;
@@ -53,6 +57,7 @@ public class PlayerWeapons : MonoBehaviour
             activeWeapon = 0;
         }
         DisplayWeapon();
+        ChangeAnimation(GetActiveWeapon().weaponData.overideAnimator);
     }
     void DisplayWeapon()
     {
@@ -73,6 +78,7 @@ public class PlayerWeapons : MonoBehaviour
         Weapon weapon = GetActiveWeapon();
         if (weapon && weapon.CanShoot())
         {
+            animator.SetTrigger("Attack");
             weapon.Shoot();
         }
     }
@@ -80,5 +86,10 @@ public class PlayerWeapons : MonoBehaviour
     private Weapon GetActiveWeapon()
     {
         return equipedWeapons[activeWeapon].GetComponent<Weapon>();
+    }
+
+    private void ChangeAnimation(AnimatorOverrideController animatorOverrideController)
+    {
+        animator.runtimeAnimatorController = animatorOverrideController;
     }
 }

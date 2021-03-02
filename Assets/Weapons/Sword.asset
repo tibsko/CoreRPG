@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2680ee9de733837438c5d3571791ec30, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  animation: {fileID: 7400000, guid: c3b1b685301c0004b814a2158cae4c27, type: 2}
+  overideAnimator: {fileID: 22100000, guid: 9037b11fb2a4f3542a2398e059866d11, type: 2}
   damages: 20
   fireRate: 1
-  force: 0
-  nbBulletToShoot: 0
+  force: 10
+  nbBulletToShoot: 1
