@@ -30,7 +30,7 @@ public class AimingRange : MonoBehaviour
     void RotateAiming()
     {
 
-        transform.LookAt(player.transform.position + player.xyAim);
+        transform.LookAt(player.transform.position + player.xzAim);
         Vector3 rototo = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(90, rototo.y + 90, 0);
 

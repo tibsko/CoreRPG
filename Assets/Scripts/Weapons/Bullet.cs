@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float lifeTime = 5f;
-    float timer = 0f;
-    public float radius;
-    [SerializeField] float explosionForce = 10f;
-    
+    Vector3 currentPosition;
+    Vector3 startPos;
+    public BulletData bulletData;
+    float currentTime;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        currentTime = 0f;
+        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= lifeTime)
+        currentPosition = transform.position;
+        DestroyRange();
+        currentTime = Time.deltaTime;
+        if (currentTime > bulletData.lifeTime)
         {
             Destroy(gameObject);
         }
@@ -27,21 +30,29 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, bulletData.radius);
         foreach (var collider in colliders)
         {
             if (collider.gameObject.layer != LayerMask.NameToLayer("Player"))
             {
                 if (collider.attachedRigidbody != null)
-                    collider.attachedRigidbody.AddForce((collider.transform.position - transform.position).normalized * explosionForce, ForceMode.Impulse);
-                
+                    collider.attachedRigidbody.AddForce((collider.transform.position - transform.position).normalized * bulletData.explosionForce, ForceMode.Impulse);
+
             }
         }
         Destroy(gameObject); //trouver solution pour colision
     }
 
+    void DestroyRange()
+    {
+        if (Vector3.Distance(currentPosition, startPos) >= bulletData.maxDistance)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, bulletData.radius);
     }
 }

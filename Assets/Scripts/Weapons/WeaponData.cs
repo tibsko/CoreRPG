@@ -10,4 +10,8 @@ public class WeaponData : ScriptableObject
     public float fireRate;
     public float force = 10f;
     public int nbBulletToShoot = 1;
+    public float maxDistance;
+    public EWeaponType type;
+    public enum EWeaponType { Ranged, Melee, Throwable }
+   
 }

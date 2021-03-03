@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private PlayerWeapons playerWeapons;
 
     private Vector3 xyMove;
-    public Vector3 xyAim;
+    public Vector3 xzAim;
     private Vector3 yVelocity = Vector3.zero;
     private Vector3 pointToShoot;
 
@@ -109,44 +109,35 @@ public class PlayerController : MonoBehaviour
             {
                 if (touch.phase == TouchPhase.Began)
                 {
-                    timePressed = Time.time;
 
-                    distanceEnemy = 20f;
-
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, autoShootRadius);
-
-                    foreach (var collider in colliders)
-                    {
-                        if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                        {
-                            if (distanceEnemy > (collider.transform.position - player.transform.position).magnitude)
-                            {
-                                distanceEnemy = (collider.transform.position - player.transform.position).magnitude;
-                                enemyToShoot = collider.transform.position;
-                            }
-                        }
-                    }
-
-                    pointToShoot = new Vector3(enemyToShoot.x, 0, enemyToShoot.z);
-                    isAutoShooting = true;
                 }
 
                 else if (touch.phase == TouchPhase.Moved)
                 {
-                    xyAim = new Vector3(joystickAim.Horizontal, 0, joystickAim.Vertical);
-                    isShooting = false;
-                    isAiming = true;
-                    isAutoShooting = false;
-                    pointToShoot = xyAim;
+                    xzAim = new Vector3(joystickAim.Horizontal, 0, joystickAim.Vertical);
+                    if (xzAim.magnitude < .7f)
+                    {
+                        AutoShoot();
+                    }
+                    else
+                    {
+                        isShooting = false;
+                        isAiming = true;
+                        isAutoShooting = false;
+                        pointToShoot = xzAim;
+                    }
                 }
 
                 else if (touch.phase == TouchPhase.Ended)
                 {
                     timePressed = Time.time - timePressed;
                     isShooting = true;
+                    if (!isAiming)
+                    {
+                        AutoShoot();
+                    }
                     isAiming = false;
-
-
+                    
                 }
 
             }
@@ -165,6 +156,29 @@ public class PlayerController : MonoBehaviour
         player.Move(yVelocity * Time.fixedDeltaTime);
     }
 
+
+    private void AutoShoot()
+    {
+        distanceEnemy = 20f;
+        isAiming = false;
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, autoShootRadius);
+
+        foreach (var collider in colliders)
+        {
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                if (distanceEnemy > (collider.transform.position - player.transform.position).magnitude)
+                {
+                    distanceEnemy = (collider.transform.position - player.transform.position).magnitude;
+                    enemyToShoot = collider.transform.position;
+                }
+            }
+        }
+
+        pointToShoot = new Vector3(enemyToShoot.x, 0, enemyToShoot.z);
+        isAutoShooting = true;
+    }
     public void Rotate()
     {
         if (!isShooting && !focus)
@@ -180,7 +194,7 @@ public class PlayerController : MonoBehaviour
             }
             if (!isAutoShooting)
             {
-                player.transform.LookAt(player.transform.position + xyAim);
+                player.transform.LookAt(player.transform.position + xzAim);
                 StartCoroutine(IsRotatingAim());
             }
         }

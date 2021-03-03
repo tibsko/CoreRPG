@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerWeapons : MonoBehaviour
 {
+    
     Animator animator;
     [SerializeField] GameObject[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
-    private int activeWeapon = 0;
+    public int activeWeapon = 0;
     List<GameObject> equipedWeapons;
 
     PlayerController player;
@@ -66,11 +68,6 @@ public class PlayerWeapons : MonoBehaviour
             equipedWeapons[i].SetActive(false);
         }
         equipedWeapons[activeWeapon].SetActive(true);
-    }
-
-    public void AimAndShoot(float rotation)
-    {
-
     }
 
     public void Shoot()

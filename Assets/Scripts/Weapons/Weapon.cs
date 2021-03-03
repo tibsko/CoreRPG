@@ -25,11 +25,13 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
-        myRigidBody.AddForce(firePoint.forward * weaponData.force, ForceMode.Impulse);
-        nbBulletsShooted += 1;
+        if (weaponData.type == WeaponData.EWeaponType.Ranged)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
+            myRigidBody.AddForce(firePoint.forward * weaponData.force, ForceMode.Impulse);
+            nbBulletsShooted += 1;
+        }
     }
 
     public bool CanShoot()

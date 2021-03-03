@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2680ee9de733837438c5d3571791ec30, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: a6f41df1c45933d439926913887005bf, type: 3}
+  m_Name: petite bullet pas loin
   m_EditorClassIdentifier: 
-  overideAnimator: {fileID: 22100000, guid: 9037b11fb2a4f3542a2398e059866d11, type: 2}
-  damages: 20
-  fireRate: 1
-  force: 10
-  nbBulletToShoot: 1
-  maxDistance: 0
-  type: 1
+  maxDistance: 10
+  radius: 2
+  explosionForce: 0
+  lifeTime: 30

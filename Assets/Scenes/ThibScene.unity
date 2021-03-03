@@ -3009,6 +3009,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &821348891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7618126829376842287, guid: 686cea36e647d734bb0c83cd96eb09c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7618126830531556939}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821348888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b288a21b6f4a0544ebf318e7e57fde40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &832262489 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1207128002854995535, guid: de86b71c071d9564eab89909ee1921c3,
@@ -4692,6 +4704,7 @@ GameObject:
   - component: {fileID: 1722237623}
   - component: {fileID: 1722237622}
   - component: {fileID: 1722237621}
+  - component: {fileID: 1722237624}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -4762,12 +4775,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 1722237624}
+        m_MethodName: SwipeWeapons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4810,6 +4823,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722237619}
   m_CullTransparentMesh: 0
+--- !u!114 &1722237624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722237619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08c7e0cc14e9354aaeb767aa02db656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapons: {fileID: 821348891}
 --- !u!114 &1916766056 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3372475796408335585, guid: 326af123d89bce24cbf476eb85687db5,
@@ -5473,6 +5499,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7618126829376842287, guid: 686cea36e647d734bb0c83cd96eb09c6,
+        type: 3}
+      propertyPath: swipeButton
+      value: 
+      objectReference: {fileID: 1722237621}
     - target: {fileID: 7618126829376842287, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: weaponPrefabs.Array.data[1]
