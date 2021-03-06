@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AimingRange : MonoBehaviour
 {
-    private PlayerShoot playerShoot;
+    private PlayerShooter playerShoot;
     private SpriteRenderer aimingRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerShoot = GetComponentInParent<PlayerShoot>();
+        playerShoot = GetComponentInParent<PlayerShooter>();
         aimingRenderer = GetComponent<SpriteRenderer>();
         aimingRenderer.enabled = false;
     }

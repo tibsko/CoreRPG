@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponSwapButton : MonoBehaviour
 {
-    public PlayerShoot playerWeapons;
+    public PlayerShooter playerWeapons;
     
     public void SwapWeapons()
     {

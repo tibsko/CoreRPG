@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour {
+public class PlayerShooter : MonoBehaviour {
 
     [SerializeField] GameObject[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
