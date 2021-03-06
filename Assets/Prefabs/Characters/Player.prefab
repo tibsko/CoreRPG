@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 7618126829376842260}
   - component: {fileID: 821348893}
   - component: {fileID: 821348889}
+  - component: {fileID: 1420540132}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -327,7 +328,7 @@ MonoBehaviour:
   groundCheckRadius: 2
   jumpForce: 5
   radiusInteractable: 3
-  gravity: {x: 0, y: -20, z: 0}
+  gravity: {x: 0, y: -10, z: 0}
 --- !u!1818360609 &821348893
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ RotationConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Weight: 1
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_RotationOffset: {x: 0, y: 0, z: 0}
@@ -364,6 +365,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1420540132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefabs:
+  - {fileID: 6521748887353981451, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
+  - {fileID: 5675909864428604342, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
+  weaponSlot: {fileID: 7618126830638750325}
+  autoShootRadius: 10
 --- !u!1 &7618126830283201752
 GameObject:
   m_ObjectHideFlags: 0
