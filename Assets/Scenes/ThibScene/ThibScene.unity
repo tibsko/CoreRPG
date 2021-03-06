@@ -2310,6 +2310,18 @@ Transform:
   m_Father: {fileID: 354813226}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640531592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6615635844976524264, guid: 9691e06c34d6e84419e314cd9740d2ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1957187450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a336b3023f3e59241805e8078f4a390a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &662231847
 Mesh:
   m_ObjectHideFlags: 0
@@ -4931,7 +4943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 125
   currentHealth: 0
-  healthBar: {fileID: 1318462434}
+  healthBar: {fileID: 640531592}
 --- !u!224 &1947427827 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3372475796408335596, guid: 326af123d89bce24cbf476eb85687db5,
