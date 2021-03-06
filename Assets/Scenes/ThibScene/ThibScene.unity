@@ -5143,12 +5143,12 @@ PrefabInstance:
     - target: {fileID: 3372475796408335596, guid: 326af123d89bce24cbf476eb85687db5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1067
+      value: 1082
       objectReference: {fileID: 0}
     - target: {fileID: 3372475796408335596, guid: 326af123d89bce24cbf476eb85687db5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 254
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 3372475796408335596, guid: 326af123d89bce24cbf476eb85687db5,
         type: 3}
@@ -5183,6 +5183,10 @@ PrefabInstance:
       propertyPath: onDragJoystick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 821348890}
+    - target: {fileID: 1684560497, guid: de86b71c071d9564eab89909ee1921c3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1207128002854995534, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_Name
@@ -5271,12 +5275,12 @@ PrefabInstance:
     - target: {fileID: 1207128002854995535, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 256
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 1207128002854995535, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 254
+      value: 171
       objectReference: {fileID: 0}
     - target: {fileID: 1207128002854995535, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}

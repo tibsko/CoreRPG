@@ -10,8 +10,8 @@ public class PlayerShoot : MonoBehaviour {
 
     [SerializeField] float autoShootRadius = 10f;
 
-    private Rect aimJoystickZone;
-    public Joystick joystickAim;
+    //private Rect aimJoystickZone;
+    //public Joystick joystickAim;
 
     public bool isShooting = false;
     public bool isAiming = false;
@@ -25,15 +25,15 @@ public class PlayerShoot : MonoBehaviour {
     private Animator animator;
     private int activeWeaponIndex = 0;
     private List<Weapon> equipedWeapons;
-    //private PlayerController player;
-
+    private PlayerController controller;
 
     // Start is called before the first frame update
     void Start() {
         animator = GetComponent<Animator>();
         equipedWeapons = new List<Weapon>();
+        controller = GetComponent<PlayerController>();
 
-        aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
+        //aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
 
         foreach (var weaponPrefab in weaponPrefabs) {
             GameObject go = Instantiate(weaponPrefab, weaponSlot.position, Quaternion.identity, weaponSlot);
@@ -51,71 +51,73 @@ public class PlayerShoot : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse2)) {
-            activeWeaponIndex++;
-            EquipWeapon();
-        }
 
-        if (isShooting) {
-            Shoot();
-        }
-        Weapon w = GetActiveWeapon();
-        if (w.nbBulletsShooted >= w.weaponData.nbBulletToShoot) {
-            isShooting = false;
-            w.nbBulletsShooted = 0;
-        }
-    }
+        HandleShoot();
 
-    private void JoystickMethods() {
-        //foreach (Touch touch in Input.touches) {
-        //    if (moveJoystickZone.Contains(touch.position) && isGrounded) {
-        //        xyMove = new Vector3(joystickMove.Horizontal, 0f, joystickMove.Vertical);
-        //    }
-        //    else if (aimJoystickZone.Contains(touch.position)) {
-        //        if (touch.phase == TouchPhase.Began) {
-
-        //        }
-
-        //        else if (touch.phase == TouchPhase.Moved) {
-        //            xzAim = new Vector3(joystickAim.Horizontal, 0, joystickAim.Vertical);
-        //            if (xzAim.magnitude < .7f) {
-        //                AutoShoot();
-        //            }
-        //            else {
-        //                isShooting = false;
-        //                isAiming = true;
-        //                isAutoShooting = false;
-        //                pointToShoot = xzAim;
-        //            }
-        //        }
-
-        //        else if (touch.phase == TouchPhase.Ended) {
-        //            timePressed = Time.time - timePressed;
-        //            isShooting = true;
-        //            if (!isAiming) {
-        //                AutoShoot();
-        //            }
-        //            isAiming = false;
-
-        //        }
-
-        //    }
-        //    else {
-        //        xyMove = Vector3.zero;
-        //        isAiming = false;
-        //    }
+        //if (isShooting) {
+        //    Shoot();
+        //}
+        //Weapon w = GetActiveWeapon();
+        //if (w.nbBulletsShooted >= w.weaponData.nbBulletToShoot) {
+        //    isShooting = false;
+        //    w.nbBulletsShooted = 0;
         //}
     }
 
+    private void HandleShoot() {
+
+    }
+
+    //private void JoystickMethods() {
+    //    foreach (Touch touch in Input.touches) {
+    //        if (moveJoystickZone.Contains(touch.position) && isGrounded) {
+    //            xyMove = new Vector3(joystickMove.Horizontal, 0f, joystickMove.Vertical);
+    //        }
+    //        else if (aimJoystickZone.Contains(touch.position)) {
+    //            if (touch.phase == TouchPhase.Began) {
+
+    //            }
+
+    //            else if (touch.phase == TouchPhase.Moved) {
+    //                xzAim = new Vector3(joystickAim.Horizontal, 0, joystickAim.Vertical);
+    //                if (xzAim.magnitude < .7f) {
+    //                    AutoShoot();
+    //                }
+    //                else {
+    //                    isShooting = false;
+    //                    isAiming = true;
+    //                    isAutoShooting = false;
+    //                    pointToShoot = xzAim;
+    //                }
+    //            }
+
+    //            else if (touch.phase == TouchPhase.Ended) {
+    //                timePressed = Time.time - timePressed;
+    //                isShooting = true;
+    //                if (!isAiming) {
+    //                    AutoShoot();
+    //                }
+    //                isAiming = false;
+
+    //            }
+
+    //        }
+    //        else {
+    //            xyMove = Vector3.zero;
+    //            isAiming = false;
+    //        }
+    //    }
+    //}
+
     public void NextWeapon() {
         activeWeaponIndex++;
+        if (activeWeaponIndex >= equipedWeapons.Count) {
+            activeWeaponIndex = 0;
+        }
         EquipWeapon();
     }
 
     public void EquipWeapon() {
-        if (activeWeaponIndex >= equipedWeapons.Count) {
-            activeWeaponIndex = 0;
-        }
         DisplayActiveWeapon();
         ChangeAnimation(GetActiveWeapon().weaponData.overideAnimator);
     }

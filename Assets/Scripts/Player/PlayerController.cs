@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    CharacterController player;
 
     [SerializeField] Transform groundChecker;
     [SerializeField] Transform jumpZone;
@@ -14,13 +13,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float radiusInteractable = 3f;
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
+    public bool IsGrounded { get; private set; }
+
+    private CharacterController controller;
     private Interactable focus;
     private Vector3 xzMove = Vector3.zero;
     private Vector3 yMove = Vector3.zero;
-    private bool isGrounded = false;
+
 
     void Start() {
-        player = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
 
     }
 
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         //}
 
         //Apply gravity
-        if (isGrounded && yMove.y < 0)
+        if (IsGrounded && yMove.y < 0)
             yMove.y = -2f;
         else
             yMove.y += gravity.y * Time.deltaTime;
@@ -50,22 +52,22 @@ public class PlayerController : MonoBehaviour {
 
 
     private void Move() {
-        player.Move(xzMove * Time.deltaTime * speedMove);
-        player.Move(yMove * Time.deltaTime);
+        controller.Move(Vector3.ClampMagnitude(xzMove * Time.deltaTime * speedMove, Time.deltaTime * speedMove));
+        controller.Move(yMove * Time.deltaTime);
     }
 
     private void Rotate() {
         if (!focus) {
-            player.transform.LookAt(player.transform.position + xzMove);
+            controller.transform.LookAt(controller.transform.position + xzMove);
         }
         else {
-            player.transform.LookAt(focus.transform.position);
+            controller.transform.LookAt(focus.transform.position);
         }
     }
 
     private void CheckBorderJump() {
         Collider[] colliders = Physics.OverlapSphere(jumpZone.position, groundCheckRadius, LayerManager.instance.groundLayer);
-        if (colliders.Length == 0 && isGrounded == true) {
+        if (colliders.Length == 0 && IsGrounded == true) {
             Jump();
         }
     }
@@ -75,13 +77,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void CheckGround() {
-        isGrounded = Physics.CheckSphere(groundChecker.position, groundCheckRadius, LayerManager.instance.groundLayer, QueryTriggerInteraction.Ignore);
+        IsGrounded = Physics.CheckSphere(groundChecker.position, groundCheckRadius, LayerManager.instance.groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void DetectInteractable() {
         int layerId = LayerManager.instance.interactableLayer;
         int layerMask = 1 << layerId;
-        Collider[] interactablesDetected = Physics.OverlapSphere(player.transform.position, radiusInteractable, layerMask);
+        Collider[] interactablesDetected = Physics.OverlapSphere(controller.transform.position, radiusInteractable, layerMask);
         if (interactablesDetected.Length > 0) {
             foreach (var collider in interactablesDetected) {
                 Interactable interactable = interactablesDetected[0].GetComponent<Interactable>();

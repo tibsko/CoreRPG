@@ -27,7 +27,7 @@ public class AimingRange : MonoBehaviour
             aimingRenderer.enabled = true;
             RotateAiming();
         }
-        else if (!playerShoot.isAiming)
+        else
         {
             aimingRenderer.enabled = false;
         }

@@ -5,27 +5,52 @@ using UnityEngine.Events;
 
 public class KeyboardOverrideInput : MonoBehaviour {
 
-    private JoystickInput joystickToReplace;
+    [SerializeField] bool overrideInput = false;
 
+    private JoystickInput joystickToReplace;
     private Vector2 inputs;
+
 
     // Start is called before the first frame update
     void Start() {
         joystickToReplace = GetComponent<JoystickInput>();
 
-        if (joystickToReplace != null) {
-            joystickToReplace.enabled = false;
+        if (joystickToReplace == null) {
+            overrideInput = true;
         }
     }
 
     // Update is called once per frame
     void Update() {
-        inputs.x = Input.GetAxis("Horizontal"); 
-        inputs.y = Input.GetAxis("Vertical"); 
-        joystickToReplace.onDragJoystick.Invoke(inputs);
+        if (overrideInput) {
+            inputs.x = Input.GetAxis("Horizontal");
+            inputs.y = Input.GetAxis("Vertical");
+            joystickToReplace.onDragJoystick.Invoke(inputs);
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            OverrideInput(true);
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            OverrideInput(false);
+        }
+    }
+
+    private void OverrideInput(bool overrideStatus) {
+
+        if (joystickToReplace != null) {
+            overrideInput = overrideStatus;
+            joystickToReplace.enabled = !overrideStatus;
+        }
+        else
+            overrideInput = true;
+
     }
 
     private void OnGUI() {
-        GUI.Label(new Rect(20, 50, 500, 30), $"{gameObject.name} : Direction=[{inputs}]");
+        if (overrideInput) {
+            GUI.Label(new Rect(20, 50, 500, 30), $"{gameObject.name} : Direction=[{inputs}]");
+
+        }
     }
 }
