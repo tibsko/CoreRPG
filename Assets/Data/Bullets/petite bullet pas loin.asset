@@ -16,3 +16,4 @@ MonoBehaviour:
   radius: 2
   explosionForce: 0
   lifeTime: 30
+  damage: 20

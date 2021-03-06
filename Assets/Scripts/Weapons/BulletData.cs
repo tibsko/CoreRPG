@@ -9,5 +9,6 @@ public class BulletData : ScriptableObject
     public float radius;
     public float explosionForce;
     public float lifeTime;
+    public int damage;
 
 }
