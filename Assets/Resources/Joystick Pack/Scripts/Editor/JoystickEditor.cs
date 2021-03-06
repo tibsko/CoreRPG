@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Joystick), true)]
-public class JoystickEditor : Editor
-{
+public class JoystickEditor : Editor {
     private SerializedProperty handleRange;
     private SerializedProperty deadZone;
     private SerializedProperty axisOptions;
@@ -13,11 +12,14 @@ public class JoystickEditor : Editor
     private SerializedProperty snapY;
     protected SerializedProperty background;
     private SerializedProperty handle;
+    private SerializedProperty onTick;
+    private SerializedProperty onDrag;
+    private SerializedProperty onPointerDown;
+    private SerializedProperty onPointerUp;
 
     protected Vector2 center = new Vector2(0.5f, 0.5f);
 
-    protected virtual void OnEnable()
-    {
+    protected virtual void OnEnable() {
         handleRange = serializedObject.FindProperty("handleRange");
         deadZone = serializedObject.FindProperty("deadZone");
         axisOptions = serializedObject.FindProperty("axisOptions");
@@ -25,20 +27,24 @@ public class JoystickEditor : Editor
         snapY = serializedObject.FindProperty("snapY");
         background = serializedObject.FindProperty("background");
         handle = serializedObject.FindProperty("handle");
+        onTick = serializedObject.FindProperty("onTick");
+        onDrag = serializedObject.FindProperty("onDrag");
+        onPointerDown = serializedObject.FindProperty("onPointerDown");
+        onPointerUp = serializedObject.FindProperty("onPointerUp");
     }
 
-    public override void OnInspectorGUI()
-    {
+    public override void OnInspectorGUI() {
         serializedObject.Update();
 
         DrawValues();
         EditorGUILayout.Space();
         DrawComponents();
+        EditorGUILayout.Space();
+        DrawEvents();
 
         serializedObject.ApplyModifiedProperties();
 
-        if(handle != null)
-        {
+        if (handle != null) {
             RectTransform handleRect = (RectTransform)handle.objectReferenceValue;
             handleRect.anchorMax = center;
             handleRect.anchorMin = center;
@@ -47,18 +53,25 @@ public class JoystickEditor : Editor
         }
     }
 
-    protected virtual void DrawValues()
-    {
+    protected virtual void DrawValues() {
         EditorGUILayout.PropertyField(handleRange, new GUIContent("Handle Range", "The distance the visual handle can move from the center of the joystick."));
         EditorGUILayout.PropertyField(deadZone, new GUIContent("Dead Zone", "The distance away from the center input has to be before registering."));
         EditorGUILayout.PropertyField(axisOptions, new GUIContent("Axis Options", "Which axes the joystick uses."));
         EditorGUILayout.PropertyField(snapX, new GUIContent("Snap X", "Snap the horizontal input to a whole value."));
         EditorGUILayout.PropertyField(snapY, new GUIContent("Snap Y", "Snap the vertical input to a whole value."));
+
+       
     }
 
-    protected virtual void DrawComponents()
-    {
+    protected virtual void DrawComponents() {
         EditorGUILayout.ObjectField(background, new GUIContent("Background", "The background's RectTransform component."));
         EditorGUILayout.ObjectField(handle, new GUIContent("Handle", "The handle's RectTransform component."));
+    }
+
+    protected virtual void DrawEvents() {
+        EditorGUILayout.PropertyField(onTick, new GUIContent("OnTick event"));
+        EditorGUILayout.PropertyField(onDrag, new GUIContent("OnDrag event"));
+        EditorGUILayout.PropertyField(onPointerDown, new GUIContent("OnPointerDown event"));
+        EditorGUILayout.PropertyField(onPointerUp, new GUIContent("OnPointerUp event"));
     }
 }

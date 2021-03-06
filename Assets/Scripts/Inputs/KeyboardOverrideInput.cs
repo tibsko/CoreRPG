@@ -7,13 +7,17 @@ public class KeyboardOverrideInput : MonoBehaviour {
 
     [SerializeField] bool overrideInput = false;
 
-    private JoystickInput joystickToReplace;
+    [System.Serializable]
+    public class DragJoystickEvent : UnityEvent<Vector2> { }
+    public DragJoystickEvent onDragJoystick;
+
+    private Joystick joystickToReplace;
     private Vector2 inputs;
 
 
     // Start is called before the first frame update
     void Start() {
-        joystickToReplace = GetComponent<JoystickInput>();
+        joystickToReplace = GetComponent<Joystick>();
 
         if (joystickToReplace == null) {
             overrideInput = true;
@@ -25,7 +29,7 @@ public class KeyboardOverrideInput : MonoBehaviour {
         if (overrideInput) {
             inputs.x = Input.GetAxis("Horizontal");
             inputs.y = Input.GetAxis("Vertical");
-            joystickToReplace.onDragJoystick.Invoke(inputs);
+            onDragJoystick.Invoke(new Vector2(inputs.x, inputs.y));
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow)) {

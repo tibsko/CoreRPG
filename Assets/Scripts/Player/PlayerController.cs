@@ -46,10 +46,9 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    public void UpdateInputs(Vector2 inputs) {
+    public void OnMoveInput(Vector2 inputs) {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
     }
-
 
     private void Move() {
         controller.Move(Vector3.ClampMagnitude(xzMove * Time.deltaTime * speedMove, Time.deltaTime * speedMove));
