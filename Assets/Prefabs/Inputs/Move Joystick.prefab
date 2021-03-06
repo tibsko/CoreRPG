@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.037029304, b: 0.764151, a: 0.6313726}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 215278038752881536}
   - component: {fileID: 215278038752881551}
   m_Layer: 5
-  m_Name: JoystickMove
+  m_Name: Move Joystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.037029304, b: 0.764151, a: 0.6313726}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

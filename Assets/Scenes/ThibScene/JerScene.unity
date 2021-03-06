@@ -5086,26 +5086,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1542406648}
     m_Modifications:
-    - target: {fileID: 215278037876211468, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.6313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278037876211468, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278037876211468, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.037029304
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278037876211468, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 215278038481991313, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5216,26 +5196,6 @@ PrefabInstance:
       propertyPath: onTick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 821348890}
-    - target: {fileID: 215278038752881537, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.6313726
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278038752881537, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278038752881537, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.037029304
-      objectReference: {fileID: 0}
-    - target: {fileID: 215278038752881537, guid: de86b71c071d9564eab89909ee1921c3,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 215278038752881550, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_Name
