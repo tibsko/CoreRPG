@@ -29,8 +29,10 @@ public class Weapon : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
-            myRigidBody.AddForce(firePoint.forward * weaponData.force, ForceMode.Impulse);
-            nbBulletsShooted += 1;
+            Vector3 direction = firePoint.forward;
+            direction.y = 0;
+            myRigidBody.AddForce(direction * weaponData.force, ForceMode.Impulse);
+            //nbBulletsShooted += 1;
         }
     }
 

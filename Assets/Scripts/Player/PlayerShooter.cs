@@ -7,21 +7,17 @@ public class PlayerShooter : MonoBehaviour {
 
     [SerializeField] GameObject[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
-
     [SerializeField] float autoShootRadius = 10f;
 
-    //private Rect aimJoystickZone;
-    //public Joystick joystickAim;
+    //private public bool isShooting = false;
+    //private bool isAutoShooting = false;
+    //private float timePressed = 0f;
 
-    public bool isShooting = false;
-    public bool isAiming = false;
-    public Vector3 xzAim;
-    private Vector3 pointToShoot;
-    private bool isAutoShooting = false;
+    public Vector3 AimDirection { get; private set; }
+    public bool DisplayAim { get; private set; }
+
+    private bool startedAiming;
     private float distanceEnemy;
-    private Vector3 enemyToShoot;
-    private float timePressed = 0f;
-
     private Animator animator;
     private int activeWeaponIndex = 0;
     private List<Weapon> equipedWeapons;
@@ -32,12 +28,13 @@ public class PlayerShooter : MonoBehaviour {
         animator = GetComponent<Animator>();
         equipedWeapons = new List<Weapon>();
         controller = GetComponent<PlayerController>();
+        startedAiming = false;
 
         //aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
 
         foreach (var weaponPrefab in weaponPrefabs) {
             GameObject go = Instantiate(weaponPrefab, weaponSlot.position, Quaternion.identity, weaponSlot);
-            go.layer = LayerManager.instance.playerLayer;
+            go.layer = gameObject.layer;
 
             Weapon weapon = go.GetComponent<Weapon>();
             if (weapon) {
@@ -52,8 +49,6 @@ public class PlayerShooter : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        HandleShoot();
-
         //if (isShooting) {
         //    Shoot();
         //}
@@ -64,50 +59,40 @@ public class PlayerShooter : MonoBehaviour {
         //}
     }
 
-    private void HandleShoot() {
+    public void OnAim(Vector2 aim) {
+        AimDirection = new Vector3(aim.x, 0, aim.y);
 
+        if (AimDirection.magnitude > 0.5f) {
+            startedAiming = true;
+            DisplayAim = true;
+        }
+        else
+            DisplayAim = false;
     }
 
-    //private void JoystickMethods() {
-    //    foreach (Touch touch in Input.touches) {
-    //        if (moveJoystickZone.Contains(touch.position) && isGrounded) {
-    //            xyMove = new Vector3(joystickMove.Horizontal, 0f, joystickMove.Vertical);
-    //        }
-    //        else if (aimJoystickZone.Contains(touch.position)) {
-    //            if (touch.phase == TouchPhase.Began) {
+    public void OnRelease(Vector2 aim) {
+        HandleShoot();
+    }
 
-    //            }
+    private void HandleShoot() {
+        if (startedAiming && AimDirection.magnitude < 0.5f) {
+            //Cancel shoot
+            Debug.Log("Cancel shoot");
+        }
+        else if (!startedAiming && AimDirection.magnitude < 0.5f) {
+            Debug.Log("Autoshooting");
+            AutoShoot();
+        }
+        else if (startedAiming) {
+            Debug.Log("Aiming shoot");
+            AimShoot();
+        }
+        else {
+            Debug.Log("Nothing");
+        }
+        startedAiming = false;
 
-    //            else if (touch.phase == TouchPhase.Moved) {
-    //                xzAim = new Vector3(joystickAim.Horizontal, 0, joystickAim.Vertical);
-    //                if (xzAim.magnitude < .7f) {
-    //                    AutoShoot();
-    //                }
-    //                else {
-    //                    isShooting = false;
-    //                    isAiming = true;
-    //                    isAutoShooting = false;
-    //                    pointToShoot = xzAim;
-    //                }
-    //            }
-
-    //            else if (touch.phase == TouchPhase.Ended) {
-    //                timePressed = Time.time - timePressed;
-    //                isShooting = true;
-    //                if (!isAiming) {
-    //                    AutoShoot();
-    //                }
-    //                isAiming = false;
-
-    //            }
-
-    //        }
-    //        else {
-    //            xyMove = Vector3.zero;
-    //            isAiming = false;
-    //        }
-    //    }
-    //}
+    }
 
     public void NextWeapon() {
         activeWeaponIndex++;
@@ -129,59 +114,50 @@ public class PlayerShooter : MonoBehaviour {
         equipedWeapons[activeWeaponIndex].gameObject.SetActive(true);
     }
 
-    public void Shoot() {
+    private void AimShoot() {
+        Rotate(transform.position + AimDirection);
+        Fire();
+    }
+
+    private void AutoShoot() {
+        distanceEnemy = 20f;
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, autoShootRadius);
+        Vector3 target = transform.position + transform.forward;
+
+        foreach (var collider in colliders) {
+            if (1 << collider.gameObject.layer == LayerManager.instance.enemyLayer) {
+                float distance = (collider.transform.position - transform.position).magnitude;
+                if (distanceEnemy > distance) {
+                    distanceEnemy = distance;
+                    target = collider.transform.position;
+                }
+            }
+        }
+        Rotate(target);
+        Fire();
+        StartCoroutine(LockRotation());
+    }
+
+    public void Rotate(Vector3 target) {
+        controller.LookAt(target);
+    }
+
+
+    private IEnumerator LockRotation() {
+        controller.RotationIsLocked = true;
+        yield return new WaitForSeconds(0.5f);
+        controller.RotationIsLocked = false;
+    }
+
+    private void Fire() {
         Weapon weapon = GetActiveWeapon();
         if (weapon && weapon.CanShoot()) {
             animator.SetTrigger("Attack");
             weapon.Shoot();
         }
+        DisplayAim = false;
     }
-
-    private void AutoShoot() {
-        distanceEnemy = 20f;
-        isAiming = false;
-
-        Collider[] colliders = Physics.OverlapSphere(transform.position, autoShootRadius);
-
-        foreach (var collider in colliders) {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
-                if (distanceEnemy > (collider.transform.position - transform.position).magnitude) {
-                    distanceEnemy = (collider.transform.position - transform.position).magnitude;
-                    enemyToShoot = collider.transform.position;
-                }
-            }
-        }
-
-        pointToShoot = new Vector3(enemyToShoot.x, 0, enemyToShoot.z);
-        isAutoShooting = true;
-    }
-
-    public void Rotate() {
-        //if (!isShooting && !focus) {
-        //    transform.LookAt(transform.position + xyMove);
-        //}
-        //else if (isShooting) {
-        //    if (isAutoShooting) {
-        //        transform.LookAt(new Vector3(0, transform.position.y, 0) + pointToShoot);
-        //        StartCoroutine(IsRotatingAim());
-        //    }
-        //    if (!isAutoShooting) {
-        //        transform.LookAt(transform.position + xzAim);
-        //        StartCoroutine(IsRotatingAim());
-        //    }
-        //}
-        //else if (!isShooting && focus) {
-        //    transform.LookAt(transformInteractable.position);
-        //}
-
-    }
-
-
-    private IEnumerator IsRotatingAim() {
-        yield return new WaitForSeconds(0.5f);
-        isShooting = false;
-    }
-
 
     public Weapon GetActiveWeapon() {
         return equipedWeapons[activeWeaponIndex].GetComponent<Weapon>();
@@ -189,5 +165,10 @@ public class PlayerShooter : MonoBehaviour {
 
     private void ChangeAnimation(AnimatorOverrideController animatorOverrideController) {
         animator.runtimeAnimatorController = animatorOverrideController;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;   
+        Gizmos.DrawWireSphere(transform.position, autoShootRadius);
     }
 }

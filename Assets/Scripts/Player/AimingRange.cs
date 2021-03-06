@@ -22,7 +22,7 @@ public class AimingRange : MonoBehaviour
             return;
         }
 
-        if (playerShoot.isAiming)
+        if (playerShoot.DisplayAim)
         {
             aimingRenderer.enabled = true;
             RotateAiming();
@@ -35,9 +35,9 @@ public class AimingRange : MonoBehaviour
 
     void RotateAiming()
     {
-        transform.LookAt(playerShoot.transform.position + playerShoot.xzAim);
-        Vector3 rototo = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(90, rototo.y + 90, 0);
+        transform.LookAt(playerShoot.transform.position + playerShoot.AimDirection);
+        Vector3 rotation = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(90, rotation.y + 90, 0);
 
     }
 }

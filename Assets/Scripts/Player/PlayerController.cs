@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
     public bool IsGrounded { get; private set; }
+    public bool RotationIsLocked { get; set; }
 
     private CharacterController controller;
     private Interactable focus;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         CheckGround();
         CheckBorderJump();
-        DetectInteractable();
+        //DetectInteractable();
         Move();
         Rotate();
 
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
         //{
         //   Jump();
         //}
+
 
         //Apply gravity
         if (IsGrounded && yMove.y < 0)
@@ -56,12 +58,17 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Rotate() {
-        if (!focus) {
-            controller.transform.LookAt(controller.transform.position + xzMove);
+        if (!RotationIsLocked  && !focus) {
+            LookAt(controller.transform.position + xzMove);
         }
         else {
-            controller.transform.LookAt(focus.transform.position);
+            //LookAt(focus.transform.position);
         }
+    }
+
+    public void LookAt(Vector3 target) {
+        target.y = transform.position.y;
+        controller.transform.LookAt(target);
     }
 
     private void CheckBorderJump() {
@@ -100,8 +107,6 @@ public class PlayerController : MonoBehaviour {
             if (focus != null)
                 focus.OnDeFocused();
         }
-
-        newFocus.OnFocused(transform);
     }
 
     private void RemoveFocus() {
@@ -111,6 +116,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
         Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
         Gizmos.DrawWireSphere(transform.position, radiusInteractable);
