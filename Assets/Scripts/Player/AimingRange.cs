@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class AimingRange : MonoBehaviour
 {
-    [SerializeField] PlayerController player;
+    private PlayerShooter playerShoot;
     private SpriteRenderer aimingRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerShoot = GetComponentInParent<PlayerShooter>();
         aimingRenderer = GetComponent<SpriteRenderer>();
         aimingRenderer.enabled = false;
     }
@@ -16,12 +18,16 @@ public class AimingRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.isAiming)
+        if(playerShoot == null) {
+            return;
+        }
+
+        if (playerShoot.isAiming)
         {
             aimingRenderer.enabled = true;
             RotateAiming();
         }
-        else if (!player.isAiming)
+        else
         {
             aimingRenderer.enabled = false;
         }
@@ -29,8 +35,7 @@ public class AimingRange : MonoBehaviour
 
     void RotateAiming()
     {
-
-        transform.LookAt(player.transform.position + player.xzAim);
+        transform.LookAt(playerShoot.transform.position + playerShoot.xzAim);
         Vector3 rototo = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(90, rototo.y + 90, 0);
 

@@ -9,13 +9,15 @@ public class EnemyController : MonoBehaviour
 
     Transform target;
     NavMeshAgent agent;
-    CapsuleCollider colliderEnemy;
+
     // Start is called before the first frame update
     void Start()    
     {
         agent = GetComponent<NavMeshAgent>();
-        target = PlayerManager.instance.player.transform;
-        colliderEnemy = GetComponent<CapsuleCollider>();
+       PlayerController player = FindObjectOfType<PlayerController>();
+        if (player) {
+            target = player.transform;
+        }
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Bullet"))
+        if(collision.gameObject.layer == LayerManager.instance.bulletLayer)
         {
             Destroy(gameObject);
         }
