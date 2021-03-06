@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckBorderJump()
     {
-        Collider[] colliders = Physics.OverlapSphere(jumpZone.position, radiusCheck, GameManager.instance.groundLayer);
+        Collider[] colliders = Physics.OverlapSphere(jumpZone.position, radiusCheck, LayerManager.instance.groundLayer);
         if (colliders.Length == 0 && isGrounded == true)
         {
             Jump();
@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckGround()
     {
-        isGrounded = Physics.CheckSphere(groundChecker.position, radiusCheck, GameManager.instance.groundLayer, QueryTriggerInteraction.Ignore);
+        isGrounded = Physics.CheckSphere(groundChecker.position, radiusCheck, LayerManager.instance.groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     void DetectInteractable()
