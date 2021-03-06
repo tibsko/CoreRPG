@@ -27,8 +27,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void OnCollisionEnter(Collision collision)
+    
+    
+    void OnTriggerEnter(Collider collision)
     {
         //Collider[] colliders = Physics.OverlapSphere(transform.position, bulletData.radius);
         //foreach (var collider in colliders)
@@ -40,9 +41,10 @@ public class Bullet : MonoBehaviour
 
         //    }
         //}
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
+        if (collision.gameObject.layer != gameObject.layer) {
             CharacterHealth playerHealth = collision.gameObject.GetComponent<CharacterHealth>();
-            playerHealth.TakeDamage(bulletData.damage);
+            if (playerHealth)
+                playerHealth.TakeDamage(bulletData.damage);
         }
 
             Destroy(gameObject); //trouver solution pour colision
