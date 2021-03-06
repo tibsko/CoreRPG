@@ -9,12 +9,12 @@ public class AimJoystick : MonoBehaviour {
     [SerializeField] RawImage joystickBtn;
     [SerializeField] float radius;
 
-    private PlayerWeapons player;
+    private PlayerShoot player;
 
     // Start is called before the first frame update
     void Start() {
         Toggle(false);
-        player = FindObjectOfType<PlayerWeapons>();
+        player = FindObjectOfType<PlayerShoot>();
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float radius = 3f;
+    public float interactionRadius = 3f;
 
     bool isFocus = false;
     Transform player;
@@ -21,7 +21,7 @@ public class Interactable : MonoBehaviour
         if (isFocus && !hasInteracted)
         {
             float distance = (Vector3.Distance(player.position, transform.position));
-            if(distance<=radius)
+            if(distance<=interactionRadius)
             {
                 Interact();
                 hasInteracted = true;
@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, interactionRadius);
 
     }
 }

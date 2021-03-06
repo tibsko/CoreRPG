@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19cd0a0d6f73ccf4c90d172dcbf6839e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7618126829376842260}
 --- !u!1 &7618126828959475139
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +216,8 @@ GameObject:
   - component: {fileID: 7618126829376842283}
   - component: {fileID: 7618126829376842280}
   - component: {fileID: 7618126829376842260}
-  - component: {fileID: 7618126829376842287}
   - component: {fileID: 821348893}
+  - component: {fileID: 821348889}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -322,35 +321,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3b508762d6b9541a24970282372ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystickMove: {fileID: 0}
-  joystickAim: {fileID: 0}
   groundChecker: {fileID: 7618126828959475138}
   jumpZone: {fileID: 7618126830283201757}
   speedMove: 10
-  radiusCheck: 0.3
+  groundCheckRadius: 2
   jumpForce: 5
-  autoShootRadius: 15
+  radiusInteractable: 3
   gravity: {x: 0, y: -20, z: 0}
-  xyAim: {x: 0, y: 0, z: 0}
-  nbBulletsShooted: 0
-  isShooting: 0
-  isAiming: 0
---- !u!114 &7618126829376842287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b288a21b6f4a0544ebf318e7e57fde40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponPrefabs:
-  - {fileID: 6521748887353981451, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
-  - {fileID: 5675909864428604342, guid: f8b4261b2c7f90448af65f0c81d319bc, type: 3}
-  weaponSlot: {fileID: 7618126830638750325}
 --- !u!1818360609 &821348893
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -358,16 +335,35 @@ RotationConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Weight: 1
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_RotationOffset: {x: 0, y: 0, z: 0}
   m_AffectRotationX: 1
   m_AffectRotationY: 0
   m_AffectRotationZ: 1
-  m_IsContraintActive: 0
-  m_IsLocked: 0
+  m_IsContraintActive: 1
+  m_IsLocked: 1
   m_Sources: []
+--- !u!95 &821348889
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e2b42bd5e48bc2408f41441b385fc3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7618126830283201752
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +406,7 @@ GameObject:
   m_Layer: 8
   m_Name: weaponSlot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -422,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618126830638750326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.521, y: 0.185, z: -0.046}
+  m_LocalPosition: {x: 0.521, y: 0.185, z: 0.076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7618126829376842281}

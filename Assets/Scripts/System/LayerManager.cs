@@ -17,4 +17,6 @@ public class LayerManager : MonoBehaviour
 
     public LayerMask groundLayer;
     public LayerMask bulletLayer;
+    public LayerMask playerLayer;
+    public LayerMask interactableLayer;
 }
