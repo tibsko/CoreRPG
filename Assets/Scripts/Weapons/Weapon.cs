@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
         if (weaponData.type == WeaponData.EWeaponType.Ranged)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.layer = gameObject.layer;
             Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
             Vector3 direction = firePoint.forward;
             direction.y = 0;

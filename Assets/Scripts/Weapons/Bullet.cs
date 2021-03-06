@@ -30,17 +30,22 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, bulletData.radius);
-        foreach (var collider in colliders)
-        {
-            if (collider.gameObject.layer != LayerMask.NameToLayer("Player"))
-            {
-                if (collider.attachedRigidbody != null)
-                    collider.attachedRigidbody.AddForce((collider.transform.position - transform.position).normalized * bulletData.explosionForce, ForceMode.Impulse);
+        //Collider[] colliders = Physics.OverlapSphere(transform.position, bulletData.radius);
+        //foreach (var collider in colliders)
+        //{
+        //    if (collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        //    {
+        //        if (collider.attachedRigidbody != null)
+        //            collider.attachedRigidbody.AddForce((collider.transform.position - transform.position).normalized * bulletData.explosionForce, ForceMode.Impulse);
 
-            }
+        //    }
+        //}
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            CharacterHealth playerHealth = collision.gameObject.GetComponent<CharacterHealth>();
+            playerHealth.TakeDamage(bulletData.damage);
         }
-        Destroy(gameObject); //trouver solution pour colision
+
+            Destroy(gameObject); //trouver solution pour colision
     }
 
     void DestroyRange()
