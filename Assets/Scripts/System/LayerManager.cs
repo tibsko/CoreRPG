@@ -19,4 +19,5 @@ public class LayerManager : MonoBehaviour
     public LayerMask bulletLayer;
     public LayerMask playerLayer;
     public LayerMask interactableLayer;
+    public LayerMask enemyLayer;
 }
