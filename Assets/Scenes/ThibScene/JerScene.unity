@@ -2860,7 +2860,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7618126830531556939}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420540126}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a3b508762d6b9541a24970282372ca1, type: 3}
@@ -3756,29 +3756,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46df6371666618a4085bd355c1bac02b, type: 3}
---- !u!1 &1420540126 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7618126829376842261, guid: 686cea36e647d734bb0c83cd96eb09c6,
+--- !u!114 &1420540132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1420540132, guid: 686cea36e647d734bb0c83cd96eb09c6,
     type: 3}
   m_PrefabInstance: {fileID: 7618126830531556939}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1420540132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420540126}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefabs:
-  - {fileID: 6521748887353981451, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
-  - {fileID: 5675909864428604342, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
-  weaponSlot: {fileID: 2046904298}
-  autoShootRadius: 10
 --- !u!43 &1448358894
 Mesh:
   m_ObjectHideFlags: 0
@@ -4907,12 +4896,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 462669753866923756}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2046904298 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7618126830638750325, guid: 686cea36e647d734bb0c83cd96eb09c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 7618126830531556939}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2082275053
 Mesh:
   m_ObjectHideFlags: 0
@@ -5712,15 +5695,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 821348893, guid: 686cea36e647d734bb0c83cd96eb09c6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7618126829376842260, guid: 686cea36e647d734bb0c83cd96eb09c6,
-        type: 3}
-      propertyPath: gravity.y
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 7618126829376842261, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: m_Name
