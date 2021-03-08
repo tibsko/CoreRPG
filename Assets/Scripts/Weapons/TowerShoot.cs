@@ -9,7 +9,7 @@ public class TowerShoot : MonoBehaviour
     
     [SerializeField] Transform firepoint;
     [SerializeField] GameObject bulletPrefab;
-
+    public WeaponData weapon;
     [SerializeField] float force = 10f;
     [SerializeField] float radiusAutoShootTower = 4f;
 

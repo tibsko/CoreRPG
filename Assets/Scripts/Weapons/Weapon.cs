@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform firePoint;
-    public WeaponData weaponData;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public FireWeaponData weaponData;
     [HideInInspector] public int nbBulletsShooted = 0;
+    [HideInInspector] public int damages;
+    [HideInInspector] public float fireRate;
+    [HideInInspector] public float propulsionForce;
+    [HideInInspector] public int nbBulletToShoot;
+    [HideInInspector] public float maxDistance;
+    [HideInInspector] public float lifeTimeBullet;
+
+    private float playerRateTimer;
+
 
     //private float timeShoot = 0.2f;
 
@@ -15,6 +24,12 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damages = weaponData.damages;
+        fireRate = weaponData.attackRate;
+        propulsionForce = weaponData.propulsionForce;
+        nbBulletToShoot = weaponData.nbBulletToShoot;
+        maxDistance = weaponData.maxDistance;
+        lifeTimeBullet = weaponData.lifeTimeBullet;
     }
 
     // Update is called once per frame
@@ -23,23 +38,16 @@ public class Weapon : MonoBehaviour
    
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
-        if (weaponData.type == WeaponData.EWeaponType.Ranged)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.layer = gameObject.layer;
-            Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
-            Vector3 direction = firePoint.forward;
-            direction.y = 0;
-            myRigidBody.AddForce(direction * weaponData.force, ForceMode.Impulse);
-            //nbBulletsShooted += 1;
-        }
+        
     }
 
     public bool CanShoot()
     {
-        return nbBulletsShooted < weaponData.nbBulletToShoot;
+        return nbBulletsShooted < weaponData.nbBulletToShoot && playerRateTimer<=0;
     }
 }
+
+
 

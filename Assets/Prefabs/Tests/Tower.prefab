@@ -110,6 +110,7 @@ MonoBehaviour:
   firepoint: {fileID: 564034797636627518}
   bulletPrefab: {fileID: 7357967364426041330, guid: 1b080c49d1e9cb047a7e912cef117868,
     type: 3}
+  weapon: {fileID: 11400000, guid: a9c5999602564e444aa695ffe5423e5c, type: 2}
   force: 3
   radiusAutoShootTower: 10
   shootRate: 2

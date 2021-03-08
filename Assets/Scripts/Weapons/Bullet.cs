@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bullet : MonoBehaviour
 {
     Vector3 currentPosition;
     Vector3 startPos;
-    public BulletData bulletData;
+    [HideInInspector] public FireWeaponData weaponData;
     float currentTime;
+    [HideInInspector] public bool damagePerDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class Bullet : MonoBehaviour
         currentPosition = transform.position;
         DestroyRange();
         currentTime = Time.deltaTime;
-        if (currentTime > bulletData.lifeTime)
+        if (currentTime > weaponData.lifeTimeBullet)
         {
             Destroy(gameObject);
         }
@@ -44,22 +46,27 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer != gameObject.layer) {
             CharacterHealth playerHealth = collision.gameObject.GetComponent<CharacterHealth>();
             if (playerHealth)
-                playerHealth.TakeDamage(bulletData.damage);
+                if (!damagePerDistance)
+                    playerHealth.TakeDamage(weaponData.damages);
+                else{
+                    playerHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages));
+                }
         }
+        
 
             Destroy(gameObject); //trouver solution pour colision
     }
 
     void DestroyRange()
     {
-        if (Vector3.Distance(currentPosition, startPos) >= bulletData.maxDistance)
+        if (Vector3.Distance(currentPosition, startPos) >= weaponData.maxDistance)
         {
             Destroy(gameObject);
         }
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, bulletData.radius);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, weaponData.radiusBullet);
+    //}
 }

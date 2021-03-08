@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour {
 
-    [SerializeField] GameObject[] weaponPrefabs;
+    [SerializeField] Weapon[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
     [SerializeField] float autoShootRadius = 10f;
 
@@ -33,7 +33,7 @@ public class PlayerShooter : MonoBehaviour {
         //aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
 
         foreach (var weaponPrefab in weaponPrefabs) {
-            GameObject go = Instantiate(weaponPrefab, weaponSlot.position, Quaternion.identity, weaponSlot);
+            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot.position, Quaternion.identity, weaponSlot);
             go.layer = gameObject.layer;
 
             Weapon weapon = go.GetComponent<Weapon>();

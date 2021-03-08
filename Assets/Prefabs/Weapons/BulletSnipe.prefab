@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47b8d613ff9e714fb48e29d2d257494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletData: {fileID: 11400000, guid: 2f3d18f442f325e45991b93794501b9a, type: 2}
+  weaponData: {fileID: 11400000, guid: a0a6bdf0f52a36a409751db4c25d23f7, type: 2}
