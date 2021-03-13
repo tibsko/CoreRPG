@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HitBoxSword : MonoBehaviour
 {
-    public Collider hitCollider;
     [SerializeField] Sword sword;
 
     void OnTriggerEnter(Collider collision) {
