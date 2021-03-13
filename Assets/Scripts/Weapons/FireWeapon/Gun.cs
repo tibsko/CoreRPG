@@ -2,27 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : Weapon {
+public class Gun : FireWeapon {
+
     private GunData gunData;
     // Start is called before the first frame update
     void Start() {
         base.Start();
-        if (weaponData.GetType() == typeof(GunData))
-            gunData = weaponData as GunData;
+        if (this.FireWeaponData.GetType() == typeof(GunData))
+            gunData = FireWeaponData as GunData;
         else {
             Debug.LogError("Wrong WeaponData Type in " + this.name);
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    public override void Shoot() {
-        
-
-        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    public override void Attack() {
+        Vector3 bulletRotation = new Vector3(0, firePoint.rotation.eulerAngles.y, 0);
+        GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(bulletRotation));
         bulletGo.layer = gameObject.layer;
         Bullet bullet = bulletGo.GetComponent<Bullet>();
         bullet.weaponData = FireWeaponData;
@@ -30,8 +25,8 @@ public class Gun : Weapon {
         myRigidBody.AddForce(bulletGo.transform.forward * FireWeaponData.propulsionForce, ForceMode.Impulse);
     }
 
-    public override bool CanShoot() {
-        return nbBulletsShooted < FireWeaponData.nbBulletToShoot && playerRateTimer <= 0;
+    public override bool CanAttack() {
+        return NbBulletsShooted < FireWeaponData.nbBulletToShoot && Cooldown <= 0;
     }
 }
 

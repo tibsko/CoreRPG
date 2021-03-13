@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c773aa67aa5e04284ec63d84301b43, type: 3}
   m_Name: ShotGun
   m_EditorClassIdentifier: 
-  overideAnimator: {fileID: 22100000, guid: 6560e2e3d647db848bc0306642df333a, type: 2}
+  overrideAnimator: {fileID: 22100000, guid: 6560e2e3d647db848bc0306642df333a, type: 2}
   damages: 30
-  attackRate: 0
+  cooldown: 0
   propulsionForce: 30
   nbBulletToShoot: 5
   maxDistance: 8

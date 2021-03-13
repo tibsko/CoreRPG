@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7183cafb9dea9c5498095c38d3433824, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  overideAnimator: {fileID: 22100000, guid: 9037b11fb2a4f3542a2398e059866d11, type: 2}
+  overrideAnimator: {fileID: 22100000, guid: 9037b11fb2a4f3542a2398e059866d11, type: 2}
   damages: 10
-  attackRate: 2
+  cooldown: 0

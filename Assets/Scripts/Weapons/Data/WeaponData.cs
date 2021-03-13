@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class WeaponData : ScriptableObject
 {
-    public AnimatorOverrideController overideAnimator;
+    public AnimatorOverrideController overrideAnimator;
     public int damages;
-    public float attackRate;
+    public float cooldown;
    
    
 }

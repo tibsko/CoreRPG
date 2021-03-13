@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5675909864428604337}
-  - component: {fileID: 1404621748890877704}
+  - component: {fileID: 6214700641645115976}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1404621748890877704
+--- !u!114 &6214700641645115976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,20 +138,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5675909864428604342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37471268ec52fc4438250c26e3c6953f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9850ba2c52175c74ba845f3f36ac166f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 5675909865464577038}
+  autoshootDistance: 10
   weaponData: {fileID: 11400000, guid: 2dcb73f79f626e64795d43684367afff, type: 2}
-  nbBulletsShooted: 0
-  damages: 0
-  fireRate: 0
-  propulsionForce: 0
-  nbBulletToShoot: 0
-  maxDistance: 0
-  lifeTimeBullet: 0
-  playerRateTimer: 0
+  hitBoxes:
+  - {fileID: 5089927039891668007}
 --- !u!1 &5675909865464577039
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6898645161535876425}
   - component: {fileID: 435133381262860797}
-  - component: {fileID: 8104601984319345025}
+  - component: {fileID: 5089927039891668007}
   m_Layer: 0
   m_Name: Hit Box
   m_TagString: Untagged
@@ -306,7 +299,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.43
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8104601984319345025
+--- !u!114 &5089927039891668007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +308,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8365366499333456782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8084d1f3ee4e7e948a91878b047931ef, type: 3}
+  m_Script: {fileID: 11500000, guid: b5a677bf388693840b5daab5aca613f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sword: {fileID: 1404621748890877704}
+  sword: {fileID: 6214700641645115976}

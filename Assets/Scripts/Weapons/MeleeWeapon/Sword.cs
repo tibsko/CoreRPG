@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : Weapon {
+public class Sword : MeleeWeapon {
     private SwordData swordData;
 
     // Start is called before the first frame update
     void Start() {
         base.Start();
 
-        if (weaponData.GetType() == typeof(SwordData))
-            swordData = weaponData as SwordData;
+        if (this.MeleeWeaponData.GetType() == typeof(SwordData))
+            swordData = MeleeWeaponData as SwordData;
         else {
             Debug.LogError("Wrong WeaponData Type in " + this.name);
         }
     }
 
-    public override void Shoot() {
+    public override void Attack() {
 
     }
 
-    public override bool CanShoot() {
+    public override bool CanAttack() {
         return true;
     }
 }

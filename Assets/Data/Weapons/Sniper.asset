@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4729aff6f2a7b2249b41cec0dcf587f1, type: 3}
   m_Name: Sniper
   m_EditorClassIdentifier: 
-  overideAnimator: {fileID: 22100000, guid: 965f3e37bbcd74540ae0126a678ba24f, type: 2}
+  overrideAnimator: {fileID: 22100000, guid: 965f3e37bbcd74540ae0126a678ba24f, type: 2}
   damages: 100
-  attackRate: 0
+  cooldown: 0
   propulsionForce: 30
   nbBulletToShoot: 1
   maxDistance: 20

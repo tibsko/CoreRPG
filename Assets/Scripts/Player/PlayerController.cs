@@ -120,9 +120,9 @@ public class PlayerController : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(transform.position, radiusInteractable);
+        //Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
+        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        //Gizmos.DrawWireSphere(transform.position, radiusInteractable);
     }
 
 }
