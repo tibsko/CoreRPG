@@ -6,6 +6,7 @@ public class Gun : Weapon {
     private GunData gunData;
     // Start is called before the first frame update
     void Start() {
+        base.Start();
         if (weaponData.GetType() == typeof(GunData))
             gunData = weaponData as GunData;
         else {
@@ -19,16 +20,18 @@ public class Gun : Weapon {
     }
 
     public override void Shoot() {
-        base.Shoot();
+        
 
         GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bulletGo.layer = gameObject.layer;
         Bullet bullet = bulletGo.GetComponent<Bullet>();
-        bullet.weaponData = weaponData;
+        bullet.weaponData = FireWeaponData;
         Rigidbody myRigidBody = bulletGo.GetComponent<Rigidbody>();
-        myRigidBody.AddForce(bulletGo.transform.forward * weaponData.propulsionForce, ForceMode.Impulse);
+        myRigidBody.AddForce(bulletGo.transform.forward * FireWeaponData.propulsionForce, ForceMode.Impulse);
     }
 
-
+    public override bool CanShoot() {
+        return nbBulletsShooted < FireWeaponData.nbBulletToShoot && playerRateTimer <= 0;
+    }
 }
 

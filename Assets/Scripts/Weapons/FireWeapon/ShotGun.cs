@@ -8,6 +8,7 @@ public class ShotGun : Weapon
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         if (weaponData.GetType() == typeof(ShotGunData))
             shotGunData = weaponData as ShotGunData;
         else {
@@ -22,7 +23,6 @@ public class ShotGun : Weapon
     }
 
     public override void Shoot() {
-        base.Shoot();
         float angle = shotGunData.shotAngle / nbBulletToShoot;
         for (int i = 0; i < nbBulletToShoot; i++) {
             Vector3 bulletRotation = new Vector3(0, (i*angle)-shotGunData.shotAngle/2, 0)+ firePoint.rotation.eulerAngles;
@@ -30,11 +30,15 @@ public class ShotGun : Weapon
             GameObject bulletGo = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(bulletRotation));
             bulletGo.layer = gameObject.layer;
             Bullet bullet = bulletGo.GetComponent<Bullet>();
-            bullet.weaponData = weaponData;
+            bullet.weaponData = FireWeaponData;
             Rigidbody myRigidBody = bulletGo.GetComponent<Rigidbody>();
-            myRigidBody.AddForce(bulletGo.transform.forward * weaponData.propulsionForce, ForceMode.Impulse);
+            myRigidBody.AddForce(bulletGo.transform.forward * FireWeaponData.propulsionForce, ForceMode.Impulse);
         }
 
         
+    }
+
+    public override bool CanShoot() {
+        return nbBulletsShooted < FireWeaponData.nbBulletToShoot && playerRateTimer <= 0;
     }
 }

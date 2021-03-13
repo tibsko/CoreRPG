@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
-{
+public abstract class Weapon : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public FireWeaponData weaponData;
+    public WeaponData weaponData;
+
     [HideInInspector] public int nbBulletsShooted = 0;
     [HideInInspector] public int damages;
     [HideInInspector] public float fireRate;
@@ -14,39 +14,32 @@ public abstract class Weapon : MonoBehaviour
     [HideInInspector] public int nbBulletToShoot;
     [HideInInspector] public float maxDistance;
     [HideInInspector] public float lifeTimeBullet;
+    
+    [HideInInspector] public float playerRateTimer;
 
-    private float playerRateTimer;
-
+    public FireWeaponData FireWeaponData { get; set; }
+    public MeleeWeaponData MeleeWeaponData { get; set; }
 
     //private float timeShoot = 0.2f;
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    protected void Start() {
+        FireWeaponData = weaponData as FireWeaponData;
         damages = weaponData.damages;
         fireRate = weaponData.attackRate;
-        propulsionForce = weaponData.propulsionForce;
-        nbBulletToShoot = weaponData.nbBulletToShoot;
-        maxDistance = weaponData.maxDistance;
-        lifeTimeBullet = weaponData.lifeTimeBullet;
+        propulsionForce = FireWeaponData.propulsionForce;
+        nbBulletToShoot = FireWeaponData.nbBulletToShoot;
+        maxDistance = FireWeaponData.maxDistance;
+        lifeTimeBullet = FireWeaponData.lifeTimeBullet;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-   
-    }
 
-    public virtual void Shoot()
-    {
+    public abstract void Shoot();
+
+    public abstract bool CanShoot();
         
-    }
-
-    public bool CanShoot()
-    {
-        return nbBulletsShooted < weaponData.nbBulletToShoot && playerRateTimer<=0;
-    }
+    
 }
 
 
