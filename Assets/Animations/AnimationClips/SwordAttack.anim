@@ -98,8 +98,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
-        value: 0
+        time: 0.3
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -118,10 +118,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Enabled
-    path: weaponSlot/Sword/Hit Box
-    classID: 135
-    script: {fileID: 0}
+    attribute: activateHitBoxes
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 10
   m_WrapMode: 0
@@ -145,10 +145,10 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2412368764
-      attribute: 3305885265
-      script: {fileID: 0}
-      typeID: 135
+      path: 0
+      attribute: 1610149277
+      script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
+      typeID: 114
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -408,8 +408,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
-        value: 0
+        time: 0.3
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -428,10 +428,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_Enabled
-    path: weaponSlot/Sword/Hit Box
-    classID: 135
-    script: {fileID: 0}
+    attribute: activateHitBoxes
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
