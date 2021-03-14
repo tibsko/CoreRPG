@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour {
         CheckGround();
         CheckBorderJump();
         //DetectInteractable();
-        Move();
         Rotate();
 
         //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -48,13 +47,17 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    private void FixedUpdate() {
+        Move();
+    }
+
     public void OnMoveInput(Vector2 inputs) {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
     }
 
     private void Move() {
-        controller.Move(Vector3.ClampMagnitude(xzMove * Time.deltaTime * speedMove, Time.deltaTime * speedMove));
-        controller.Move(yMove * Time.deltaTime);
+        controller.Move(Vector3.ClampMagnitude(xzMove * Time.fixedDeltaTime * speedMove, Time.fixedDeltaTime * speedMove));
+        controller.Move(yMove * Time.fixedDeltaTime);
     }
 
     private void Rotate() {
@@ -117,9 +120,9 @@ public class PlayerController : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(transform.position, radiusInteractable);
+        //Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
+        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        //Gizmos.DrawWireSphere(transform.position, radiusInteractable);
     }
 
 }

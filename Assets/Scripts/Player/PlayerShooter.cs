@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour {
 
-    [SerializeField] GameObject[] weaponPrefabs;
+    [SerializeField] Weapon[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
-    [SerializeField] float autoShootRadius = 10f;
+    [SerializeField] bool activateHitBoxes = false;
 
     //private public bool isShooting = false;
     //private bool isAutoShooting = false;
     //private float timePressed = 0f;
+
 
     public Vector3 AimDirection { get; private set; }
     public bool DisplayAim { get; private set; }
@@ -23,6 +24,8 @@ public class PlayerShooter : MonoBehaviour {
     private List<Weapon> equipedWeapons;
     private PlayerController controller;
 
+    public Weapon ActiveWeapon { get { return equipedWeapons[activeWeaponIndex]; } }
+
     // Start is called before the first frame update
     void Start() {
         animator = GetComponent<Animator>();
@@ -33,7 +36,7 @@ public class PlayerShooter : MonoBehaviour {
         //aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
 
         foreach (var weaponPrefab in weaponPrefabs) {
-            GameObject go = Instantiate(weaponPrefab, weaponSlot.position, Quaternion.identity, weaponSlot);
+            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot.position, Quaternion.identity, weaponSlot);
             go.layer = gameObject.layer;
 
             Weapon weapon = go.GetComponent<Weapon>();
@@ -48,6 +51,8 @@ public class PlayerShooter : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        ToggleHitBox(activateHitBoxes);
 
         //if (isShooting) {
         //    Shoot();
@@ -104,7 +109,7 @@ public class PlayerShooter : MonoBehaviour {
 
     public void EquipWeapon() {
         DisplayActiveWeapon();
-        ChangeAnimation(GetActiveWeapon().weaponData.overideAnimator);
+        ChangeAnimation(GetActiveWeapon().GetAnimatorOverride());
     }
 
     void DisplayActiveWeapon() {
@@ -122,7 +127,7 @@ public class PlayerShooter : MonoBehaviour {
     private void AutoShoot() {
         distanceEnemy = 20f;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, autoShootRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, ActiveWeapon.autoshootDistance);
         Vector3 target = transform.position + transform.forward;
 
         foreach (var collider in colliders) {
@@ -152,12 +157,21 @@ public class PlayerShooter : MonoBehaviour {
 
     private void Fire() {
         Weapon weapon = GetActiveWeapon();
-        if (weapon && weapon.CanShoot()) {
+        if (weapon && weapon.CanAttack()) {
             animator.SetTrigger("Attack");
-            weapon.Shoot();
+            weapon.Attack();
         }
         DisplayAim = false;
     }
+
+    public void ToggleHitBox(bool state) {
+        Debug.Log(ActiveWeapon.GetType().ToString());
+        if (ActiveWeapon is MeleeWeapon) {
+            MeleeWeapon meleeWeapon = ActiveWeapon as MeleeWeapon;
+            meleeWeapon.ToggleHitBoxes(state);
+        }
+    }
+
 
     public Weapon GetActiveWeapon() {
         return equipedWeapons[activeWeaponIndex].GetComponent<Weapon>();
@@ -168,7 +182,8 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
-        Gizmos.color = Color.red;   
-        Gizmos.DrawWireSphere(transform.position, autoShootRadius);
+        Gizmos.color = Color.red;
+        if (equipedWeapons != null && equipedWeapons.Count > 0 && equipedWeapons[activeWeaponIndex])
+            Gizmos.DrawWireSphere(transform.position, ActiveWeapon.autoshootDistance);
     }
 }

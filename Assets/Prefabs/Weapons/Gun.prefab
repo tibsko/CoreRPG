@@ -202,13 +202,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6521748887353981451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea35768fbd260a646be54f3efd9fb3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: ee74dd40b7f2bd54292c4fb2df7a2198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7357967364426041330, guid: 3f990f72afed67e40ae961c4629b69c2,
-    type: 3}
-  firePoint: {fileID: 6521748888465558963}
+  autoshootDistance: 10
   weaponData: {fileID: 11400000, guid: e6464633b0dcead43944045c0aa06fd2, type: 2}
+  firePoint: {fileID: 6521748888465558963}
+  bulletPrefab: {fileID: 7357967364426041330, guid: 57b648e6e535664478119ae0909e9b91,
+    type: 3}
 --- !u!1 &6521748888465558962
 GameObject:
   m_ObjectHideFlags: 0

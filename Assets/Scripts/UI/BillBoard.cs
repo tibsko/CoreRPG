@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class BillBoard : MonoBehaviour
 {
-    public Transform cam;
+    private Transform cam;
+
+    void Start() {
+        cam = Camera.main.transform;
+    }
 
     void LateUpdate()
     {

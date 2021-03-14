@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2680ee9de733837438c5d3571791ec30, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d347b8f9a94b6b4ca9b7566cc4c7554, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  overideAnimator: {fileID: 22100000, guid: 6560e2e3d647db848bc0306642df333a, type: 2}
-  damages: 10
-  fireRate: 2
-  force: 50
+  overrideAnimator: {fileID: 22100000, guid: 6560e2e3d647db848bc0306642df333a, type: 2}
+  damages: 20
+  cooldown: 0
+  propulsionForce: 30
   nbBulletToShoot: 1
+  maxDistance: 8
+  lifeTimeBullet: 30

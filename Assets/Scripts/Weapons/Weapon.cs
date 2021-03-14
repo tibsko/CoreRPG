@@ -2,44 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
-{
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform firePoint;
-    public WeaponData weaponData;
-    [HideInInspector] public int nbBulletsShooted = 0;
+public abstract class Weapon : MonoBehaviour {
 
-    //private float timeShoot = 0.2f;
+    public float autoshootDistance;
+
+    [SerializeField] protected WeaponData weaponData;
+    public int Damages { get; private set; }
+    public float Cooldown { get; private set; }
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    protected void Start() {
+        Damages = weaponData.damages;
+        Cooldown = weaponData.cooldown;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-   
+    public AnimatorOverrideController GetAnimatorOverride() {
+        return weaponData.overrideAnimator;
     }
 
-    public void Shoot()
-    {
-        if (weaponData.type == WeaponData.EWeaponType.Ranged)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.layer = gameObject.layer;
-            Rigidbody myRigidBody = bullet.GetComponent<Rigidbody>();
-            Vector3 direction = firePoint.forward;
-            direction.y = 0;
-            myRigidBody.AddForce(direction * weaponData.force, ForceMode.Impulse);
-            //nbBulletsShooted += 1;
-        }
-    }
+    public abstract void Attack();
 
-    public bool CanShoot()
-    {
-        return nbBulletsShooted < weaponData.nbBulletToShoot;
-    }
+    public abstract bool CanAttack();
+
+
 }
+
+
 
