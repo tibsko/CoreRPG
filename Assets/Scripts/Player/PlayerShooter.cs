@@ -159,6 +159,7 @@ public class PlayerShooter : MonoBehaviour {
         Weapon weapon = GetActiveWeapon();
         if (weapon && weapon.CanAttack()) {
             animator.SetTrigger("Attack");
+            animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
         }
         DisplayAim = false;

@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoshootDistance: 10
+  combosCount: 3
   weaponData: {fileID: 11400000, guid: 2dcb73f79f626e64795d43684367afff, type: 2}
   hitBoxes:
   - {fileID: 5089927039891668007}
