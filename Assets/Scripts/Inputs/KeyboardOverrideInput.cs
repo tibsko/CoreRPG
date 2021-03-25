@@ -20,8 +20,10 @@ public class KeyboardOverrideInput : MonoBehaviour {
         joystickToReplace = GetComponent<Joystick>();
 
         if (joystickToReplace == null) {
-            overrideInput = true;
+            OverrideInput(true);
         }
+        else
+            OverrideInput(overrideInput);
     }
 
     // Update is called once per frame
