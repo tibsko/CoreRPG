@@ -191,7 +191,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1424787823780046340}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5715308909394932983}
+        m_MethodName: OnRemoveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1424787824699641044
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424787824699641045}
+  - component: {fileID: 5715308909394932983}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -229,6 +241,20 @@ RectTransform:
   m_AnchoredPosition: {x: -220.94476, y: 115.52289}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5715308909394932983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424787824699641044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6a34a64dd00b9439a02eea402d0fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1424787823608282980}
+  removeButton: {fileID: 1424787823780046339}
 --- !u!1 &1424787824901022790
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,4 +373,15 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1424787824901022793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5715308909394932983}
+        m_MethodName: UseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

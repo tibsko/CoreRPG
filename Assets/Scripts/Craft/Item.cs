@@ -10,14 +10,8 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public bool isDefaultItem = false;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    
+    public virtual void Use() {
+        Debug.Log("Using" + name);
     }
 }
