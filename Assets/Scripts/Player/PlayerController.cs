@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] Transform groundChecker;
-    [SerializeField] Transform jumpZone;
+    //[SerializeField] Transform jumpZone;
 
-    [SerializeField] float speedMove = 5f;
+    [SerializeField] float maxSpeed = 5f;
     [SerializeField] float groundCheckRadius = 2f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float radiusInteractable = 3f;
@@ -20,11 +20,11 @@ public class PlayerController : MonoBehaviour {
     private Interactable focus;
     private Vector3 xzMove = Vector3.zero;
     private Vector3 yMove = Vector3.zero;
-
+    private Animator animator;
 
     void Start() {
         controller = GetComponent<CharacterController>();
-
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update() {
@@ -56,12 +56,15 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Move() {
-        controller.Move(Vector3.ClampMagnitude(xzMove * Time.fixedDeltaTime * speedMove, Time.fixedDeltaTime * speedMove));
+        controller.Move(Vector3.ClampMagnitude(xzMove * Time.fixedDeltaTime * maxSpeed, Time.fixedDeltaTime * maxSpeed));
         controller.Move(yMove * Time.fixedDeltaTime);
+        float speed = xzMove.magnitude * 0.8f;
+        animator.SetFloat("Speed", xzMove.magnitude);
+        Debug.Log(xzMove.magnitude);
     }
 
     private void Rotate() {
-        if (!RotationIsLocked  && !focus) {
+        if (!RotationIsLocked && !focus) {
             LookAt(controller.transform.position + xzMove);
         }
         else {
@@ -75,10 +78,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void CheckBorderJump() {
-        Collider[] colliders = Physics.OverlapSphere(jumpZone.position, groundCheckRadius, LayerManager.instance.groundLayer);
-        if (colliders.Length == 0 && IsGrounded == true) {
-            Jump();
-        }
+        //Collider[] colliders = Physics.OverlapSphere(jumpZone.position, groundCheckRadius, LayerManager.instance.groundLayer);
+        //if (colliders.Length == 0 && IsGrounded == true) {
+        //    Jump();
+        //}
     }
     private void Jump() {
         yMove.y = Mathf.Sqrt(jumpForce * -2f * gravity.y);
