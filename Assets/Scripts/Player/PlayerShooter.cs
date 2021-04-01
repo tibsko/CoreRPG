@@ -166,7 +166,6 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     public void ToggleHitBox(bool state) {
-        Debug.Log(ActiveWeapon.GetType().ToString());
         if (ActiveWeapon is MeleeWeapon) {
             MeleeWeapon meleeWeapon = ActiveWeapon as MeleeWeapon;
             meleeWeapon.ToggleHitBoxes(state);

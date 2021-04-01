@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     public bool IsGrounded { get; private set; }
     public bool RotationIsLocked { get; set; }
+    private Interactable interactable;
 
     private CharacterController controller;
     private Interactable focus;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         CheckGround();
         CheckBorderJump();
-        //DetectInteractable();
+        DetectInteractable();
         Rotate();
 
         //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -93,14 +94,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void DetectInteractable() {
-        int layerId = LayerManager.instance.interactableLayer;
-        int layerMask = 1 << layerId;
-        Collider[] interactablesDetected = Physics.OverlapSphere(controller.transform.position, radiusInteractable, layerMask);
+        Collider[] interactablesDetected = Physics.OverlapSphere(controller.transform.position, radiusInteractable, LayerManager.instance.interactableLayer);
         if (interactablesDetected.Length > 0) {
             foreach (var collider in interactablesDetected) {
                 Interactable interactable = interactablesDetected[0].GetComponent<Interactable>();
                 SetFocus(interactable);
-                Debug.Log("interactable detected");
             }
         }
         else
@@ -110,8 +108,9 @@ public class PlayerController : MonoBehaviour {
     private void SetFocus(Interactable newFocus) {
         if (newFocus && newFocus != focus) {
             focus = newFocus;
-            if (focus != null)
-                focus.OnDeFocused();
+            newFocus.OnFocused(transform);
+            interactable = newFocus;
+            
         }
     }
 
@@ -119,6 +118,12 @@ public class PlayerController : MonoBehaviour {
         if (focus != null)
             focus.OnDeFocused();
         focus = null;
+
+    }
+
+    public void Interaction() {
+        interactable.Interact();
+        interactable = null;
     }
 
     private void OnDrawGizmos() {

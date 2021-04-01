@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float interactionRadius = 3f;
 
     bool isFocus = false;
     Transform player;
@@ -13,25 +12,20 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
+        if (hasInteracted) {
+        }
         //methode d'interaction
     }
 
     void Update()
     {
-        if (isFocus && !hasInteracted)
-        {
-            float distance = (Vector3.Distance(player.position, transform.position));
-            if(distance<=interactionRadius)
-            {
-                Interact();
-                hasInteracted = true;
-            }
-        }
+        
     }
     public void OnFocused(Transform playerTransform)
     {
         isFocus = true;
         player = playerTransform;
+        HUD.instance.ActivateButton(true);
        
     }
 
@@ -41,12 +35,7 @@ public class Interactable : MonoBehaviour
         isFocus = false;
         player = null;
         hasInteracted = false;
-
-    }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+        HUD.instance.ActivateButton(false);
 
     }
 }
