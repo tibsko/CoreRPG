@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class FireWeapon : Weapon {
+public abstract class FireWeapon : Weapon {
 
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected GameObject bulletPrefab;
@@ -16,13 +16,8 @@ public class FireWeapon : Weapon {
     public float MaxDistance { get; protected set; }
     public FireWeaponData FireWeaponData { get { return weaponData as FireWeaponData; } }
 
-    public override void Attack() {
-        throw new System.NotImplementedException();
-    }
-
-    public override bool CanAttack() {
-        throw new System.NotImplementedException();
-    }
+    public abstract override void Attack();
+    public abstract override bool CanAttack();
 
     protected void Start() {
         base.Start();

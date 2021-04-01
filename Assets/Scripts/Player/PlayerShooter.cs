@@ -28,7 +28,7 @@ public class PlayerShooter : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        animator = GetComponent<Animator>();
+        //animator = GetComponentInChildren<Animator>();
         equipedWeapons = new List<Weapon>();
         controller = GetComponent<PlayerController>();
         startedAiming = false;
@@ -159,6 +159,7 @@ public class PlayerShooter : MonoBehaviour {
         Weapon weapon = GetActiveWeapon();
         if (weapon && weapon.CanAttack()) {
             animator.SetTrigger("Attack");
+            animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
         }
         DisplayAim = false;
@@ -177,7 +178,7 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     private void ChangeAnimation(AnimatorOverrideController animatorOverrideController) {
-        animator.runtimeAnimatorController = animatorOverrideController;
+        //animator.runtimeAnimatorController = animatorOverrideController;
     }
 
     private void OnDrawGizmos() {

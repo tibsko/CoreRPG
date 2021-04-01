@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour {
 
     public float autoshootDistance;
+    public int combosCount = 1;
 
     [SerializeField] protected WeaponData weaponData;
     public int Damages { get; private set; }
