@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius=5f;
+    public float lookRadius=10f;
 
     Transform target;
     NavMeshAgent agent;
@@ -14,10 +14,11 @@ public class EnemyController : MonoBehaviour
     void Start()    
     {
         agent = GetComponent<NavMeshAgent>();
-       PlayerController player = FindObjectOfType<PlayerController>();
-        if (player) {
-            target = player.transform;
-        }
+        //PlayerController player = FindObjectOfType<PlayerController>();
+        target = PlayerManager.instance.player.transform;
+        //if (player) {
+        //    target = player.transform;
+        //}
     }
 
     // Update is called once per frame
