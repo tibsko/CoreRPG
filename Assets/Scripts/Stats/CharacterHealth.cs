@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour {
-    public int maxHealth = 278;
+    public int maxHealth;
     public int currentHealth;
 
     public HealthBar healthBar;
@@ -21,7 +21,7 @@ public class CharacterHealth : MonoBehaviour {
     }
 
     public void TakeDamage(int damage) {
-        Debug.Log("take damage");
+        Debug.Log("take damage=  %f" + damage );
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }

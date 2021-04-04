@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour {
         controller.Move(yMove * Time.fixedDeltaTime);
         float speed = xzMove.magnitude * 0.8f;
         animator.SetFloat("Speed", xzMove.magnitude);
-        Debug.Log(xzMove.magnitude);
     }
 
     private void Rotate() {
