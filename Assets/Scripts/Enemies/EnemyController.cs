@@ -5,33 +5,30 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius=5f;
+    public float lookRadius=10f;
 
     Transform target;
     NavMeshAgent agent;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()    
     {
         agent = GetComponent<NavMeshAgent>();
-       PlayerController player = FindObjectOfType<PlayerController>();
-        if (player) {
-            target = player.transform;
-        }
+        target = PlayerManager.instance.player.transform;
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.position,transform.position);   
-        if (distance<=lookRadius)
-        {
-            agent.SetDestination(target.position);
-
-            if (distance<=agent.stoppingDistance)
-            {
-                FaceTarget();
-            }
+        agent.SetDestination(target.position);
+        float distance = Vector3.Distance(target.position, gameObject.transform.position);
+        if (distance<=agent.stoppingDistance) {
+            FaceTarget();
+        }
+        if (agent.velocity.magnitude>0.01f) {
+            animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
 
@@ -48,10 +45,5 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }

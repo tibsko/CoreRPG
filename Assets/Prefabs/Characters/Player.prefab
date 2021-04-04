@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 7618126829376842260}
   - component: {fileID: 821348893}
   - component: {fileID: 1420540132}
-  - component: {fileID: 485948524}
+  - component: {fileID: 1130609131}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -198,7 +198,7 @@ MonoBehaviour:
   groundCheckRadius: 2
   jumpForce: 5
   radiusInteractable: 3
-  gravity: {x: 0, y: -11.96, z: 0}
+  gravity: {x: 0, y: -110.96, z: 0}
 --- !u!1818360609 &821348893
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -235,16 +235,16 @@ MonoBehaviour:
   - {fileID: 6214700641645115976, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
   weaponSlot: {fileID: 7618126830638750325}
   activateHitBoxes: 0
---- !u!114 &485948524
+--- !u!114 &1130609131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24a36244a2c305f4d96461b176a6436f, type: 3}
+  m_Script: {fileID: 11500000, guid: 360a1081b85af3946bd74c980b780f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 278
@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 6615635843447007242, guid: 9691e06c34d6e84419e314cd9740d2ba,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.048
+      value: 3.66
       objectReference: {fileID: 0}
     - target: {fileID: 6615635843447007242, guid: 9691e06c34d6e84419e314cd9740d2ba,
         type: 3}
@@ -401,6 +401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615635844976524267, guid: 9691e06c34d6e84419e314cd9740d2ba,
+        type: 3}
+      propertyPath: m_Value
+      value: 278
       objectReference: {fileID: 0}
     - target: {fileID: 6615635845015342096, guid: 9691e06c34d6e84419e314cd9740d2ba,
         type: 3}
