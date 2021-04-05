@@ -85,7 +85,7 @@ public class PlayerShooter : MonoBehaviour {
             Debug.Log("Cancel shoot");
         }
         else if (!startedAiming && AimDirection.magnitude < 0.5f) {
-            Debug.Log("Autoshooting");
+            //Debug.Log("Autoshooting");
             AutoShoot();
         }
         else if (startedAiming) {
