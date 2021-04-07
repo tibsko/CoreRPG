@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float groundCheckRadius = 2f;
     [SerializeField] float jumpForce = 5f;
-    [SerializeField] float radiusInteractable = 3f;
+    [SerializeField] float radiusInteractable = 3.5f;
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
     public bool IsGrounded { get; private set; }
