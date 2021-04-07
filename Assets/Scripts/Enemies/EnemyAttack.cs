@@ -6,15 +6,16 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float attackRadius = 1f;
     public int attackDamages;
-
+    public bool activatehitbox;
     private Transform target;
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        activatehitbox = false;
         target = PlayerManager.instance.player.transform;
-        animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class EnemyAttack : MonoBehaviour
             animator.SetBool("isAttacking", true);
         }
         else {
+
             animator.SetBool("isAttacking", false);
         }
 
