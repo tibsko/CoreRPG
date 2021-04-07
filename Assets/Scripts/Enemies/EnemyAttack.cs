@@ -6,16 +6,16 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float attackRadius = 1f;
     public int attackDamages;
-
+    public bool activatehitbox;
     private Transform target;
     private Animator animator;
-    [SerializeField] ZombieHitBox zombieHitBox;
 
     // Start is called before the first frame update
     void Start()
     {
+        activatehitbox = false;
         target = PlayerManager.instance.player.transform;
-        animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -24,12 +24,10 @@ public class EnemyAttack : MonoBehaviour
         float distance = Vector3.Distance(target.position, gameObject.transform.position);
         if (distance<attackRadius) {
             animator.SetBool("isAttacking", true);
-            zombieHitBox.ActivateHitBox();
         }
         else {
-            animator.SetBool("isAttacking", false);
-            zombieHitBox.DesactivateHitBox();
 
+            animator.SetBool("isAttacking", false);
         }
 
     }
