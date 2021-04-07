@@ -41,7 +41,7 @@ SphereCollider:
   m_GameObject: {fileID: 1638800458}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRadius: 1.5
   attackDamages: 20
+  zombieHitBox: {fileID: 1638800461}
 --- !u!1001 &583229625
 PrefabInstance:
   m_ObjectHideFlags: 0
