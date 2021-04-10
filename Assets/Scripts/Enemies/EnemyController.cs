@@ -6,17 +6,21 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius=10f;
-
+    public bool isInside;
     Transform target;
     NavMeshAgent agent;
     Animator animator;
+    EnemyAttack enemyAttack;
+    private float doorDetectorRadius = 10f;
 
     // Start is called before the first frame update
     void Start()    
     {
+        enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
-        target = PlayerManager.instance.player.transform;
+        Tartgeting();
         animator = gameObject.GetComponentInChildren<Animator>();
+        enemyAttack.target = target;
     }
 
     // Update is called once per frame
@@ -30,6 +34,8 @@ public class EnemyController : MonoBehaviour
         if (agent.velocity.magnitude>0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
+        Tartgeting();
+        enemyAttack.target = target;
     }
 
     void FaceTarget()
@@ -38,7 +44,29 @@ public class EnemyController : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation,Time.deltaTime*5f) ;
     }
+    private void Tartgeting() {
+        if (isInside) {
+            target = PlayerManager.instance.player.transform;
+        }
+        else {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, doorDetectorRadius, LayerManager.instance.interactableLayer);
+            if (colliders.Length > 0) {
+                target = colliders[0].transform;
+                if(target.GetComponent<DoorHealth>().currentHealth <=0) {
+                    isInside = true;
+                    target.GetComponent<NavMeshObstacle>().enabled = false;
+                }
+                else {
+                    isInside = false;
+                    target.GetComponent<NavMeshObstacle>().enabled = true;
+                }
+            }
+            else {
+                target = PlayerManager.instance.player.transform;
+            }
+        }
 
+    }
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerManager.instance.bulletLayer)

@@ -19,7 +19,10 @@ public class CharacterHealth : MonoBehaviour {
         //    TakeDamage(20);
         //}
     }
-
+    public void HealHealth(int heal) {
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
+    }
     public void TakeDamage(int damage) {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

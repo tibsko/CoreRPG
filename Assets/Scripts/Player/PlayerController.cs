@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Rotate() {
-        if (!RotationIsLocked && !focus) {
+        if (!RotationIsLocked) {
             LookAt(controller.transform.position + xzMove);
         }
         else {
@@ -122,7 +122,8 @@ public class PlayerController : MonoBehaviour {
 
     public void Interaction() {
         interactable.Interact();
-        interactable = null;
+        //if (interactable.GetType()!=type.DoorInteractable)
+            //interactable = null;
     }
 
     private void OnDrawGizmos() {
