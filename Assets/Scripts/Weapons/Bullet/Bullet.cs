@@ -44,17 +44,19 @@ public class Bullet : MonoBehaviour
         //    }
         //}
         if (collision.gameObject.layer != gameObject.layer) {
-            CharacterHealth playerHealth = collision.gameObject.GetComponent<CharacterHealth>();
-            if (playerHealth)
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth) {
                 if (!damagePerDistance)
-                    playerHealth.TakeDamage(weaponData.damages);
-                else{
-                    playerHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages));
+                    enemyHealth.TakeDamage(weaponData.damages);
+                else {
+                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages));
                 }
+                Destroy(gameObject); //trouver solution pour colision
+            }
         }
         
 
-            Destroy(gameObject); //trouver solution pour colision
+            
     }
 
     void DestroyRange()

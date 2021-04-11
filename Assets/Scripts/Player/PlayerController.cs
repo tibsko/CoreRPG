@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float groundCheckRadius = 2f;
     [SerializeField] float jumpForce = 5f;
-    [SerializeField] float radiusInteractable = 3f;
+    [SerializeField] float radiusInteractable = 3.5f;
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
     public bool IsGrounded { get; private set; }
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Rotate() {
-        if (!RotationIsLocked && !focus) {
+        if (!RotationIsLocked) {
             LookAt(controller.transform.position + xzMove);
         }
         else {
@@ -122,7 +122,8 @@ public class PlayerController : MonoBehaviour {
 
     public void Interaction() {
         interactable.Interact();
-        interactable = null;
+        //if (interactable.GetType()!=type.DoorInteractable)
+            //interactable = null;
     }
 
     private void OnDrawGizmos() {
