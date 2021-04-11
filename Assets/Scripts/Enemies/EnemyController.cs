@@ -53,12 +53,10 @@ public class EnemyController : MonoBehaviour
             if (colliders.Length > 0) {
                 target = colliders[0].transform;
                 if(target.GetComponent<DoorHealth>().currentHealth <=0) {
-                    isInside = true;
-                    target.GetComponent<NavMeshObstacle>().enabled = false;
+                    target = PlayerManager.instance.player.transform;
                 }
                 else {
                     isInside = false;
-                    target.GetComponent<NavMeshObstacle>().enabled = true;
                 }
             }
             else {
