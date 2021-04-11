@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
     EnemyAttack enemyAttack;
-    private float doorDetectorRadius = 10f;
+    private float doorDetectorRadius = 3f;
 
     // Start is called before the first frame update
     void Start()    
