@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour {
             focus = newFocus;
             newFocus.OnFocused(transform);
             interactable = newFocus;
-            
         }
     }
 

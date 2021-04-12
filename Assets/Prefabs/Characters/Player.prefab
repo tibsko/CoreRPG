@@ -197,8 +197,9 @@ MonoBehaviour:
   maxSpeed: 10
   groundCheckRadius: 2
   jumpForce: 5
-  radiusInteractable: 3
+  radiusInteractable: 3.5
   gravity: {x: 0, y: -110.96, z: 0}
+  interactable: {fileID: 0}
 --- !u!1818360609 &821348893
 RotationConstraint:
   m_ObjectHideFlags: 0

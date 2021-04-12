@@ -7,8 +7,9 @@ public class Interactable : MonoBehaviour
 
     bool isFocus = false;
     Transform player;
-
     bool hasInteracted = false;
+
+    public string textButton;
 
     public virtual void Interact()
     {
@@ -26,7 +27,7 @@ public class Interactable : MonoBehaviour
         isFocus = true;
         player = playerTransform;
         HUD.instance.ActivateButton(true);
-       
+        HUD.instance.NameButton(textButton);
     }
 
 

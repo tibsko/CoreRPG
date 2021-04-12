@@ -106,4 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003db250267de50459bd050dab1b6d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textButton: Pick Up
   item: {fileID: 11400000, guid: 06c84ab0a68f6bf4e9bebf0678bbf7de, type: 2}

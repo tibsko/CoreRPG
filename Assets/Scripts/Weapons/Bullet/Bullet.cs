@@ -53,10 +53,11 @@ public class Bullet : MonoBehaviour
                 }
                 Destroy(gameObject); //trouver solution pour colision
             }
-        }
-        
 
-            
+        }
+
+
+
     }
 
     void DestroyRange()

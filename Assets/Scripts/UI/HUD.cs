@@ -20,6 +20,11 @@ public class HUD : MonoBehaviour
 
     public void ActivateButton(bool state) {
         interactionButton.gameObject.SetActive(state);
+
+    }
+    public void NameButton(string name) {
+        interactionButton.gameObject.GetComponentInChildren<Text>().text = name;
+
     }
 
 }
