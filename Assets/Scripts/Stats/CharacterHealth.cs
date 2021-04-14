@@ -15,9 +15,7 @@ public class CharacterHealth : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //if (Input.GetKeyDown(KeyCode.Space)) {
-        //    TakeDamage(20);
-        //}
+        
     }
     public void HealHealth(int heal) {
         currentHealth += heal;

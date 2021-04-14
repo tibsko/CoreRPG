@@ -38,8 +38,7 @@ public class PlayerController : MonoBehaviour {
         //{
         //   Jump();
         //}
-
-
+        
         //Apply gravity
         if (IsGrounded && yMove.y < 0)
             yMove.y = -2f;
@@ -119,6 +118,7 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+
     public void Interaction() {
         interactable.Interact();
         //if (interactable.GetType()!=type.DoorInteractable)
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
         //Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
-        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
         //Gizmos.DrawWireSphere(transform.position, radiusInteractable);
     }
 
