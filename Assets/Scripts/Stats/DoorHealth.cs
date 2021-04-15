@@ -14,7 +14,7 @@ public class DoorHealth : CharacterHealth {
     }
     // Update is called once per frame
     void Update() {
-        if (currentHealth < maxHealth * 0.75f && currentHealth > maxHealth * 0.5f) {
+        if (currentHealth < maxHealth && currentHealth > maxHealth * 0.5f) {
             doorInteractable.doorBoards[0].isActive = false;
             doorInteractable.doorBoards[1].isActive = true;
             doorInteractable.doorBoards[2].isActive = true;
@@ -52,8 +52,6 @@ public class DoorHealth : CharacterHealth {
             doorInteractable.doorBoards[1].isActive = true;
             doorInteractable.doorBoards[2].isActive = true;
             doorInteractable.doorBoards[3].isActive = true;
-            //obstacle.enabled = true;
-
         }
     }
 }

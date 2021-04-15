@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4009abaf72da24145891b3fdcc8d074a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textButton: Repair
   doorBoards: []
 --- !u!65 &6214463232379683579
 BoxCollider:
