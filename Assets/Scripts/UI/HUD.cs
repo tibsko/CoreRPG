@@ -17,6 +17,7 @@ public class HUD : MonoBehaviour
 
 
     [SerializeField] Button interactionButton;
+    [SerializeField] Text textMoney;
 
     public void ActivateButton(bool state) {
         interactionButton.gameObject.SetActive(state);
@@ -25,6 +26,10 @@ public class HUD : MonoBehaviour
     public void NameButton(string name) {
         interactionButton.gameObject.GetComponentInChildren<Text>().text = name;
 
+    }
+
+    public void UpdateMoney(int money) {
+        textMoney.text = ""+ money;
     }
 
 }

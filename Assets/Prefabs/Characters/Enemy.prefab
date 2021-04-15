@@ -68,7 +68,7 @@ Animator:
   m_GameObject: {fileID: 550500056918327460}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ffdfcb810f2918b4f8fe9f917f07bc78, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5db5fbd1577ab75409ad4046342bbc90, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4157d3298fc78be47b7a1b92ef2c7445, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3455527574230520151}
   - component: {fileID: 1852030980}
   - component: {fileID: 475152836}
+  - component: {fileID: 123718955161019166}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -196,6 +197,31 @@ MonoBehaviour:
   maxHealth: 125
   currentHealth: 0
   healthBar: {fileID: 6615635844418624337}
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 123718955161019166}
+        m_MethodName: InctanciateLoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1852030980}
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &475152836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +238,25 @@ MonoBehaviour:
   attackDamages: 20
   activatehitbox: 0
   target: {fileID: 0}
+--- !u!114 &123718955161019166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455527574230520146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e08f86f5ce198749928843ef1323c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loots:
+  - collectable: {fileID: 8983292905516079184, guid: 6d7c1341a21540845b0016cfb4abd5a7,
+      type: 3}
+    rate: 50
+  - collectable: {fileID: 2543471339335621516, guid: e05a9e9e0cb7ab940ac51c94775060d2,
+      type: 3}
+    rate: 50
 --- !u!1001 &583229625
 PrefabInstance:
   m_ObjectHideFlags: 0

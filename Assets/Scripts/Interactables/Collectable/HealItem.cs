@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealItem : CollactableItem
+public class HealItem : CollectableItem
 {
     [SerializeField] int healAmount;
 
