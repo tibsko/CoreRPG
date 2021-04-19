@@ -14,8 +14,8 @@ public class DoorInteractable : Interactable
             doorBoards[i].isActive = true;
         }
     }
-    public override void Interact() {
-        base.Interact();
+    public override void Interact(GameObject player) {
+        base.Interact(player);
         RepairDoor();
         
     }

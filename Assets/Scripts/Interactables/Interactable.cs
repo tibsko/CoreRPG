@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
 
     public string textButton;
 
-    public virtual void Interact()
+    public virtual void Interact(GameObject player)
     {
         if (hasInteracted) {
         }

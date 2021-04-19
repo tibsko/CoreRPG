@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour {
 
 
     public void Interaction() {
-        interactable.Interact();
+        interactable.Interact(gameObject);
         //if (interactable.GetType()!=type.DoorInteractable)
             //interactable = null;
     }
