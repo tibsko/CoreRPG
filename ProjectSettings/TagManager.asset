@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Collide
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,9 +22,9 @@ TagManager:
   - Interactable
   - BulletEnemy
   - TempCast
-  - Walkabke
-  - 
-  - 
+  - Walkable
+  - DoorBoard
+  - Collactable
   - 
   - 
   - 
