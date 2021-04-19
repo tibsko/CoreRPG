@@ -14,22 +14,25 @@ public class JDFireWeapon : MonoBehaviour {
     [Header("Set up")]
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public Animator animator;
 
     [Header("Sound")]
     public AudioClip shotSound;
     public AudioClip reloadSound;
     public AudioClip emptySound;
+
     [Header("Graphics")]
     public GameObject muzzleFlash;
     public TextMeshProUGUI text;
 
-    //bools 
-    bool shooting, readyToShoot, reloading;
+    //private
+    bool shooting, readyToShoot, reloading, emptySignal;
+    AudioSource audioSource;
 
-
-    private void Awake() {
+    private void Start() {
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -45,10 +48,19 @@ public class JDFireWeapon : MonoBehaviour {
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+            emptySignal = false;
+
         //Shoot
-        if (readyToShoot && shooting && !reloading && bulletsLeft > 0) {
-            bulletsShot = bulletsPerTap;
-            Shoot();
+        if (readyToShoot && shooting && !reloading) {
+            if (bulletsLeft > 0) {
+                bulletsShot = bulletsPerTap;
+                Shoot();
+                animator.SetTrigger("Shoot");
+            }
+            else
+                EmptySignal();
+
         }
     }
     private void Shoot() {
@@ -60,13 +72,14 @@ public class JDFireWeapon : MonoBehaviour {
         Vector3 direction = firePoint.transform.forward + new Vector3(x, y, 0);
 
         //Instantiate bullet
-        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.Euler(direction.normalized));
-        Rigidbody myRigidBody = bulletGo.GetComponent<Rigidbody>();
-        myRigidBody.AddForce(bulletGo.transform.forward * 10, ForceMode.Impulse);
+        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, firePoint.rotation);
+
+        //Sound
+        audioSource.PlayOneShot(shotSound);
 
         //Graphics
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
-        Instantiate(muzzleFlash, firePoint.position, Quaternion.identity);
+        Instantiate(muzzleFlash, firePoint);
 
         //Update bullets
         bulletsLeft--;
@@ -83,10 +96,19 @@ public class JDFireWeapon : MonoBehaviour {
 
     private void Reload() {
         reloading = true;
+        audioSource.PlayOneShot(reloadSound);
+
         Invoke("ReloadFinished", reloadTime);
     }
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    private void EmptySignal() {
+        if (!emptySignal) {
+            emptySignal = true;
+            audioSource.PlayOneShot(emptySound);
+        }
     }
 }

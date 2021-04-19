@@ -158,10 +158,6 @@ public class JDPlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse2)) {
             animator.SetTrigger("MeleeAttack");
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) && isAiming) {
-            animator.SetTrigger("Shoot");
-        }
     }
 
     ////////////////////////////////////////////Utilities
