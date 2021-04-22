@@ -25,8 +25,10 @@ public class JDFireWeapon : MonoBehaviour {
     public GameObject muzzleFlash;
     public TextMeshProUGUI text;
 
+    [HideInInspector] public bool shooting;
+
     //private
-    bool shooting, readyToShoot, reloading, emptySignal;
+    private bool readyToShoot, reloading, emptySignal;
     AudioSource audioSource;
 
     private void Start() {
@@ -72,7 +74,9 @@ public class JDFireWeapon : MonoBehaviour {
         Vector3 direction = firePoint.transform.forward + new Vector3(x, y, 0);
 
         //Instantiate bullet
-        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, firePoint.rotation);
+        Vector3 rotation = firePoint.rotation.eulerAngles;
+        rotation.x = 0;
+        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.Euler(rotation));
 
         //Sound
         audioSource.PlayOneShot(shotSound);
