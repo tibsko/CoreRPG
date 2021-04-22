@@ -7,17 +7,17 @@ public class ShopArmInteractable : Interactable
     [SerializeField] Weapon weapon;
     [SerializeField] int weaponPrice;
 
-    private bool hasInteracted;
+    private bool shophasInteracted;
 
     public override void Interact(GameObject player) {
         base.Interact(player);
-        if (!hasInteracted) {
+        if (!shophasInteracted) {
             PlayerWeapons playerWeapons = player.GetComponent<PlayerWeapons>();
             PlayerMoney playerMoney = player.GetComponent<PlayerMoney>();
             if (playerWeapons && playerMoney && playerMoney.currentMoney >= weaponPrice) {
                 playerWeapons.AddWeapon(weapon);
                 playerMoney.LooseMoney(weaponPrice);
-                hasInteracted = true;
+                shophasInteracted = true;
             }
         }
     }

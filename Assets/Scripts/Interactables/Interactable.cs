@@ -18,6 +18,13 @@ public class Interactable : MonoBehaviour
         //methode d'interaction
     }
 
+    public virtual void HoldDownInteract() {
+
+    }
+
+    public virtual void HoldUpInteract() {
+
+    }
     void Update()
     {
         

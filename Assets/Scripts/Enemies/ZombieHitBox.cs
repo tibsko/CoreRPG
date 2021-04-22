@@ -17,6 +17,7 @@ public class ZombieHitBox : MonoBehaviour
         }
         else if (doorHealth) {
             doorHealth.TakeDamage(enemyAttack.attackDamages);
+            Debug.Log("trigger");
         }
     }
 }

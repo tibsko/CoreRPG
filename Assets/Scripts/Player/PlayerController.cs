@@ -125,6 +125,14 @@ public class PlayerController : MonoBehaviour {
             //interactable = null;
     }
 
+    public void HoldDownInteraction() {
+        interactable.HoldDownInteract();
+    }
+    public void HoldupInteraction() {
+        interactable.HoldUpInteract();
+
+    }
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
         //Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
