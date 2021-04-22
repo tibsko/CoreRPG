@@ -39,7 +39,8 @@ public class JDFireWeapon : MonoBehaviour {
 
     private void Update() {
         Fire();
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) 
+            Reload();
 
         //SetText
         text.SetText(bulletsLeft + " / " + magazineSize);
@@ -68,14 +69,15 @@ public class JDFireWeapon : MonoBehaviour {
     private void Shoot() {
         readyToShoot = false;
 
-        //Spread & diraction
-        float x = Random.Range(-spread, spread);
+        //Spread & direction
+        float z = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
-        Vector3 direction = firePoint.transform.forward + new Vector3(x, y, 0);
 
         //Instantiate bullet
         Vector3 rotation = firePoint.rotation.eulerAngles;
         rotation.x = 0;
+        rotation.y += y;
+        rotation.z += z;
         GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.Euler(rotation));
 
         //Sound
