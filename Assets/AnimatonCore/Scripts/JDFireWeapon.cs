@@ -9,7 +9,7 @@ public class JDFireWeapon : MonoBehaviour {
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    int bulletsLeft, bulletsToShot;
 
     [Header("Set up")]
     public Transform firePoint;
@@ -39,7 +39,7 @@ public class JDFireWeapon : MonoBehaviour {
 
     private void Update() {
         Fire();
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) 
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
             Reload();
 
         //SetText
@@ -55,9 +55,14 @@ public class JDFireWeapon : MonoBehaviour {
             emptySignal = false;
 
         //Shoot
-        if (readyToShoot && shooting && !reloading) {
+        if (readyToShoot && shooting && !reloading && bulletsToShot <= 0) {
             if (bulletsLeft > 0) {
-                bulletsShot = bulletsPerTap;
+
+                if (bulletsLeft > bulletsToShot)
+                    bulletsToShot = bulletsPerTap;
+                else
+                    bulletsToShot = bulletsLeft;
+
                 Shoot();
                 animator.SetTrigger("Shoot");
             }
@@ -89,11 +94,13 @@ public class JDFireWeapon : MonoBehaviour {
 
         //Update bullets
         bulletsLeft--;
-        bulletsShot--;
+        bulletsToShot--;
 
-        Invoke("ResetShot", timeBetweenShooting);
+        //Call reset shot for last bullet
+        if (bulletsToShot <= 0)
+            Invoke("ResetShot", timeBetweenShooting);
 
-        if (bulletsShot > 0 && bulletsLeft > 0)
+        if (bulletsToShot > 0 && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
     }
     private void ResetShot() {
