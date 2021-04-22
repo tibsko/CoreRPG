@@ -4100,10 +4100,10 @@ MonoBehaviour:
   spread: 3
   range: 10
   reloadTime: 2
-  timeBetweenShots: 0.1
+  timeBetweenShots: 0.15
   magazineSize: 30
-  bulletsPerTap: 5
-  allowButtonHold: 0
+  bulletsPerTap: 3
+  allowButtonHold: 1
   firePoint: {fileID: 1240952762}
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}

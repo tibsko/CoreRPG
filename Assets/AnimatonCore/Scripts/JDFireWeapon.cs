@@ -6,10 +6,10 @@ using TMPro;
 public class JDFireWeapon : MonoBehaviour {
     [Header("Stats")]
     public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
+    public float spread, range;
+    public float reloadTime, timeBetweenBurst, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
-    int bulletsLeft, bulletsToShot;
+    public bool automatic;
 
     [Header("Set up")]
     public Transform firePoint;
@@ -28,8 +28,9 @@ public class JDFireWeapon : MonoBehaviour {
     [HideInInspector] public bool shooting;
 
     //private
+    private int bulletsLeft, bulletsToShot;
     private bool readyToShoot, reloading, emptySignal;
-    AudioSource audioSource;
+    private AudioSource audioSource;
 
     private void Start() {
         bulletsLeft = magazineSize;
@@ -46,7 +47,7 @@ public class JDFireWeapon : MonoBehaviour {
         text.SetText(bulletsLeft + " / " + magazineSize);
     }
     private void Fire() {
-        if (allowButtonHold)
+        if (automatic)
             shooting = Input.GetKey(KeyCode.Mouse0);
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -98,10 +99,10 @@ public class JDFireWeapon : MonoBehaviour {
 
         //Call reset shot for last bullet
         if (bulletsToShot <= 0)
-            Invoke("ResetShot", timeBetweenShooting);
+            this.InvokeDelay(ResetShot, timeBetweenBurst);
 
         if (bulletsToShot > 0 && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
+            this.InvokeDelay(Shoot, timeBetweenShots);
     }
     private void ResetShot() {
         readyToShoot = true;
@@ -111,7 +112,7 @@ public class JDFireWeapon : MonoBehaviour {
         reloading = true;
         audioSource.PlayOneShot(reloadSound);
 
-        Invoke("ReloadFinished", reloadTime);
+        this.InvokeDelay(ReloadFinished, reloadTime);
     }
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
