@@ -31,8 +31,8 @@ public class CharacterHealth : MonoBehaviour {
             }
         }
 
-        foreach (var item in temp) {
-            damageSources.Remove(item);
+        foreach (DamageSource source in temp) {
+            damageSources.Remove(source);
         }
     }
 
