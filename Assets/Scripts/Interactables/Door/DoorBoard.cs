@@ -18,7 +18,7 @@ public class DoorBoard : MonoBehaviour
     public void ActivateBoard(bool active)
     {
         meshRenderer.enabled = active;
-        boxCollider.enabled = active;
+        //boxCollider.enabled = active;
     }
     
 }

@@ -10,7 +10,7 @@ public class HitBoxSword : MonoBehaviour
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth) {
 
-            enemyHealth.TakeDamage(sword.Damages);
+            enemyHealth.TakeDamage(sword.Damages,gameObject);
         }
     }
 

@@ -9,11 +9,13 @@ public class DoorHealth : CharacterHealth {
     void Start() {
         //obstacle = gameObject.GetComponent<NavMeshObstacle>();
         //obstacle.enabled = false;
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        base.Start();
+
     }
     // Update is called once per frame
     void Update() {
+        base.Update();
+
         if (currentHealth < maxHealth && currentHealth > maxHealth * 0.5f) {
             doorInteractable.doorBoards[0].isActive = false;
             doorInteractable.doorBoards[1].isActive = true;

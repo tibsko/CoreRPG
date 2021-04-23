@@ -47,9 +47,9 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth) {
                 if (!damagePerDistance)
-                    enemyHealth.TakeDamage(weaponData.damages);
+                    enemyHealth.TakeDamage(weaponData.damages,gameObject);
                 else {
-                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages));
+                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages),gameObject);
                 }
                 Destroy(gameObject); //trouver solution pour colision
             }

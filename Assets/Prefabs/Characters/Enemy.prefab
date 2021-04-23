@@ -145,6 +145,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  timerHealth: 1
   timer: 3
 --- !u!114 &475152836
 MonoBehaviour:
