@@ -7,6 +7,7 @@ public class DoorHealth : CharacterHealth {
 
     [SerializeField] DoorInteractable doorInteractable;
     private int nbActiveDoor;
+
     //private NavMeshObstacle obstacle;
     void Start() {
         base.Start();
@@ -14,13 +15,19 @@ public class DoorHealth : CharacterHealth {
     // Update is called once per frame
     void Update() {
         base.Update();
-        nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep);
-        if (nbActiveDoor > doorInteractable.nbDoor) {
+       
+    }
+    public void UpdateDoorboards() {
+        if (currentHealth ==maxHealth) {
             nbActiveDoor = doorInteractable.nbDoor;
         }
-        if (currentHealth >0.0f&& currentHealth<doorInteractable.healthStep) {
-            nbActiveDoor = 1;
+        else if (currentHealth ==0) {
+            nbActiveDoor = 0;
         }
+        else {
+            nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep+0.7f);
+        }
+
         for (int i = 0; i < doorInteractable.nbDoor; i++) {
             for (int j = 0; j < nbActiveDoor; j++) {
                 doorInteractable.doorBoards[j].isActive = true;

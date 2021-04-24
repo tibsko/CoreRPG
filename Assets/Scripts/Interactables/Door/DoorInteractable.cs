@@ -24,7 +24,7 @@ public class DoorInteractable : Interactable
         doorBoards = gameObject.GetComponentsInChildren<DoorBoard>();
         nbDoor = doorBoards.Length;
         doorHealth = gameObject.GetComponent<DoorHealth>();
-        healthStep = (int)Mathf.Round(doorHealth.maxHealth / nbDoor);
+        healthStep = (int)Mathf.Round(doorHealth.maxHealth / (nbDoor-1));
 
         for (int i = 0; i < nbDoor; i++) {
             doorBoards[i].isActive = true;
@@ -57,6 +57,7 @@ public class DoorInteractable : Interactable
     private void RepairDoor() {
         if (doorHealth.currentHealth < doorHealth.maxHealth) {
             doorHealth.HealHealth(20);
+            doorHealth.UpdateDoorboards();
             Debug.Log("repairing");
         }
     }
