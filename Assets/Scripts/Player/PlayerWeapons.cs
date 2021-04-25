@@ -69,7 +69,6 @@ public class PlayerWeapons : MonoBehaviour
 
     public void NextWeapon() {
         activeWeaponIndex++;
-        Debug.Log(equipedWeapons.Count);
         if (activeWeaponIndex >= equipedWeapons.Count) {
             activeWeaponIndex = 0;
         }

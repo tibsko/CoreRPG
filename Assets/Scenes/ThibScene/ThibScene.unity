@@ -4761,8 +4761,14 @@ PrefabInstance:
     - target: {fileID: 3879499087977386407, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: weaponPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3879499087977386407, guid: 686cea36e647d734bb0c83cd96eb09c6,
+        type: 3}
+      propertyPath: weaponPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8075744337323554667, guid: 108da09a4f2fc384fbe04ea54f339006,
+        type: 3}
     - target: {fileID: 5639273552802002385, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: currentMoney
