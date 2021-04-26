@@ -4202,6 +4202,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20.28131, y: 4.0598125, z: 0.9999998}
   m_Center: {x: 2.6673102, y: 1.5299063, z: 0.000009216272}
+--- !u!1 &2100474102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100474103}
+  m_Layer: 0
+  m_Name: Boomer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2100474103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100474102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.426118, y: 7.818099, z: 33.181496}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2102762594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7618126829376842281, guid: 686cea36e647d734bb0c83cd96eb09c6,
@@ -4749,31 +4779,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1130609131, guid: 686cea36e647d734bb0c83cd96eb09c6, type: 3}
-      propertyPath: timerHealth
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3879499087977386407, guid: 686cea36e647d734bb0c83cd96eb09c6,
-        type: 3}
-      propertyPath: nbMaxWeapon
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3879499087977386407, guid: 686cea36e647d734bb0c83cd96eb09c6,
-        type: 3}
-      propertyPath: weaponPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3879499087977386407, guid: 686cea36e647d734bb0c83cd96eb09c6,
-        type: 3}
-      propertyPath: weaponPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 8075744337323554667, guid: 108da09a4f2fc384fbe04ea54f339006,
-        type: 3}
-    - target: {fileID: 5639273552802002385, guid: 686cea36e647d734bb0c83cd96eb09c6,
-        type: 3}
-      propertyPath: currentMoney
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 7618126829376842261, guid: 686cea36e647d734bb0c83cd96eb09c6,
         type: 3}
       propertyPath: m_Name
