@@ -14,10 +14,6 @@ public class FlammeBullet : MonoBehaviour
     public float endHeight = 8f;
     private float stepHeight;
 
-    public float zPosCapsStart;
-    public float zPosCapsEnd;
-    public float zPosCapsStep;
-
     private CapsuleCollider capsule;
 
     // Start is called before the first frame update

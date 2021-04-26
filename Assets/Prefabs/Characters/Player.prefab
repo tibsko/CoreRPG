@@ -263,12 +263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefabs:
-  - {fileID: -4116128485470237548, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
-  - {fileID: 7308515787311678555, guid: fa7a7949b532dfc429a078aeab051a77, type: 3}
-  - {fileID: 2393722595115796750, guid: f8b4261b2c7f90448af65f0c81d319bc, type: 3}
-  - {fileID: 6214700641645115976, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
-  weaponSlot: {fileID: 7618126830638750325}
   activateHitBoxes: 0
 --- !u!114 &1130609131
 MonoBehaviour:
@@ -299,6 +293,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  timerHealth: 0.1
 --- !u!114 &1130609135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8e4a561da38ba4a844eb77cfe960e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoney: 0
+  currentMoney: 300
 --- !u!114 &3879499087977386407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,13 +332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b350b9e56fc9624383fd92317ccd616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbMaxWeapon: 5
+  nbMaxWeapon: 2
   weaponPrefabs:
   - {fileID: -4116128485470237548, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
-  - {fileID: 7308515787311678555, guid: fa7a7949b532dfc429a078aeab051a77, type: 3}
-  - {fileID: 2393722595115796750, guid: f8b4261b2c7f90448af65f0c81d319bc, type: 3}
-  - {fileID: 6214700641645115976, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
+  - {fileID: 8075744337323554667, guid: 108da09a4f2fc384fbe04ea54f339006, type: 3}
   weaponSlot: {fileID: 7618126830638750325}
+  activeWeaponIndex: 0
+  equipedWeapons: []
 --- !u!1 &7618126830638750326
 GameObject:
   m_ObjectHideFlags: 0
