@@ -4,55 +4,40 @@ using UnityEngine.AI;
 using UnityEngine;
 
 public class DoorHealth : CharacterHealth {
+
     [SerializeField] DoorInteractable doorInteractable;
+    private int nbActiveDoor;
+
     //private NavMeshObstacle obstacle;
     void Start() {
-        //obstacle = gameObject.GetComponent<NavMeshObstacle>();
-        //obstacle.enabled = false;
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        base.Start();
     }
     // Update is called once per frame
     void Update() {
-        if (currentHealth < maxHealth && currentHealth > maxHealth * 0.5f) {
-            doorInteractable.doorBoards[0].isActive = false;
-            doorInteractable.doorBoards[1].isActive = true;
-            doorInteractable.doorBoards[2].isActive = true;
-            doorInteractable.doorBoards[3].isActive = true;
-            //obstacle.enabled = true;
-
+        base.Update();
+       
+    }
+    public void UpdateDoorboards() {
+        if (currentHealth ==maxHealth) {
+            nbActiveDoor = doorInteractable.nbDoor;
         }
-        else if (currentHealth < maxHealth * 0.5f && currentHealth > maxHealth * 0.25f) {
-            doorInteractable.doorBoards[0].isActive = false;
-            doorInteractable.doorBoards[1].isActive = false;
-            doorInteractable.doorBoards[2].isActive = true;
-            doorInteractable.doorBoards[3].isActive = true;
-            //obstacle.enabled = true;
-
-        }
-
-        else if (currentHealth < maxHealth * 0.25f && currentHealth > 0f) {
-            doorInteractable.doorBoards[0].isActive = false;
-            doorInteractable.doorBoards[1].isActive = false;
-            doorInteractable.doorBoards[2].isActive = false;
-            doorInteractable.doorBoards[3].isActive = true;
-            //obstacle.enabled = true;
-
-        }
-        else if (currentHealth <= 0) {
-            doorInteractable.doorBoards[0].isActive = false;
-            doorInteractable.doorBoards[1].isActive = false;
-            doorInteractable.doorBoards[2].isActive = false;
-            doorInteractable.doorBoards[3].isActive = false;
-            currentHealth = 0;
-            //obstacle.enabled = false;
+        else if (currentHealth ==0) {
+            nbActiveDoor = 0;
         }
         else {
-            doorInteractable.doorBoards[0].isActive = true;
-            doorInteractable.doorBoards[1].isActive = true;
-            doorInteractable.doorBoards[2].isActive = true;
-            doorInteractable.doorBoards[3].isActive = true;
+            nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep+0.7f);
+        }
+
+        for (int i = 0; i < doorInteractable.nbDoor; i++) {
+            for (int j = 0; j < nbActiveDoor; j++) {
+                doorInteractable.doorBoards[j].isActive = true;
+            }
+            for (int k = nbActiveDoor; k < doorInteractable.nbDoor; k++) {
+                doorInteractable.doorBoards[k].isActive = false;
+            }
         }
     }
+
 }
+
 

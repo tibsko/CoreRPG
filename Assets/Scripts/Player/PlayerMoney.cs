@@ -8,7 +8,7 @@ public class PlayerMoney : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        HUD.instance.UpdateMoney(currentMoney);
     }
 
     // Update is called once per frame

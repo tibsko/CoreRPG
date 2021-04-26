@@ -33,31 +33,23 @@ public class Bullet : MonoBehaviour
     
     void OnTriggerEnter(Collider collision)
     {
-        //Collider[] colliders = Physics.OverlapSphere(transform.position, bulletData.radius);
-        //foreach (var collider in colliders)
-        //{
-        //    if (collider.gameObject.layer != LayerMask.NameToLayer("Player"))
-        //    {
-        //        if (collider.attachedRigidbody != null)
-        //            collider.attachedRigidbody.AddForce((collider.transform.position - transform.position).normalized * bulletData.explosionForce, ForceMode.Impulse);
+        Vector3 bulletPosition = gameObject.transform.position;
+        ParticuleEmitter emitter = collision.gameObject.GetComponent<ParticuleEmitter>();
+        if (emitter) {
+            emitter.InstantiateParticule(bulletPosition);
+        }
 
-        //    }
-        //}
         if (collision.gameObject.layer != gameObject.layer) {
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth) {
                 if (!damagePerDistance)
-                    enemyHealth.TakeDamage(weaponData.damages);
+                    enemyHealth.TakeDamage(weaponData.damages,gameObject);
                 else {
-                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages));
+                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages),gameObject);
                 }
                 Destroy(gameObject); //trouver solution pour colision
             }
-
         }
-
-
-
     }
 
     void DestroyRange()
@@ -67,9 +59,4 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, weaponData.radiusBullet);
-    //}
 }

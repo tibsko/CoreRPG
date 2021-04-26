@@ -120,9 +120,17 @@ public class PlayerController : MonoBehaviour {
 
 
     public void Interaction() {
-        interactable.Interact();
+        interactable.Interact(gameObject);
         //if (interactable.GetType()!=type.DoorInteractable)
             //interactable = null;
+    }
+
+    public void HoldDownInteraction() {
+        interactable.HoldDownInteract();
+    }
+    public void HoldupInteraction() {
+        interactable.HoldUpInteract();
+
     }
 
     private void OnDrawGizmos() {

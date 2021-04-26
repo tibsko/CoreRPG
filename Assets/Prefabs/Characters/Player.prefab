@@ -134,14 +134,15 @@ GameObject:
   m_Component:
   - component: {fileID: 7618126829376842281}
   - component: {fileID: 7618126829376842280}
-  - component: {fileID: 7618126829376842260}
+  - component: {fileID: 1130609134}
+  - component: {fileID: 5630349498503855872}
   - component: {fileID: 821348893}
+  - component: {fileID: 7618126829376842260}
   - component: {fileID: 1420540132}
   - component: {fileID: 1130609131}
   - component: {fileID: 1130609135}
   - component: {fileID: 5639273552802002385}
-  - component: {fileID: 1130609134}
-  - component: {fileID: 5630349498503855872}
+  - component: {fileID: 3879499087977386407}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -185,115 +186,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.7, z: 0}
---- !u!114 &7618126829376842260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3b508762d6b9541a24970282372ca1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundChecker: {fileID: 7618126828959475138}
-  maxSpeed: 10
-  groundCheckRadius: 0.2
-  jumpForce: 5
-  radiusInteractable: 3.5
-  gravity: {x: 0, y: -10, z: 0}
---- !u!1818360609 &821348893
-RotationConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 0
-  m_AffectRotationZ: 1
-  m_IsContraintActive: 1
-  m_IsLocked: 1
-  m_Sources: []
---- !u!114 &1420540132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponPrefabs:
-  - {fileID: -4116128485470237548, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
-  - {fileID: 7308515787311678555, guid: fa7a7949b532dfc429a078aeab051a77, type: 3}
-  - {fileID: 2393722595115796750, guid: f8b4261b2c7f90448af65f0c81d319bc, type: 3}
-  - {fileID: 6214700641645115976, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
-  weaponSlot: {fileID: 7618126830638750325}
-  activateHitBoxes: 0
---- !u!114 &1130609131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 360a1081b85af3946bd74c980b780f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 300
-  currentHealth: 0
-  healthBar: {fileID: 7618126829616010665}
-  onDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1130609131}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1130609135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4564c36042fa84f488132266c5b8831a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collectableCheck: {fileID: 0}
---- !u!114 &5639273552802002385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8e4a561da38ba4a844eb77cfe960e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMoney: 0
 --- !u!136 &1130609134
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -324,6 +216,129 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1818360609 &821348893
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 0
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources: []
+--- !u!114 &7618126829376842260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3b508762d6b9541a24970282372ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundChecker: {fileID: 7618126828959475138}
+  maxSpeed: 10
+  groundCheckRadius: 0.2
+  jumpForce: 5
+  radiusInteractable: 3.5
+  gravity: {x: 0, y: -10, z: 0}
+--- !u!114 &1420540132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateHitBoxes: 0
+--- !u!114 &1130609131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360a1081b85af3946bd74c980b780f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 300
+  currentHealth: 0
+  healthBar: {fileID: 7618126829616010665}
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1130609131}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  timerHealth: 0.1
+--- !u!114 &1130609135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4564c36042fa84f488132266c5b8831a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectableCheck: {fileID: 0}
+--- !u!114 &5639273552802002385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8e4a561da38ba4a844eb77cfe960e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMoney: 300
+--- !u!114 &3879499087977386407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618126829376842261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b350b9e56fc9624383fd92317ccd616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbMaxWeapon: 2
+  weaponPrefabs:
+  - {fileID: -4116128485470237548, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
+  - {fileID: 8075744337323554667, guid: 108da09a4f2fc384fbe04ea54f339006, type: 3}
+  weaponSlot: {fileID: 7618126830638750325}
+  activeWeaponIndex: 0
+  equipedWeapons: []
 --- !u!1 &7618126830638750326
 GameObject:
   m_ObjectHideFlags: 0
