@@ -44,7 +44,7 @@ public class JDFireWeapon : MonoBehaviour {
             Reload();
 
         //SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);
+        //text.SetText(bulletsLeft + " / " + magazineSize);
     }
     private void Fire() {
         if (automatic)

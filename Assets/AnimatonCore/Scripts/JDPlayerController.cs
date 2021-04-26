@@ -66,6 +66,7 @@ public class JDPlayerController : MonoBehaviour {
     /////////////////////////////////////////////Base controls
     public void OnMoveInput(Vector2 inputs) {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
+        Debug.Log(xzMove);
     }
 
     private void Rotate() {
@@ -98,9 +99,10 @@ public class JDPlayerController : MonoBehaviour {
         #endregion
 
         float factor = 1;
+        #region debug
         if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
         else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
-
+        #endregion
         velocity *= factor;
         moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
         animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);

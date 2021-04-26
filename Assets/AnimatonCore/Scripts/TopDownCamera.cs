@@ -8,6 +8,7 @@ public class TopDownCamera : MonoBehaviour {
     [SerializeField] Vector3 offSetCam;
 
     [SerializeField] float rotationCamX;
+    [SerializeField] float step = 0.1f;
     // Start is called before the first frame update
     void Start() {
         if (target == null) {
@@ -21,7 +22,7 @@ public class TopDownCamera : MonoBehaviour {
     }
 
     void CameraMove() {
-        transform.position = target.position + offSetCam;
+        transform.position = Vector3.Lerp(transform.position, target.position + offSetCam,step);
         transform.rotation = Quaternion.Euler(rotationCamX, 0, 0);
     }
 }

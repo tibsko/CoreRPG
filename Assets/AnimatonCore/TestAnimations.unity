@@ -3801,7 +3801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1446653982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,14 +4096,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  timeBetweenShooting: 1
   spread: 3
   range: 10
   reloadTime: 2
+  timeBetweenBurst: 0
   timeBetweenShots: 0.15
   magazineSize: 30
   bulletsPerTap: 3
-  allowButtonHold: 1
+  automatic: 0
   firePoint: {fileID: 1240952762}
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}
@@ -4685,7 +4685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &5266307544164944515
 CharacterController:
   m_ObjectHideFlags: 0

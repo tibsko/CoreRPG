@@ -4517,11 +4517,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2102762594}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: rotationCamX
-      value: 45
-      objectReference: {fileID: 0}
     - target: {fileID: 5290351446730615073, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
       propertyPath: m_RootOrder
@@ -4581,26 +4576,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615078, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615078, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615078, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615078, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b34ae54aa37304785eb949fe666f84, type: 3}
@@ -4684,36 +4659,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LayerManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: doorLayer.m_Bits
-      value: 65536
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: enemyLayer.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: bulletLayer.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: collactableLayer.m_Bits
-      value: 131072
-      objectReference: {fileID: 0}
-    - target: {fileID: 6125713570714291819, guid: c53a619f9499a3144983a2cdf2e66808,
-        type: 3}
-      propertyPath: interactableLayer.m_Bits
-      value: 4096
       objectReference: {fileID: 0}
     - target: {fileID: 6125713570714291820, guid: c53a619f9499a3144983a2cdf2e66808,
         type: 3}

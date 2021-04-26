@@ -102,14 +102,14 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     public void Rotate(Vector3 target) {
-        controller.LookAt(target);
+        //controller.LookAt(target);
     }
 
 
     private IEnumerator LockRotation() {
-        controller.RotationIsLocked = true;
+        controller.ControlRotation = true;
         yield return new WaitForSeconds(0.5f);
-        controller.RotationIsLocked = false;
+        controller.ControlRotation = false;
     }
 
     private void Fire() {
