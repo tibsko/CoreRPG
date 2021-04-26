@@ -4100,10 +4100,10 @@ MonoBehaviour:
   spread: 3
   range: 10
   reloadTime: 2
-  timeBetweenShots: 0.1
+  timeBetweenShots: 0.15
   magazineSize: 30
-  bulletsPerTap: 5
-  allowButtonHold: 0
+  bulletsPerTap: 3
+  allowButtonHold: 1
   firePoint: {fileID: 1240952762}
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}
@@ -4114,6 +4114,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1432314799028125529, guid: d5bb32aa16285c248b70f7bf77b79fb4,
     type: 3}
   text: {fileID: 1116834755}
+  shooting: 0
 --- !u!1 &1795802521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4726,6 +4727,7 @@ MonoBehaviour:
   animSmooth: 0.05
   joystickBase: {fileID: 911055690}
   joystickHandle: {fileID: 1852723927}
+  weapon: {fileID: 1764069131}
 --- !u!120 &5266307544164944517
 LineRenderer:
   m_ObjectHideFlags: 0

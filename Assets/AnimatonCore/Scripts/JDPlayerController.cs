@@ -47,7 +47,7 @@ public class JDPlayerController : MonoBehaviour {
         ToggleJoystick(false);
     }
 
-
+    public JDFireWeapon weapon;
     void Update() {
         OnMoveInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
@@ -59,6 +59,8 @@ public class JDPlayerController : MonoBehaviour {
         ApplyGravity();
         Move();
 
+        //float diff = (joystickHandle.position - joystickBase.position).magnitude;
+        //weapon.shooting = diff > 50;
     }
 
     /////////////////////////////////////////////Base controls
@@ -101,7 +103,7 @@ public class JDPlayerController : MonoBehaviour {
 
         velocity *= factor;
         moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
-        animator.SetFloat("InputMagnitude", moveMagnitude,animSmooth,Time.deltaTime);
+        animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
 
         //Apply movement
         controller.Move(yMove * Time.deltaTime);

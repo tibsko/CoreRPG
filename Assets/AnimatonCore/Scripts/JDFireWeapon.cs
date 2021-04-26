@@ -6,10 +6,10 @@ using TMPro;
 public class JDFireWeapon : MonoBehaviour {
     [Header("Stats")]
     public int damage;
-    public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
+    public float spread, range;
+    public float reloadTime, timeBetweenBurst, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
-    public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public bool automatic;
 
     [Header("Set up")]
     public Transform firePoint;
@@ -25,9 +25,12 @@ public class JDFireWeapon : MonoBehaviour {
     public GameObject muzzleFlash;
     public TextMeshProUGUI text;
 
+    [HideInInspector] public bool shooting;
+
     //private
-    bool shooting, readyToShoot, reloading, emptySignal;
-    AudioSource audioSource;
+    private int bulletsLeft, bulletsToShot;
+    private bool readyToShoot, reloading, emptySignal;
+    private AudioSource audioSource;
 
     private void Start() {
         bulletsLeft = magazineSize;
@@ -37,13 +40,14 @@ public class JDFireWeapon : MonoBehaviour {
 
     private void Update() {
         Fire();
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+            Reload();
 
         //SetText
         text.SetText(bulletsLeft + " / " + magazineSize);
     }
     private void Fire() {
-        if (allowButtonHold)
+        if (automatic)
             shooting = Input.GetKey(KeyCode.Mouse0);
         else
             shooting = Input.GetKeyDown(KeyCode.Mouse0);
@@ -52,9 +56,14 @@ public class JDFireWeapon : MonoBehaviour {
             emptySignal = false;
 
         //Shoot
-        if (readyToShoot && shooting && !reloading) {
+        if (readyToShoot && shooting && !reloading && bulletsToShot <= 0) {
             if (bulletsLeft > 0) {
-                bulletsShot = bulletsPerTap;
+
+                if (bulletsLeft > bulletsToShot)
+                    bulletsToShot = bulletsPerTap;
+                else
+                    bulletsToShot = bulletsLeft;
+
                 Shoot();
                 animator.SetTrigger("Shoot");
             }
@@ -66,13 +75,16 @@ public class JDFireWeapon : MonoBehaviour {
     private void Shoot() {
         readyToShoot = false;
 
-        //Spread & diraction
-        float x = Random.Range(-spread, spread);
+        //Spread & direction
+        float z = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
-        Vector3 direction = firePoint.transform.forward + new Vector3(x, y, 0);
 
         //Instantiate bullet
-        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, firePoint.rotation);
+        Vector3 rotation = firePoint.rotation.eulerAngles;
+        rotation.x = 0;
+        rotation.y += y;
+        rotation.z += z;
+        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.Euler(rotation));
 
         //Sound
         audioSource.PlayOneShot(shotSound);
@@ -83,12 +95,14 @@ public class JDFireWeapon : MonoBehaviour {
 
         //Update bullets
         bulletsLeft--;
-        bulletsShot--;
+        bulletsToShot--;
 
-        Invoke("ResetShot", timeBetweenShooting);
+        //Call reset shot for last bullet
+        if (bulletsToShot <= 0)
+            this.InvokeDelay(ResetShot, timeBetweenBurst);
 
-        if (bulletsShot > 0 && bulletsLeft > 0)
-            Invoke("Shoot", timeBetweenShots);
+        if (bulletsToShot > 0 && bulletsLeft > 0)
+            this.InvokeDelay(Shoot, timeBetweenShots);
     }
     private void ResetShot() {
         readyToShoot = true;
@@ -98,7 +112,7 @@ public class JDFireWeapon : MonoBehaviour {
         reloading = true;
         audioSource.PlayOneShot(reloadSound);
 
-        Invoke("ReloadFinished", reloadTime);
+        this.InvokeDelay(ReloadFinished, reloadTime);
     }
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
