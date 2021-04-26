@@ -6,7 +6,7 @@ public class FlammeBullet : MonoBehaviour
 {
     public FlammeThrowerData flammeThrowerData;
 
-    private float delay=1f;
+    private float delay=1.5f;
     private float countDown;
     private float stepDelay;
 
@@ -19,6 +19,7 @@ public class FlammeBullet : MonoBehaviour
     public float zPosCapsStep;
 
     private CapsuleCollider capsule;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,27 +38,24 @@ public class FlammeBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (capsule.height < endHeight) {
+        if (capsule.height <= endHeight) {
             countDown -= Time.deltaTime;
             if (countDown <= 0) {
                 capsule.height += stepHeight;
                 countDown = stepDelay;
             }
+            capsule.center = new Vector3(0, 0, capsule.height * 0.5f);
         }
-        else {
-            capsule.height = endHeight; 
-        }
-        capsule.center = new Vector3(0,0,capsule.height*0.5f);
-
-
+        //else {
+        //    capsule.height = endHeight; 
+        //}
     }
+
     void OnTriggerStay(Collider collider) {
         EnemyHealth enemyHealth = collider.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth) {
             StartCoroutine(DamageTime(enemyHealth));
         }
-
-
     }
     
     IEnumerator DamageTime(EnemyHealth enemy) {
