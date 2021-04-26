@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float groundCheckRadius = 2f;
-    [SerializeField] float jumpForce = 5f;
     [SerializeField] float radiusInteractable = 3.5f;
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
@@ -82,10 +81,6 @@ public class PlayerController : MonoBehaviour {
         //    Jump();
         //}
     }
-    private void Jump() {
-        yMove.y = Mathf.Sqrt(jumpForce * -2f * gravity.y);
-
-    }
 
     private void CheckGround() {
         IsGrounded = Physics.CheckSphere(groundChecker.position, groundCheckRadius, LayerManager.instance.groundLayer, QueryTriggerInteraction.Ignore);
@@ -136,7 +131,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;
         //Gizmos.DrawWireSphere(jumpZone.position, groundCheckRadius);
-        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
         //Gizmos.DrawWireSphere(transform.position, radiusInteractable);
     }
 

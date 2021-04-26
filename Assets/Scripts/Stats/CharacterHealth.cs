@@ -6,7 +6,7 @@ using System.Linq;
 
 public class CharacterHealth : MonoBehaviour {
     public int maxHealth;
-    public int currentHealth;
+    public int CurrentHealth { get; private set; }
 
     public HealthBar healthBar;
 
@@ -17,7 +17,7 @@ public class CharacterHealth : MonoBehaviour {
     private List<DamageSource> damageSources;
     // Start is called before the first frame update
     public void Start() {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         damageSources = new List<DamageSource>();
     }
@@ -37,18 +37,18 @@ public class CharacterHealth : MonoBehaviour {
     }
 
     public void HealHealth(int heal) {
-        currentHealth += heal;
-        healthBar.SetHealth(currentHealth);
+        CurrentHealth += heal;
+        healthBar.SetHealth(CurrentHealth);
     }
     public void TakeDamage(int damage, GameObject source) {
-        if (currentHealth < 0)
+        if (CurrentHealth < 0)
             return;
 
         if (damageSources.Find(x => x.go == source) == null) {
             damageSources.Add(new DamageSource(source, timerHealth));
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-            if (currentHealth <= 0) {
+            CurrentHealth -= damage;
+            healthBar.SetHealth(CurrentHealth);
+            if (CurrentHealth <= 0) {
                 onDie.Invoke();
             }
         }

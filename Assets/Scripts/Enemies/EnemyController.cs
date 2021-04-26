@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour {
                     door = colliders[i].GetComponent<DoorHealth>();
                     if (door) {
                         
-                        if (door.currentHealth <= 0) {
+                        if (door.CurrentHealth <= 0) {
                             target = PlayerManager.instance.player.transform;
                         }
                         else {

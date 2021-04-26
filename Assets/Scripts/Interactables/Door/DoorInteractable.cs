@@ -55,7 +55,7 @@ public class DoorInteractable : Interactable
     }
 
     private void RepairDoor() {
-        if (doorHealth.currentHealth < doorHealth.maxHealth) {
+        if (doorHealth.CurrentHealth < doorHealth.maxHealth) {
             doorHealth.HealHealth(20);
             doorHealth.UpdateDoorboards();
             Debug.Log("repairing");

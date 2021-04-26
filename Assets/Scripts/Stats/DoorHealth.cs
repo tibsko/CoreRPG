@@ -18,14 +18,14 @@ public class DoorHealth : CharacterHealth {
        
     }
     public void UpdateDoorboards() {
-        if (currentHealth ==maxHealth) {
+        if (CurrentHealth ==maxHealth) {
             nbActiveDoor = doorInteractable.nbDoor;
         }
-        else if (currentHealth ==0) {
+        else if (CurrentHealth ==0) {
             nbActiveDoor = 0;
         }
         else {
-            nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep+0.7f);
+            nbActiveDoor = (int)Mathf.Round(CurrentHealth / doorInteractable.healthStep+0.7f);
         }
 
         for (int i = 0; i < doorInteractable.nbDoor; i++) {

@@ -191,7 +191,7 @@ public class JDPlayerController : MonoBehaviour {
     //Gizmos
 
     private void OnDrawGizmos() {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
     }
 }
