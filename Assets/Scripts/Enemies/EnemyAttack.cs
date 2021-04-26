@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour {
-    [SerializeField] float attackRadius = 1f;
 
     public int attackDamages;
     public bool activatehitbox;
     public Transform target;
+    [SerializeField] float attackRadius = 1f;
+
     private Animator animator;
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class EnemyAttack : MonoBehaviour {
         }
     }
 
-    
+
 
     void OnTriggerEnter(Collider collision) {
         PlayerShooter player = collision.GetComponent<PlayerShooter>();
