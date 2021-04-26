@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoshootDistance: 10
+  combosCount: 1
   weaponData: {fileID: 11400000, guid: e6464633b0dcead43944045c0aa06fd2, type: 2}
   firePoint: {fileID: 6521748888465558963}
   bulletPrefab: {fileID: 7357967364426041330, guid: 57b648e6e535664478119ae0909e9b91,

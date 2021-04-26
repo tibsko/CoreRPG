@@ -5,14 +5,7 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour {
 
-    [SerializeField] Weapon[] weaponPrefabs;
-    [SerializeField] Transform weaponSlot;
     [SerializeField] bool activateHitBoxes = false;
-
-    //private public bool isShooting = false;
-    //private bool isAutoShooting = false;
-    //private float timePressed = 0f;
-
 
     public Vector3 AimDirection { get; private set; }
     public bool DisplayAim { get; private set; }
@@ -21,32 +14,16 @@ public class PlayerShooter : MonoBehaviour {
     private float distanceEnemy;
     private Animator animator;
     private int activeWeaponIndex = 0;
-    private List<Weapon> equipedWeapons;
     private PlayerController controller;
-
-    public Weapon ActiveWeapon { get { return equipedWeapons[activeWeaponIndex]; } }
+    private PlayerWeapons playerWeapons;
 
     // Start is called before the first frame update
     void Start() {
         animator = GetComponentInChildren<Animator>();
-        equipedWeapons = new List<Weapon>();
         controller = GetComponent<PlayerController>();
         startedAiming = false;
+        playerWeapons = gameObject.GetComponent<PlayerWeapons>();
 
-        //aimJoystickZone = new Rect(Screen.width * 0.5f, 0, Screen.width, Screen.height * 0.8f);
-
-        foreach (var weaponPrefab in weaponPrefabs) {
-            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot.position, Quaternion.identity, weaponSlot);
-            go.layer = gameObject.layer;
-
-            Weapon weapon = go.GetComponent<Weapon>();
-            if (weapon) {
-                equipedWeapons.Add(weapon);
-            }
-            else
-                Debug.LogError($"Weapon script is missing on {go.name}");
-        }
-        EquipWeapon();
     }
 
     // Update is called once per frame
@@ -99,26 +76,6 @@ public class PlayerShooter : MonoBehaviour {
 
     }
 
-    public void NextWeapon() {
-        activeWeaponIndex++;
-        if (activeWeaponIndex >= equipedWeapons.Count) {
-            activeWeaponIndex = 0;
-        }
-        EquipWeapon();
-    }
-
-    public void EquipWeapon() {
-        DisplayActiveWeapon();
-        ChangeAnimation(GetActiveWeapon().GetAnimatorOverride());
-    }
-
-    void DisplayActiveWeapon() {
-        for (int i = 0; i < equipedWeapons.Count; i++) {
-            equipedWeapons[i].gameObject.SetActive(false);
-        }
-        equipedWeapons[activeWeaponIndex].gameObject.SetActive(true);
-    }
-
     private void AimShoot() {
         Rotate(transform.position + AimDirection);
         Fire();
@@ -127,7 +84,7 @@ public class PlayerShooter : MonoBehaviour {
     private void AutoShoot() {
         distanceEnemy = 20f;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, ActiveWeapon.autoshootDistance);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, playerWeapons.ActiveWeapon.autoshootDistance);
         Vector3 target = transform.position + transform.forward;
 
         foreach (var collider in colliders) {
@@ -156,7 +113,7 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     private void Fire() {
-        Weapon weapon = GetActiveWeapon();
+        Weapon weapon = playerWeapons.GetActiveWeapon();
         if (weapon && weapon.CanAttack()) {
             animator.SetTrigger("Attack");
             animator.SetInteger("Combos", weapon.combosCount);
@@ -166,24 +123,15 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     public void ToggleHitBox(bool state) {
-        if (ActiveWeapon is MeleeWeapon) {
-            MeleeWeapon meleeWeapon = ActiveWeapon as MeleeWeapon;
+        if (playerWeapons.ActiveWeapon is MeleeWeapon) {
+            MeleeWeapon meleeWeapon = playerWeapons.ActiveWeapon as MeleeWeapon;
             meleeWeapon.ToggleHitBoxes(state);
         }
     }
 
-
-    public Weapon GetActiveWeapon() {
-        return equipedWeapons[activeWeaponIndex].GetComponent<Weapon>();
-    }
-
-    private void ChangeAnimation(AnimatorOverrideController animatorOverrideController) {
-        //animator.runtimeAnimatorController = animatorOverrideController;
-    }
-
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        if (equipedWeapons != null && equipedWeapons.Count > 0 && equipedWeapons[activeWeaponIndex])
-            Gizmos.DrawWireSphere(transform.position, ActiveWeapon.autoshootDistance);
+        if (playerWeapons.equipedWeapons != null && playerWeapons.equipedWeapons.Count > 0 && playerWeapons.equipedWeapons[activeWeaponIndex])
+            Gizmos.DrawWireSphere(transform.position, playerWeapons.ActiveWeapon.autoshootDistance);
     }
 }
