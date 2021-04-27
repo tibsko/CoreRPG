@@ -2,30 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomerAttack : MonoBehaviour {
+public class BoomerAttack : EnemyAttack {
+    public bool isScreaming;
 
-    [SerializeField] float attackRadius = 1f;
-
-    public int attackDamages;
-    public bool activatehitbox;
-    public Transform target;
     private Animator animator;
+
+    [SerializeField] float exploseDistance;
+    [SerializeField] float exploseRadius;
+    [SerializeField] float delayExplose;
+    [SerializeField] int exploseDamages;
+    [SerializeField] GameObject exploseParticule;
 
     // Start is called before the first frame update
     void Start() {
+
         activatehitbox = false;
         animator = gameObject.GetComponentInChildren<Animator>();
-    }
+
+        isScreaming =false;
+}
 
     // Update is called once per frame
     void Update() {
+        
         if (target != null) {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance < attackRadius) {
-                animator.SetBool("isAttacking", true);
+            DoorHealth door = target.GetComponent<DoorHealth>();
+            Debug.Log(target.name);
+            if (door&&door.currentHealth>0) {
+                if (distance < attackRadius) {
+                    animator.SetBool("isAttacking", true);
+                }
+                else {
+                    animator.SetBool("isAttacking", false);
+                }
             }
-            else {
-                animator.SetBool("isAttacking", false);
+            else if (target == PlayerManager.instance.player.transform) {
+                animator.SetBool("isAttacking",false);
+                if (distance <= exploseDistance) {
+                    Debug.Log("isScreaming");
+                    animator.SetBool("isScreaming", true);
+                    isScreaming = true;
+                    Invoke("BoomerExplose",delayExplose);
+                }
+                else {
+                    animator.SetBool("isScreaming", false);
+                }
             }
         }
     }
@@ -35,5 +57,21 @@ public class BoomerAttack : MonoBehaviour {
         if (player) {
             transform.LookAt(player.transform.position);
         }
+    }
+
+    public void BoomerExplose() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius,LayerManager.instance.playerLayer);
+        if (colliders.Length > 0) {
+            foreach(Collider col in colliders) {
+                PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
+                if (playerhealth) {
+                    playerhealth.TakeDamage(exploseDamages,gameObject);
+                }
+                break;
+            }
+        }
+        GameObject particule = Instantiate(exploseParticule, transform.position, Quaternion.identity);
+        Destroy(particule, 1.5f);
+        Destroy(gameObject, .5f);
     }
 }

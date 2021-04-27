@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawPoint : MonoBehaviour {
     public void OnTriggerExit(Collider enemy) {
 
-        EnemyController enemyController = enemy.GetComponent<EnemyController>();
+        ZombieController enemyController = enemy.GetComponent<ZombieController>();
         if (enemyController) {
             enemyController.isInside = true;
         }

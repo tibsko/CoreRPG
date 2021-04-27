@@ -10,7 +10,7 @@ public class EnemyHealth : CharacterHealth {
     public void Die() {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<EnemyController>().enabled = false;
+        GetComponent<ZombieController>().enabled = false;
         GetComponent<EnemyAttack>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<Canvas>().enabled = false;

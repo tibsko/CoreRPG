@@ -3,61 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BoomerController : MonoBehaviour {
+public class ZombieController : MonoBehaviour {
     public bool isInside;
 
     private Transform target;
     private NavMeshAgent agent;
     private Animator animator;
-    private BoomerAttack boomerAttack;
+    private ZombieAttack enemyAttack;
     private DoorDetector doorDetector;
 
-    [SerializeField] float speedRunDistance = 7f;
-    [SerializeField] float speedRun = 5f;
-    [SerializeField] float speedWalk = 2f;
-    
 
     // Start is called before the first frame update
     void Start() {
+        isInside = false;
         doorDetector = GetComponentInChildren<DoorDetector>();
         Targeting();
-        isInside = false;
+
+        enemyAttack = GetComponent<ZombieAttack>();
+        enemyAttack.target = target;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speedWalk;
-
-        boomerAttack = GetComponent<BoomerAttack>();
-        boomerAttack.target = target;
-
         animator = gameObject.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update() {
         Targeting();
-        boomerAttack.target = target;
-        float distance = Vector3.Distance(target.position, gameObject.transform.position);
+        enemyAttack.target = target;
+        Debug.Log(target.name);
         agent.SetDestination(target.position);
-        if (boomerAttack.isScreaming == false) {
-            if (distance <= agent.stoppingDistance) {
-                FaceTarget();
-            }
-            if (agent.velocity.magnitude > 0.01f) {
-                animator.SetFloat("Speed", agent.velocity.magnitude);
-            }
-            if (target == PlayerManager.instance.player.transform) {
-                if (distance <= speedRunDistance) {
-                    agent.speed = speedRun;
-                }
-                else {
-                    agent.speed = speedWalk;
-                }
-            }
+        float distance = Vector3.Distance(target.position, gameObject.transform.position);
+        if (distance <= agent.stoppingDistance) {
+            FaceTarget();
         }
-        if (boomerAttack.isScreaming == true) {
-            animator.SetFloat("Speed", 0);
-            agent.speed = 0f;
+        if (agent.velocity.magnitude > 0.01f) {
+            animator.SetFloat("Speed", agent.velocity.magnitude);
         }
+        
     }
 
     void FaceTarget() {
@@ -70,13 +52,11 @@ public class BoomerController : MonoBehaviour {
         DoorHealth door = doorDetector.doorTransform.GetComponent<DoorHealth>();
         if (isInside) {
             target = PlayerManager.instance.player.transform;
-            agent.stoppingDistance = 2f;
         }
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
                 target = PlayerManager.instance.player.transform;
                 isInside = true;
-                agent.stoppingDistance = 2f;
             }
             else {
                 if (doorDetector.doorTransform) {

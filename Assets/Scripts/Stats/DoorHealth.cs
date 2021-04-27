@@ -21,7 +21,7 @@ public class DoorHealth : CharacterHealth {
         if (currentHealth ==maxHealth) {
             nbActiveDoor = doorInteractable.nbDoor;
         }
-        else if (currentHealth ==0) {
+        else if (currentHealth <=0) {
             nbActiveDoor = 0;
         }
         else {
