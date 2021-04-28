@@ -43,7 +43,7 @@ public class BoomerAttack : EnemyAttack {
                     Debug.Log("isScreaming");
                     animator.SetBool("isScreaming", true);
                     isScreaming = true;
-                    Invoke("BoomerExplose",delayExplose);
+                    Invoke("BoomerExplose", delayExplose);
                 }
                 else {
                     animator.SetBool("isScreaming", false);
@@ -72,6 +72,6 @@ public class BoomerAttack : EnemyAttack {
         }
         GameObject particule = Instantiate(exploseParticule, transform.position, Quaternion.identity);
         Destroy(particule, 1.5f);
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, .2f);
     }
 }

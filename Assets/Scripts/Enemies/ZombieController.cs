@@ -12,7 +12,6 @@ public class ZombieController : MonoBehaviour {
     private ZombieAttack enemyAttack;
     private DoorDetector doorDetector;
 
-
     // Start is called before the first frame update
     void Start() {
         isInside = false;

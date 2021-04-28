@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DoorDetector : MonoBehaviour {
     public Transform doorTransform;
-    void Start() {
+    void Awake() {
         doorTransform =  PlayerManager.instance.player.transform;
-
     }
     void OnTriggerStay(Collider colliders) {
         DoorHealth door = colliders.GetComponent<DoorHealth>();
