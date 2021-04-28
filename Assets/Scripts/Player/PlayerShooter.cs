@@ -21,9 +21,8 @@ public class PlayerShooter : MonoBehaviour {
     void Start() {
         animator = GetComponentInChildren<Animator>();
         controller = GetComponent<PlayerController>();
+        playerWeapons = GetComponent<PlayerWeapons>();
         startedAiming = false;
-        playerWeapons = gameObject.GetComponent<PlayerWeapons>();
-
     }
 
     // Update is called once per frame

@@ -38,13 +38,6 @@ public class PlayerController : MonoBehaviour {
         Rotate();
         ApplyGravity();
         Move();
-
-        //Apply gravity
-        if (IsGrounded && yMove.y < 0)
-            yMove.y = -2f;
-        else
-            yMove.y += gravity.y * Time.deltaTime;
-
     }
 
     /////////////////////////////////////////////Base controls

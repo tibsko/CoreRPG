@@ -66,7 +66,6 @@ public class JDPlayerController : MonoBehaviour {
     /////////////////////////////////////////////Base controls
     public void OnMoveInput(Vector2 inputs) {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
-        Debug.Log(xzMove);
     }
 
     private void Rotate() {
