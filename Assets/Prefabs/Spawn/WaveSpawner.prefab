@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8616139262452332022
 Transform:
   m_ObjectHideFlags: 0
@@ -48,11 +48,11 @@ MonoBehaviour:
     enemies:
     - enemyTransform: {fileID: 3455527574230520145, guid: 3ee6e4ea89820754d9a70f85c02118de,
         type: 3}
-      enemyRate: 75
+      enemyRate: 5
     - enemyTransform: {fileID: 6078473582528620982, guid: d3bdf12945d1a1e44ad151fcecaf06e3,
         type: 3}
-      enemyRate: 25
-    amount: 1
+      enemyRate: 95
+    amount: 20
     spawnRate: 1
   - waveName: Zombie Invasion 2.0
     enemies:

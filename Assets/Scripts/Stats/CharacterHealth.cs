@@ -22,7 +22,7 @@ public class CharacterHealth : MonoBehaviour {
         damageSources = new List<DamageSource>();
     }
 
-    public void Update() {
+    void Update() {
         List<DamageSource> temp = new List<DamageSource>();
         foreach (DamageSource source in damageSources) {
             source.timerDamage -= Time.deltaTime;
@@ -36,12 +36,12 @@ public class CharacterHealth : MonoBehaviour {
         }
     }
 
-    public void HealHealth(int heal) {
+    public virtual void HealHealth(int heal,GameObject source) {
         currentHealth += heal;
         healthBar.SetHealth(currentHealth);
     }
     public void TakeDamage(int damage, GameObject source) {
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
             return;
 
         if (damageSources.Find(x => x.go == source) == null) {

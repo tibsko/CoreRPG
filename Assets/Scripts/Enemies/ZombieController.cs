@@ -16,13 +16,12 @@ public class ZombieController : MonoBehaviour {
     void Start() {
         isInside = false;
         doorDetector = GetComponentInChildren<DoorDetector>();
-        Targeting();
 
         enemyAttack = GetComponent<ZombieAttack>();
-        enemyAttack.target = target;
 
         agent = GetComponent<NavMeshAgent>();
         animator = gameObject.GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
@@ -48,7 +47,7 @@ public class ZombieController : MonoBehaviour {
     }
 
     void Targeting() {
-        DoorHealth door = doorDetector.doorTransform.GetComponent<DoorHealth>();
+        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
             target = PlayerManager.instance.player.transform;
         }
@@ -58,12 +57,14 @@ public class ZombieController : MonoBehaviour {
                 isInside = true;
             }
             else {
-                if (doorDetector.doorTransform) {
-                    target = doorDetector.doorTransform;
+                if (doorDetector.doorDetected) {
+                    target = doorDetector.doorDetected;
                 }
                 isInside = false;
             }
-
+        }
+        else {
+            target = PlayerManager.instance.player.transform;
         }
     }
    

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoomerAttack : EnemyAttack {
     public bool isScreaming;
 
+    private bool hasExplose;
     private Animator animator;
 
     [SerializeField] float exploseDistance;
@@ -19,17 +20,20 @@ public class BoomerAttack : EnemyAttack {
         activatehitbox = false;
         animator = gameObject.GetComponentInChildren<Animator>();
 
-        isScreaming =false;
-}
+        isScreaming = false;
+        hasExplose = false;
+    }
 
     // Update is called once per frame
     void Update() {
-        
+        if (hasExplose) {
+            return;
+        }
         if (target != null) {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
             DoorHealth door = target.GetComponent<DoorHealth>();
             Debug.Log(target.name);
-            if (door&&door.currentHealth>0) {
+            if (door && door.currentHealth > 0) {
                 if (distance < attackRadius) {
                     animator.SetBool("isAttacking", true);
                 }
@@ -38,17 +42,19 @@ public class BoomerAttack : EnemyAttack {
                 }
             }
             else if (target == PlayerManager.instance.player.transform) {
-                animator.SetBool("isAttacking",false);
+                animator.SetBool("isAttacking", false);
                 if (distance <= exploseDistance) {
-                    Debug.Log("isScreaming");
                     animator.SetBool("isScreaming", true);
                     isScreaming = true;
-                    Invoke("BoomerExplose", delayExplose);
                 }
                 else {
                     animator.SetBool("isScreaming", false);
                 }
             }
+        }
+        if (isScreaming && !hasExplose) {
+            hasExplose = true;
+            Invoke(nameof(BoomerExplose), delayExplose);
         }
     }
 
@@ -60,12 +66,12 @@ public class BoomerAttack : EnemyAttack {
     }
 
     public void BoomerExplose() {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius,LayerManager.instance.playerLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius, LayerManager.instance.playerLayer);
         if (colliders.Length > 0) {
-            foreach(Collider col in colliders) {
+            foreach (Collider col in colliders) {
                 PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
                 if (playerhealth) {
-                    playerhealth.TakeDamage(exploseDamages,gameObject);
+                    playerhealth.TakeDamage(exploseDamages, gameObject);
                 }
                 break;
             }
@@ -73,5 +79,6 @@ public class BoomerAttack : EnemyAttack {
         GameObject particule = Instantiate(exploseParticule, transform.position, Quaternion.identity);
         Destroy(particule, 1.5f);
         Destroy(gameObject, .2f);
+        this.enabled = false;
     }
 }

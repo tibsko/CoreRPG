@@ -13,10 +13,7 @@ public class DoorHealth : CharacterHealth {
         base.Start();
     }
     // Update is called once per frame
-    void Update() {
-        base.Update();
-       
-    }
+    
     public void UpdateDoorboards() {
         if (currentHealth ==maxHealth) {
             nbActiveDoor = doorInteractable.nbDoor;

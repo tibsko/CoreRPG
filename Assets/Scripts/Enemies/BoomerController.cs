@@ -15,21 +15,20 @@ public class BoomerController : MonoBehaviour {
     [SerializeField] float speedRunDistance = 7f;
     [SerializeField] float speedRun = 5f;
     [SerializeField] float speedWalk = 2f;
-    
+
 
     // Start is called before the first frame update
     void Start() {
         doorDetector = GetComponentInChildren<DoorDetector>();
-        Targeting();
         isInside = false;
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speedWalk;
 
         boomerAttack = GetComponent<BoomerAttack>();
-        boomerAttack.target = target;
 
         animator = gameObject.GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
@@ -67,7 +66,7 @@ public class BoomerController : MonoBehaviour {
     }
 
     void Targeting() {
-        DoorHealth door = doorDetector.doorTransform.GetComponent<DoorHealth>();
+        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
             target = PlayerManager.instance.player.transform;
             agent.stoppingDistance = 2f;
@@ -79,13 +78,17 @@ public class BoomerController : MonoBehaviour {
                 agent.stoppingDistance = 2f;
             }
             else {
-                if (doorDetector.doorTransform) {
-                    target = doorDetector.doorTransform;
+                if (doorDetector.doorDetected) {
+                    target = doorDetector.doorDetected;
                 }
+               
                 isInside = false;
             }
 
         }
+        else {
+            target = PlayerManager.instance.player.transform;
+        }
     }
-   
+
 }

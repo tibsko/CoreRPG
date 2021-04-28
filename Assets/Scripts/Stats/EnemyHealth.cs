@@ -8,6 +8,7 @@ public class EnemyHealth : CharacterHealth {
     [SerializeField] float timer;
     // Update is called once per frame
     public void Die() {
+        gameObject.layer = 0;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<ZombieController>().enabled = false;

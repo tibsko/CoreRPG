@@ -8,9 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector3 offSetCam;
 
     [SerializeField] float rotationCamX;
+
+    public Transform obstruction;
+
     // Start is called before the first frame update
     void Start()
     {
+        obstruction = target;
         if (target == null) {
             target = FindObjectOfType<PlayerController>().transform;
         }
@@ -20,6 +24,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         CameraMove();
+        //ViewObstructed();
     }
 
     void CameraMove()
@@ -27,4 +32,23 @@ public class CameraController : MonoBehaviour
         transform.position = target.position+offSetCam;
         transform.rotation = Quaternion.Euler(rotationCamX, 0, 0);
     }
+
+    //void ViewObstructed() {
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(transform.position, target.position - transform.position, out hit)) {
+    //        if (hit.collider.gameObject.layer != target.gameObject.layer) {
+    //            obstruction = hit.transform;
+    //            if (obstruction.gameObject.GetComponent<MeshRenderer>()) {
+    //                obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+
+    //            }
+    //        }
+    //        else {
+    //            if (obstruction.gameObject.GetComponent<MeshRenderer>()) {
+    //                obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+
+    //            }
+    //        }
+    //    }
+    //}
 }
