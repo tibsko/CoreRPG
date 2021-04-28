@@ -1167,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
       propertyPath: offSetCam.y
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
@@ -1177,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
       propertyPath: rotationCamX
-      value: 55
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5290351446730615073, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
@@ -4100,7 +4100,7 @@ PrefabInstance:
     - target: {fileID: 215278038481991313, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 215278038481991313, guid: de86b71c071d9564eab89909ee1921c3,
         type: 3}
@@ -4374,7 +4374,7 @@ MonoBehaviour:
   groundChecker: {fileID: 1874228603}
   groundCheckRadius: 0.2
   gravity: {x: 0, y: -10, z: 0}
-  forwardSpeed: 0.5
+  forwardSpeed: 4
   sideSpeed: 1
   backwardSpeed: 1
   walkFactor: 0.5
@@ -4533,7 +4533,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: dffa80fb9a288e541a136d3593be632d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -5971,7 +5971,7 @@ PrefabInstance:
     - target: {fileID: 5780145783617160435, guid: 35a87580589dc1540a8bb18870fed791,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5780145783617160435, guid: 35a87580589dc1540a8bb18870fed791,
         type: 3}
@@ -6333,8 +6333,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 101464908}
-  - {fileID: 1795484124}
   - {fileID: 1110526271}
+  - {fileID: 1795484124}
   - {fileID: 1411077657}
   m_Father: {fileID: 1485948943}
   m_RootOrder: 0

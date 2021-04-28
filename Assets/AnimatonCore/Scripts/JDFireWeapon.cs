@@ -99,10 +99,10 @@ public class JDFireWeapon : MonoBehaviour {
 
         //Call reset shot for last bullet
         if (bulletsToShot <= 0)
-            this.InvokeDelay(ResetShot, timeBetweenBurst);
+            Invoke(nameof(ResetShot), timeBetweenBurst);
 
         if (bulletsToShot > 0 && bulletsLeft > 0)
-            this.InvokeDelay(Shoot, timeBetweenShots);
+            Invoke(nameof(Shoot), timeBetweenShots);
     }
     private void ResetShot() {
         readyToShoot = true;
@@ -112,7 +112,7 @@ public class JDFireWeapon : MonoBehaviour {
         reloading = true;
         audioSource.PlayOneShot(reloadSound);
 
-        this.InvokeDelay(ReloadFinished, reloadTime);
+        Invoke(nameof(ReloadFinished), reloadTime);
     }
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
