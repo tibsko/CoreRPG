@@ -9212,6 +9212,8 @@ GameObject:
   - component: {fileID: 3554230587685200110}
   - component: {fileID: 3712039040578483592}
   - component: {fileID: 3713060359999837966}
+  - component: {fileID: 3854856352521229096}
+  - component: {fileID: 8411191062055954599}
   m_Layer: 0
   m_Name: FX_Explosion_Poison
   m_TagString: Untagged
@@ -13773,6 +13775,33 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!135 &3854856352521229096
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551077037914470400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.23
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8411191062055954599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551077037914470400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a680003fc38a94386758916ce34ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonDamage: 20
+  damageSpeed: 1
 --- !u!1 &5766963931029991710
 GameObject:
   m_ObjectHideFlags: 0
