@@ -13,6 +13,8 @@ public class SpitterController : MonoBehaviour
     private SpitterAttack enemyAttack;
     private DoorDetector doorDetector;
 
+    private float speed = 2f;
+
     // Start is called before the first frame update
     void Start() {
         isInside = false;
@@ -30,13 +32,26 @@ public class SpitterController : MonoBehaviour
         Targeting();
         enemyAttack.target = target;
         Debug.Log(target.name);
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
         float distance = Vector3.Distance(target.position, gameObject.transform.position);
         if (distance <= agent.stoppingDistance) {
             FaceTarget();
         }
+
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
+        }
+
+        if (enemyAttack.isSpitting == true) {
+            agent.SetDestination(transform.position);
+            agent.speed = 0;
+            FaceTarget();
+            animator.SetFloat("Speed", 0);
+
+        }
+        else {
+            agent.speed = speed;
+            agent.SetDestination(target.position);
         }
 
     }

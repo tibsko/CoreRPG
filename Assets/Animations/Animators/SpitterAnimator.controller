@@ -42,9 +42,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.5162743
-  m_TransitionOffset: 0.017491657
-  m_ExitTime: 0.3837257
+  m_TransitionDuration: 0.10406476
+  m_TransitionOffset: 0
+  m_ExitTime: 0.3080909
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -64,7 +64,7 @@ AnimatorStateMachine:
     m_Position: {x: 260, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7165899719339226695}
-    m_Position: {x: 550, y: 210, z: 0}
+    m_Position: {x: 550, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4415199298228078712}
     m_Position: {x: 580, y: 100, z: 0}
@@ -210,7 +210,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoomerAnimatorTest
+  m_Name: SpitterAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -294,7 +294,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoomerAttack
+  m_Name: SpitterAttack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -308,7 +308,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a3b1415b8a01b8e4eb48407a327a1057, type: 2}
+  m_Motion: {fileID: 7400000, guid: 31f1b07d31c3a65488cafd31188b6887, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -321,7 +321,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoomerScream
+  m_Name: SpitScream
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -335,7 +335,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6c9fc3f4cf4d2354ea6639e383ad80fe, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7a75440c7b0ee704d90fd7e4b91f4c31, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

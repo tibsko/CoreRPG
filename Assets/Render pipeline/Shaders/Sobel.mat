@@ -7,10 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ToonMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: ab7f3849f33e3854ea3e6b78486ed9dc,
-    type: 3}
-  m_ShaderKeywords: 
+  m_Name: Sobel
+  m_Shader: {fileID: 4800000, guid: f8afbcbcd48f99a47887784f720ee13e, type: 3}
+  m_ShaderKeywords: RAW_OUTLINE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,6 +18,14 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
-    m_Floats: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Delta: 0.001
+    - _Poseterize: 0
+    - _PosterizationCount: 8
+    - _Raw: 1
     m_Colors: []

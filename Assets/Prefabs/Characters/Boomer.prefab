@@ -2464,7 +2464,7 @@ MonoBehaviour:
   isScreaming: 0
   exploseDistance: 2
   exploseRadius: 2
-  delayExplose: 1.25
+  delayExplose: 1.5
   exploseDamages: 100
   exploseParticule: {fileID: 7738131136790958468, guid: 471700e33d786774fb43484af1bd260a,
     type: 3}
@@ -2565,7 +2565,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6078473582528620983}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
   m_Height: 2

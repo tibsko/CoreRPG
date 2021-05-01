@@ -19,6 +19,7 @@ public class ZombieAttack : EnemyAttack {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
             if (distance < attackRadius) {
                 animator.SetBool("isAttacking", true);
+
             }
             else {
                 animator.SetBool("isAttacking", false);

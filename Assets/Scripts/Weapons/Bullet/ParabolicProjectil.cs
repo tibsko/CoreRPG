@@ -5,6 +5,8 @@ using UnityEngine;
 public class ParabolicProjectil : MonoBehaviour
 {
     protected float animationProjectile;
+    [SerializeField] float speed;
+    [SerializeField] float height;
     [SerializeField] Transform startPosition;
     [SerializeField] Transform endPosition;
     // Start is called before the first frame update
@@ -18,8 +20,8 @@ public class ParabolicProjectil : MonoBehaviour
     {
        
         animationProjectile += Time.deltaTime;
-        animationProjectile = animationProjectile % 1f;
-        transform.position = ParabolaEquation.Parabole(startPosition.position, endPosition.position, 7f, animationProjectile/1f);
+        animationProjectile = animationProjectile % speed;
+        transform.position = ParabolaEquation.Parabole(startPosition.position, endPosition.position, height, animationProjectile/speed);
         
     }
 }

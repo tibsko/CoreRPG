@@ -6,6 +6,9 @@ public class SpitterAttack : EnemyAttack {
 
     private Animator animator;
 
+    public float attackDistance;
+    public bool isSpitting=false;
+
     // Start is called before the first frame update
     protected void Start() {
         activatehitbox = false;
@@ -16,12 +19,31 @@ public class SpitterAttack : EnemyAttack {
     void Update() {
         if (target != null) {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance < attackRadius) {
-                animator.SetBool("isAttacking", true);
+            DoorHealth door = target.GetComponent<DoorHealth>();
+            if (door && door.currentHealth > 0) {
+                if (distance < attackRadius) {
+                    Debug.Log("wall Attack");
+                    animator.SetBool("isAttacking", true);
+                }
+                else {
+                    animator.SetBool("isAttacking", false);
+                }
             }
-            else {
-                animator.SetBool("isAttacking", false); 
+            else if (target == PlayerManager.instance.player.transform) {
+                animator.SetBool("isAttacking", false);
+                if (distance <= attackDistance) {
+                    animator.SetBool("isScreaming", true);
+                    isSpitting = true;
+                    SpitAttack();
+                }
+                else {
+                    animator.SetBool("isScreaming", false);
+                    isSpitting = false;
+                }
             }
         }
+    }
+    private void SpitAttack() {
+        Debug.Log("Spit");
     }
 }
