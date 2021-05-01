@@ -2,33 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
-{
+public class InventoryUI : MonoBehaviour {
+
     public Transform itemsParent;
+    public Inventory inventory;
 
-    Inventory inventory;
+    private InventorySlot[] slots;
 
-    InventorySlot[] slots;
-
-     
-    // Start is called before the first frame update
-    void Awake()
-    {
-        inventory = Inventory.instance;
-        inventory.onItemChangedCallback += UpdateUI;
-
+    void Start() {
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void UpdateUI() {
         for (int i = 0; i < slots.Length; i++) {
-            if (i<inventory.items.Count) {
+            if (i < inventory.items.Count) {
                 slots[i].AddItem(inventory.items[i]);
                 Debug.Log("Item addes");
             }

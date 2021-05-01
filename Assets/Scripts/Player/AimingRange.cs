@@ -2,42 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimingRange : MonoBehaviour
-{
-    private PlayerShooter playerShoot;
-    private SpriteRenderer aimingRenderer;
-
+public class AimingRange : MonoBehaviour {
+    private PlayerAttack playerShoot;
+    //private SpriteRenderer aimingRenderer;
+    private LineRenderer line;
     // Start is called before the first frame update
-    void Start()
-    {
-        playerShoot = GetComponentInParent<PlayerShooter>();
-        aimingRenderer = GetComponent<SpriteRenderer>();
-        aimingRenderer.enabled = false;
+    void Start() {
+        playerShoot = GetComponentInParent<PlayerAttack>();
+        line = GetComponent<LineRenderer>();
+        //aimingRenderer = GetComponent<SpriteRenderer>();
+        //aimingRenderer.enabled = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(playerShoot == null) {
+    void Update() {
+        if (playerShoot == null) {
             return;
         }
 
-        if (playerShoot.DisplayAim)
-        {
-            aimingRenderer.enabled = true;
+        if (playerShoot.DisplayAim) {
+            line.enabled = true;
             RotateAiming();
         }
-        else
-        {
-            aimingRenderer.enabled = false;
+        else {
+            line.enabled = false;
         }
     }
 
-    void RotateAiming()
-    {
-        transform.LookAt(playerShoot.transform.position + playerShoot.AimDirection);
-        Vector3 rotation = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(90, rotation.y + 90, 0);
-
+    void RotateAiming() {
+        //transform.LookAt(playerShoot.transform.position + playerShoot.AimDirection);
+        //Vector3 rotation = transform.rotation.eulerAngles;
+        //transform.rotation = Quaternion.Euler(90, rotation.y + 90, 0);
+        line.SetPosition(0, transform.position + Vector3.up * 0.1f);
+        line.SetPosition(1, transform.position + Vector3.up * 0.1f + playerShoot.AimDirection * playerShoot.ActiveWeapon.autoshootDistance);
     }
 }

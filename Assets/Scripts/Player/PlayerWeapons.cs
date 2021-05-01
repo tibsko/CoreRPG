@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeapons : MonoBehaviour
-{
-
+public class PlayerWeapons : MonoBehaviour {
     [SerializeField] int nbMaxWeapon = 5;
     [SerializeField] Weapon[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
 
-    public int activeWeaponIndex = 0;
+    public int ActiveWeaponIndex { get; private set; }
     public List<Weapon> equipedWeapons;
 
+    public Weapon ActiveWeapon { get { return equipedWeapons[ActiveWeaponIndex]; } }
 
-    public Weapon ActiveWeapon { get { return equipedWeapons[activeWeaponIndex]; } }
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         equipedWeapons = new List<Weapon>();
 
         foreach (var weaponPrefab in weaponPrefabs) {
-            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot.position, Quaternion.identity, weaponSlot);
+            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot);
             go.layer = gameObject.layer;
 
             Weapon weapon = go.GetComponent<Weapon>();
@@ -35,9 +32,8 @@ public class PlayerWeapons : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
     public void AddWeapon(Weapon weapon) {
@@ -46,17 +42,17 @@ public class PlayerWeapons : MonoBehaviour
             go.SetActive(false);
             go.layer = gameObject.layer;
             equipedWeapons.Add(go.GetComponent<Weapon>());
-            activeWeaponIndex = equipedWeapons.Count-1;
-           
+            ActiveWeaponIndex = equipedWeapons.Count - 1;
+
         }
         else {
-            Weapon activeWeapon = GetActiveWeapon();
+            Weapon activeWeapon = ActiveWeapon;
             RemoveWeapon(activeWeapon);
             GameObject go = Instantiate(weapon.gameObject, weaponSlot.position, transform.rotation, weaponSlot);
             go.SetActive(false);
             go.layer = gameObject.layer;
             equipedWeapons.Add(go.GetComponent<Weapon>());
-            activeWeaponIndex = equipedWeapons.Count-1;
+            ActiveWeaponIndex = equipedWeapons.Count - 1;
 
         }
         EquipWeapon();
@@ -68,26 +64,23 @@ public class PlayerWeapons : MonoBehaviour
 
 
     public void NextWeapon() {
-        activeWeaponIndex++;
-        if (activeWeaponIndex >= equipedWeapons.Count) {
-            activeWeaponIndex = 0;
+        ActiveWeaponIndex++;
+        if (ActiveWeaponIndex >= equipedWeapons.Count) {
+            ActiveWeaponIndex = 0;
         }
         EquipWeapon();
     }
 
     public void EquipWeapon() {
         DisplayActiveWeapon();
-        ChangeAnimation(GetActiveWeapon().GetAnimatorOverride());
+        ChangeAnimation(ActiveWeapon.GetAnimatorOverride());
     }
 
     void DisplayActiveWeapon() {
         for (int i = 0; i < equipedWeapons.Count; i++) {
             equipedWeapons[i].gameObject.SetActive(false);
         }
-        equipedWeapons[activeWeaponIndex].gameObject.SetActive(true);
-    }
-    public Weapon GetActiveWeapon() {
-        return equipedWeapons[activeWeaponIndex].GetComponent<Weapon>();
+        equipedWeapons[ActiveWeaponIndex].gameObject.SetActive(true);
     }
     private void ChangeAnimation(AnimatorOverrideController animatorOverrideController) {
         //animator.runtimeAnimatorController = animatorOverrideController;

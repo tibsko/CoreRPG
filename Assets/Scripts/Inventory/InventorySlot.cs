@@ -9,6 +9,13 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
 
     Item item;
+    Inventory inventory;
+    
+
+    private void Start() {
+        var parent = GetComponentInParent<InventoryUI>();
+        inventory = parent.inventory;
+    }
 
     public void AddItem(Item newItem) {
         item = newItem;
@@ -27,7 +34,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     public void OnRemoveButton() {
-        Inventory.instance.Remove(item);
+        inventory.Remove(item);
     }
 
     public void UseItem() {

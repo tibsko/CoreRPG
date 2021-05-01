@@ -30,7 +30,7 @@ public class ZombieAttack : EnemyAttack {
 
 
     void OnTriggerEnter(Collider collision) {
-        PlayerShooter player = collision.GetComponent<PlayerShooter>();
+        PlayerAttack player = collision.GetComponent<PlayerAttack>();
         if (player) {
             transform.LookAt(player.transform.position);
         }
