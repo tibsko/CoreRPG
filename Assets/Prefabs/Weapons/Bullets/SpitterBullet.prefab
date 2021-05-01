@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2481922664079353434}
   - component: {fileID: 2481922664079353413}
   - component: {fileID: 2481922664079353412}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SpitterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2481922664079353414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4164042, y: 9.400902, z: 45.125843}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff75aec36fb14e344a64091f969db90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
-  height: 4
   startPosition: {fileID: 0}
-  endPosition: {fileID: 0}
+  speed: 1.5
+  height: 2
+  smokeEffect: {fileID: 3551077037914470400, guid: 1085d151841b8dd46a914f53b5ad4cd0,
+    type: 3}

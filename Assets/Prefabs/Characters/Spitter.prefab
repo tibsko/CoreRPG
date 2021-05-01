@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &243627349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 243627350}
+  m_Layer: 10
+  m_Name: InstanceTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &243627350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243627349}
+  m_LocalRotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.46, z: 0.3199997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8209277754310862562}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &921889847
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +229,7 @@ MonoBehaviour:
   target: {fileID: 0}
   attackRadius: 2
   attackDistance: 7
+  isSpitting: 0
 --- !u!1 &5632360711479988364
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55003519d7413fe47b229d7021f0f61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttack: {fileID: 0}
+  enemyAttack: {fileID: 215208388}
 --- !u!135 &5671164615298083075
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -520,7 +551,7 @@ Transform:
   m_Children:
   - {fileID: 8211099470636820810}
   m_Father: {fileID: 8209277754310862562}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8212458457344953022
 GameObject:
@@ -815,6 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8209277754310862562}
   - component: {fileID: 2010488802}
+  - component: {fileID: 1393542674}
   m_Layer: 10
   m_Name: SM_Chr_Zombie_Male_01
   m_TagString: Untagged
@@ -833,6 +865,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 243627350}
   - {fileID: 8210828647513441818}
   - {fileID: 8209452703362539498}
   m_Father: {fileID: 1253970159583894480}
@@ -857,6 +890,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1393542674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212598108713005372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395a65640f0b69b41b74bc65ffb3976e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spitBullet: {fileID: 2481922664079353414, guid: 4423cc8e22a04334c86ea7120221fa01,
+    type: 3}
+  launcherTransform: {fileID: 243627350}
 --- !u!1 &8212607512515536914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8209277754310862562}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8077941325364139836
 SkinnedMeshRenderer:

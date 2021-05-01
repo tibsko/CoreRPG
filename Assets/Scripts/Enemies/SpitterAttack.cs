@@ -34,7 +34,6 @@ public class SpitterAttack : EnemyAttack {
                 if (distance <= attackDistance) {
                     animator.SetBool("isScreaming", true);
                     isSpitting = true;
-                    SpitAttack();
                 }
                 else {
                     animator.SetBool("isScreaming", false);
@@ -43,7 +42,5 @@ public class SpitterAttack : EnemyAttack {
             }
         }
     }
-    private void SpitAttack() {
-        Debug.Log("Spit");
-    }
+    
 }
