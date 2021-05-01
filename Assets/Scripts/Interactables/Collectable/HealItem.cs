@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class HealItem : CollectableItem
 {
+    public GameObject healParticule;// cette varible la s'affiche pas je fais comment?
     [SerializeField] int healAmount;
+
 
     public void Heal(GameObject player) {
         PlayerHealth health = player.GetComponent<PlayerHealth>();
         if (health) {
-            health.HealHealth(healAmount);
+            health.HealHealth(healAmount, gameObject);
         }
 
     }

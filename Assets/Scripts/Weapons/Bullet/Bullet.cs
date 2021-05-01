@@ -32,15 +32,15 @@ public class Bullet : MonoBehaviour
     
     
     void OnTriggerEnter(Collider collision)
-    {
+    {   
         Vector3 bulletPosition = gameObject.transform.position;
         ParticuleEmitter emitter = collision.gameObject.GetComponent<ParticuleEmitter>();
         if (emitter) {
             emitter.InstantiateParticule(bulletPosition);
         }
-
         if (collision.gameObject.layer != gameObject.layer) {
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+                Debug.Log("ZombieHitted");
             if (enemyHealth) {
                 if (!damagePerDistance)
                     enemyHealth.TakeDamage(weaponData.damages,gameObject);
