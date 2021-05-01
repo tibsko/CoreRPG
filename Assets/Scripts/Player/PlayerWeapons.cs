@@ -17,7 +17,7 @@ public class PlayerWeapons : MonoBehaviour {
         equipedWeapons = new List<Weapon>();
 
         foreach (var weaponPrefab in weaponPrefabs) {
-            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot.position, Quaternion.identity, weaponSlot);
+            GameObject go = Instantiate(weaponPrefab.gameObject, weaponSlot);
             go.layer = gameObject.layer;
 
             Weapon weapon = go.GetComponent<Weapon>();

@@ -41,15 +41,15 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     public void OnAim(Vector2 aim) {
+        if (!ActiveWeapon) {
+            return;
+        }
 
         AimDirection = new Vector3(aim.x, 0, aim.y);
 
         if (AimDirection.magnitude > 0.5f) {
             startedAiming = true;
         }
-
-        animator.SetBool("IsAiming", isAttacking);
-        animator.SetBool("IsStrafing", isAttacking);
     }
 
     public void OnRelease(Vector2 aim) {
@@ -77,14 +77,12 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void AimShoot() {
-        isAttacking = true;
         controller.Constraint(true, false);
         Rotate(transform.position + AimDirection);
         Attack();
     }
 
     private void AutoShoot() {
-        isAttacking = true;
         controller.Constraint(true, false);
         distanceEnemy = float.MaxValue;
 
@@ -110,20 +108,28 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Attack() {
+        isAttacking = true;
+
         Weapon weapon = playerWeapons.ActiveWeapon;
         weapon.onEndAttack.RemoveAllListeners();
         weapon.onEndAttack.AddListener(ResetAttack);
-        if (weapon && weapon.CanAttack()) {
+        if (weapon.CanAttack()) {
             animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
+            SetAttackAnimation(isAttacking);
         }
     }
 
     public void ResetAttack() {
         isAttacking = false;
         controller.Constraint(true, true);
-
+        SetAttackAnimation(isAttacking);
         //delay player can't attack ?
+    }
+
+    private void SetAttackAnimation(bool status) {
+        animator.SetBool("IsAiming", status);
+        animator.SetBool("IsStrafing", status);
     }
 
     public void ToggleHitBox(bool state) {

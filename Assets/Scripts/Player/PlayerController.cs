@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] Vector3 gravity = new Vector3(0, -3f, 0);
 
     [Header("Speed")]
-    [SerializeField] float forwardSpeed = 0.5f;
-    [SerializeField] float sideSpeed = 1;
-    [SerializeField] float backwardSpeed = 1;
+    [SerializeField] float speed = 0.5f;
+    //[SerializeField] float sideSpeed = 1;
+    //[SerializeField] float backwardSpeed = 1;
     [SerializeField] float walkFactor = 0.5f;
     [SerializeField] float sprintFactor = 1.5f;
 
@@ -46,9 +46,9 @@ public class PlayerController : MonoBehaviour {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
     }
 
-    public void Constraint(bool movement, bool rotation) {
-        canMove = movement;
-        canRotate = rotation;
+    public void Constraint(bool _canMove, bool _canRotate) {
+        canMove = _canMove;
+        canRotate = _canRotate;
     }
 
     private void Rotate() {
@@ -58,35 +58,23 @@ public class PlayerController : MonoBehaviour {
 
     private void Move() {
         if (canMove) {
+            //Get xzMove in local coordinates
             Vector3 moveDirection = transform.InverseTransformDirection(xzMove.normalized);
+
             animator.SetFloat("MoveForward", moveDirection.z);
             animator.SetFloat("MoveRight", moveDirection.x);
 
-            float velocity = 0f;
-            velocity += backwardSpeed * Mathf.Clamp(moveDirection.z, -1, 0);
-            velocity += forwardSpeed * Mathf.Clamp(moveDirection.z, 0, 1);
-            velocity += sideSpeed * moveDirection.x;
-
             #region debug
-            //string debugVelocity = "";
-            //debugVelocity += "Backward=" + backwardSpeed * Mathf.Clamp(v.z, -1, 0);
-            //debugVelocity += "  Forward=" + forwardSpeed * Mathf.Clamp(v.z, 0, 1);
-            //debugVelocity += "  Side=" + sideSpeed * v.x;
-            //Debug.Log(debugVelocity);
-            #endregion
-
-            float factor = 1;
-            #region debug
+            float factor = 1f;
             if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
             else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
             #endregion
-            velocity *= factor;
             moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
             animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
 
             //Apply movement
             controller.Move(yMove * Time.deltaTime);
-            controller.Move(xzMove.normalized * Time.deltaTime * Mathf.Abs(velocity));
+            controller.Move(xzMove.normalized * Time.deltaTime * speed);
         }
         else {
             animator.SetFloat("MoveForward", 0);

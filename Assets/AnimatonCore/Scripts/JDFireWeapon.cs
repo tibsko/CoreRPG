@@ -10,6 +10,7 @@ public class JDFireWeapon : FireWeapon {
     public float reloadTime, timeBetweenBurst, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool automatic;
+    public float delayBeforeShoot;
 
     [Header("Set up")]
     //public Transform firePoint;
@@ -31,16 +32,17 @@ public class JDFireWeapon : FireWeapon {
     private int bulletsLeft, bulletsToShot;
     private bool readyToShoot, reloading, emptySignal;
     private AudioSource audioSource;
+    private PlayerAttack parentPlayer;
 
     private void Start() {
         bulletsLeft = magazineSize;
         readyToShoot = true;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponentInParent<Animator>();
+        parentPlayer = GetComponentInParent<PlayerAttack>();
     }
 
     private void Update() {
-        Fire();
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
             Reload();
 
@@ -65,6 +67,8 @@ public class JDFireWeapon : FireWeapon {
                 else
                     bulletsToShot = bulletsLeft;
 
+                //Sound
+                audioSource.PlayOneShot(shotSound);
                 Shoot();
                 animator.SetTrigger("Shoot");
             }
@@ -77,18 +81,14 @@ public class JDFireWeapon : FireWeapon {
         readyToShoot = false;
 
         //Spread & direction
-        float z = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
 
         //Instantiate bullet
-        Vector3 rotation = firePoint.rotation.eulerAngles;
-        rotation.x = 0;
-        rotation.y += y;
-        rotation.z += z;
-        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.Euler(rotation));
+        Vector3 rotation = Vector3.zero;
+        rotation.y = y;
+        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
+        bulletGo.GetComponent<JDBullet>().Init(parentPlayer.transform.rotation.eulerAngles + rotation);
 
-        //Sound
-        audioSource.PlayOneShot(shotSound);
 
         //Graphics
         //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
@@ -130,8 +130,8 @@ public class JDFireWeapon : FireWeapon {
     }
 
     public override void Attack() {
-        shooting = true ;
-        Fire();
+        shooting = true;
+        Invoke(nameof(Fire), delayBeforeShoot);
     }
 
     public override bool CanAttack() {
