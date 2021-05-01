@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour {
     public class Wave {
 
         public string waveName;
-        public Transform enemy;
+        public EnemySpawned[] enemies;
         public int amount;
         public float spawnRate;
     }
@@ -80,20 +80,31 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave(Wave wave) {
         //Debug.Log("Spawning Wave" + wave.waveName);
+        Transform enemyTrans = null;
         state = SpawnState.SPAWNING;
         for (int i = 0; i < wave.amount; i++) {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1f / wave.spawnRate);
+            int rand = Random.Range(0, 100);
+            int total = 0;
+            for (int j = 0; j < wave.enemies.Length; j++) {
+                total += wave.enemies[j].enemyRate;
+                if (rand < total) {
+                    enemyTrans = wave.enemies[j].enemyTransform;
+                    break;
+                }
+            }
+            if (enemyTrans != null) {
+                SpawnEnemy(enemyTrans);
+
+                yield return new WaitForSeconds(1f / wave.spawnRate);
+            }
         }
-
         state = SpawnState.WAITING;
-
         yield break;
     }
 
     void SpawnEnemy(Transform enemy) {
         Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        
+
         Instantiate(enemy, sp.position, sp.rotation);
         //Debug.Log("Spawning Enemy : " + enemy.name);
     }
@@ -101,4 +112,9 @@ public class WaveSpawner : MonoBehaviour {
     public enum SpawnState { SPAWNING, WAITING, COUNTING }
 }
 
+[System.Serializable]
+public struct EnemySpawned {
+    public Transform enemyTransform;
+    public int enemyRate;
+}
 
