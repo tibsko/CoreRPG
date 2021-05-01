@@ -7,12 +7,13 @@ public class CameraController : MonoBehaviour {
     [SerializeField] Vector3 offSetCam;
 
     [SerializeField] float rotationCamX;
+    [SerializeField] float followingStep = 0.1f;
+
 
     public Transform obstruction;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         obstruction = target;
         if (target == null) {
             target = FindObjectOfType<PlayerController>().transform;
@@ -26,7 +27,7 @@ public class CameraController : MonoBehaviour {
     }
 
     void CameraMove() {
-        transform.position = target.position + offSetCam;
+        transform.position = Vector3.Lerp(transform.position, target.position + offSetCam, followingStep);
         transform.rotation = Quaternion.Euler(rotationCamX, 0, 0);
     }
 

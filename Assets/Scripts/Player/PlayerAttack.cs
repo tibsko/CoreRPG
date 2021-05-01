@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class PlayerShooter : MonoBehaviour {
+public class PlayerAttack : MonoBehaviour {
+
+    //////////////////////////////////////////////INSPECTOR
 
     [SerializeField] bool activateHitBoxes = false;
 
-    public Vector3 AimDirection { get; private set; }
-    public bool DisplayAim { get; private set; }
 
-    private bool startedAiming;
+    //////////////////////////////////////////////PRIVATE
+
+    private bool isAttacking = false;
+    private bool startedAiming = false;
     private float distanceEnemy;
+
     private Animator animator;
-    private int activeWeaponIndex = 0;
     private PlayerController controller;
     private PlayerWeapons playerWeapons;
 
+    //////////////////////////////////////////////PROPERTIES
+    public Vector3 AimDirection { get; private set; }
+    public bool DisplayAim { get => startedAiming; }
+    public Weapon ActiveWeapon { get { return playerWeapons.ActiveWeapon; } }
+
+
     // Start is called before the first frame update
     void Start() {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         controller = GetComponent<PlayerController>();
         playerWeapons = GetComponent<PlayerWeapons>();
         startedAiming = false;
@@ -29,26 +38,18 @@ public class PlayerShooter : MonoBehaviour {
     void Update() {
 
         ToggleHitBox(activateHitBoxes);
-
-        //if (isShooting) {
-        //    Shoot();
-        //}
-        //Weapon w = GetActiveWeapon();
-        //if (w.nbBulletsShooted >= w.weaponData.nbBulletToShoot) {
-        //    isShooting = false;
-        //    w.nbBulletsShooted = 0;
-        //}
     }
 
     public void OnAim(Vector2 aim) {
+
         AimDirection = new Vector3(aim.x, 0, aim.y);
 
         if (AimDirection.magnitude > 0.5f) {
             startedAiming = true;
-            DisplayAim = true;
         }
-        else
-            DisplayAim = false;
+
+        animator.SetBool("IsAiming", isAttacking);
+        animator.SetBool("IsStrafing", isAttacking);
     }
 
     public void OnRelease(Vector2 aim) {
@@ -61,7 +62,7 @@ public class PlayerShooter : MonoBehaviour {
             Debug.Log("Cancel shoot");
         }
         else if (!startedAiming && AimDirection.magnitude < 0.5f) {
-            //Debug.Log("Autoshooting");
+            Debug.Log("Autoshooting");
             AutoShoot();
         }
         else if (startedAiming) {
@@ -76,12 +77,16 @@ public class PlayerShooter : MonoBehaviour {
     }
 
     private void AimShoot() {
+        isAttacking = true;
+        controller.Constraint(true, false);
         Rotate(transform.position + AimDirection);
-        Fire();
+        Attack();
     }
 
     private void AutoShoot() {
-        distanceEnemy = 20f;
+        isAttacking = true;
+        controller.Constraint(true, false);
+        distanceEnemy = float.MaxValue;
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, playerWeapons.ActiveWeapon.autoshootDistance);
         Vector3 target = transform.position + transform.forward;
@@ -96,29 +101,29 @@ public class PlayerShooter : MonoBehaviour {
             }
         }
         Rotate(target);
-        Fire();
-        StartCoroutine(LockRotation());
+        Attack();
     }
 
     public void Rotate(Vector3 target) {
-        //controller.LookAt(target);
+        target.y = transform.position.y;
+        transform.LookAt(target);
     }
 
-
-    private IEnumerator LockRotation() {
-        controller.ControlRotation = true;
-        yield return new WaitForSeconds(0.5f);
-        controller.ControlRotation = false;
-    }
-
-    private void Fire() {
-        Weapon weapon = playerWeapons.GetActiveWeapon();
+    private void Attack() {
+        Weapon weapon = playerWeapons.ActiveWeapon;
+        weapon.onEndAttack.RemoveAllListeners();
+        weapon.onEndAttack.AddListener(ResetAttack);
         if (weapon && weapon.CanAttack()) {
-            animator.SetTrigger("Attack");
             animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
         }
-        DisplayAim = false;
+    }
+
+    public void ResetAttack() {
+        isAttacking = false;
+        controller.Constraint(true, true);
+
+        //delay player can't attack ?
     }
 
     public void ToggleHitBox(bool state) {

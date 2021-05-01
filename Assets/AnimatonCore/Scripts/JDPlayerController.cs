@@ -147,7 +147,7 @@ public class JDPlayerController : MonoBehaviour {
         if (isAiming) {
             joystickHandle.position = Input.mousePosition;
             Vector3 aimVect = (Input.mousePosition - joystickStart).normalized;
-            aimPoint = transform.position + new Vector3(aimVect.x, 0, aimVect.y) * 5;
+            aimPoint = transform.position + new Vector3(aimVect.x, 0, aimVect.y) ;
 
             line.SetPosition(0, transform.position + Vector3.up * 0.1f);
             line.SetPosition(1, aimPoint + Vector3.up * 0.1f);

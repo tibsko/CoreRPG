@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class JDFireWeapon : MonoBehaviour {
+public class JDFireWeapon : FireWeapon {
     [Header("Stats")]
     public int damage;
     public float spread, range;
@@ -12,8 +12,8 @@ public class JDFireWeapon : MonoBehaviour {
     public bool automatic;
 
     [Header("Set up")]
-    public Transform firePoint;
-    public GameObject bulletPrefab;
+    //public Transform firePoint;
+    //public GameObject bulletPrefab;
     public Animator animator;
 
     [Header("Sound")]
@@ -36,6 +36,7 @@ public class JDFireWeapon : MonoBehaviour {
         bulletsLeft = magazineSize;
         readyToShoot = true;
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInParent<Animator>();
     }
 
     private void Update() {
@@ -47,13 +48,13 @@ public class JDFireWeapon : MonoBehaviour {
         //text.SetText(bulletsLeft + " / " + magazineSize);
     }
     private void Fire() {
-        if (automatic)
-            shooting = Input.GetKey(KeyCode.Mouse0);
-        else
-            shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        //if (automatic)
+        //    shooting = Input.GetKey(KeyCode.Mouse0);
+        //else
+        //    shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-            emptySignal = false;
+        //if (Input.GetKeyUp(KeyCode.Mouse0))
+        //    emptySignal = false;
 
         //Shoot
         if (readyToShoot && shooting && !reloading && bulletsToShot <= 0) {
@@ -106,6 +107,8 @@ public class JDFireWeapon : MonoBehaviour {
     }
     private void ResetShot() {
         readyToShoot = true;
+        onEndAttack.Invoke();
+        shooting = false;
     }
 
     private void Reload() {
@@ -124,5 +127,14 @@ public class JDFireWeapon : MonoBehaviour {
             emptySignal = true;
             audioSource.PlayOneShot(emptySound);
         }
+    }
+
+    public override void Attack() {
+        shooting = true ;
+        Fire();
+    }
+
+    public override bool CanAttack() {
+        return true;
     }
 }

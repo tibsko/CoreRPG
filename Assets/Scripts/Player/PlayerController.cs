@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float animSmooth = 0.5f;
 
     public bool IsGrounded { get; private set; }
-    public bool ControlRotation { get; set; }
 
     private CharacterController controller;
     private Vector3 xzMove = Vector3.zero;
@@ -27,10 +26,12 @@ public class PlayerController : MonoBehaviour {
     private AnimatorBridge animator;
     private float moveMagnitude = 0;
 
+    private bool canMove = true;
+    private bool canRotate = true;
+
     void Start() {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<AnimatorBridge>();
-        ControlRotation = true;
     }
 
     void Update() {
@@ -45,41 +46,53 @@ public class PlayerController : MonoBehaviour {
         xzMove = new Vector3(inputs.x, 0, inputs.y);
     }
 
+    public void Constraint(bool movement, bool rotation) {
+        canMove = movement;
+        canRotate = rotation;
+    }
+
     private void Rotate() {
-        if (ControlRotation)
+        if (canRotate)
             LookAt(controller.transform.position + xzMove);
     }
 
     private void Move() {
-        Vector3 moveDirection = transform.InverseTransformDirection(xzMove.normalized);
-        animator.SetFloat("MoveForward", moveDirection.z);
-        animator.SetFloat("MoveRight", moveDirection.x);
+        if (canMove) {
+            Vector3 moveDirection = transform.InverseTransformDirection(xzMove.normalized);
+            animator.SetFloat("MoveForward", moveDirection.z);
+            animator.SetFloat("MoveRight", moveDirection.x);
 
-        float velocity = 0f;
-        velocity += backwardSpeed * Mathf.Clamp(moveDirection.z, -1, 0);
-        velocity += forwardSpeed * Mathf.Clamp(moveDirection.z, 0, 1);
-        velocity += sideSpeed * moveDirection.x;
+            float velocity = 0f;
+            velocity += backwardSpeed * Mathf.Clamp(moveDirection.z, -1, 0);
+            velocity += forwardSpeed * Mathf.Clamp(moveDirection.z, 0, 1);
+            velocity += sideSpeed * moveDirection.x;
 
-        #region debug
-        //string debugVelocity = "";
-        //debugVelocity += "Backward=" + backwardSpeed * Mathf.Clamp(v.z, -1, 0);
-        //debugVelocity += "  Forward=" + forwardSpeed * Mathf.Clamp(v.z, 0, 1);
-        //debugVelocity += "  Side=" + sideSpeed * v.x;
-        //Debug.Log(debugVelocity);
-        #endregion
+            #region debug
+            //string debugVelocity = "";
+            //debugVelocity += "Backward=" + backwardSpeed * Mathf.Clamp(v.z, -1, 0);
+            //debugVelocity += "  Forward=" + forwardSpeed * Mathf.Clamp(v.z, 0, 1);
+            //debugVelocity += "  Side=" + sideSpeed * v.x;
+            //Debug.Log(debugVelocity);
+            #endregion
 
-        float factor = 1;
-        #region debug
-        if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
-        else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
-        #endregion
-        velocity *= factor;
-        moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
-        animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
+            float factor = 1;
+            #region debug
+            if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
+            else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
+            #endregion
+            velocity *= factor;
+            moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
+            animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
 
-        //Apply movement
-        controller.Move(yMove * Time.deltaTime);
-        controller.Move(xzMove.normalized * Time.deltaTime * Mathf.Abs(velocity));
+            //Apply movement
+            controller.Move(yMove * Time.deltaTime);
+            controller.Move(xzMove.normalized * Time.deltaTime * Mathf.Abs(velocity));
+        }
+        else {
+            animator.SetFloat("MoveForward", 0);
+            animator.SetFloat("MoveRight", 0);
+            animator.SetFloat("InputMagnitude", 0);
+        }
     }
 
     private void ApplyGravity() {
@@ -93,7 +106,7 @@ public class PlayerController : MonoBehaviour {
     ////////////////////////////////////////////Utilities
     private void LookAt(Vector3 target) {
         target.y = transform.position.y;
-        controller.transform.LookAt(target);
+        transform.LookAt(target);
     }
 
     private void CheckGround() {

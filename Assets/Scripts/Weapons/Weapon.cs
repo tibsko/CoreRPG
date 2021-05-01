@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Weapon : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public abstract class Weapon : MonoBehaviour {
     public int Damages { get; private set; }
     public float Cooldown { get; private set; }
 
+    [HideInInspector] public UnityEvent onEndAttack;
 
     // Start is called before the first frame update
     protected void Start() {

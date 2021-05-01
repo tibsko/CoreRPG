@@ -13,8 +13,8 @@ public class HealItem : CollectableItem
         if (health) {
             health.HealHealth(healAmount, gameObject);
         }
-
     }
+
     public override void Use(GameObject player) {
         Heal(player);
         Destroy(gameObject);
