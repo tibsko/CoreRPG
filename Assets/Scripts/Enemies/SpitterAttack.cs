@@ -20,7 +20,7 @@ public class SpitterAttack : EnemyAttack {
                 animator.SetBool("isAttacking", true);
             }
             else {
-                animator.SetBool("isAttacking", false);
+                animator.SetBool("isAttacking", false); 
             }
         }
     }
