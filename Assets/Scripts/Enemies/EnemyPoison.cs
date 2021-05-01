@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class EnemyPoison : MonoBehaviour
 {
+    private float countDown;
+
     [SerializeField] int poisonDamage;
     [SerializeField] float damageSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        countDown = damageSpeed;
     }
 
     void OnTriggerStay(Collider collider) {
         PlayerHealth playerHealth = collider.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth) {
-            StartCoroutine(DamageTime(playerHealth));
+            countDown -= Time.deltaTime;
+            if (countDown <= 0) {
+                playerHealth.TakeDamage(poisonDamage, gameObject);
+                countDown = damageSpeed;
+            }
         }
     }
 
-    IEnumerator DamageTime(PlayerHealth player) {
-        yield return new WaitForSeconds(damageSpeed);
-        player.TakeDamage(poisonDamage, gameObject);
-    }
-
+ 
 }
