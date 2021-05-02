@@ -138,13 +138,12 @@ GameObject:
   - component: {fileID: 5630349498503855872}
   - component: {fileID: 821348893}
   - component: {fileID: 7618126829376842260}
-  - component: {fileID: 1420540132}
   - component: {fileID: 1130609131}
   - component: {fileID: 1130609135}
   - component: {fileID: 5639273552802002385}
   - component: {fileID: 3879499087977386407}
   m_Layer: 8
-  m_Name: Player
+  m_Name: OldPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,24 +245,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundChecker: {fileID: 7618126828959475138}
-  maxSpeed: 10
   groundCheckRadius: 0.2
-  jumpForce: 5
-  radiusInteractable: 3.5
   gravity: {x: 0, y: -10, z: 0}
---- !u!114 &1420540132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7618126829376842261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb87bf8e860518c458f983a161da0ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activateHitBoxes: 0
+  speed: 0.5
+  walkFactor: 0.5
+  sprintFactor: 1.5
+  animSmooth: 0.5
 --- !u!114 &1130609131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 300
-  currentHealth: 0
   healthBar: {fileID: 7618126829616010665}
   onDie:
     m_PersistentCalls:
@@ -306,7 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4564c36042fa84f488132266c5b8831a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableCheck: {fileID: 0}
 --- !u!114 &5639273552802002385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +322,6 @@ MonoBehaviour:
   - {fileID: -4116128485470237548, guid: 974d62eaef0dcfc49bcdb0ea8d772c99, type: 3}
   - {fileID: 8075744337323554667, guid: 108da09a4f2fc384fbe04ea54f339006, type: 3}
   weaponSlot: {fileID: 7618126830638750325}
-  activeWeaponIndex: 0
   equipedWeapons: []
 --- !u!1 &7618126830638750326
 GameObject:
