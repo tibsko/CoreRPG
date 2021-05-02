@@ -68,12 +68,12 @@ public class BoomerController : MonoBehaviour {
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
-            target = PlayerManager.instance.player.transform;
+            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
             agent.stoppingDistance = 2f;
         }
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.player.transform;
+                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
                 isInside = true;
                 agent.stoppingDistance = 2f;
             }
@@ -86,7 +86,7 @@ public class BoomerController : MonoBehaviour {
 
         }
         else {
-            target = PlayerManager.instance.player.transform;
+            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
 

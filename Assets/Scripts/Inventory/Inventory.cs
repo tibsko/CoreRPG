@@ -1,20 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory instance;
-    void Awake() {
-        if(instance!=null) {
-            Debug.LogWarning("More than one instance of inventory found");
-            return;
-        }
-        instance = this;
-    }
-
-    public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
+    public UnityEvent onItemChangedCallback;
     public List<Item> items = new List<Item>();
     public int space = 20;
    

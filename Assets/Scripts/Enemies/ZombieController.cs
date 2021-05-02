@@ -37,7 +37,7 @@ public class ZombieController : MonoBehaviour {
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
-        
+
     }
 
     void FaceTarget() {
@@ -49,11 +49,11 @@ public class ZombieController : MonoBehaviour {
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
-            target = PlayerManager.instance.player.transform;
+            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
         }
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.player.transform;
+                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
                 isInside = true;
             }
             else {
@@ -64,8 +64,8 @@ public class ZombieController : MonoBehaviour {
             }
         }
         else {
-            target = PlayerManager.instance.player.transform;
+            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
-   
+
 }

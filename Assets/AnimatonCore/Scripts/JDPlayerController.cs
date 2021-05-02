@@ -98,9 +98,10 @@ public class JDPlayerController : MonoBehaviour {
         #endregion
 
         float factor = 1;
+        #region debug
         if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
         else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
-
+        #endregion
         velocity *= factor;
         moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
         animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
@@ -146,7 +147,7 @@ public class JDPlayerController : MonoBehaviour {
         if (isAiming) {
             joystickHandle.position = Input.mousePosition;
             Vector3 aimVect = (Input.mousePosition - joystickStart).normalized;
-            aimPoint = transform.position + new Vector3(aimVect.x, 0, aimVect.y) * 5;
+            aimPoint = transform.position + new Vector3(aimVect.x, 0, aimVect.y) ;
 
             line.SetPosition(0, transform.position + Vector3.up * 0.1f);
             line.SetPosition(1, aimPoint + Vector3.up * 0.1f);
@@ -191,7 +192,7 @@ public class JDPlayerController : MonoBehaviour {
     //Gizmos
 
     private void OnDrawGizmos() {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CollectableCheck : MonoBehaviour {
     
-    [SerializeField] CapsuleCollider collectableCheck;
-    // Start is called before the first frame update
+
     void Start()
     {
 
@@ -15,8 +14,6 @@ public class CollectableCheck : MonoBehaviour {
         CollectableItem collectable = collider.GetComponent<CollectableItem>();
         if (collectable && collectable.enabled) {
             collectable.Use(gameObject);
-            Debug.Log("Collectable detected");
-
         }
     }
 
