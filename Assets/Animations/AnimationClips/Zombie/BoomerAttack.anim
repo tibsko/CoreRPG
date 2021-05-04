@@ -41875,7 +41875,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.2
+        time: 1.0333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -41884,7 +41884,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6
+        time: 1.3333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -41896,7 +41896,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/HitBoxZombie
+    path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/HitBoxZombie
       (1)
     classID: 135
     script: {fileID: 0}
@@ -42000,7 +42000,7 @@ AnimationClip:
       customType: 8
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1715996876
+      path: 842372201
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 135
@@ -84705,7 +84705,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.2
+        time: 1.0333333
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -84714,7 +84714,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 1.6
+        time: 1.3333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -84726,7 +84726,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/HitBoxZombie
+    path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/HitBoxZombie
       (1)
     classID: 135
     script: {fileID: 0}

@@ -8,6 +8,7 @@ public class WeaponSwapButton : MonoBehaviour
     
     public void SwapWeapons()
     {
+        Debug.Log("Swipe");
         playerWeapons.NextWeapon();
     }
 }

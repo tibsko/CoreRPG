@@ -4766,7 +4766,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1.5
-      minScalar: 0.2
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -13800,7 +13800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a680003fc38a94386758916ce34ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonDamage: 20
+  poisonDamage: 50
   damageSpeed: 1
 --- !u!1 &5766963931029991710
 GameObject:

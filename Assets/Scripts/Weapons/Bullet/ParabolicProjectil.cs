@@ -11,7 +11,7 @@ public class ParabolicProjectil : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float height;
     [SerializeField] GameObject smokeEffect;
-    // Start is called before the first frame update
+    // Start is called before zthe first frame update
     void Start()
     {
         endPosition = GetComponentInParent<SpitterAttack>().target.position;

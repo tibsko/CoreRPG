@@ -6,6 +6,10 @@ public class SpitterAttack : EnemyAttack {
 
     private Animator animator;
 
+    [SerializeField] GameObject dieParticule;
+    [SerializeField] float dieRadius;
+    [SerializeField] float poisonTime;
+
     public float attackDistance;
     public bool isSpitting=false;
 
@@ -22,7 +26,6 @@ public class SpitterAttack : EnemyAttack {
             DoorHealth door = target.GetComponent<DoorHealth>();
             if (door && door.currentHealth > 0) {
                 if (distance < attackRadius) {
-                    Debug.Log("wall Attack");
                     animator.SetBool("isAttacking", true);
                 }
                 else {
@@ -42,5 +45,10 @@ public class SpitterAttack : EnemyAttack {
             }
         }
     }
-    
+    public void DieBehaviour() {
+        GameObject poisonEffect = Instantiate(dieParticule, transform.position, Quaternion.identity);
+        poisonEffect.transform.localScale = new Vector3(dieRadius, dieRadius, dieRadius);
+        Destroy(poisonEffect,poisonTime);
+        Destroy(gameObject);
+    }
 }

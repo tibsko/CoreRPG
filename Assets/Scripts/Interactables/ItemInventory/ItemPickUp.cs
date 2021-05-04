@@ -11,15 +11,15 @@ public class ItemPickUp : Interactable {
 
     void PickUp(GameObject player) {
         Inventory inventory = player.GetComponent<Inventory>();
-        if (inventory) {
-            bool wasPickedUp = inventory.Add(item);
-            if (wasPickedUp) {
-                Destroy(gameObject);
-                HUD.instance.ActivateButton(false);
-                Debug.Log("Picking Up " + item.name);
-            }
-        }
-        else
-            Debug.LogError($"Can't find inventory in {player.name}");
+        //if (inventory) {
+        //    bool wasPickedUp = inventory.Add(item);
+        //    if (wasPickedUp) {
+        //        Destroy(gameObject);
+        //        HUD.instance.ActivateButton(false);
+        //        Debug.Log("Picking Up " + item.name);
+        //    }
+        //}
+        //else
+        //    Debug.LogError($"Can't find inventory in {player.name}");
     }
 }

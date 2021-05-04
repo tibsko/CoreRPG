@@ -9,7 +9,7 @@ public class Loot : MonoBehaviour
 
 
    public void InctanciateLoot() {
-        Debug.Log("flag");
+
 
         Instantiate(coin, transform.position + new Vector3(Random.Range(0f, 1f), 0, Random.Range(0f, 1f)), Quaternion.identity);
         int rand = Random.Range(0, 100);

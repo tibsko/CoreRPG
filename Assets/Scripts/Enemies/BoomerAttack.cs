@@ -32,7 +32,7 @@ public class BoomerAttack : EnemyAttack {
         if (target != null) {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
             DoorHealth door = target.GetComponent<DoorHealth>();
-            Debug.Log(target.name);
+
             if (door && door.currentHealth > 0) {
                 if (distance < attackRadius) {
                     animator.SetBool("isAttacking", true);
@@ -41,7 +41,7 @@ public class BoomerAttack : EnemyAttack {
                     animator.SetBool("isAttacking", false);
                 }
             }
-            else if (target == PlayerManager.instance.player.transform) {
+            else if (target == PlayerManager.instance.GetNearestPlayer(transform.position).transform) {
                 animator.SetBool("isAttacking", false);
                 if (distance <= exploseDistance) {
                     animator.SetBool("isScreaming", true);
@@ -69,8 +69,9 @@ public class BoomerAttack : EnemyAttack {
         Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius, LayerManager.instance.playerLayer);
         if (colliders.Length > 0) {
             foreach (Collider col in colliders) {
-                PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
+                PlayerHealth playerhealth = col.GetComponentInParent<PlayerHealth>();
                 if (playerhealth) {
+                    Debug.Log("Player hitted");
                     playerhealth.TakeDamage(exploseDamages, gameObject);
                 }
                 break;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Unzizu
   m_EditorClassIdentifier: 
   name: Un zizi
-  icon: {fileID: 21300000, guid: af35bccc073349845a7c2c502262e5d0, type: 3}
+  icon: {fileID: 21300020, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   isDefaultItem: 0
