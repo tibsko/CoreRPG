@@ -147,7 +147,7 @@ MonoBehaviour:
   nbDoor: 0
   healthStep: 0
   doorBoards: []
-  timer: 1
+  timer: 0.5
 --- !u!65 &6214463232379683579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -174,7 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   healthBar: {fileID: 5834056610431391320}
   onDie:
     m_PersistentCalls:

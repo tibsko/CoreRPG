@@ -22,10 +22,8 @@ public class FlammeBullet : MonoBehaviour
         capsule = GetComponent<CapsuleCollider>();
         stepDelay = delay/ (endHeight - startHeight);
         countDown = stepDelay;
-        Debug.Log(stepDelay);
 
         stepHeight = (endHeight - startHeight)*(stepDelay);
-        Debug.Log(stepHeight);
         capsule.height = startHeight;
 
         capsule.center = new Vector3(transform.position.x,transform.position.y,capsule.height*0.5f);

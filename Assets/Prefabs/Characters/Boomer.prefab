@@ -570,8 +570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInside: 0
-  speedRunDistance: 7
-  speedRun: 5
+  speedRunDistance: 4
+  speedRun: 3
   speedWalk: 2
 --- !u!114 &6078473582528620988
 MonoBehaviour:
@@ -592,7 +592,7 @@ MonoBehaviour:
   isScreaming: 0
   exploseDistance: 2.5
   exploseRadius: 2
-  delayExplose: 1.5
+  delayExplose: 0.75
   exploseDamages: 100
   exploseParticule: {fileID: 7738131136790958468, guid: 471700e33d786774fb43484af1bd260a,
     type: 3}

@@ -241,8 +241,8 @@ MonoBehaviour:
   dieParticule: {fileID: 3551077037914470400, guid: 640ad46cc1104bb45a3e7df26c6aefd2,
     type: 3}
   dieRadius: 1
-  poisonTime: 5
-  attackDistance: 7
+  poisonTime: 10
+  attackDistance: 4.5
   isSpitting: 0
 --- !u!1 &5632360711479988364
 GameObject:

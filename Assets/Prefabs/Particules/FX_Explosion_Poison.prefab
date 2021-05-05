@@ -13786,7 +13786,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.23
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8411191062055954599
 MonoBehaviour:
@@ -13800,8 +13800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a680003fc38a94386758916ce34ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonDamage: 50
-  damageSpeed: 1
+  poisonDamage: 20
+  damageSpeed: 0.5
 --- !u!1 &5766963931029991710
 GameObject:
   m_ObjectHideFlags: 0

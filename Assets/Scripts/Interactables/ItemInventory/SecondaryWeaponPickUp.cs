@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SecondaryWeaponPickUp : Interactable
 {
-    [SerializeField] SecondWeapon secondWeapon;
+    [SerializeField] SecondWeaponItem secondWeapon;
+    public int quantity;
 
     public override void Interact(GameObject player) {
         base.Interact(player);
@@ -14,11 +15,12 @@ public class SecondaryWeaponPickUp : Interactable
     void PickUp(GameObject player) {
         Inventory inventory = player.GetComponent<Inventory>();
         if (inventory) {
-            bool wasPickedUp = inventory.Add(secondWeapon);
+            SecondWeapon newSecondWeapon = Instantiate(secondWeapon);            
+            bool wasPickedUp = inventory.Add(newSecondWeapon);
             if (wasPickedUp) {
                 Destroy(gameObject);
+                Destroy(newSecondWeapon.gameObject);
                 HUD.instance.ActivateButton(false);
-                Debug.Log("Picking Up " + secondWeapon.name);
             }
         }
         else

@@ -154,11 +154,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}
   damage: 10
-  spread: 10
+  spread: 1
   range: 50
   reloadTime: 0
   timeBetweenBurst: 0.5
-  timeBetweenShots: 0
+  timeBetweenShots: 0.05
   magazineSize: 3000
   bulletsPerTap: 10
   automatic: 0

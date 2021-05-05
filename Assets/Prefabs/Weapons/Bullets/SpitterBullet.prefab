@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {fileID: 0}
-  speed: 1.5
+  speed: 0.5
   height: 1
   smokeEffect: {fileID: 3551077037914470400, guid: 1085d151841b8dd46a914f53b5ad4cd0,
     type: 3}
