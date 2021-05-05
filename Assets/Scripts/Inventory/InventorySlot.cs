@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour {
     public Image icon;
     public Button removeButton;
-    public SecondWeapon secondWeapon;
+    public SecondWeaponItem secondWeapon;
     public int nbItem;
 
     private Inventory inventory;
@@ -21,21 +21,14 @@ public class InventorySlot : MonoBehaviour {
         textNumber = GetComponentInChildren<Text>();
     }
 
-    public void AddItem(SecondWeapon newWeapon) {
-        //if (!secondWeapon) {
-            secondWeapon = newWeapon;
-            icon.sprite = secondWeapon.icon;
-            icon.enabled = true;
-            removeButton.interactable = true;
-            nbItem = newWeapon.amunitions;
-            textNumber.text =  newWeapon.amunitions.ToString();
-        //}
-        
-    }
+    public void AddItem(SecondWeaponItem newWeapon) {
+        secondWeapon = new SecondWeaponItem(newWeapon.weapon,newWeapon.amount) ;
+        icon.sprite = secondWeapon.weapon.icon;
+        icon.enabled = true;
+        removeButton.interactable = true;
+        nbItem = newWeapon.amount;
+        textNumber.text = newWeapon.amount.ToString();
 
-    public void StackItem(SecondWeapon weapon) {
-        nbItem += weapon.amunitions;
-        textNumber.text = nbItem.ToString();
     }
 
     public void ClearSLot() {
@@ -51,7 +44,8 @@ public class InventorySlot : MonoBehaviour {
 
     public void UseItem() {
         if (secondWeapon != null) {
-            secondWeapon.Use();
+        Debug.Log(inventory.secondWeaponsItems.Count);
+            inventory.SetActiveWeapon(secondWeapon);
         }
     }
 }
