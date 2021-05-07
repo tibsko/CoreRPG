@@ -4570,6 +4570,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6017839447166944833, guid: be053cc7e7ab794449e760c4704f784c,
         type: 3}
+      propertyPath: weaponPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6675140689865833655, guid: 108da09a4f2fc384fbe04ea54f339006,
+        type: 3}
+    - target: {fileID: 6017839447166944833, guid: be053cc7e7ab794449e760c4704f784c,
+        type: 3}
       propertyPath: weaponPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 6675140689865833655, guid: 108da09a4f2fc384fbe04ea54f339006,

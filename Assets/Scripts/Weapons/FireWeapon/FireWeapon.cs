@@ -24,6 +24,7 @@ public class FireWeapon : Weapon {
     public float spread;
     public float range;
     public float velocity;
+    public bool instantiateInFirePoint;
 
     [Space]
     [Header("Set up")]
@@ -101,12 +102,19 @@ public class FireWeapon : Weapon {
         Vector3 rotation = parentPlayer.transform.rotation.eulerAngles;
         rotation.y += randomRotation;
 
-        //Instantiate bullet
-        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
-        bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+        if (!instantiateInFirePoint) {
+            //Instantiate bullet
+            GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
+            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+        }
+        else {
+            GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint); ;
+            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+        }
 
         //Graphics
-        Instantiate(muzzleFlashPrefab, firePoint);
+        if (muzzleFlashPrefab)
+            Instantiate(muzzleFlashPrefab, firePoint);
 
         //Update bullets
         bulletsLeft--;
