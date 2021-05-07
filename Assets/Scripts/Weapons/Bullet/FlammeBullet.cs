@@ -54,6 +54,6 @@ public class FlammeBullet : MonoBehaviour {
 
     IEnumerator DamageTime(EnemyHealth enemy) {
         yield return new WaitForSeconds(damagesRate);
-        //enemy.TakeDamage(damages, gameObject);
+        enemy.TakeDamage(damages, gameObject);
     }
 }
