@@ -2,61 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Bullet : MonoBehaviour {
 
-public class Bullet : MonoBehaviour
-{
-    Vector3 currentPosition;
-    Vector3 startPos;
-    [HideInInspector] public FireWeaponData weaponData;
-    float currentTime;
-    [HideInInspector] public bool damagePerDistance;
+    //Layer
+    [SerializeField] LayerMask triggerLayers;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentTime = 0f;
-        startPos = transform.position;
+    //Stats
+    public float Damages { get; private set; }
+    public float Velocity { get; private set; }
+    public float Range { get; private set; }
+
+    //Set up
+    private Vector3 startPosition;
+    private new Rigidbody rigidbody;
+    private bool initialized = false;
+
+    void Start() {
+        startPosition = transform.position;
+        rigidbody = GetComponent<Rigidbody>();
+        if (!initialized) {
+            Destroy(gameObject);
+            Debug.LogError($"Bullet ({gameObject.name}) was not initialized !");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        currentPosition = transform.position;
-        DestroyRange();
-        currentTime = Time.deltaTime;
-        if (currentTime > weaponData.lifeTimeBullet)
-        {
+    void Update() {
+        rigidbody.velocity = transform.forward * Velocity;
+        RangeDestroy();
+    }
+
+    public void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range) {
+        transform.rotation = Quaternion.Euler(rotation);
+        Damages = _damages;
+        Velocity = _velocity;
+        Range = _range;
+        initialized = true;
+    }
+
+    void RangeDestroy() {
+        if (Vector3.Distance(transform.position, startPosition) >= Range) {
             Destroy(gameObject);
         }
     }
-    
-    
-    void OnTriggerEnter(Collider collision)
-    {   
-        Vector3 bulletPosition = gameObject.transform.position;
-        ParticuleEmitter emitter = collision.gameObject.GetComponent<ParticuleEmitter>();
-        if (emitter) {
-            emitter.InstantiateParticule(bulletPosition);
-        }
-        if (collision.gameObject.layer != gameObject.layer) {
+
+    private void OnTriggerEnter(Collider collision) {
+        if (triggerLayers.ContainsLayer(collision.gameObject.layer)) {
+
+            Vector3 bulletPosition = gameObject.transform.position;
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-                Debug.Log("ZombieHitted");
             if (enemyHealth) {
-                if (!damagePerDistance)
-                    enemyHealth.TakeDamage(weaponData.damages,gameObject);
-                else {
-                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages),gameObject);
-                }
-                Destroy(gameObject); //trouver solution pour colision
+                enemyHealth.TakeDamage(Damages, gameObject);
             }
-        }
-    }
 
-    void DestroyRange()
-    {
-        if (Vector3.Distance(currentPosition, startPos) >= weaponData.maxDistance)
-        {
+            //Impact particules
+            ImpactParticlesEmitter emitter = collision.gameObject.GetComponent<ImpactParticlesEmitter>();
+            if (emitter) {
+                emitter.InstantiateParticule(bulletPosition, -transform.forward);
+            }
             Destroy(gameObject);
+
+            //Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         }
     }
 }

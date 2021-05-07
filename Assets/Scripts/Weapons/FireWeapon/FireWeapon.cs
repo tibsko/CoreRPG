@@ -1,28 +1,154 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
+public class FireWeapon : Weapon {
+
+    //public FireWeaponData FireWeaponData { get { return weaponData as FireWeaponData; } }
+
+    [Space]
+    [Header("Stats")]
+    [Space]
+    [Header("--FIREWEAPON--")]
+    public int magazineSize;
+    public float reloadTime;
+    public float timeBetweenBurst;
+    public float timeBetweenShots;
+    public float delayBeforeShoot;
+    public bool automatic;
+
+    [Space]
+    [Header("Bullet")]
+    public int bulletsPerTap;
+    public float spread;
+    public float range;
+    public float velocity;
+
+    [Space]
+    [Header("Set up")]
+    [SerializeField] Transform firePoint;
+    [SerializeField] GameObject bulletPrefab;
+
+    [Space]
+    [Header("Sound")]
+    [SerializeField] AudioClip shotSound;
+    [SerializeField] AudioClip reloadSound;
+    [SerializeField] AudioClip emptySound;
+
+    [Space]
+    [Header("Graphics")]
+    [SerializeField] GameObject muzzleFlashPrefab;
 
 
-public abstract class FireWeapon : Weapon {
+    //private
+    private int bulletsLeft, bulletsToShoot;
+    private bool readyToShoot, reloading, emptySignal;
+    private AudioSource audioSource;
+    private PlayerAttack parentPlayer;
+    private Animator animator;
 
-    [SerializeField] protected Transform firePoint;
-    [SerializeField] protected GameObject bulletPrefab;
+    private void Start() {
+        bulletsLeft = magazineSize;
+        readyToShoot = true;
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInParent<Animator>();
+        parentPlayer = GetComponentInParent<PlayerAttack>();
+    }
 
-    public float FireRate { get; protected set; }
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+            Reload();
 
-    public float BulletForce { get; protected set; }
-    public int NbBulletToShoot { get; protected set; }
-    public int NbBulletsShooted { get; protected set; }
-    public float MaxDistance { get; protected set; }
-    public FireWeaponData FireWeaponData { get { return weaponData as FireWeaponData; } }
+        //SetText
+        //text.SetText(bulletsLeft + " / " + magazineSize);
+    }
+    private void Fire() {
+        //if (automatic)
+        //    shooting = Input.GetKey(KeyCode.Mouse0);
+        //else
+        //    shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
-    public abstract override void Attack();
-    public abstract override bool CanAttack();
+        //if (Input.GetKeyUp(KeyCode.Mouse0))
+        //    emptySignal = false;
 
-    protected void Start() {
-        base.Start();
-        BulletForce = FireWeaponData.propulsionForce;
-        NbBulletToShoot = FireWeaponData.nbBulletToShoot;
-        MaxDistance = FireWeaponData.maxDistance;
+        //Shoot
+        if (readyToShoot && !reloading && bulletsToShoot >= 0) {
+            if (bulletsLeft > 0) {
+
+                if (bulletsLeft > bulletsToShoot)
+                    bulletsToShoot = bulletsPerTap;
+                else
+                    bulletsToShoot = bulletsLeft;
+
+                //Sound
+                audioSource.PlayOneShot(shotSound);
+                Shoot();
+                animator.SetTrigger("Shoot");
+            }
+            else
+                EmptySignal();
+
+        }
+    }
+    private void Shoot() {
+        readyToShoot = false;
+
+        //Spread & direction
+        float randomRotation = Random.Range(-spread, spread);
+
+        //Compute bullet rotation
+        Vector3 rotation = parentPlayer.transform.rotation.eulerAngles;
+        rotation.y += randomRotation;
+
+        //Instantiate bullet
+        GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
+        bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+
+        //Graphics
+        Instantiate(muzzleFlashPrefab, firePoint);
+
+        //Update bullets
+        bulletsLeft--;
+        bulletsToShoot--;
+
+        //Call reset shot for last bullet
+        if (bulletsToShoot <= 0)
+            Invoke(nameof(ResetShot), timeBetweenBurst);
+
+        if (bulletsToShoot > 0 && bulletsLeft > 0)
+            Invoke(nameof(Shoot), timeBetweenShots);
+    }
+    private void ResetShot() {
+        readyToShoot = true;
+        onEndAttack.Invoke();
+        IsAttacking = false;
+    }
+
+    private void Reload() {
+        reloading = true;
+        audioSource.PlayOneShot(reloadSound);
+
+        Invoke(nameof(ReloadFinished), reloadTime);
+    }
+    private void ReloadFinished() {
+        bulletsLeft = magazineSize;
+        reloading = false;
+    }
+
+    private void EmptySignal() {
+        if (!emptySignal) {
+            emptySignal = true;
+            audioSource.PlayOneShot(emptySound);
+        }
+    }
+
+    public override void Attack() {
+        IsAttacking = true;
+        Invoke(nameof(Fire), delayBeforeShoot);
+    }
+
+    public override bool CanAttack() {
+        return true;
     }
 }

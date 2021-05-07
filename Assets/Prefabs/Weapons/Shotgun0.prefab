@@ -144,33 +144,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b7cd034959cfe4d9d67ad612812c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damages: 10
   autoshootDistance: 5
-  combosCount: 1
-  weaponData: {fileID: 11400000, guid: e6464633b0dcead43944045c0aa06fd2, type: 2}
+  overrideAnimator: {fileID: 0}
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  magazineSize: 3000
+  reloadTime: 0.1
+  timeBetweenBurst: 0.5
+  timeBetweenShots: 0
+  delayBeforeShoot: 0.1
+  automatic: 0
+  bulletsPerTap: 10
+  spread: 10
+  range: 50
+  velocity: 1
   firePoint: {fileID: 3072305698166753476}
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}
-  damage: 10
-  spread: 10
-  range: 50
-  reloadTime: 0
-  timeBetweenBurst: 0.5
-  timeBetweenShots: 0
-  magazineSize: 3000
-  bulletsPerTap: 10
-  automatic: 0
-  delayBeforeShoot: 0.1
-  animator: {fileID: 0}
   shotSound: {fileID: 8300000, guid: 097e8235e0162d64ba53da9ef4ab8d61, type: 3}
   reloadSound: {fileID: 8300000, guid: 3708806e828002547b07099a479a0e59, type: 3}
   emptySound: {fileID: 8300000, guid: 9c5ac02550d31504ebb57020dde8e988, type: 3}
-  muzzleFlash: {fileID: 1432314799028125529, guid: d5bb32aa16285c248b70f7bf77b79fb4,
+  muzzleFlashPrefab: {fileID: 1432314799028125529, guid: d5bb32aa16285c248b70f7bf77b79fb4,
     type: 3}
-  text: {fileID: 0}
-  shooting: 0
 --- !u!1 &1499018300189918
 GameObject:
   m_ObjectHideFlags: 0

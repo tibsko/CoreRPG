@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeapons : MonoBehaviour {
+
     [SerializeField] int nbMaxWeapon = 5;
     [SerializeField] Weapon[] weaponPrefabs;
     [SerializeField] Transform weaponSlot;
 
-    public int ActiveWeaponIndex { get; private set; }
     public List<Weapon> equipedWeapons;
+    public int ActiveWeaponIndex { get; private set; }
 
     public Weapon ActiveWeapon { get { return equipedWeapons[ActiveWeaponIndex]; } }
 
@@ -73,7 +74,7 @@ public class PlayerWeapons : MonoBehaviour {
 
     public void EquipWeapon() {
         DisplayActiveWeapon();
-        ChangeAnimation(ActiveWeapon.GetAnimatorOverride());
+        ChangeAnimation(ActiveWeapon.overrideAnimator);
     }
 
     void DisplayActiveWeapon() {

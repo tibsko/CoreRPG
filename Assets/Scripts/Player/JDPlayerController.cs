@@ -47,7 +47,7 @@ public class JDPlayerController : MonoBehaviour {
         ToggleJoystick(false);
     }
 
-    public JDFireWeapon weapon;
+    //public JDFireWeapon weapon;
     void Update() {
         OnMoveInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 

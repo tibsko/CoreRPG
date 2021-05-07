@@ -4,29 +4,17 @@ using UnityEngine;
 
 public class TowerShoot : MonoBehaviour
 {
-
     Transform player;
     
     [SerializeField] Transform firepoint;
     [SerializeField] GameObject bulletPrefab;
-    public WeaponData weapon;
     [SerializeField] float force = 10f;
     [SerializeField] float radiusAutoShootTower = 4f;
 
-    //private bool playerIsDetected = false;
-    //private int bulletShot = 0;
     public float shootRate = 2f;
     private float nextShoot;
     private Vector3 forceVector;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, radiusAutoShootTower);
@@ -44,7 +32,6 @@ public class TowerShoot : MonoBehaviour
             }
         }
     }
-
 
     void AutoShootTower()
     {

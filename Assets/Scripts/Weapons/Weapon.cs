@@ -5,24 +5,14 @@ using UnityEngine.Events;
 
 public abstract class Weapon : MonoBehaviour {
 
+    [Header("Weapon parameters")]
+    public int damages;
     public float autoshootDistance;
-    public int combosCount = 1;
+    public AnimatorOverrideController overrideAnimator;
 
-    [SerializeField] protected WeaponData weaponData;
-    public int Damages { get; private set; }
-    public float Cooldown { get; private set; }
+    public bool IsAttacking { get; protected set; }
 
     [HideInInspector] public UnityEvent onEndAttack;
-
-    // Start is called before the first frame update
-    protected void Start() {
-        Damages = weaponData.damages;
-        Cooldown = weaponData.cooldown;
-    }
-
-    public AnimatorOverrideController GetAnimatorOverride() {
-        return weaponData.overrideAnimator;
-    }
 
     public abstract void Attack();
 

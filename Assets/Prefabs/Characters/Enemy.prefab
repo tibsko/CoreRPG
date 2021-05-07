@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 196383540}
   - component: {fileID: 196383542}
   - component: {fileID: 196383541}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: DoorDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a95f7f2b9b3af40a741bf72327765e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorTransform: {fileID: 0}
+  doorDetected: {fileID: 0}
 --- !u!1 &3455527574230520146
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 291095213942029797}
   - component: {fileID: 1852030980}
   - component: {fileID: 123718955161019166}
-  - component: {fileID: 2164156957765931957}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
@@ -193,7 +192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 125
-  currentHealth: 0
   healthBar: {fileID: 6615635844418624337}
   onDie:
     m_PersistentCalls:
@@ -239,20 +237,6 @@ MonoBehaviour:
       type: 3}
     rate: 50
   coin: {fileID: 8983292905516079184, guid: 6d7c1341a21540845b0016cfb4abd5a7, type: 3}
---- !u!114 &2164156957765931957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455527574230520146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c3e5a6c36cc584da4cbf758308fcc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particule: {fileID: 3276044212303047505, guid: 45038b0d2d3420b449671bbef2f41223,
-    type: 3}
 --- !u!1001 &583229625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,7 +404,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6551953617878762522, guid: 9691e06c34d6e84419e314cd9740d2ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9691e06c34d6e84419e314cd9740d2ba, type: 3}
 --- !u!224 &6615635844030220467 stripped
 RectTransform:

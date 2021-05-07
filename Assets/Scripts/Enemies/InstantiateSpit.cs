@@ -7,7 +7,7 @@ public class InstantiateSpit : MonoBehaviour
     [SerializeField] GameObject spitBullet;
     [SerializeField] Transform launcherTransform;
     void Start() {
-        spitBullet.GetComponent<ParabolicProjectil>().startPosition = launcherTransform;
+        spitBullet.GetComponent<ParabolicProjectile>().startPosition = launcherTransform;
     }
     public void SpitAttack() {
         Instantiate(spitBullet, launcherTransform);
