@@ -11,10 +11,6 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Speed")]
     [SerializeField] float speed = 0.5f;
-    //[SerializeField] float sideSpeed = 1;
-    //[SerializeField] float backwardSpeed = 1;
-    [SerializeField] float walkFactor = 0.5f;
-    [SerializeField] float sprintFactor = 1.5f;
 
     [SerializeField] float animSmooth = 0.5f;
 
@@ -64,12 +60,7 @@ public class PlayerController : MonoBehaviour {
             animator.SetFloat("MoveForward", moveDirection.z);
             animator.SetFloat("MoveRight", moveDirection.x);
 
-            #region debug
-            float factor = 1f;
-            if (Input.GetKey(KeyCode.CapsLock)) factor = walkFactor;
-            else if (Input.GetKey(KeyCode.LeftShift)) factor = sprintFactor;
-            #endregion
-            moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f) * factor;
+            moveMagnitude = Mathf.Clamp(xzMove.magnitude, 0, 1f);
             animator.SetFloat("InputMagnitude", moveMagnitude, animSmooth, Time.deltaTime);
 
             //Apply movement
@@ -102,8 +93,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
-        //Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(groundChecker.position, groundCheckRadius);
     }
 
 }

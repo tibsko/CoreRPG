@@ -2,61 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public abstract class Bullet : MonoBehaviour {
 
-public class Bullet : MonoBehaviour
-{
-    Vector3 currentPosition;
-    Vector3 startPos;
-    [HideInInspector] public FireWeaponData weaponData;
-    float currentTime;
-    [HideInInspector] public bool damagePerDistance;
+    public float Range { get; protected set; }
+    public float Damages { get; protected set; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentTime = 0f;
-        startPos = transform.position;
-    }
+    protected bool initialized = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        currentPosition = transform.position;
-        DestroyRange();
-        currentTime = Time.deltaTime;
-        if (currentTime > weaponData.lifeTimeBullet)
-        {
-            Destroy(gameObject);
-        }
-    }
-    
-    
-    void OnTriggerEnter(Collider collision)
-    {   
-        Vector3 bulletPosition = gameObject.transform.position;
-        ParticuleEmitter emitter = collision.gameObject.GetComponent<ParticuleEmitter>();
-        if (emitter) {
-            emitter.InstantiateParticule(bulletPosition);
-        }
-        if (collision.gameObject.layer != gameObject.layer) {
-            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-                Debug.Log("ZombieHitted");
-            if (enemyHealth) {
-                if (!damagePerDistance)
-                    enemyHealth.TakeDamage(weaponData.damages,gameObject);
-                else {
-                    enemyHealth.TakeDamage((int)Mathf.Ceil(Vector3.Distance(currentPosition, startPos) / weaponData.maxDistance * weaponData.damages),gameObject);
-                }
-                Destroy(gameObject); //trouver solution pour colision
-            }
-        }
-    }
+    public abstract void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range);
 
-    void DestroyRange()
-    {
-        if (Vector3.Distance(currentPosition, startPos) >= weaponData.maxDistance)
-        {
-            Destroy(gameObject);
-        }
-    }
 }

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBoxSword : MonoBehaviour
-{
-    [SerializeField] Sword sword;
+public class HitBox : MonoBehaviour {
+
+    public int damages;
 
     void OnTriggerEnter(Collider collision) {
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth) {
 
-            enemyHealth.TakeDamage(sword.Damages,gameObject);
+            enemyHealth.TakeDamage(damages, gameObject);
         }
     }
-
-
 }

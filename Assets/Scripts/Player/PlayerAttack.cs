@@ -114,7 +114,7 @@ public class PlayerAttack : MonoBehaviour {
         weapon.onEndAttack.RemoveAllListeners();
         weapon.onEndAttack.AddListener(ResetAttack);
         if (weapon.CanAttack()) {
-            animator.SetInteger("Combos", weapon.combosCount);
+            //animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
             SetAttackAnimation(isAttacking);
         }

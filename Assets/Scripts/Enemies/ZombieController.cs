@@ -28,7 +28,6 @@ public class ZombieController : MonoBehaviour {
     void Update() {
         Targeting();
         enemyAttack.target = target;
-        Debug.Log(target.name);
         agent.SetDestination(target.position);
         float distance = Vector3.Distance(target.position, gameObject.transform.position);
         if (distance <= agent.stoppingDistance) {

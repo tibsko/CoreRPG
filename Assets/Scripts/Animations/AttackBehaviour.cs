@@ -12,7 +12,6 @@ public class AttackBehaviour : StateMachineBehaviour {
         if (!player)
             player = FindObjectOfType<JDPlayerController>();
 
-        Debug.Log(player.name);
         player.OnEnterAttack();
     }
 

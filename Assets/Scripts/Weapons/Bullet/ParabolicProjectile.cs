@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParabolicProjectil : MonoBehaviour
+public class ParabolicProjectile : MonoBehaviour
 {
     private Vector3 endPosition;
     protected float animationProjectile;

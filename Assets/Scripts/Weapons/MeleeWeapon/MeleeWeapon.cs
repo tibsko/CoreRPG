@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon {
 
-    [SerializeField] HitBoxSword[] hitBoxes;
-    public MeleeWeaponData MeleeWeaponData { get { return weaponData as MeleeWeaponData; } }
-
+    [SerializeField] HitBox[] hitBoxes;
 
     public override bool CanAttack() {
         return true;
@@ -16,12 +14,11 @@ public class MeleeWeapon : Weapon {
     }
 
     protected void Start() {
-        base.Start();
     }
 
     public void ToggleHitBoxes(bool state) {
         Debug.Log($"Status : {state}");
-        foreach (HitBoxSword hitBox in hitBoxes) {
+        foreach (HitBox hitBox in hitBoxes) {
             hitBox.gameObject.SetActive(state);
         }
     }
