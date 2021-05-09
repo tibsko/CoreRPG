@@ -9,6 +9,6 @@ public abstract class Bullet : MonoBehaviour {
 
     protected bool initialized = false;
 
-    public abstract void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range);
+    public abstract void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime);
 
 }

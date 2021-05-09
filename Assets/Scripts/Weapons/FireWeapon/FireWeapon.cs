@@ -24,6 +24,7 @@ public class FireWeapon : Weapon {
     public float spread;
     public float range;
     public float velocity;
+    public float bulletLifeTime;
     public bool instantiateInFirePoint;
 
     [Space]
@@ -82,16 +83,20 @@ public class FireWeapon : Weapon {
                 else
                     bulletsToShoot = bulletsLeft;
 
-                //Sound
-                audioSource.PlayOneShot(shotSound);
+                //If only one shot action
+                if (timeBetweenShots <= 0f) {
+                    animator.SetTrigger("Shoot");
+                    Instantiate(muzzleFlashPrefab, firePoint);
+                    audioSource.PlayOneShot(shotSound);
+                }
+
                 Shoot();
-                animator.SetTrigger("Shoot");
             }
             else
                 EmptySignal();
-
         }
     }
+
     private void Shoot() {
         readyToShoot = false;
 
@@ -105,16 +110,20 @@ public class FireWeapon : Weapon {
         if (!instantiateInFirePoint) {
             //Instantiate bullet
             GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint.position, Quaternion.identity);
-            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range, bulletLifeTime);
         }
         else {
-            GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint); ;
-            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range);
+            GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint);
+            bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range, bulletLifeTime);
         }
 
-        //Graphics
-        if (muzzleFlashPrefab)
-            Instantiate(muzzleFlashPrefab, firePoint);
+        //Sound
+        if (timeBetweenShots > 0f) {
+            animator.SetTrigger("Shoot");
+            audioSource.PlayOneShot(shotSound);
+            if (muzzleFlashPrefab)
+                Instantiate(muzzleFlashPrefab, firePoint);
+        }
 
         //Update bullets
         bulletsLeft--;
@@ -129,6 +138,7 @@ public class FireWeapon : Weapon {
     }
     private void ResetShot() {
         readyToShoot = true;
+        animator.SetBool("IsAiming", false);
         onEndAttack.Invoke();
         IsAttacking = false;
     }
@@ -153,6 +163,7 @@ public class FireWeapon : Weapon {
 
     public override void Attack() {
         IsAttacking = true;
+        animator.SetBool("IsAiming", true);
         Invoke(nameof(Fire), delayBeforeShoot);
     }
 

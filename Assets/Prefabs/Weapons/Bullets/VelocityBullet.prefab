@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3864856831037144233}
   - component: {fileID: 3723723478609256977}
   m_Layer: 11
-  m_Name: Bullet
+  m_Name: VelocityBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07a851f4497c9d4d88f48dd9f813ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerLayers:
+  collisionLayers:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 263169
 --- !u!54 &-8502740340140009070
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186466485596272}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1

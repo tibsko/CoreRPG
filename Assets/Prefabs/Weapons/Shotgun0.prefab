@@ -154,12 +154,14 @@ MonoBehaviour:
   reloadTime: 0.1
   timeBetweenBurst: 0.5
   timeBetweenShots: 0
-  delayBeforeShoot: 0.1
+  delayBeforeShoot: 0.15
   automatic: 0
   bulletsPerTap: 10
   spread: 10
   range: 50
-  velocity: 1
+  velocity: 10
+  bulletLifeTime: 0
+  instantiateInFirePoint: 0
   firePoint: {fileID: 3072305698166753476}
   bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
     type: 3}
