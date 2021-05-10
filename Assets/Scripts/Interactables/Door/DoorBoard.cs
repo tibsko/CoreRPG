@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class DoorBoard : MonoBehaviour
 {
-    public bool isActive;
+    public bool IsActive { get; set; }
+
     private MeshRenderer meshRenderer;
     private BoxCollider boxCollider;
+
     void Start() {
-        isActive = true;
+        IsActive = true;
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         boxCollider = gameObject.GetComponent<BoxCollider>();
     }
     private void Update() {
-        ActivateBoard(isActive);
+        ActivateBoard(IsActive);
     }
     public void ActivateBoard(bool active)
     {

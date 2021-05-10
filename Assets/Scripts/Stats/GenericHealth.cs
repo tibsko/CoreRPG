@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 
-public class CharacterHealth : MonoBehaviour {
+public class GenericHealth : MonoBehaviour {
     public int maxHealth;
     public float currentHealth { get; private set; }
 
     public HealthBar healthBar;
 
     public UnityEvent onDie;
+    public UnityEvent onHeal;
+    public UnityEvent onHit;
 
     public float timerHealth = .2f;
 
@@ -36,10 +38,11 @@ public class CharacterHealth : MonoBehaviour {
         }
     }
 
-    public virtual void HealHealth(int heal, GameObject source) {
+    public virtual void Heal(int heal, GameObject source) {
         currentHealth = Mathf.Clamp(currentHealth + heal, 0, maxHealth);
         healthBar.SetHealth(currentHealth);
     }
+
     public void TakeDamage(float damage, GameObject source) {
         if (currentHealth <= 0)
             return;
@@ -52,9 +55,7 @@ public class CharacterHealth : MonoBehaviour {
                 onDie.Invoke();
             }
         }
-
     }
-
 }
 
 class DamageSource {

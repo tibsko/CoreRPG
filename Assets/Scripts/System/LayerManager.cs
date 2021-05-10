@@ -21,5 +21,5 @@ public class LayerManager : MonoBehaviour
     public LayerMask interactableLayer;
     public LayerMask enemyLayer;
     public LayerMask doorLayer;
-    public LayerMask collactableLayer;
+    public LayerMask collectableLayer;
 }

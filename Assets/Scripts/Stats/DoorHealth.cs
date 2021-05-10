@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class DoorHealth : CharacterHealth {
+public class DoorHealth : GenericHealth {
 
     [SerializeField] DoorInteractable doorInteractable;
     private int nbActiveDoor;
@@ -13,24 +13,24 @@ public class DoorHealth : CharacterHealth {
         base.Start();
     }
     // Update is called once per frame
-    
+
     public void UpdateDoorboards() {
-        if (currentHealth ==maxHealth) {
+        if (currentHealth == maxHealth) {
             nbActiveDoor = doorInteractable.nbDoor;
         }
-        else if (currentHealth <=0) {
+        else if (currentHealth <= 0) {
             nbActiveDoor = 0;
         }
         else {
-            nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep+0.7f);
+            nbActiveDoor = (int)Mathf.Round(currentHealth / doorInteractable.healthStep + 0.7f);
         }
 
         for (int i = 0; i < doorInteractable.nbDoor; i++) {
             for (int j = 0; j < nbActiveDoor; j++) {
-                doorInteractable.doorBoards[j].isActive = true;
+                doorInteractable.doorBoards[j].IsActive = true;
             }
             for (int k = nbActiveDoor; k < doorInteractable.nbDoor; k++) {
-                doorInteractable.doorBoards[k].isActive = false;
+                doorInteractable.doorBoards[k].IsActive = false;
             }
         }
     }

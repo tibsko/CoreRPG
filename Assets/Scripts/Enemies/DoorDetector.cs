@@ -5,9 +5,7 @@ using UnityEngine;
 public class DoorDetector : MonoBehaviour {
 
     public Transform doorDetected;
-    //void Awake() {
-    //    doorDetected = PlayerManager.instance.player.transform;
-    //}
+
     void Start() {
         doorDetected = PlayerManager.instance.player.transform;
     }

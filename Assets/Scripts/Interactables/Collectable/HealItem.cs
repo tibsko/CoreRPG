@@ -11,7 +11,7 @@ public class HealItem : CollectableItem
     public void Heal(GameObject player) {
         PlayerHealth health = player.GetComponent<PlayerHealth>();
         if (health) {
-            health.HealHealth(healAmount, gameObject);
+            health.Heal(healAmount, gameObject);
         }
     }
 

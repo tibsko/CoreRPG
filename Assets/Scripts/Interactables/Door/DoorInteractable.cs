@@ -10,7 +10,6 @@ public class DoorInteractable : Interactable
     public int nbDoor;
     public int healthStep;
 
-
     public DoorBoard[] doorBoards;
 
     private DoorHealth doorHealth;
@@ -27,7 +26,7 @@ public class DoorInteractable : Interactable
         healthStep = (int)Mathf.Round(doorHealth.maxHealth / (nbDoor-1));
 
         for (int i = 0; i < nbDoor; i++) {
-            doorBoards[i].isActive = true;
+            doorBoards[i].IsActive = true;
         }
 
         //foreach(DoorBoard door in doorBoards) {
@@ -56,7 +55,7 @@ public class DoorInteractable : Interactable
 
     private void RepairDoor() {
         if (doorHealth.currentHealth < doorHealth.maxHealth) {
-            doorHealth.HealHealth(20,gameObject);
+            doorHealth.Heal(20,gameObject);
             doorHealth.UpdateDoorboards();
             Debug.Log("repairing");
         }

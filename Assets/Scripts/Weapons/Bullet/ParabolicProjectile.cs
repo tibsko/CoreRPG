@@ -41,9 +41,9 @@ public class ParabolicProjectile : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        PlayerHealth playerHealth = collider.GetComponent<PlayerHealth>();
-        if (playerHealth && dealDamages) {
-            playerHealth.TakeDamage(Damages, this.gameObject);
+        GenericHealth genericHealth = collider.GetComponent<GenericHealth>();
+        if (genericHealth && dealDamages) {
+            genericHealth.TakeDamage(Damages, this.gameObject);
         }
     }
 }
