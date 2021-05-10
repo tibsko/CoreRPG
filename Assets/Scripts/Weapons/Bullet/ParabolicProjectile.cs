@@ -2,41 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParabolicProjectile : MonoBehaviour
-{
-    private Vector3 endPosition;
-    protected float animationProjectile;
-    public Transform startPosition;
-
+public class ParabolicProjectile : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] float height;
-    [SerializeField] GameObject smokeEffect;
-    // Start is called before the first frame update
-    void Start()
-    {
-        endPosition = GetComponentInParent<SpitterAttack>().target.position;
+    [SerializeField] GameObject impactEffect;
+    [SerializeField] bool impactOnFloor = false;
+    [SerializeField] bool dealDamages = false;
+    [SerializeField] LayerMask collisionMask;
+
+    public float Damages { get; set; }
+
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    private float animationProjectile;
+
+    private void Start() {
+        startPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         animationProjectile += Time.deltaTime;
         //animationProjectile = animationProjectile % speed;
-        transform.position = ParabolaEquation.Parabole(startPosition.position, endPosition, height, animationProjectile/speed);
-      
+        transform.position = ParabolaEquation.Parabole(startPosition, endPosition, height, animationProjectile / speed);
+    }
+
+    public void SetTarget(Vector3 target) {
+        endPosition = target;
     }
 
     void OnTriggerEnter(Collider collider) {
-        Debug.Log(collider.name);
-        if (collider.gameObject.layer == 9 || collider.gameObject.layer == 8) {
-            GameObject poisonEffect = Instantiate(smokeEffect, new Vector3(transform.position.x,collider.transform.position.y,transform.position.z), Quaternion.identity);
-            Destroy(poisonEffect, 5f);
+
+        if (collisionMask.ContainsLayer(collider.gameObject.layer)) {
+            Vector3 impactPosition = collider.gameObject.transform.position;
+            if (impactOnFloor) {
+                impactPosition.y = collider.transform.position.y;
+            }
+            Instantiate(impactEffect, impactPosition, Quaternion.identity);
             Destroy(gameObject);
         }
-        PlayerHealth player = collider.GetComponent<PlayerHealth>();
-        if (player) {
-            //take damages
+
+        PlayerHealth playerHealth = collider.GetComponent<PlayerHealth>();
+        if (playerHealth && dealDamages) {
+            playerHealth.TakeDamage(Damages, this.gameObject);
         }
-        
     }
 }
