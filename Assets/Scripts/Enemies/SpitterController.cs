@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class SpitterController : MonoBehaviour
 {
-    public bool isInside;
-
+    private bool isInside;
     private Transform target;
     private NavMeshAgent agent;
     private Animator animator;
     private SpitterAttack enemyAttack;
     private DoorDetector doorDetector;
-
     private float speed = 2f;
 
     // Start is called before the first frame update

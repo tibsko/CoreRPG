@@ -37,7 +37,6 @@ public class MeleeWeapon : Weapon {
     }
 
     public void ToggleHitBoxes(bool state) {
-        Debug.Log($"Status : {state}");
         foreach (HitBox hitBox in hitBoxes) {
             hitBox.gameObject.SetActive(state);
         }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3330566740090783291}
   - component: {fileID: 3330566740090783288}
   m_Layer: 12
-  m_Name: testItem (1)
+  m_Name: TestInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,4 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textButton: Pick Up
-  item: {fileID: 11400000, guid: 06c84ab0a68f6bf4e9bebf0678bbf7de, type: 2}
+  item: {fileID: 11400000, guid: 817e79499947ea14c9997fe9c801debe, type: 2}
