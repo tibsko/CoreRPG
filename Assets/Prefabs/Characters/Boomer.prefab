@@ -508,7 +508,6 @@ GameObject:
   - component: {fileID: 6078473582528620988}
   - component: {fileID: 6078473582528620989}
   - component: {fileID: 6078473582528620984}
-  - component: {fileID: 6078473582528620985}
   - component: {fileID: 676531798}
   - component: {fileID: 676531804}
   m_Layer: 10
@@ -635,6 +634,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
   timerHealth: 0.2
   timer: 0
 --- !u!114 &6078473582528620984
@@ -654,20 +659,6 @@ MonoBehaviour:
       type: 3}
     rate: 50
   coin: {fileID: 8983292905516079184, guid: 6d7c1341a21540845b0016cfb4abd5a7, type: 3}
---- !u!114 &6078473582528620985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6078473582528620983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8c3e5a6c36cc584da4cbf758308fcc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particule: {fileID: 3276044212303047505, guid: 45038b0d2d3420b449671bbef2f41223,
-    type: 3}
 --- !u!54 &676531798
 Rigidbody:
   m_ObjectHideFlags: 0

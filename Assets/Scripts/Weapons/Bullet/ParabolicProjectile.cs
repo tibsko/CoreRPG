@@ -33,17 +33,19 @@ public class ParabolicProjectile : MonoBehaviour {
     void OnTriggerEnter(Collider collider) {
 
         if (collisionMask.ContainsLayer(collider.gameObject.layer)) {
-            Vector3 impactPosition = collider.gameObject.transform.position;
-            if (impactOnFloor) {
-                impactPosition.y = collider.transform.position.y;
+            if (impactEffect) {
+                Vector3 impactPosition = collider.gameObject.transform.position;
+                if (impactOnFloor) {
+                    impactPosition.y = collider.transform.position.y;
+                }
+                Instantiate(impactEffect, impactPosition, Quaternion.identity);
+                Destroy(gameObject);
             }
-            Instantiate(impactEffect, impactPosition, Quaternion.identity);
-            Destroy(gameObject);
-        }
 
-        GenericHealth genericHealth = collider.GetComponent<GenericHealth>();
-        if (genericHealth && dealDamages) {
-            genericHealth.TakeDamage(Damages, this.gameObject);
+            GenericHealth genericHealth = collider.GetComponent<GenericHealth>();
+            if (genericHealth && dealDamages) {
+                genericHealth.TakeDamage(Damages, this.gameObject);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] float radiusInteractable = 3.5f;
+    [SerializeField] LayerMask interacableLayers;
 
     private Interactable focus;
     private Interactable interactable;
@@ -22,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private void DetectInteractable() {
-        Collider[] interactablesDetected = Physics.OverlapSphere(transform.position, radiusInteractable, LayerManager.instance.interactableLayer);
+        Collider[] interactablesDetected = Physics.OverlapSphere(transform.position, radiusInteractable, interacableLayers);
         if (interactablesDetected.Length > 0) {
             foreach (var collider in interactablesDetected) {
                 Interactable interactable = interactablesDetected[0].GetComponent<Interactable>();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1487999032748735614}
   - component: {fileID: 3790500667741324367}
   - component: {fileID: 6868913983955100270}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aaa97f4d3c6a54faf056efbbb0a5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &1717479720168391135
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +177,12 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
   timerHealth: 0.5
   doorInteractable: {fileID: 1898197535021619587}
 --- !u!1 &3255827803416039370
@@ -192,7 +197,7 @@ GameObject:
   - component: {fileID: 609964835980334196}
   - component: {fileID: 8621288802009621332}
   - component: {fileID: 2903344078636150369}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aaa97f4d3c6a54faf056efbbb0a5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &4332632054639623521
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +289,7 @@ GameObject:
   - component: {fileID: 8222717802269090487}
   - component: {fileID: 8454911477320697906}
   - component: {fileID: 7066186884865645755}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aaa97f4d3c6a54faf056efbbb0a5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1 &9105239914858468331
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +381,7 @@ GameObject:
   - component: {fileID: 4497300041698132484}
   - component: {fileID: 7831284681152643015}
   - component: {fileID: 1661978110666329749}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aaa97f4d3c6a54faf056efbbb0a5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!1001 &808904297795481008
 PrefabInstance:
   m_ObjectHideFlags: 0

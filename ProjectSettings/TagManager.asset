@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Collide
-  - Enemy
-  - Concrete
-  - Room
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,13 +19,13 @@ TagManager:
   - Bullet
   - Interactable
   - BulletEnemy
-  - TempCast
-  - Walkable
-  - DoorBoard
-  - Collectable
-  - Wall
-  - BordersWall
   - Detector
+  - Walkable
+  - Collectable
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
