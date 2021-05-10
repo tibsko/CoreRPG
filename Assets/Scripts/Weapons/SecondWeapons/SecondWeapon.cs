@@ -14,7 +14,6 @@ public class SecondWeapon : MonoBehaviour {
     
     public SecondWeaponType secondWeaponType;
 
-    [SerializeField] GameObject bullet;
 
     [HideInInspector] public UnityEvent onEndAttack;
 
@@ -24,16 +23,16 @@ public class SecondWeapon : MonoBehaviour {
         Debug.Log("use");
     }
 
-    
-
-    public void Attack() {
-        Transform player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-        Instantiate(bullet,player);
+    public virtual void Attack() {
+        
     }
 
     public bool CanAttack() {
         return true;
 
     }
-    public enum SecondWeaponType { Grenade, Claymore, trick }
+    public virtual void OnAim(Vector2 aim) {
+
+    }
+    public enum SecondWeaponType { Grenade, Claymore, Consumable}
 }

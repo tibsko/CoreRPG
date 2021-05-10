@@ -30,10 +30,10 @@ public class PlayerSecondAttack : MonoBehaviour
 
 
     public void OnAim(Vector2 aim) {
-        //if (!ActiveSecondWeapon) {
-        //    return;
-        //}
-
+        if (!ActiveSecondWeapon) {
+            return;
+        }
+        ActiveSecondWeapon.OnAim(aim);
         AimDirection = new Vector3(aim.x, 0, aim.y);
 
         if (AimDirection.magnitude > 0.5f) {
@@ -99,14 +99,14 @@ public class PlayerSecondAttack : MonoBehaviour
 
     private void Attack() {
         isAttacking = true;
-        //targetPosition = AimDirection * ActiveSecondWeapon.range + transform.position;
-        //SecondWeapon weapon = inventory.ActiveSecondWeapon;
-        //weapon.onEndAttack.RemoveAllListeners();
-        //weapon.onEndAttack.AddListener(ResetAttack);
-        //if (weapon.CanAttack()) {
-        //    weapon.Attack();
-        //    SetAttackAnimation(isAttacking);
-        //}
+        targetPosition = AimDirection * ActiveSecondWeapon.range + transform.position;
+        SecondWeapon weapon = inventory.ActiveSecondWeapon;
+        weapon.onEndAttack.RemoveAllListeners();
+        weapon.onEndAttack.AddListener(ResetAttack);
+        if (weapon.CanAttack()) {
+            weapon.Attack();
+            //SetAttackAnimation(isAttacking);
+        }
     }
 
     public void ResetAttack() {

@@ -15,7 +15,8 @@ public class SpitLauncher : MonoBehaviour {
 
     public void SpitAttack() {
         ParabolicProjectile projectile = Instantiate(spitBullet, spitPoint.position, Quaternion.identity)
-            .GetComponent<ParabolicProjectile>(); ;
+            .GetComponent<ParabolicProjectile>();
+        projectile.throwObject = true;
         projectile.SetTarget(spitterAttack.target.position);
     }
 }

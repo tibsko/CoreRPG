@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3707121988759184686}
   - component: {fileID: 3676213667360998602}
   - component: {fileID: 3688282382119367844}
-  - component: {fileID: 3710871366938751185}
+  - component: {fileID: 4666412661452347007}
   m_Layer: 0
   m_Name: GrenadeBullet
   m_TagString: Untagged
@@ -240,7 +240,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3710871366938751185
+--- !u!114 &4666412661452347007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,10 +249,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3710871366938751190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8626d865447214a8c835c63b729a47, type: 3}
+  m_Script: {fileID: 11500000, guid: eac1652470f1cd24a871d04b5931892d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {x: 0, y: 0, z: 0}
-  speed: 2
+  speed: 0.7
   height: 1
-  smokeEffect: {fileID: 0}
+  impactEffect: {fileID: 1879769179923522, guid: 65932b7368590234d8163da03c2055d8,
+    type: 3}
+  impactOnFloor: 1
+  dealDamages: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1537

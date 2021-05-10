@@ -70,11 +70,10 @@ public class Inventory : MonoBehaviour {
 
         Transform weaponSlot;
         weaponSlot= secondWeaponSlot;
-
         GameObject go = Instantiate(secondWeapon.gameObject, weaponSlot);
-        ParabolicProjectile parabolicProjectile = go.GetComponent<ParabolicProjectile>();
-        if (parabolicProjectile)
-            parabolicProjectile.enabled = false;
+        //ParabolicProjectile parabolicProjectile = go.GetComponent<ParabolicProjectile>();
+        //if (parabolicProjectile)
+        //    parabolicProjectile.enabled = false;
         go.SetActive(false);
         go.layer = gameObject.layer;
         secondWeapons.Add(go.GetComponent<SecondWeapon>());
