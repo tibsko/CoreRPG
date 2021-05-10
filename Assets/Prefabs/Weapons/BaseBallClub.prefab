@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5675909864428604337}
   - component: {fileID: 55482946196595460}
   m_Layer: 0
-  m_Name: BaseBall
+  m_Name: BaseBallClub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,13 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damages: 20
-  autoshootDistance: 10
+  autoshootDistance: 5
   overrideAnimator: {fileID: 22100000, guid: 9037b11fb2a4f3542a2398e059866d11, type: 2}
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
   hitBoxes:
   - {fileID: 5089927039891668007}
+  knockBack: 10
 --- !u!1 &8365366499333456782
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +62,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6898645161535876425}
-  - component: {fileID: 435133381262860797}
   - component: {fileID: 5089927039891668007}
+  - component: {fileID: 950631454039383807}
   m_Layer: 0
   m_Name: Hit Box
   m_TagString: Untagged
@@ -84,19 +85,6 @@ Transform:
   m_Father: {fileID: 5220487502748804316}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &435133381262860797
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8365366499333456782}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.43
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5089927039891668007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +97,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a677bf388693840b5daab5aca613f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damages: 20
+--- !u!136 &950631454039383807
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365366499333456782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5215765734584331942
 PrefabInstance:
   m_ObjectHideFlags: 0
