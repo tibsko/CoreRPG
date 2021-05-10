@@ -6,7 +6,7 @@ using System.Linq;
 
 public class CharacterHealth : MonoBehaviour {
     public int maxHealth;
-    public int currentHealth { get; private set; }
+    public float currentHealth { get; private set; }
 
     public HealthBar healthBar;
 
@@ -40,7 +40,7 @@ public class CharacterHealth : MonoBehaviour {
         currentHealth = Mathf.Clamp(currentHealth + heal, 0, maxHealth);
         healthBar.SetHealth(currentHealth);
     }
-    public void TakeDamage(int damage, GameObject source) {
+    public void TakeDamage(float damage, GameObject source) {
         if (currentHealth <= 0)
             return;
 

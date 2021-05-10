@@ -2,36 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlammeBullet : MonoBehaviour
-{
-    public FlammeThrowerData flammeThrowerData;
+public class FlammeBullet : Bullet {
 
-    private float delay=1.5f;
+    public float damagesRate;
+
+    public float startHeight = 2.2f;
+    public float endHeight = 8f;
+
+    private float stepHeight;
+    private float delay = 1.5f;
     private float countDown;
     private float stepDelay;
-
-    public float startHeight=2.2f;
-    public float endHeight = 8f;
-    private float stepHeight;
+    private Timer lifeTimer;
+    private float lifeTime = 1.8f;
 
     private CapsuleCollider capsule;
+    private ParticleSystem particles;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        lifeTimer = new Timer(lifeTime);
+        particles = GetComponent<ParticleSystem>();
         capsule = GetComponent<CapsuleCollider>();
-        stepDelay = delay/ (endHeight - startHeight);
+        stepDelay = delay / (endHeight - startHeight);
         countDown = stepDelay;
 
-        stepHeight = (endHeight - startHeight)*(stepDelay);
+        stepHeight = (endHeight - startHeight) * (stepDelay);
+        Debug.Log(stepHeight);
         capsule.height = startHeight;
 
-        capsule.center = new Vector3(transform.position.x,transform.position.y,capsule.height*0.5f);
+        capsule.center = new Vector3(transform.position.x, transform.position.y, capsule.height * 0.5f);
+
+        if (!initialized) {
+            Destroy(gameObject);
+            Debug.LogError($"Bullet ({gameObject.name}) was not initialized !");
+        }
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+
         if (capsule.height <= endHeight) {
             countDown -= Time.deltaTime;
             if (countDown <= 0) {
@@ -43,6 +53,12 @@ public class FlammeBullet : MonoBehaviour
         //else {
         //    capsule.height = endHeight; 
         //}
+
+        lifeTimer.Tick(Time.deltaTime);
+        if (lifeTimer.Done) {
+            particles.Stop();
+            Destroy(gameObject, 2f);
+        }
     }
 
     void OnTriggerStay(Collider collider) {
@@ -51,9 +67,15 @@ public class FlammeBullet : MonoBehaviour
             StartCoroutine(DamageTime(enemyHealth));
         }
     }
-    
+
     IEnumerator DamageTime(EnemyHealth enemy) {
-        yield return new WaitForSeconds(flammeThrowerData.damageSpeed);
-        enemy.TakeDamage(flammeThrowerData.damages, gameObject);
+        yield return new WaitForSeconds(damagesRate);
+        enemy.TakeDamage(Damages, gameObject);
+    }
+
+    public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime) {
+        Damages = _damages;
+        initialized = true;
+        lifeTime = _lifeTime;
     }
 }

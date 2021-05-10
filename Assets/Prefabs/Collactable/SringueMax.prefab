@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c160aa5ffacb54795e59d78de49d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable: {fileID: 2543471339335621519}
+  script: {fileID: 2543471339335621519}
   timer: 2
 --- !u!1001 &8724924062068129641
 PrefabInstance:

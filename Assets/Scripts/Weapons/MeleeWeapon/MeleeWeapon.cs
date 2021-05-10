@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon {
 
-    [SerializeField] HitBoxSword[] hitBoxes;
-    public MeleeWeaponData MeleeWeaponData { get { return weaponData as MeleeWeaponData; } }
+    [SerializeField] HitBox[] hitBoxes;
 
+    private Animator animator;
+    private bool comboAsked;
+
+    protected void Start() {
+        animator = GetComponentInParent<Animator>();
+    }
 
     public override bool CanAttack() {
         return true;
     }
 
     public override void Attack() {
+        //If already in attack, ask for combo.
+        comboAsked = IsAttacking;
+
+        IsAttacking = true;
+        animator.SetBool("MeleeAttack", true);
     }
 
-    protected void Start() {
-        base.Start();
+    public void EndAttack(bool forceEnd = false) {
+        //En attack if no combo is asked or if attack end is forced
+        if (!comboAsked || forceEnd) {
+            IsAttacking = false;
+            onEndAttack.Invoke();
+        }
+
+        //When leaving attack, 
+        comboAsked = false;
     }
 
     public void ToggleHitBoxes(bool state) {
         Debug.Log($"Status : {state}");
-        foreach (HitBoxSword hitBox in hitBoxes) {
+        foreach (HitBox hitBox in hitBoxes) {
             hitBox.gameObject.SetActive(state);
         }
     }

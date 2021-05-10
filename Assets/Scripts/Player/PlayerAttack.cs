@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour {
 
     //////////////////////////////////////////////PRIVATE
 
-    private bool isAttacking = false;
     private bool startedAiming = false;
     private float distanceEnemy;
 
@@ -53,21 +52,21 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     public void OnRelease(Vector2 aim) {
-        HandleShoot();
+        HandleAttack();
     }
 
-    private void HandleShoot() {
+    private void HandleAttack() {
         if (startedAiming && AimDirection.magnitude < 0.5f) {
             //Cancel shoot
             Debug.Log("Cancel shoot");
         }
         else if (!startedAiming && AimDirection.magnitude < 0.5f) {
             Debug.Log("Autoshooting");
-            AutoShoot();
+            AutoAttack();
         }
         else if (startedAiming) {
             Debug.Log("Aiming shoot");
-            AimShoot();
+            AimedAttack();
         }
         else {
             Debug.Log("Nothing");
@@ -76,13 +75,13 @@ public class PlayerAttack : MonoBehaviour {
 
     }
 
-    private void AimShoot() {
+    private void AimedAttack() {
         controller.Constraint(true, false);
         Rotate(transform.position + AimDirection);
         Attack();
     }
 
-    private void AutoShoot() {
+    private void AutoAttack() {
         controller.Constraint(true, false);
         distanceEnemy = float.MaxValue;
 
@@ -90,7 +89,7 @@ public class PlayerAttack : MonoBehaviour {
         Vector3 target = transform.position + transform.forward;
 
         foreach (var collider in colliders) {
-            if (1 << collider.gameObject.layer == LayerManager.instance.enemyLayer) {
+            if (LayerManager.instance.enemyLayer.ContainsLayer(collider.gameObject.layer)) {
                 float distance = (collider.transform.position - transform.position).magnitude;
                 if (distanceEnemy > distance) {
                     distanceEnemy = distance;
@@ -108,28 +107,20 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Attack() {
-        isAttacking = true;
 
         Weapon weapon = playerWeapons.ActiveWeapon;
         weapon.onEndAttack.RemoveAllListeners();
         weapon.onEndAttack.AddListener(ResetAttack);
         if (weapon.CanAttack()) {
-            animator.SetInteger("Combos", weapon.combosCount);
             weapon.Attack();
-            SetAttackAnimation(isAttacking);
+            animator.SetBool("IsStrafing", true);
         }
     }
 
     public void ResetAttack() {
-        isAttacking = false;
         controller.Constraint(true, true);
-        SetAttackAnimation(isAttacking);
+        animator.SetBool("IsStrafing", false);
         //delay player can't attack ?
-    }
-
-    private void SetAttackAnimation(bool status) {
-        animator.SetBool("IsAiming", status);
-        animator.SetBool("IsStrafing", status);
     }
 
     public void ToggleHitBox(bool state) {
