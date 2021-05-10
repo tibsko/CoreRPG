@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac1652470f1cd24a871d04b5931892d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  height: 2
   speed: 0.7
-  height: 1
   impactEffect: {fileID: 1879769179923522, guid: 65932b7368590234d8163da03c2055d8,
     type: 3}
   impactOnFloor: 1
@@ -261,3 +261,5 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 1537
+  throwObject: 0
+  drawGiz: 1

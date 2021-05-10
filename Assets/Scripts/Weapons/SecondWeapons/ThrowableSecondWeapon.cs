@@ -24,7 +24,7 @@ public class ThrowableSecondWeapon : SecondWeapon {
         Debug.Log("ren");
         parabolicProjectile = bullet.GetComponent<ParabolicProjectile>();
         parabolicProjectile.SetTarget(new Vector3(aim.x*10, bullet.transform.position.y, aim.y*10)+transform.position);
-        endPosition = new Vector3(aim.x, bullet.transform.position.y, aim.y)+transform.position;
+        endPosition = new Vector3(aim.x*10, bullet.transform.position.y, aim.y*10)+transform.position;
         int count = 20;
         Vector3[] arcArray = new Vector3[count+1];
         for (int i = 0; i <= count; i++) {
