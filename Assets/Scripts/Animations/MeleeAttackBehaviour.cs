@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackBehaviour : StateMachineBehaviour {
+public class MeleeAttackBehaviour : StateMachineBehaviour {
 
-    private JDPlayerController player;
+    private PlayerAttack playerAttack;
+
+    public bool lastCombo = false;
 
     public int damages;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        if (!player)
-            player = FindObjectOfType<JDPlayerController>();
+        if (!playerAttack)
+            playerAttack = FindObjectOfType<PlayerAttack>();
 
-        player.OnEnterAttack();
     }
 
 
@@ -24,7 +25,11 @@ public class AttackBehaviour : StateMachineBehaviour {
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        player.OnLeaveAttack();
+        Weapon weapon = playerAttack.ActiveWeapon;
+        if (weapon.GetType() == typeof(MeleeWeapon)) {
+            MeleeWeapon melee = weapon as MeleeWeapon;
+            melee.EndAttack(lastCombo);
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

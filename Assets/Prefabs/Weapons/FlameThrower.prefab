@@ -332,6 +332,7 @@ MonoBehaviour:
   spread: 0
   range: 50
   velocity: 1
+  bulletLifeTime: 1.5
   instantiateInFirePoint: 1
   firePoint: {fileID: 8475248278269838137}
   bulletPrefab: {fileID: 6026465560718668976, guid: faddd7cc3209ad144811e640de8cb616,

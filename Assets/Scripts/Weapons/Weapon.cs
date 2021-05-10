@@ -10,12 +10,11 @@ public abstract class Weapon : MonoBehaviour {
     public float autoshootDistance;
     public AnimatorOverrideController overrideAnimator;
 
-    public bool IsAttacking { get; protected set; }
+    public bool IsAttacking { get; set; }
 
     [HideInInspector] public UnityEvent onEndAttack;
 
     public abstract void Attack();
-
     public abstract bool CanAttack();
 
 

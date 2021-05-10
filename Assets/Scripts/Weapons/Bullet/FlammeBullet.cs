@@ -74,9 +74,9 @@ public class FlammeBullet : Bullet {
         enemy.TakeDamage(Damages, gameObject);
     }
 
-    public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range) {
+    public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime) {
         Damages = _damages;
         initialized = true;
-        lifeTime = _velocity;
+        lifeTime = _lifeTime;
     }
 }

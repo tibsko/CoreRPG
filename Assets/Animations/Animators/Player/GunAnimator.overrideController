@@ -6,6 +6,6 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PistolAnimator
-  m_Controller: {fileID: 9100000, guid: 0afa09b3fb2fc6d42a2b32e680ced28c, type: 2}
+  m_Name: GunAnimator
+  m_Controller: {fileID: 9100000, guid: dffa80fb9a288e541a136d3593be632d, type: 2}
   m_Clips: []

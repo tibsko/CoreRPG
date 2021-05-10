@@ -5,7 +5,7 @@ using UnityEngine;
 public class VelocityBullet : Bullet
 {
     //Layer
-    [SerializeField] LayerMask triggerLayers;
+    [SerializeField] LayerMask collisionLayers;
 
     //Stats
     public float Velocity { get; private set; }
@@ -29,7 +29,7 @@ public class VelocityBullet : Bullet
         RangeDestroy();
     }
 
-    public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range) {
+    public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime) {
         transform.rotation = Quaternion.Euler(rotation);
         Damages = _damages;
         Velocity = _velocity;
@@ -43,8 +43,8 @@ public class VelocityBullet : Bullet
         }
     }
 
-    private void OnTriggerEnter(Collider collision) {
-        if (triggerLayers.ContainsLayer(collision.gameObject.layer)) {
+    private void OnCollisionEnter(Collision collision) {
+        if (collisionLayers.ContainsLayer(collision.gameObject.layer)) {
 
             Vector3 bulletPosition = gameObject.transform.position;
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
