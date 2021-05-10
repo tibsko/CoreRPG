@@ -46,6 +46,7 @@ public class FireWeapon : Weapon {
     //private
     private int bulletsLeft, bulletsToShoot;
     private bool readyToShoot, reloading, emptySignal;
+    private bool attackCommand = false;
     private AudioSource audioSource;
     private PlayerAttack parentPlayer;
     private Animator animator;
@@ -162,13 +163,11 @@ public class FireWeapon : Weapon {
     }
 
     private void EmptySignal() {
-        if (!emptySignal) {
-            emptySignal = true;
+        //if (!emptySignal) 
+        //    emptySignal = true;
             audioSource.PlayOneShot(emptySound);
-        }
     }
 
-    private bool attackCommand = false;
     public override void Attack() {
         if (IsAttacking) {
             attackCommand = true;
