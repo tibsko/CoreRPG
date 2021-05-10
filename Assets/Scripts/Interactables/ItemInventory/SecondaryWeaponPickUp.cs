@@ -15,11 +15,9 @@ public class SecondaryWeaponPickUp : Interactable
     void PickUp(GameObject player) {
         Inventory inventory = player.GetComponent<Inventory>();
         if (inventory) {
-            SecondWeapon newSecondWeapon = Instantiate(secondWeapon);            
-            bool wasPickedUp = inventory.Add(newSecondWeapon,quantity);
+            bool wasPickedUp = inventory.Add(secondWeapon,quantity);
             if (wasPickedUp) {
                 Destroy(gameObject);
-                Destroy(newSecondWeapon.gameObject);
                 HUD.instance.ActivateButton(false);
             }
         }

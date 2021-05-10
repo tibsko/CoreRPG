@@ -624,7 +624,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 6078473582528620984}
-        m_MethodName: InctanciateLoot
+        m_MethodName: InctantiateLoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

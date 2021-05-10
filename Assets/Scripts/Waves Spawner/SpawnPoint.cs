@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawPoint : MonoBehaviour {
+public class SpawnPoint : MonoBehaviour {
     public void OnTriggerExit(Collider enemy) {
 
         ZombieController enemyController = enemy.GetComponent<ZombieController>();

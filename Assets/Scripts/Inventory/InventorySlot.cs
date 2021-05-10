@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour {
+    public SecondWeaponItem secondWeaponItem;
+    public SecondWeapon secondWeapon;
+    public int nbItem;
     public Image icon;
     public Button removeButton;
-    public SecondWeaponItem secondWeapon;
-    public int nbItem;
 
     private Inventory inventory;
 
@@ -22,8 +23,9 @@ public class InventorySlot : MonoBehaviour {
     }
 
     public void AddItem(SecondWeaponItem newWeapon) {
-        secondWeapon = new SecondWeaponItem(newWeapon.weapon,newWeapon.amount) ;
-        icon.sprite = secondWeapon.weapon.icon;
+        secondWeaponItem = new SecondWeaponItem(newWeapon.weapon,newWeapon.amount) ;
+        secondWeapon = secondWeaponItem.weapon;
+        icon.sprite = secondWeaponItem.weapon.icon;
         icon.enabled = true;
         removeButton.interactable = true;
         nbItem = newWeapon.amount;
@@ -32,20 +34,20 @@ public class InventorySlot : MonoBehaviour {
     }
 
     public void ClearSLot() {
-        secondWeapon = null;
+        secondWeaponItem = null;
         icon.sprite = null;
         icon.enabled = false;
         removeButton.interactable = false;
     }
 
     public void OnRemoveButton() {
-        inventory.Remove(secondWeapon);
+        inventory.Remove(secondWeaponItem);
     }
 
     public void UseItem() {
-        if (secondWeapon != null) {
-        Debug.Log(inventory.secondWeaponsItems.Count);
-            inventory.SetActiveWeapon(secondWeapon);
+        if (secondWeaponItem != null) {
+            Debug.Log(inventory.secondWeaponsItems.Count);
+            inventory.SetActiveWeapon(secondWeaponItem);
         }
     }
 }
