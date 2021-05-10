@@ -138,9 +138,16 @@ public class FireWeapon : Weapon {
     }
     private void ResetShot() {
         readyToShoot = true;
-        animator.SetBool("IsAiming", false);
-        onEndAttack.Invoke();
-        IsAttacking = false;
+
+        if (attackCommand) {
+            Fire();
+        }
+        else {
+            animator.SetBool("IsAiming", false);
+            onEndAttack.Invoke();
+            IsAttacking = false;
+        }
+        attackCommand = false;
     }
 
     private void Reload() {
@@ -161,10 +168,17 @@ public class FireWeapon : Weapon {
         }
     }
 
+    private bool attackCommand = false;
     public override void Attack() {
-        IsAttacking = true;
-        animator.SetBool("IsAiming", true);
-        Invoke(nameof(Fire), delayBeforeShoot);
+        if (IsAttacking) {
+            attackCommand = true;
+        }
+        else {
+            IsAttacking = true;
+            attackCommand = false;
+            animator.SetBool("IsAiming", true);
+            Invoke(nameof(Fire), delayBeforeShoot);
+        }
     }
 
     public override bool CanAttack() {
