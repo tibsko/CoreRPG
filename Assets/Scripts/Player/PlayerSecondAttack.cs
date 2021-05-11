@@ -16,7 +16,8 @@ public class PlayerSecondAttack : MonoBehaviour
     //////////////////////////////////////////////PROPERTIES
     public Vector3 AimDirection { get; private set; }
     public bool DisplayAim { get => startedAiming; }
-    public SecondWeapon ActiveSecondWeapon { get { return inventory.ActiveSecondWeapon; } }
+    public Secondary ActiveSecondary { get { return inventory.ActiveSecondary; } }
+    public SecondaryItem ActiveSecondaryItem { get { return inventory.ActiveSecondaryItem; } }
 
 
     // Start is called before the first frame update
@@ -32,10 +33,10 @@ public class PlayerSecondAttack : MonoBehaviour
     public void OnAim(Vector2 aim) {
 
         Debug.Log("Aiming");
-        if (!ActiveSecondWeapon) {
+        if (!ActiveSecondary) {
             return;
         }
-        ActiveSecondWeapon.OnAim(aim);
+        ActiveSecondary.OnAim(aim);
         AimDirection = new Vector3(aim.x, 0, aim.y);
 
         if (AimDirection.magnitude > 0.5f) {
@@ -45,7 +46,11 @@ public class PlayerSecondAttack : MonoBehaviour
     }
 
     public void OnRelease(Vector2 aim) {
-        ActiveSecondWeapon.OnRelease(aim);
+        if (!ActiveSecondary) {
+            return;
+        }
+        ActiveSecondary.OnRelease(aim);
+        inventory.looseBullet();
         //HandleShoot();
     }
 
@@ -102,8 +107,8 @@ public class PlayerSecondAttack : MonoBehaviour
 
     private void Attack() {
         isAttacking = true;
-        targetPosition = AimDirection * ActiveSecondWeapon.range + transform.position;
-        SecondWeapon weapon = inventory.ActiveSecondWeapon;
+        targetPosition = AimDirection * ActiveSecondary.range + transform.position;
+        Secondary weapon = inventory.ActiveSecondary;
         weapon.onEndAttack.RemoveAllListeners();
         weapon.onEndAttack.AddListener(ResetAttack);
         if (weapon.CanAttack()) {

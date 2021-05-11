@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondWeaponItem
+public class SecondaryItem
 {
-    public SecondWeapon weapon;
+    public Secondary secondary;
     public int amount;
 
-    public SecondWeaponItem (SecondWeapon sw,int number) {
-        this.weapon = sw;
+    public SecondaryItem (Secondary sw,int number) {
+        this.secondary = sw;
         this.amount = number;
     }
 }

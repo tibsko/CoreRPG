@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour {
-    public SecondWeaponItem secondWeaponItem;
-    public SecondWeapon secondWeapon;
+    public SecondaryItem secondaryItem;
+    public Secondary secondary;
     public int nbItem;
     public Image icon;
-    public Button removeButton;
 
     private Inventory inventory;
 
@@ -22,32 +21,38 @@ public class InventorySlot : MonoBehaviour {
         textNumber = GetComponentInChildren<Text>();
     }
 
-    public void AddItem(SecondWeaponItem newWeapon) {
-        secondWeaponItem = new SecondWeaponItem(newWeapon.weapon,newWeapon.amount) ;
-        secondWeapon = secondWeaponItem.weapon;
-        icon.sprite = secondWeaponItem.weapon.icon;
-        icon.enabled = true;
-        removeButton.interactable = true;
-        nbItem = newWeapon.amount;
-        textNumber.text = newWeapon.amount.ToString();
+
+    public void AddItem(SecondaryItem newWeapon) {
+        if (newWeapon.amount >= 0) {
+            secondaryItem = new SecondaryItem(newWeapon.secondary, newWeapon.amount);
+            secondary = secondaryItem.secondary;
+            icon.sprite = secondaryItem.secondary.icon;
+            icon.enabled = true;
+            nbItem = newWeapon.amount;
+            textNumber.enabled=true;
+            textNumber.text = newWeapon.amount.ToString();
+            if (nbItem <= 0)
+                ClearSLot();
+        }
 
     }
 
     public void ClearSLot() {
-        secondWeaponItem = null;
+        secondaryItem = null;
         icon.sprite = null;
         icon.enabled = false;
-        removeButton.interactable = false;
+        nbItem = 0;
+        textNumber.enabled=false;
     }
 
     public void OnRemoveButton() {
-        inventory.Remove(secondWeaponItem);
+        inventory.Remove(secondaryItem);
     }
 
     public void UseItem() {
-        if (secondWeaponItem != null) {
-            Debug.Log(inventory.secondWeaponsItems.Count);
-            inventory.SetActiveWeapon(secondWeaponItem);
+        if (secondaryItem != null) {
+            Debug.Log(inventory.secondaryItems.Count);
+            inventory.SetActiveSecondary(secondaryItem);
         }
     }
 }

@@ -6674,7 +6674,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &694119787
 GameObject:
@@ -15158,6 +15158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6017839447166944838, guid: be053cc7e7ab794449e760c4704f784c,
         type: 3}
+      propertyPath: secondarySlot
+      value: 
+      objectReference: {fileID: 1704890473}
+    - target: {fileID: 6017839447166944838, guid: be053cc7e7ab794449e760c4704f784c,
+        type: 3}
       propertyPath: secondWeaponSlot
       value: 
       objectReference: {fileID: 1704890473}
@@ -17028,7 +17033,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1903499992
 GameObject:
@@ -19609,15 +19614,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2229100939419222536}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df41d9bcc91658143aecfadcf3a808bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hasInteracted: 0
   textButton: Pick up grenade
-  secondWeapon: {fileID: -7323436141559035453, guid: 58e7757f94f9afc49beb25ff6f4e288a,
-    type: 3}
+  secondary: {fileID: 0}
   quantity: 2
 --- !u!136 &2229100939419222541
 CapsuleCollider:
@@ -19645,6 +19649,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrenadePickUP
       objectReference: {fileID: 0}
+    - target: {fileID: 2410919052003374082, guid: 5ffb0c80a7f2a5744b8f89c8526bbaee,
+        type: 3}
+      propertyPath: quantity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2410919052003374082, guid: 5ffb0c80a7f2a5744b8f89c8526bbaee,
+        type: 3}
+      propertyPath: secondary
+      value: 
+      objectReference: {fileID: -7323436141559035453, guid: 58e7757f94f9afc49beb25ff6f4e288a,
+        type: 3}
     - target: {fileID: 2410919052003374083, guid: 5ffb0c80a7f2a5744b8f89c8526bbaee,
         type: 3}
       propertyPath: m_RootOrder

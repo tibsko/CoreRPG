@@ -5,14 +5,13 @@ using UnityEngine.Events;
 
 
 //[CreateAssetMenu(fileName = " New Second weapon", menuName = "Second Weapon")]
-public class SecondWeapon : MonoBehaviour {
+public class Secondary : MonoBehaviour {
 
     public Sprite icon = null;
     public bool isDefaultweapon = false;
-    public int damages;
     public float range;
     
-    public SecondWeaponType secondWeaponType;
+    public SecondaryType secondaryType;
 
 
     [HideInInspector] public UnityEvent onEndAttack;
@@ -39,5 +38,5 @@ public class SecondWeapon : MonoBehaviour {
         //Attack();
     }
 
-    public enum SecondWeaponType { Grenade, Claymore, Consumable}
+    public enum SecondaryType { Grenade, Claymore, Consumable}
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowableSecondWeapon : SecondWeapon {
+public class ThrowableSecondWeapon : Secondary {
     [SerializeField] GameObject bullet;
     [SerializeField] LineRenderer lr;
 
@@ -29,8 +29,8 @@ public class ThrowableSecondWeapon : SecondWeapon {
 
     private void ShowParabole(Vector3 aim) {
         parabolicProjectile = bullet.GetComponent<ParabolicProjectile>();
-        parabolicProjectile.SetTarget(new Vector3(aim.x * 10, bullet.transform.position.y, aim.y * 10) + transform.position);
-        endPosition = new Vector3(aim.x * 10, bullet.transform.position.y, aim.y * 10) + transform.position;
+        endPosition = new Vector3(aim.x * range, bullet.transform.position.y, aim.y * range) + transform.position;
+        parabolicProjectile.SetTarget(endPosition);
         int count = 20;
         Vector3[] arcArray = new Vector3[count + 1];
         for (int i = 0; i <= count; i++) {
@@ -42,13 +42,18 @@ public class ThrowableSecondWeapon : SecondWeapon {
 
     public override void OnAim(Vector2 aim) {
         base.OnAim(aim);
-        Debug.Log("ren");
         aiming = true;
         currentAim = aim;
     }
 
     public override void OnRelease(Vector2 aim) {
         aiming = false;
+        GameObject bulletGo = Instantiate(bullet, transform.position, Quaternion.identity);
+        parabolicProjectile = bulletGo.GetComponent<ParabolicProjectile>();
+        endPosition = new Vector3(currentAim.x * range, bullet.transform.position.y, currentAim.y * range) + transform.position;
+        parabolicProjectile.SetTarget(endPosition);
+        parabolicProjectile.throwObject = true;
+
 
     }
 }
