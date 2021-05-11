@@ -15,6 +15,10 @@ public class RoomDoor : MonoBehaviour {
     }
 
     public  void Open(GameObject player) {
+        if (IsOpen)
+            return;
+
+        IsOpen = true;
         animator.SetBool("IsOpen", true);
 
         foreach (Room room in connectedRooms) {
@@ -22,18 +26,8 @@ public class RoomDoor : MonoBehaviour {
         }
     }
 
-    public void Cose() {
+    public void Close() {
         animator.SetBool("IsOpen", false);
+        IsOpen = false;
     }
-    //private void OpenDoor() {
-    //    countDown -= Time.deltaTime;
-    //    if (countDown <= 0) {
-    //        if (doorAngle < 150) {
-    //            doorAngle += 10;
-    //            door.transform.rotation = Quaternion.Euler(0, doorAngle, 0);
-    //            countDown = openSpeed;
-    //        }
-
-    //    }
-    //}
 }
