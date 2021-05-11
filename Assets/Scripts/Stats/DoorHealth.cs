@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class DoorHealth : GenericHealth {
 
-    [SerializeField] DoorInteractable doorInteractable;
+    [SerializeField] Fence doorInteractable;
     private int nbActiveDoor;
 
     //private NavMeshObstacle obstacle;
-    void Start() {
+    public override void Start() {
         base.Start();
+        doorInteractable = GetComponent<Fence>();
     }
     // Update is called once per frame
 

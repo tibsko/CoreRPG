@@ -20,12 +20,6 @@ public class RoomDoor : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
     public  void Open(GameObject player) {
         animator.SetBool("IsOpen", true);
         GameObject[] roomsActive = GameObject.FindGameObjectsWithTag("Room");

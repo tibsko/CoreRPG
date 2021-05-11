@@ -13,6 +13,8 @@ public class InteractableComponent : MonoBehaviour {
     Transform player;
 
     public InteractionEvent onInteract;
+    public UnityEvent onHoldDown;
+    public UnityEvent onHoldUp;
     public void Interact(GameObject player) {
         if (!useOnce || (useOnce && !used)) {
             onInteract.Invoke(player);
@@ -21,11 +23,14 @@ public class InteractableComponent : MonoBehaviour {
     }
 
     public void HoldDownInteract() {
-
+        if (!useOnce || (useOnce && !used)) {
+            onHoldDown.Invoke();
+            used = true;
+        }
     }
 
     public void HoldUpInteract() {
-
+        onHoldUp.Invoke();
     }
     void Update() {
 

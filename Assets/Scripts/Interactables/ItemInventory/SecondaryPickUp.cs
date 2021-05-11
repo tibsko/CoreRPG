@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondaryPickUp : Interactable
+public class SecondaryPickUp : MonoBehaviour
 {
     [SerializeField] Secondary secondary;
     public int quantity;
 
-    public override void Interact(GameObject player) {
-        base.Interact(player);
-        PickUp(player);
-    }
-
-    void PickUp(GameObject player) {
+    public void PickUp(GameObject player) {
         Inventory inventory = player.GetComponent<Inventory>();
         if (inventory) {
             bool wasPickedUp = inventory.Add(secondary,quantity);

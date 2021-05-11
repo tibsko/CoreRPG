@@ -18,7 +18,7 @@ public class GenericHealth : MonoBehaviour {
 
     private List<DamageSource> damageSources;
     // Start is called before the first frame update
-    public void Start() {
+    public virtual void Start() {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         damageSources = new List<DamageSource>();

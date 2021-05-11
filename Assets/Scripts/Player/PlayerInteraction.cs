@@ -7,8 +7,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] float radiusInteractable = 3.5f;
     [SerializeField] LayerMask interacableLayers;
 
-    private Interactable focus;
-    private Interactable interactable;
+    private InteractableComponent focus;
+    private InteractableComponent interactable;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         Collider[] interactablesDetected = Physics.OverlapSphere(transform.position, radiusInteractable, interacableLayers);
         if (interactablesDetected.Length > 0) {
             foreach (var collider in interactablesDetected) {
-                Interactable interactable = interactablesDetected[0].GetComponent<Interactable>();
+                InteractableComponent interactable = interactablesDetected[0].GetComponent<InteractableComponent>();
                 SetFocus(interactable);
             }
         }
@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
             RemoveFocus();
     }
 
-    private void SetFocus(Interactable newFocus) {
+    private void SetFocus(InteractableComponent newFocus) {
         if (newFocus && newFocus != focus) {
             focus = newFocus;
             newFocus.OnFocused(transform);
@@ -57,6 +57,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     public void HoldDownInteraction() {
+        
         interactable.HoldDownInteract();
     }
     public void HoldupInteraction() {

@@ -54,7 +54,7 @@ public class ParabolicProjectile : MonoBehaviour {
                 Collider[] hitColliders = Physics.OverlapSphere(impactPosition, exploseRadius,collisionMask);
                 foreach(Collider col in hitColliders) {
                     GenericHealth health = col.gameObject.GetComponent<GenericHealth>();
-                    if(health)
+                    if(health&&dealDamages)
                         //Debug.Log( col.gameObject.name + Damages);
                         health.TakeDamage(damages, this.gameObject);
                 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowableSecondWeapon : Secondary {
+public class ThrowableSecondary : Secondary {
     [SerializeField] GameObject bullet;
     [SerializeField] LineRenderer lr;
 
