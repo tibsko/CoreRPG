@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour {
-    public bool isInside;
+    public bool isInRoom;
 
     private Transform target;
     private NavMeshAgent agent;
@@ -14,7 +14,7 @@ public class ZombieController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        isInside = false;
+        isInRoom = false;
         doorDetector = GetComponentInChildren<DoorDetector>();
 
         enemyAttack = GetComponent<ZombieAttack>();
@@ -47,19 +47,19 @@ public class ZombieController : MonoBehaviour {
 
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
-        if (isInside) {
+        if (isInRoom) {
             target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
         }
-        else if (door && !isInside) {
+        else if (door && !isInRoom) {
             if (door.currentHealth <= 0) {
                 target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-                isInside = true;
+                isInRoom = true;
             }
             else {
                 if (doorDetector.doorDetected) {
                     target = doorDetector.doorDetected;
                 }
-                isInside = false;
+                isInRoom = false;
             }
         }
         else {

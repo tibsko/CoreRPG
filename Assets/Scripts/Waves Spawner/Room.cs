@@ -1,32 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Room : MonoBehaviour
-{
-    //[System.Serializable]
-    //public class SpawnPoint {
-    //    public Transform spawnerTransform;
-    //    public BoxCollider boxCollider;
-    //    public SpawnPoint spawnPoint;
-    //}
+public class Room : MonoBehaviour {
 
-    [SerializeField] List<GameObject> spawnPoints;
+    [SerializeField] List<SpawnPoint> spawnPoints;
 
-    public void ActiveRoomSpawners(bool state) {
-        foreach(GameObject spawn in spawnPoints) {
-            spawn.SetActive(state);
+    public void ActivateRoom() {
+        foreach (SpawnPoint spawn in spawnPoints) {
+            WaveManager.instance.AddSpawner(spawn);
         }
     }
-    //    // Start is called before the first frame update
-    //    void Start()
-    //{
-        
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 }

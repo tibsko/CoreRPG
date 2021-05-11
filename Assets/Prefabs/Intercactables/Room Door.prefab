@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 990421766456344000}
   - component: {fileID: 990421766456344007}
   - component: {fileID: 990421766456344001}
+  - component: {fileID: 1117437750}
   m_Layer: 12
   m_Name: Room Door
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 990421766456344006}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 15.19, y: 6.18, z: 50.79}
-  m_LocalScale: {x: 1.7, y: 1.25, z: 1}
+  m_LocalScale: {x: 1.7000003, y: 1.25, z: 1}
   m_Children:
   - {fileID: 2744299813033658716}
   m_Father: {fileID: 0}
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8445a911339824089a596e5f1e97a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textButton: Open
   door: {fileID: 2747107434340882354}
   openSpeed: 0
 --- !u!65 &990421766456344001
@@ -59,8 +59,38 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: -1.02, y: 1.29, z: -0.41}
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: -1.02, y: 1.29, z: 0}
+--- !u!114 &1117437750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990421766456344006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611ea56c4381e141a311147dcb4e479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasInteracted: 0
+  textButton: Door
+  useOnce: 1
+  used: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 990421766456344007}
+        m_MethodName: Open
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2746709848682767542
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +105,7 @@ GameObject:
   - component: {fileID: 990421765186541750}
   - component: {fileID: 2866065678310688724}
   - component: {fileID: 8262802261188745661}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SM_Bld_Bunker_Wall_Caution_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +231,7 @@ GameObject:
   - component: {fileID: 2768961648115931870}
   - component: {fileID: 2760182641744644958}
   - component: {fileID: 990421766875305358}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SM_Bld_Bunker_Wall_Caution_Door_Opening_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

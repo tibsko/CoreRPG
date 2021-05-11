@@ -2,47 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDoor : MonoBehaviour
-{
-    [SerializeField] GameObject door;
-    [SerializeField] float openSpeed;
+public class RoomDoor : MonoBehaviour {
+
+    [SerializeField] List<Room> connectedRooms;
 
     private Animator animator;
-    private float countDown;
-    private float doorAngle;
-    private bool isOpenning=false;
-    private List<Room> rooms;
+    private bool IsOpen = false;
     
-    // Start is called before the first frame update
     void Start()
     {
-        doorAngle = door.transform.rotation.y;
         animator = GetComponentInChildren<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     public  void Open(GameObject player) {
         animator.SetBool("IsOpen", true);
-        GameObject[] roomsActive = GameObject.FindGameObjectsWithTag("Room");
 
-        //Disable other rooms (and spawners)
-        foreach(GameObject room in roomsActive) {
-            if (room.activeInHierarchy) {
-                room.SetActive(false);
-                room.GetComponent<Room>().ActiveRoomSpawners(false);
-            }
+        foreach (Room room in connectedRooms) {
+            room.ActivateRoom();
         }
-
-        foreach (Room room in rooms) {
-            room.gameObject.SetActive(true);
-            room.ActiveRoomSpawners(true);
-        }
-
     }
 
     public void Cose() {
