@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8319650689960773567}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8715811134734390527}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8288394685015234609
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8715811134734390527}
-  - component: {fileID: 8715811134734390526}
+  - component: {fileID: 6133609092026982334}
   m_Layer: 0
-  m_Name: Grenade 2
+  m_Name: Claymore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8715811134734390526
+--- !u!114 &6133609092026982334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,15 +120,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8715811134734390525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 079593e923b86844d86e6732541ed647, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c88cbb12e67ca441b48ace48485102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300030, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
+  icon: {fileID: 21300046, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   isDefaultweapon: 0
-  damages: 30
-  range: 7
-  secondWeaponType: 1
-  bullet: {fileID: 7049102812120241912, guid: 16489801dbfb8264084e7babb041e470, type: 3}
+  range: 2
+  secondaryType: 1
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
+  bullet: {fileID: 2967244871747456843, guid: 7e9edea62f8450d4da26508d5d42f7d8, type: 3}

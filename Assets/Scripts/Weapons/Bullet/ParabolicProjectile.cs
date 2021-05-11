@@ -10,8 +10,11 @@ public class ParabolicProjectile : MonoBehaviour {
     [SerializeField] bool impactOnFloor = false;
     [SerializeField] bool dealDamages = false;
     [SerializeField] LayerMask collisionMask;
+    [SerializeField] bool exploseProjetcile;
+    [SerializeField] float exploseRadius;
+    [SerializeField] float damages;
 
-    public float Damages { get; set; }
+    //public float Damages { get ; set; }
     public bool throwObject = false;
     public bool drawGiz = true;
 
@@ -39,18 +42,30 @@ public class ParabolicProjectile : MonoBehaviour {
     void OnCollisionEnter(Collision collider) {
 
         if (collisionMask.ContainsLayer(collider.gameObject.layer)) {
-            if (impactEffect) {
                 Vector3 impactPosition = transform.position;
+            if (impactEffect) {
                 if (impactOnFloor) {
                     impactPosition.y = collider.transform.position.y; //TODO Improve height calculation
                 }
-                Instantiate(impactEffect, impactPosition, Quaternion.identity);
-                Destroy(gameObject);
+                GameObject goEffect =Instantiate(impactEffect, impactPosition, Quaternion.identity);
+                Destroy(goEffect, 2f);
+            }
+            if (exploseProjetcile) {
+                Collider[] hitColliders = Physics.OverlapSphere(impactPosition, exploseRadius,collisionMask);
+                foreach(Collider col in hitColliders) {
+                    GenericHealth health = col.gameObject.GetComponent<GenericHealth>();
+                    if(health&&dealDamages)
+                        //Debug.Log( col.gameObject.name + Damages);
+                        health.TakeDamage(damages, this.gameObject);
+                }
+                Destroy(gameObject,.1f);
             }
 
             GenericHealth genericHealth = collider.gameObject.GetComponent<GenericHealth>();
             if (genericHealth && dealDamages) {
-                genericHealth.TakeDamage(Damages, this.gameObject);
+                genericHealth.TakeDamage(damages, this.gameObject);
+                Destroy(gameObject);
+
             }
         }
     }

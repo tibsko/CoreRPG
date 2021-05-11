@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorInteractable : Interactable
+public class Fence : MonoBehaviour
 {
 
     //public List<DoorBoard> activeDoorBoards;
@@ -29,10 +29,6 @@ public class DoorInteractable : Interactable
             doorBoards[i].IsActive = true;
         }
 
-        //foreach(DoorBoard door in doorBoards) {
-        //    activeDoorBoards.Add(door);
-        //}
-        //unactiveDoorBoards = new List<DoorBoard>();
     }
     void Update() {
         if (repair) {
@@ -44,13 +40,14 @@ public class DoorInteractable : Interactable
         }
     }
     
-    public override void HoldDownInteract() {
-        base.HoldDownInteract();
+    public void HoldDownInteract() {
         repair = true;
+        Debug.Log("Down");
     }
-    public override void HoldUpInteract() {
-        base.HoldUpInteract();
+    public void HoldUpInteract() {
         repair = false;
+        Debug.Log("Up");
+
     }
 
     private void RepairDoor() {
@@ -60,6 +57,4 @@ public class DoorInteractable : Interactable
             Debug.Log("repairing");
         }
     }
-
-   
 }

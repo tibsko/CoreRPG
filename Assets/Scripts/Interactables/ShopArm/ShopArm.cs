@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopArmInteractable : Interactable
+public class ShopArm : MonoBehaviour
 {
     [SerializeField] Weapon weapon;
     [SerializeField] int weaponPrice;
 
     private bool shophasInteracted;
 
-    public override void Interact(GameObject player) {
-        base.Interact(player);
+    public void Buy(GameObject player) {
         if (!shophasInteracted) {
             PlayerWeapons playerWeapons = player.GetComponent<PlayerWeapons>();
             PlayerMoney playerMoney = player.GetComponent<PlayerMoney>();

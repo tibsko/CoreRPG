@@ -101,9 +101,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5076030160916993214}
-  - component: {fileID: 1898197535021619587}
   - component: {fileID: 6214463232379683579}
   - component: {fileID: 2597305304809303092}
+  - component: {fileID: 2258423601377512405}
+  - component: {fileID: 1235024802060294285}
   m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
@@ -130,23 +131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1898197535021619587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717479720168391135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4009abaf72da24145891b3fdcc8d074a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textButton: Repair
-  nbDoor: 0
-  healthStep: 0
-  doorBoards: []
-  timer: 0.5
 --- !u!65 &6214463232379683579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -184,7 +168,70 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   timerHealth: 0.5
-  doorInteractable: {fileID: 1898197535021619587}
+  doorInteractable: {fileID: 0}
+--- !u!114 &2258423601377512405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717479720168391135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611ea56c4381e141a311147dcb4e479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useOnce: 0
+  used: 0
+  hasInteracted: 0
+  textButton: RepairDoor
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoldDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1235024802060294285}
+        m_MethodName: HoldDownInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHoldUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1235024802060294285}
+        m_MethodName: HoldUpInteract
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1235024802060294285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717479720168391135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b44935cbbc35b4db9200cf5cc97dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbDoor: 0
+  healthStep: 0
+  doorBoards: []
+  timer: 0.5
 --- !u!1 &3255827803416039370
 GameObject:
   m_ObjectHideFlags: 0
