@@ -8,13 +8,12 @@ public class RoomDoor : MonoBehaviour {
 
     private Animator animator;
     private bool IsOpen = false;
-    
-    void Start()
-    {
+
+    void Start() {
         animator = GetComponentInChildren<Animator>();
     }
 
-    public  void Open(GameObject player) {
+    public void Open(GameObject player) {
         if (IsOpen)
             return;
 
