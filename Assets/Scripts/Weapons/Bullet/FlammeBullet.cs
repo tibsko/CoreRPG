@@ -26,7 +26,6 @@ public class FlammeBullet : Bullet {
         capsule = GetComponent<CapsuleCollider>();
         stepDelay = delay / (endHeight - startHeight);
         countDown = stepDelay;
-        Debug.Log(stepDelay);
 
         stepHeight = (endHeight - startHeight) * (stepDelay);
         Debug.Log(stepHeight);

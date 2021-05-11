@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyHealth : CharacterHealth {
+public class EnemyHealth : GenericHealth {
 
     [SerializeField] float timer;
-    // Update is called once per frame
+
     public void Die() {
         gameObject.layer = 0;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -15,11 +15,12 @@ public class EnemyHealth : CharacterHealth {
         GetComponent<EnemyAttack>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<Canvas>().enabled = false;
-        GetComponentInChildren<EnemyHealth>().enabled = false;
         SetKinematic(false);
         GetComponent<Rigidbody>().isKinematic = true;
         Destroy(gameObject,timer);
+        this.enabled = false;
     }
+
     private void SetKinematic(bool newValue) {
         Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody rb in bodies) {

@@ -33,12 +33,6 @@ public class PlayerAttack : MonoBehaviour {
         startedAiming = false;
     }
 
-    // Update is called once per frame
-    void Update() {
-
-        ToggleHitBox(activateHitBoxes);
-    }
-
     public void OnAim(Vector2 aim) {
         if (!ActiveWeapon) {
             return;
@@ -123,13 +117,12 @@ public class PlayerAttack : MonoBehaviour {
         //delay player can't attack ?
     }
 
-    public void ToggleHitBox(bool state) {
+    public void ToggleHitBox(int state) {
         if (playerWeapons.ActiveWeapon is MeleeWeapon) {
             MeleeWeapon meleeWeapon = playerWeapons.ActiveWeapon as MeleeWeapon;
-            meleeWeapon.ToggleHitBoxes(state);
+            meleeWeapon.ToggleHitBoxes(state == 1);
         }
     }
-
     private void OnDrawGizmos() {
         //Gizmos.color = Color.red;
         //if (playerWeapons.equipedWeapons != null && playerWeapons.equipedWeapons.Count > 0 && playerWeapons.equipedWeapons[activeWeaponIndex])

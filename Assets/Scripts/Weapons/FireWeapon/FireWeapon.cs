@@ -46,6 +46,7 @@ public class FireWeapon : Weapon {
     //private
     private int bulletsLeft, bulletsToShoot;
     private bool readyToShoot, reloading, emptySignal;
+    private bool attackCommand = false;
     private AudioSource audioSource;
     private PlayerAttack parentPlayer;
     private Animator animator;
@@ -138,9 +139,16 @@ public class FireWeapon : Weapon {
     }
     private void ResetShot() {
         readyToShoot = true;
-        animator.SetBool("IsAiming", false);
-        onEndAttack.Invoke();
-        IsAttacking = false;
+
+        if (attackCommand) {
+            Fire();
+        }
+        else {
+            animator.SetBool("IsAiming", false);
+            onEndAttack.Invoke();
+            IsAttacking = false;
+        }
+        attackCommand = false;
     }
 
     private void Reload() {
@@ -155,16 +163,21 @@ public class FireWeapon : Weapon {
     }
 
     private void EmptySignal() {
-        if (!emptySignal) {
-            emptySignal = true;
+        //if (!emptySignal) 
+        //    emptySignal = true;
             audioSource.PlayOneShot(emptySound);
-        }
     }
 
     public override void Attack() {
-        IsAttacking = true;
-        animator.SetBool("IsAiming", true);
-        Invoke(nameof(Fire), delayBeforeShoot);
+        if (IsAttacking) {
+            attackCommand = true;
+        }
+        else {
+            IsAttacking = true;
+            attackCommand = false;
+            animator.SetBool("IsAiming", true);
+            Invoke(nameof(Fire), delayBeforeShoot);
+        }
     }
 
     public override bool CanAttack() {

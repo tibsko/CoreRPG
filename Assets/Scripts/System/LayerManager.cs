@@ -15,11 +15,11 @@ public class LayerManager : MonoBehaviour
     }
     #endregion
 
-    public LayerMask groundLayer;
-    public LayerMask bulletLayer;
+    //public LayerMask groundLayer;
+    //public LayerMask bulletLayer;
     public LayerMask playerLayer;
-    public LayerMask interactableLayer;
+    //public LayerMask interactableLayer;
     public LayerMask enemyLayer;
-    public LayerMask doorLayer;
-    public LayerMask collactableLayer;
+    //public LayerMask doorLayer;
+    //public LayerMask collectableLayer;
 }

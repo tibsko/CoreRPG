@@ -10,18 +10,18 @@ public class InventoryUI : MonoBehaviour {
     private InventorySlot[] slots;
 
     void Start() {
+        inventory = GetComponentInParent<Inventory>();
+        inventory.onItemChangedCallback += UpdateUI;
+
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
     void UpdateUI() {
-        for (int i = 0; i < slots.Length; i++) {
-            if (i < inventory.items.Count) {
-                slots[i].AddItem(inventory.items[i]);
-                Debug.Log("Item addes");
-            }
-            else {
-                slots[i].ClearSLot();
+        for (int i = 0; i < inventory.secondWeaponsItems.Count; i++) {
+            if (i < inventory.secondWeaponsItems.Count) {
+                slots[i].AddItem(inventory.secondWeaponsItems[i]);
             }
         }
     }
 }
+

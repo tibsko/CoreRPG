@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : CharacterHealth {
+public class PlayerHealth : GenericHealth {
     // Update is called once per frame
     GameObject healEffect;
     public void Die() {
@@ -10,8 +10,8 @@ public class PlayerHealth : CharacterHealth {
     }
 
     
-    public override void HealHealth(int heal, GameObject source) {
-        base.HealHealth(heal, source);
+    public override void Heal(int heal, GameObject source) {
+        base.Heal(heal, source);
         HealItem healItem = source.GetComponent<HealItem>();
         if (healItem) {
             healEffect = Instantiate(healItem.healParticule, gameObject.transform);

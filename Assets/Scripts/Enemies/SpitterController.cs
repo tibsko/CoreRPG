@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class SpitterController : MonoBehaviour
 {
-    public bool isInside;
-
+    private bool isInside;
     private Transform target;
     private NavMeshAgent agent;
     private Animator animator;
     private SpitterAttack enemyAttack;
     private DoorDetector doorDetector;
-
     private float speed = 2f;
 
     // Start is called before the first frame update
@@ -31,8 +29,7 @@ public class SpitterController : MonoBehaviour
     void Update() {
         Targeting();
         enemyAttack.target = target;
-        Debug.Log(target.name);
-        //agent.SetDestination(target.position);
+
         float distance = Vector3.Distance(target.position, gameObject.transform.position);
         if (distance <= agent.stoppingDistance) {
             FaceTarget();

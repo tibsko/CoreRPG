@@ -25,4 +25,8 @@ public class PlayerManager : MonoBehaviour {
     public PlayerController GetNearestPlayer(Vector3 pos) {
         return players.OrderBy(p => (p.transform.position - pos).magnitude).First();
     }
+
+    public void AddPlayer() {
+
+    }
 }
