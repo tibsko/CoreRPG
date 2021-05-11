@@ -30,6 +30,8 @@ public class PlayerSecondAttack : MonoBehaviour
 
 
     public void OnAim(Vector2 aim) {
+
+        Debug.Log("Aiming");
         if (!ActiveSecondWeapon) {
             return;
         }
@@ -43,7 +45,8 @@ public class PlayerSecondAttack : MonoBehaviour
     }
 
     public void OnRelease(Vector2 aim) {
-        HandleShoot();
+        ActiveSecondWeapon.OnRelease(aim);
+        //HandleShoot();
     }
 
     private void HandleShoot() {

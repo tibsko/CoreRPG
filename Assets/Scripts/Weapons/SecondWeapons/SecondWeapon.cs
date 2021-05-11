@@ -34,5 +34,10 @@ public class SecondWeapon : MonoBehaviour {
     public virtual void OnAim(Vector2 aim) {
 
     }
+
+    public virtual void OnRelease(Vector2 aim) {
+        //Attack();
+    }
+
     public enum SecondWeaponType { Grenade, Claymore, Consumable}
 }

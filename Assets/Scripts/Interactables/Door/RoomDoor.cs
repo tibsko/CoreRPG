@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDoorInteractable : Interactable
+public class RoomDoor : MonoBehaviour
 {
     [SerializeField] GameObject door;
     [SerializeField] float openSpeed;
@@ -26,10 +26,11 @@ public class RoomDoorInteractable : Interactable
        
     }
 
-    public override void Interact(GameObject player) {
-        base.Interact(player);
-        animator.SetBool("isOpenning", true);
+    public  void Open(GameObject player) {
+        animator.SetBool("IsOpen", true);
         GameObject[] roomsActive = GameObject.FindGameObjectsWithTag("Room");
+
+        //Disable other rooms (and spawners)
         foreach(GameObject room in roomsActive) {
             if (room.activeInHierarchy) {
                 room.SetActive(false);
@@ -42,6 +43,10 @@ public class RoomDoorInteractable : Interactable
             room.ActiveRoomSpawners(true);
         }
 
+    }
+
+    public void Cose() {
+        animator.SetBool("IsOpen", false);
     }
     //private void OpenDoor() {
     //    countDown -= Time.deltaTime;
