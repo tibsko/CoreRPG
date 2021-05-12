@@ -131,3 +131,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bullet: {fileID: 2967244871747456843, guid: 7e9edea62f8450d4da26508d5d42f7d8, type: 3}
+  previs: {fileID: 359304864582827955, guid: ebaabf27ae0e5e24eb00b85f09904d2c, type: 3}
+  mat: {fileID: 2100000, guid: d2ad6d589d0941c499a20a488f56d470, type: 2}

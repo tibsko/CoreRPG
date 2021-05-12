@@ -53,7 +53,6 @@ public class ZombieController : MonoBehaviour {
         else if (door && !isInRoom) {
             if (door.currentHealth <= 0) {
                 target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-                isInRoom = true;
             }
             else {
                 if (doorDetector.doorDetected) {

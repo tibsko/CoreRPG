@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondary: {fileID: 6133609092026982334, guid: 7ac17497ac7949b46a6e38d6d0edfe28,
     type: 3}
-  quantity: 3
+  quantity: 10
 --- !u!136 &2665146333899423541
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -76,8 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOnce: 0
-  used: 0
-  hasInteracted: 0
   textButton: Pick Up Claymore
   onInteract:
     m_PersistentCalls:
@@ -126,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 6837562953061458110}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 2665146333899423538}
   m_RootOrder: 0

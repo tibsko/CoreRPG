@@ -56,5 +56,8 @@ public class Fence : MonoBehaviour
             doorHealth.UpdateDoorboards();
             Debug.Log("repairing");
         }
+        else {
+            repair = false;
+        }
     }
 }

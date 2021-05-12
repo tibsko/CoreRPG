@@ -74,7 +74,6 @@ public class BoomerController : MonoBehaviour {
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
                 target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-                isInside = true;
                 agent.stoppingDistance = 2f;
             }
             else {

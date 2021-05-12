@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class PosableSecondary : Secondary {
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject previs;
+    [SerializeField] Material mat;
 
-    private GameObject sphere;
+    private GameObject posableRenderer;
     private Vector3 endPosition;
     private Vector3 currentAim = Vector3.zero;
     private bool aiming;
     private Transform player;
     // Start is called before the first frame update
     void Start() {
-        sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.localScale = new Vector3(.4f, .4f,.4f);
-        sphere.gameObject.GetComponent<SphereCollider>().isTrigger = true;
+        posableRenderer = Instantiate(previs, transform.position, Quaternion.identity);
         player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+
+       
     }
 
     void Update() {
-        sphere.SetActive(aiming);
+        posableRenderer.SetActive(aiming);
         if (aiming)
             ShowObject(currentAim);
     }
@@ -29,8 +31,8 @@ public class PosableSecondary : Secondary {
     }
 
     private void ShowObject(Vector3 aim) {
-        endPosition = new Vector3(aim.x * range +transform.position.x, player.position.y, aim.y * range+transform.position.z);
-        sphere.transform.position = endPosition;
+        endPosition = new Vector3(aim.x * range, 0, aim.y * range)+player.position;
+        posableRenderer.transform.position = endPosition+Vector3.up*.2f;
 
     }
     public override void OnAim(Vector2 aim) {
@@ -40,7 +42,11 @@ public class PosableSecondary : Secondary {
     }
     public override void OnRelease(Vector2 aim) {
         aiming = false;
-        Attack();
+        if(posableRenderer.GetComponent<PosablePrevisualisation>().CanPos)
+            Attack();
+        else {
+            Debug.Log("Can't Pos");
+        }
     }
 
 }

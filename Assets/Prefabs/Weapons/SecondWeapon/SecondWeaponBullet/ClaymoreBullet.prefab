@@ -51,7 +51,7 @@ MonoBehaviour:
   dealDamages: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   exploseRadius: 3
   damages: 30
 --- !u!136 &8348580661899771995

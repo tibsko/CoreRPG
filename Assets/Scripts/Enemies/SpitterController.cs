@@ -67,7 +67,6 @@ public class SpitterController : MonoBehaviour
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
                 target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-                isInside = true;
             }
             else {
                 if (doorDetector.doorDetected) {

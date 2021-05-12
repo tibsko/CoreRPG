@@ -10,10 +10,12 @@ public class ThrowableSecondary : Secondary {
     private Vector3 endPosition;
     private Vector3 currentAim = Vector3.zero;
     private bool aiming;
+    private Transform player;
 
     // Start is called before the first frame update
     void Start() {
         //lr = GetComponent<LineRenderer>();
+        player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
     }
 
     void Update() {
@@ -23,18 +25,17 @@ public class ThrowableSecondary : Secondary {
     }
     public override void Attack() {
         base.Attack();
-        Transform player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
         Instantiate(bullet, player.position, Quaternion.identity);
     }
 
     private void ShowParabole(Vector3 aim) {
         parabolicProjectile = bullet.GetComponent<ParabolicProjectile>();
-        endPosition = new Vector3(aim.x * range, bullet.transform.position.y, aim.y * range) + transform.position;
+        endPosition = new Vector3(aim.x * range, bullet.transform.position.y, aim.y * range) + player.position;
         parabolicProjectile.SetTarget(endPosition);
         int count = 20;
         Vector3[] arcArray = new Vector3[count + 1];
         for (int i = 0; i <= count; i++) {
-            arcArray[i] = ParabolaEquation.Parabole(transform.position, endPosition, parabolicProjectile.height, i / (float)count);
+            arcArray[i] = ParabolaEquation.Parabole(player.position, endPosition, parabolicProjectile.height, i / (float)count);
         }
         lr.positionCount = count + 1;
         lr.SetPositions(arcArray);
@@ -50,7 +51,7 @@ public class ThrowableSecondary : Secondary {
         aiming = false;
         GameObject bulletGo = Instantiate(bullet, transform.position, Quaternion.identity);
         parabolicProjectile = bulletGo.GetComponent<ParabolicProjectile>();
-        endPosition = new Vector3(currentAim.x * range, bullet.transform.position.y, currentAim.y * range) + transform.position;
+        endPosition = new Vector3(currentAim.x * range, bullet.transform.position.y, currentAim.y * range) + player.position;
         parabolicProjectile.SetTarget(endPosition);
         parabolicProjectile.throwObject = true;
 
