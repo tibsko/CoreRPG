@@ -5,9 +5,10 @@ using UnityEngine.Events;
 
 public class InteractableComponent : MonoBehaviour {
     public bool useOnce = false;
-    public bool used = false;
-    public bool hasInteracted = false;
     public string textButton;
+
+    private bool used = false;
+    private bool hasInteracted = false;
 
     bool isFocus = false;
     Transform player;

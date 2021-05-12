@@ -6,6 +6,7 @@ public class Room : MonoBehaviour {
 
     [SerializeField] bool firstRoom = false;
 
+    private bool activated = false;
     private SpawnPoint[] spawnPoints;
 
     private void Start() {
@@ -16,6 +17,10 @@ public class Room : MonoBehaviour {
     }
 
     public void ActivateRoom() {
+        if (activated)
+            return;
+
+        activated = true;
         foreach (SpawnPoint spawn in spawnPoints) {
             WaveManager.instance.AddSpawner(spawn);
         }
