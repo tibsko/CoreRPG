@@ -24,9 +24,8 @@ public class InteractableComponent : MonoBehaviour {
     }
 
     public void HoldDownInteract() {
-        if (!useOnce || (useOnce && !used)) {
+        if (!useOnce) {
             onHoldDown.Invoke();
-            used = true;
         }
     }
 
