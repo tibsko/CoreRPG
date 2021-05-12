@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Room : MonoBehaviour {
 
-    [SerializeField] List<SpawnPoint> spawnPoints;
+    [SerializeField] bool firstRoom = false;
+
+    private SpawnPoint[] spawnPoints;
+
+    private void Start() {
+        spawnPoints = GetComponentsInChildren<SpawnPoint>();
+        if (firstRoom) {
+            ActivateRoom();
+        }
+    }
 
     public void ActivateRoom() {
         foreach (SpawnPoint spawn in spawnPoints) {

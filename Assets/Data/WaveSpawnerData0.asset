@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a36f044cc8033d489569e70c3011b9d, type: 3}
+  m_Name: WaveSpawnerData0
+  m_EditorClassIdentifier: 
+  spawnRate: 1
+  maxSimultaneaousEnemies: 100
+  enemyRates:
+  - enemyPrefab: {fileID: 3455527574230520146, guid: 3ee6e4ea89820754d9a70f85c02118de,
+      type: 3}
+    startWave: 0
+    minProbability: 0.3
+    maxProbability: 0.7
+    incrementMaxProbability: 0.05
+    incrementMinProbability: 0
+  - enemyPrefab: {fileID: 1253970159583894485, guid: c3953a6ede3903641b9dcbe556215547,
+      type: 3}
+    startWave: 0
+    minProbability: 0.2
+    maxProbability: 0.5
+    incrementMaxProbability: 0.1
+    incrementMinProbability: 0
+  increaseFunction: 0
+  amountModifier: 2
+  specialWaves: []

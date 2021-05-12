@@ -3,17 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WaveSpawnerData", menuName = "ScriptableObjects/WaveSpawnerData")]
-public class WaveSpawnerData : ScriptableObject
-{
+public class WaveSpawnerData : ScriptableObject {
+
     [Header("Standard Rates")]
-    public EnemyProbability[] enemyRates;
     public float spawnRate = 1f;
     public int maxSimultaneaousEnemies = 100;
-    public int enemyAmount = 10;
+    public EnemyProbability[] enemyRates;
+
+    [Header("Enemy amount increase")]
+    [SerializeField] EFunctionType increaseFunction;
+    [SerializeField] float amountModifier = 1;
+    public int EnemyAmount { get; private set; }
 
     [Space]
     [Header("Special waves")]
     public List<OverrideWave> specialWaves;
+
+
+    public void ComputeAmount(int waveNumber) {
+        float result = 0f;
+        switch (increaseFunction) {
+            case EFunctionType.Linear:
+                result = waveNumber * amountModifier;
+                break;
+            case EFunctionType.Log:
+                result = Mathf.Log(waveNumber * amountModifier);
+                break;
+            case EFunctionType.Pow:
+                result = Mathf.Pow(waveNumber, amountModifier);
+                break;
+            case EFunctionType.Exp:
+                result = Mathf.Exp(waveNumber * amountModifier);
+                break;
+        }
+        EnemyAmount = Mathf.CeilToInt(result);
+    }
+
+    public enum EFunctionType {
+        Linear,
+        Log,
+        Pow,
+        Exp
+    }
 }
 
 [System.Serializable]

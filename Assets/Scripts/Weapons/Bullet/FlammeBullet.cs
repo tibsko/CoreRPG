@@ -28,7 +28,6 @@ public class FlammeBullet : Bullet {
         countDown = stepDelay;
 
         stepHeight = (endHeight - startHeight) * (stepDelay);
-        Debug.Log(stepHeight);
         capsule.height = startHeight;
 
         capsule.center = new Vector3(transform.position.x, transform.position.y, capsule.height * 0.5f);
