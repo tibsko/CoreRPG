@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1295719255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295719256}
+  m_Layer: 0
+  m_Name: FirePoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1295719256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295719255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.082, y: 0.049, z: 1.243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6088888253214441276}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1860161511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860161512}
+  m_Layer: 0
+  m_Name: FirePoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860161512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860161511}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.147, y: 0.049, z: 1.243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6088888253214441276}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6094375909468335480
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +93,8 @@ Transform:
   - {fileID: 6097687551452474940}
   - {fileID: 6088873699006291734}
   - {fileID: 6089160891966466714}
+  - {fileID: 1860161512}
+  - {fileID: 1295719256}
   m_Father: {fileID: 6097770054815336910}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -569,6 +631,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8346481933035664652}
   - component: {fileID: 8346481933035664659}
+  - component: {fileID: 1013237494}
+  - component: {fileID: 3276914187559427666}
   m_Layer: 0
   m_Name: MachinGunAuto
   m_TagString: Untagged
@@ -603,3 +667,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d61764d1f9ee947990d60fd3aa9f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 6097770054815336910}
+  rotationSpeed: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  firePoint1: {fileID: 1860161512}
+  firePoint2: {fileID: 1295719256}
+  bulletPrefab: {fileID: 1186466485596272, guid: c1f8a84503f62d04e8ea852f13e237fd,
+    type: 3}
+  range: 6
+  spread: 0.7
+  velocity: 30
+  damages: 5
+  bulletLifeTime: 0.7
+  timeBetweenBurst: 0.5
+--- !u!136 &1013237494
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346481933035664653}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 10.82
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3276914187559427666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346481933035664653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c88cbb12e67ca441b48ace48485102f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300040, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
+  isDefaultweapon: 0
+  range: 2
+  secondaryType: 1
+  onEndAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  bullet: {fileID: 8346481933035664653}
+  previs: {fileID: 359304864582827955, guid: ebaabf27ae0e5e24eb00b85f09904d2c, type: 3}
+  mat: {fileID: 0}

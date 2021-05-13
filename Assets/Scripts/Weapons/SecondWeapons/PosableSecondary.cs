@@ -5,7 +5,6 @@ using UnityEngine;
 public class PosableSecondary : Secondary {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject previs;
-    [SerializeField] Material mat;
 
     private GameObject posableRenderer;
     private Vector3 endPosition;
