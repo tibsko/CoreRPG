@@ -301,6 +301,7 @@ MonoBehaviour:
   icon: {fileID: 21300050, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   isDefaultweapon: 0
   range: 0
+  display: 1
   secondaryType: 2
   onEndAttack:
     m_PersistentCalls:

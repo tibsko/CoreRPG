@@ -7,9 +7,9 @@ public class Fence : MonoBehaviour
 
     //public List<DoorBoard> activeDoorBoards;
     //public List<DoorBoard> unactiveDoorBoards;
-    public int nbDoor;
     public int healthStep;
 
+    public int nbDoor;
     public DoorBoard[] doorBoards;
 
     private DoorHealth doorHealth;

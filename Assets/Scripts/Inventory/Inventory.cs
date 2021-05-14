@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour {
-    [SerializeField] Transform secondarySlot; 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
     public List<SecondaryItem> secondaryItems=new List<SecondaryItem>();
     public List<Secondary> secondaries = new List<Secondary>();
 
-    public int space = 3;
-    bool exist;
+    public int Space;
 
     public Secondary ActiveSecondary;
     public SecondaryItem ActiveSecondaryItem;
 
+    [SerializeField] Transform secondarySlot;
+    
+    private bool exist;
     public bool Add(Secondary weapon, int amount) {
         foreach (SecondaryItem sp in secondaryItems) {
             if (sp.secondary.secondaryType == weapon.secondaryType) {
@@ -30,7 +31,7 @@ public class Inventory : MonoBehaviour {
             }
         }
         if (!exist) {
-            if (secondaryItems.Count >= space) {
+            if (secondaryItems.Count >= Space) {
                 Debug.Log("Not enough room in the inventory");
                 return false;
             }
@@ -59,7 +60,14 @@ public class Inventory : MonoBehaviour {
         ActiveSecondaryItem = swi;
         foreach (Secondary sw in secondaries) {
             if (sw.secondaryType == swi.secondary.secondaryType) {
+
                 sw.gameObject.SetActive(true);
+                MeshRenderer[] renderers = sw.gameObject.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer ren in renderers) {
+                    ren.enabled = sw.display;
+                }
+                if(sw.gameObject.GetComponent<MachineGunAuto>())
+                    sw.gameObject.GetComponent<MachineGunAuto>().enabled = sw.display;
                 break;
             }
         }

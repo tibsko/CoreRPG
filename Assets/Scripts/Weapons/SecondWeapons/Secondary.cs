@@ -10,7 +10,9 @@ public class Secondary : MonoBehaviour {
     public Sprite icon = null;
     public bool isDefaultweapon = false;
     public float range;
-    
+    public bool display;
+
+
     public SecondaryType secondaryType;
 
 
@@ -38,5 +40,5 @@ public class Secondary : MonoBehaviour {
         //Attack();
     }
 
-    public enum SecondaryType { Grenade, Claymore, Consumable}
+    public enum SecondaryType { Grenade, Claymore, Consumable,Tower}
 }

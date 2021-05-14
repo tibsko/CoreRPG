@@ -87,7 +87,7 @@ public class FireWeapon : Weapon {
                 //If only one shot action
                 if (timeBetweenShots <= 0f) {
                     animator.SetTrigger("Shoot");
-                    Instantiate(muzzleFlashPrefab, firePoint);
+                    Instantiate(muzzleFlashPrefab, firePoint.position,Quaternion.identity);
                     audioSource.PlayOneShot(shotSound);
                 }
 

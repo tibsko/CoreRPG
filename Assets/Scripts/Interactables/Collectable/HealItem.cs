@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealItem : CollectableItem
 {
     public GameObject healParticule;// cette varible la s'affiche pas je fais comment?
+
     [SerializeField] int healAmount;
 
 

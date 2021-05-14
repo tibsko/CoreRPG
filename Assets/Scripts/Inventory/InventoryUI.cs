@@ -17,7 +17,7 @@ public class InventoryUI : MonoBehaviour {
     }
 
     void UpdateUI() {
-        for (int i = 0; i < inventory.space; i++) {
+        for (int i = 0; i < inventory.Space; i++) {
             if (i < inventory.secondaryItems.Count) {
                 slots[i].AddItem(inventory.secondaryItems[i]);
             }

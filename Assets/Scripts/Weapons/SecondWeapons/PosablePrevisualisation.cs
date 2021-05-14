@@ -24,7 +24,7 @@ public class PosablePrevisualisation : MonoBehaviour {
 
     }
     void OnTriggerStay(Collider other) {
-        if (layerMask.ContainsLayer(other.gameObject.layer)) {
+        if (layerMask.ContainsLayer(other.gameObject.layer)&&other.gameObject.name!=gameObject.name) {
             renPosable.material = notPosMat;
             CanPos = false;
         }

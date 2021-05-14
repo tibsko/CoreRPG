@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PosableSecondary : Secondary {
+
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject previs;
 

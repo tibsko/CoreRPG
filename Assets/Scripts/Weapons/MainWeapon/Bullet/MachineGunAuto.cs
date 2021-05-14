@@ -33,7 +33,7 @@ public class MachineGunAuto : MonoBehaviour {
         }
     }
     void Rotation(GameObject enemy) {
-        Vector3 lookAtPosition = enemy.transform.position - gun.position;
+        Vector3 lookAtPosition = enemy.transform.position - transform.position;
         lookAtPosition.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookAtPosition);
         gun.rotation = Quaternion.Slerp(gun.rotation, rotation, Time.deltaTime * rotationSpeed);
@@ -53,13 +53,11 @@ public class MachineGunAuto : MonoBehaviour {
         GameObject bulletGo = Instantiate(bulletPrefab.gameObject, firePoint1);
         bulletGo.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range, bulletLifeTime);
         StartCoroutine(SecondShoot());
-        GameObject bulletGo2 = Instantiate(bulletPrefab.gameObject, firePoint2);
-        bulletGo2.GetComponent<Bullet>().InitializeBullet(rotation, damages, velocity, range, bulletLifeTime);
         Invoke(nameof(ResetShot), timeBetweenBurst);
-
     }
     IEnumerator SecondShoot() {
         yield return new WaitForSeconds(timeBetweenBurst / 2);
+
         //Spread & direction
         float randomRotation = Random.Range(-spread, spread);
 
