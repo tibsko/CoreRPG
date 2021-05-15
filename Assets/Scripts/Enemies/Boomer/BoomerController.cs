@@ -44,7 +44,7 @@ public class BoomerController : MonoBehaviour {
             if (agent.velocity.magnitude > 0.01f) {
                 animator.SetFloat("Speed", agent.velocity.magnitude);
             }
-            if (target == PlayerManager.instance.player.transform) {
+            if (target == ReferenceManager.instance.player.transform) {
                 if (distance <= speedRunDistance) {
                     agent.speed = speedRun;
                 }
@@ -68,12 +68,12 @@ public class BoomerController : MonoBehaviour {
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
             agent.stoppingDistance = 2f;
         }
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
                 agent.stoppingDistance = 2f;
             }
             else {
@@ -85,7 +85,7 @@ public class BoomerController : MonoBehaviour {
 
         }
         else {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
 

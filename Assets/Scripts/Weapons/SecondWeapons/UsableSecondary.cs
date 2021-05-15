@@ -9,7 +9,7 @@ public class UsableSecondary : Secondary {
     private PlayerHealth playerHealth;
     // Start is called before the first frame update
     void Start() {
-        player = PlayerManager.instance.GetNearestPlayer(transform.position);
+        player = ReferenceManager.instance.GetNearestPlayer(transform.position);
         playerHealth = player.gameObject.GetComponent<PlayerHealth>();
     }
 

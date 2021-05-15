@@ -6,9 +6,6 @@ public class ZombieHitBox : MonoBehaviour
 {
     [SerializeField] EnemyAttack enemyAttack;
    
-    public void Start() {
-        
-    }
     void OnTriggerEnter(Collider collision) {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         DoorHealth doorHealth = collision.gameObject.GetComponent<DoorHealth>();

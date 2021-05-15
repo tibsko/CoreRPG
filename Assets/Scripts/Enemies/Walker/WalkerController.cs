@@ -48,11 +48,11 @@ public class WalkerController : MonoBehaviour {
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInRoom) {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
         else if (door && !isInRoom) {
             if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
             }
             else {
                 if (doorDetector.doorDetected) {
@@ -62,7 +62,7 @@ public class WalkerController : MonoBehaviour {
             }
         }
         else {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
 

@@ -17,7 +17,7 @@ public class BoomerAttack : EnemyAttack {
     // Start is called before the first frame update
     void Start() {
 
-        activatehitbox = false;
+        activateHitbox = false;
         animator = gameObject.GetComponentInChildren<Animator>();
 
         isScreaming = false;
@@ -41,7 +41,7 @@ public class BoomerAttack : EnemyAttack {
                     animator.SetBool("isAttacking", false);
                 }
             }
-            else if (target == PlayerManager.instance.GetNearestPlayer(transform.position).transform) {
+            else if (target == ReferenceManager.instance.GetNearestPlayer(transform.position).transform) {
                 animator.SetBool("isAttacking", false);
                 if (distance <= exploseDistance) {
                     animator.SetBool("isScreaming", true);
@@ -66,7 +66,7 @@ public class BoomerAttack : EnemyAttack {
     }
 
     public void BoomerExplose() {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius, LayerManager.instance.playerLayer);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius, ReferenceManager.instance.playerLayer);
         if (colliders.Length > 0) {
             foreach (Collider col in colliders) {
                 PlayerHealth playerhealth = col.GetComponentInParent<PlayerHealth>();

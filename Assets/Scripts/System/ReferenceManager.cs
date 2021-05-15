@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerManager : MonoBehaviour {
+public class ReferenceManager : MonoBehaviour {
     #region Singleton
-    public static PlayerManager instance;
+    public static ReferenceManager instance;
 
     public void Awake() {
         instance = this;
@@ -13,6 +13,15 @@ public class PlayerManager : MonoBehaviour {
     #endregion
 
     public GameObject player;
+
+
+    //public LayerMask groundLayer;
+    //public LayerMask bulletLayer;
+    public LayerMask playerLayer;
+    //public LayerMask interactableLayer;
+    public LayerMask enemyLayer;
+    //public LayerMask doorLayer;
+    //public LayerMask collectableLayer;
 
     private List<PlayerController> players;
 

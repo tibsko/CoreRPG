@@ -7,7 +7,7 @@ public class DoorDetector : MonoBehaviour {
     public Transform doorDetected;
 
     void Start() {
-        doorDetected = PlayerManager.instance.player.transform;
+        doorDetected = ReferenceManager.instance.player.transform;
     }
     void OnTriggerStay(Collider colliders) {
         DoorHealth door = colliders.GetComponent<DoorHealth>();

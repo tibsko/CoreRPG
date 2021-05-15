@@ -9,7 +9,7 @@ public class WalkerAttack : EnemyAttack {
 
     // Start is called before the first frame update
     protected void Start() {
-        activatehitbox = false;
+        activateHitbox = false;
         animator = gameObject.GetComponentInChildren<Animator>();
     }
 

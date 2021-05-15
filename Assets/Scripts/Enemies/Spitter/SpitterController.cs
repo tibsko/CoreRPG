@@ -62,11 +62,11 @@ public class SpitterController : MonoBehaviour
     void Targeting() {
         DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
         if (isInside) {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
         else if (door && !isInside) {
             if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
             }
             else {
                 if (doorDetector.doorDetected) {
@@ -76,7 +76,7 @@ public class SpitterController : MonoBehaviour
             }
         }
         else {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
 

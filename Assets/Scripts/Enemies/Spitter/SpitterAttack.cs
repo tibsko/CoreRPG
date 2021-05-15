@@ -15,7 +15,7 @@ public class SpitterAttack : EnemyAttack {
 
     // Start is called before the first frame update
     protected void Start() {
-        activatehitbox = false;
+        activateHitbox = false;
         animator = gameObject.GetComponentInChildren<Animator>();
     }
 
@@ -32,7 +32,7 @@ public class SpitterAttack : EnemyAttack {
                     animator.SetBool("isAttacking", false);
                 }
             }
-            else if (target == PlayerManager.instance.player.transform) {
+            else if (target == ReferenceManager.instance.player.transform) {
                 animator.SetBool("isAttacking", false);
                 if (distance <= attackDistance) {
                     animator.SetBool("isScreaming", true);
