@@ -5,7 +5,7 @@ using Unity.Entities;
 using UnityEngine.AI;
 
 
-class ZombieControllerMech : ComponentSystem
+class ZombieControllerSystem : ComponentSystem
 {
     // Start is called before the first frame update
    struct Components {
