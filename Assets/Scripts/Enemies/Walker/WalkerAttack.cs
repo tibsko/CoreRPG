@@ -2,37 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkerAttack : EnemyAttack {
-    
+public class WalkerAttack : ZombieAttack {
 
-    private Animator animator;
-
-    // Start is called before the first frame update
-    protected void Start() {
-        activateHitbox = false;
-        animator = gameObject.GetComponentInChildren<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (target != null) {
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance < attackRadius) {
-                animator.SetBool("isAttacking", true);
-
-            }
-            else {
-                animator.SetBool("isAttacking", false);
-            }
+    protected override void Update() {
+        if (Target != null) {
+            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
+            animator.SetBool("IsAttacking", distance <= attackRadius);
         }
     }
 
-
-
-    void OnTriggerEnter(Collider collision) {
-        PlayerAttack player = collision.GetComponent<PlayerAttack>();
-        if (player) {
-            transform.LookAt(player.transform.position);
-        }
+    protected override void DieBehaviour() {
+        this.enabled = false;
     }
 }

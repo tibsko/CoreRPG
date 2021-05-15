@@ -12,7 +12,7 @@ public class ReferenceManager : MonoBehaviour {
     }
     #endregion
 
-    public GameObject player;
+    public PlayerController Player { get; private set; }
 
 
     //public LayerMask groundLayer;
@@ -26,13 +26,13 @@ public class ReferenceManager : MonoBehaviour {
     private List<PlayerController> players;
 
     private void Start() {
-
+        Player = FindObjectOfType<PlayerController>();
         players = FindObjectsOfType<PlayerController>().ToList();
-
     }
 
     public PlayerController GetNearestPlayer(Vector3 pos) {
-        return players.OrderBy(p => (p.transform.position - pos).magnitude).First();
+        return Player;
+        //return players.OrderBy(p => (p.transform.position - pos).magnitude).First();
     }
 
     public void AddPlayer() {

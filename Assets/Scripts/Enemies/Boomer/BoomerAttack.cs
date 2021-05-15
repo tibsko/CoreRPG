@@ -2,84 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomerAttack : EnemyAttack {
-    public bool isScreaming;
+public class BoomerAttack : ZombieAttack {
 
-    private bool hasExplose;
-    private Animator animator;
+    [SerializeField] float explosionDistance = 1f;
+    [SerializeField] float explosionRadius = 3f;
+    [SerializeField] float explosionDelay = 0.2f;
+    [SerializeField] int explosionDamages = 50;
+    [SerializeField] GameObject explosionParticles;
 
-    [SerializeField] float exploseDistance;
-    [SerializeField] float exploseRadius;
-    [SerializeField] float delayExplose;
-    [SerializeField] int exploseDamages;
-    [SerializeField] GameObject exploseParticule;
+    private bool isScreaming = false;
+    private bool hasExplosed = false;
 
-    // Start is called before the first frame update
-    void Start() {
-
-        activateHitbox = false;
-        animator = gameObject.GetComponentInChildren<Animator>();
-
-        isScreaming = false;
-        hasExplose = false;
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (hasExplose) {
+    protected override void Update() {
+        if (hasExplosed) {
             return;
         }
-        if (target != null) {
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            FenceHealth door = target.GetComponent<FenceHealth>();
+        if (Target != null) {
+            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
 
-            if (door && door.CurrentHealth > 0) {
-                if (distance < attackRadius) {
-                    animator.SetBool("isAttacking", true);
-                }
-                else {
-                    animator.SetBool("isAttacking", false);
-                }
-            }
-            else if (target == ReferenceManager.instance.GetNearestPlayer(transform.position).transform) {
-                animator.SetBool("isAttacking", false);
-                if (distance <= exploseDistance) {
-                    animator.SetBool("isScreaming", true);
+            if (Target.CompareTag("Player")) {
+
+                animator.SetBool("IsAttacking", false);
+                if (distance <= explosionDistance) {
+                    animator.SetBool("IsScreaming", true);
+                    Invoke(nameof(BoomerExplose), explosionDelay);
+                    zombieController.Move(false);
                     isScreaming = true;
+                    hasExplosed = true;
+                }
+            }
+            else if(Target.CompareTag("Fence")) {
+                if (distance <= attackRadius) {
+                    animator.SetBool("IsAttacking", true);
                 }
                 else {
-                    animator.SetBool("isScreaming", false);
+                    animator.SetBool("IsAttacking", false);
                 }
             }
         }
-        if (isScreaming && !hasExplose) {
-            hasExplose = true;
-            Invoke(nameof(BoomerExplose), delayExplose);
-        }
     }
 
-    void OnTriggerEnter(Collider collision) {
-        PlayerAttack player = collision.GetComponent<PlayerAttack>();
-        if (player) {
-            transform.LookAt(player.transform.position);
-        }
+    protected override void DieBehaviour() {
+        BoomerExplose();
+        this.enabled = false;
     }
 
-    public void BoomerExplose() {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, exploseRadius, ReferenceManager.instance.playerLayer);
+    private void BoomerExplose() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, ReferenceManager.instance.playerLayer);
         if (colliders.Length > 0) {
             foreach (Collider col in colliders) {
-                PlayerHealth playerhealth = col.GetComponentInParent<PlayerHealth>();
+                PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
                 if (playerhealth) {
                     Debug.Log("Player hitted");
-                    playerhealth.TakeDamage(exploseDamages, gameObject);
+                    playerhealth.TakeDamage(explosionDamages, gameObject);
                 }
                 break;
             }
         }
-        GameObject particule = Instantiate(exploseParticule, transform.position, Quaternion.identity);
-        Destroy(particule, 1.5f);
+        GameObject particles = Instantiate(explosionParticles, transform.position, Quaternion.identity);
+        Destroy(particles, 1.5f);
         Destroy(gameObject, .2f);
-        this.enabled = false;
     }
 }

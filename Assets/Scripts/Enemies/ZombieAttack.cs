@@ -2,35 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieAttack : MonoBehaviour {
+public abstract class ZombieAttack : MonoBehaviour {
 
-    public int attackDamages;
-    public bool activateHitbox;
-    public float attackRadius = 1f;
-    public Transform target { get => zombieController.Target; }
-    private Animator animator;
-    private ZombieController zombieController;
+    [SerializeField] protected int attackDamages;
+    [SerializeField] protected float attackRadius = 1f;
+
+    public Transform Target { get => zombieController.Target; }
+
+
+    protected Animator animator;
+    protected ZombieController zombieController;
 
     protected void Start() {
         zombieController = GetComponent<ZombieController>();
         animator = gameObject.GetComponentInChildren<Animator>();
-        activateHitbox = false;
     }
 
-    void Update() {
-        if (target != null) {
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance < attackRadius) {
-                animator.SetBool("IsAttacking", true);
+    //void OnTriggerEnter(Collider collision) {
+    //    PlayerAttack player = collision.GetComponent<PlayerAttack>();
+    //    if (player) {
+    //        transform.LookAt(player.transform.position);
+    //    }
+    //}
 
-            }
-            else {
-                animator.SetBool("IsAttacking", false);
-            }
-        }
-    }
-
-    public virtual void DieBehaviour() {
-
-    }
+    protected abstract void Update();
+    protected abstract void DieBehaviour();
 }

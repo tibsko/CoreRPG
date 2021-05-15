@@ -12,7 +12,7 @@ public class EnemyHealth : GenericHealth {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<ZombieController>().enabled = false;
-        GetComponent<EnemyAttack>().enabled = false;
+        GetComponent<ZombieAttack>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<Canvas>().enabled = false;
         SetKinematic(false);

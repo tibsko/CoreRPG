@@ -2,53 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpitterAttack : EnemyAttack {
+public class SpitterAttack : ZombieAttack {
 
-    private Animator animator;
-
+    [SerializeField] float spitDistance = 5f;
+    [SerializeField] float poisonRadius = 2f;
+    [SerializeField] float poisonDuration = 5f;
     [SerializeField] GameObject dieParticule;
-    [SerializeField] float dieRadius;
-    [SerializeField] float poisonTime;
 
-    public float attackDistance;
-    public bool isSpitting=false;
+    protected override void Update() {
+        if (Target != null) {
+            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
 
-    // Start is called before the first frame update
-    protected void Start() {
-        activateHitbox = false;
-        animator = gameObject.GetComponentInChildren<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (target != null) {
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            FenceHealth door = target.GetComponent<FenceHealth>();
-            if (door && door.CurrentHealth > 0) {
-                if (distance < attackRadius) {
-                    animator.SetBool("isAttacking", true);
-                }
-                else {
-                    animator.SetBool("isAttacking", false);
-                }
+            if (Target.CompareTag("Player")) {
+                animator.SetBool("IsAttacking", false);
+                bool attack = distance <= spitDistance;
+                animator.SetBool("IsScreaming", attack);
+                zombieController.Move(!attack);
             }
-            else if (target == ReferenceManager.instance.player.transform) {
-                animator.SetBool("isAttacking", false);
-                if (distance <= attackDistance) {
-                    animator.SetBool("isScreaming", true);
-                    isSpitting = true;
-                }
-                else {
-                    animator.SetBool("isScreaming", false);
-                    isSpitting = false;
-                }
+            else if(Target.CompareTag("Fence")) {
+                bool attack = distance <= attackRadius;
+                zombieController.Move(!attack);
+                animator.SetBool("IsAttacking", attack);
             }
         }
     }
-    public void DieBehaviour() {
+
+    protected override void DieBehaviour() {
         GameObject poisonEffect = Instantiate(dieParticule, transform.position, Quaternion.identity);
-        poisonEffect.transform.localScale = new Vector3(dieRadius, dieRadius, dieRadius);
-        Destroy(poisonEffect,poisonTime);
+        poisonEffect.transform.localScale = new Vector3(poisonRadius, poisonRadius, poisonRadius);
+        Destroy(poisonEffect, poisonDuration);
         Destroy(gameObject);
     }
 }

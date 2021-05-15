@@ -13,15 +13,16 @@ public class ZombieController : MonoBehaviour {
     [Header("Detection")]
     [SerializeField] float fenceDetectionRadius = 10f;
 
-    public bool IsInRoom { get; set; }
+    public bool IsInSpawn { get; set; }
     public Transform Target { get; set; }
 
+    private bool haseLeavedSpawn = true;
+    private bool overrideTarget = false;
     private NavMeshAgent agent;
     private Animator animator;
-    private FenceHealth doorHealth;
 
     void Start() {
-        IsInRoom = false;
+        IsInSpawn = true;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -44,7 +45,6 @@ public class ZombieController : MonoBehaviour {
             else {
                 agent.speed = walkSpeed;
             }
-
         }
         else {
             Debug.Log($"Zombie {gameObject.name} doesn't have target");
@@ -55,14 +55,15 @@ public class ZombieController : MonoBehaviour {
         }
     }
 
-    private void OnEnable() {
-        agent.SetDestination(Target.position);   
-        agent.isStopped = false;
-    }
+    public void Move(bool move) {
+        agent.isStopped = move;
 
-    private void OnDisable() {
-        animator.SetFloat("Speed", 0);
-        agent.isStopped = true;
+        if (move) {
+            if (Target) agent.SetDestination(Target.position);
+        }
+        else {
+            animator.SetFloat("Speed", 0);
+        }
     }
 
     private void FaceTarget() {
@@ -72,25 +73,13 @@ public class ZombieController : MonoBehaviour {
     }
 
     private void Targeting() {
-        if (IsInRoom) {
-            Target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+
+        if (IsInSpawn) {
+            //Do nothing (Target will be updated by spawner)
         }
         else {
-            if (doorHealth) {
-                if (doorHealth.CurrentHealth <= 0) {
-                    Target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-                }
-                else {
-                    Target = doorHealth.transform;
-                }
-            }
-            else {
-                Collider[] cols = Physics.OverlapSphere(transform.position, fenceDetectionRadius, ReferenceManager.instance.doorLayer);
-                if (cols.Length > 0) {
-                    Collider closest = transform.position.GetClosest(cols);
-                    doorHealth = closest.GetComponent<FenceHealth>();
-                }
-            }
+            if (!overrideTarget)
+                Target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
     }
 
