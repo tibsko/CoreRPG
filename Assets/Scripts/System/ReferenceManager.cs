@@ -20,7 +20,7 @@ public class ReferenceManager : MonoBehaviour {
     public LayerMask playerLayer;
     //public LayerMask interactableLayer;
     public LayerMask enemyLayer;
-    //public LayerMask doorLayer;
+    public LayerMask doorLayer;
     //public LayerMask collectableLayer;
 
     private List<PlayerController> players;

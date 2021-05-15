@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3790500667741324367}
   - component: {fileID: 6868913983955100270}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Plank (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,11 +102,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5076030160916993214}
   - component: {fileID: 6214463232379683579}
-  - component: {fileID: 2597305304809303092}
-  - component: {fileID: 2258423601377512405}
   - component: {fileID: 1235024802060294285}
+  - component: {fileID: 2258423601377512405}
+  - component: {fileID: 442656903557099939}
   m_Layer: 12
-  m_Name: Door
+  m_Name: Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 2, z: 0.35848275}
   m_Center: {x: -0.20000005, y: 0.26, z: -0.12924136}
---- !u!114 &2597305304809303092
+--- !u!114 &1235024802060294285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,22 +153,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717479720168391135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ceaae11c7aecf4787c555abe6d249f, type: 3}
+  m_Script: {fileID: 11500000, guid: b6b44935cbbc35b4db9200cf5cc97dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthBar: {fileID: 5834056610431391320}
-  onDie:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
-  timerHealth: 0.5
-  doorInteractable: {fileID: 0}
+  healthStep: 10
+  nbFence: 0
+  planks: []
+  timer: 0.5
 --- !u!114 &2258423601377512405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOnce: 0
-  used: 0
-  hasInteracted: 0
   textButton: RepairDoor
   onInteract:
     m_PersistentCalls:
@@ -216,7 +205,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1235024802060294285
+--- !u!114 &442656903557099939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,13 +214,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717479720168391135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b44935cbbc35b4db9200cf5cc97dc7, type: 3}
+  m_Script: {fileID: 11500000, guid: c461daf3c0c1f0449915b971fd3ed389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbDoor: 0
-  healthStep: 0
-  doorBoards: []
-  timer: 0.5
+  maxHealth: 100
+  healthBar: {fileID: 5834056610431391320}
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
+  timerHealth: 0.2
+  fenceInteractable: {fileID: 0}
 --- !u!1 &3255827803416039370
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +243,7 @@ GameObject:
   - component: {fileID: 8621288802009621332}
   - component: {fileID: 2903344078636150369}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Plank (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +335,7 @@ GameObject:
   - component: {fileID: 8454911477320697906}
   - component: {fileID: 7066186884865645755}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +427,7 @@ GameObject:
   - component: {fileID: 7831284681152643015}
   - component: {fileID: 1661978110666329749}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Plank (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,12 +10,10 @@ public class WalkerController : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
     private WalkerAttack enemyAttack;
-    private DoorDetector doorDetector;
 
     // Start is called before the first frame update
     void Start() {
         isInRoom = false;
-        doorDetector = GetComponentInChildren<DoorDetector>();
 
         enemyAttack = GetComponent<WalkerAttack>();
 
@@ -36,7 +34,6 @@ public class WalkerController : MonoBehaviour {
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
-
     }
 
     void FaceTarget() {
@@ -46,24 +43,24 @@ public class WalkerController : MonoBehaviour {
     }
 
     void Targeting() {
-        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
-        if (isInRoom) {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
-        else if (door && !isInRoom) {
-            if (door.currentHealth <= 0) {
-                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-            }
-            else {
-                if (doorDetector.doorDetected) {
-                    target = doorDetector.doorDetected;
-                }
-                isInRoom = false;
-            }
-        }
-        else {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
+        //DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
+        //if (isInRoom) {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //}
+        //else if (door && !isInRoom) {
+        //    if (door.currentHealth <= 0) {
+        //        target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //    }
+        //    else {
+        //        if (doorDetector.doorDetected) {
+        //            target = doorDetector.doorDetected;
+        //        }
+        //        isInRoom = false;
+        //    }
+        //}
+        //else {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //}
     }
 
 }

@@ -6,7 +6,7 @@ using System.Linq;
 
 public class GenericHealth : MonoBehaviour {
     public int maxHealth;
-    public float currentHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
 
     public HealthBar healthBar;
 
@@ -19,7 +19,7 @@ public class GenericHealth : MonoBehaviour {
     private List<DamageSource> damageSources;
     // Start is called before the first frame update
     public virtual void Start() {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         damageSources = new List<DamageSource>();
     }
@@ -39,19 +39,19 @@ public class GenericHealth : MonoBehaviour {
     }
 
     public virtual void Heal(int heal, GameObject source) {
-        currentHealth = Mathf.Clamp(currentHealth + heal, 0, maxHealth);
-        healthBar.SetHealth(currentHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + heal, 0, maxHealth);
+        healthBar.SetHealth(CurrentHealth);
     }
 
     public void TakeDamage(float damage, GameObject source) {
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
             return;
 
         if (damageSources.Find(x => x.go == source) == null) {
             damageSources.Add(new DamageSource(source, timerHealth));
-            currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
-            healthBar.SetHealth(currentHealth);
-            if (currentHealth <= 0) {
+            CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
+            healthBar.SetHealth(CurrentHealth);
+            if (CurrentHealth <= 0) {
                 onDie.Invoke();
             }
         }

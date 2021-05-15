@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour {
 
+    public void OnTriggerExit(Collider other) {
 
-    public void OnTriggerExit(Collider zombie) {
-
-        WalkerController zombieController = zombie.GetComponent<WalkerController>();
+        WalkerController zombieController = other.GetComponent<WalkerController>();
         if (zombieController) {
             zombieController.isInRoom = true;
         }
     }
-
 }

@@ -31,9 +31,9 @@ public class BoomerAttack : EnemyAttack {
         }
         if (target != null) {
             float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            DoorHealth door = target.GetComponent<DoorHealth>();
+            FenceHealth door = target.GetComponent<FenceHealth>();
 
-            if (door && door.currentHealth > 0) {
+            if (door && door.CurrentHealth > 0) {
                 if (distance < attackRadius) {
                     animator.SetBool("isAttacking", true);
                 }

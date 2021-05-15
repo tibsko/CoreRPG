@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorBoard : MonoBehaviour
+public class FenceBoard : MonoBehaviour
 {
     public bool IsActive { get; set; }
 

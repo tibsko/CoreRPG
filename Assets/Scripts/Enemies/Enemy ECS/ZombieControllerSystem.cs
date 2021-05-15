@@ -13,7 +13,6 @@ class ZombieControllerSystem : ComponentSystem
         private NavMeshAgent agent;
         private Animator animator;
         private WalkerAttack enemyAttack;
-        private DoorDetector doorDetector;
     }
     protected override void OnUpdate() {
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;

@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class Fence : MonoBehaviour
 {
-
-    //public List<DoorBoard> activeDoorBoards;
-    //public List<DoorBoard> unactiveDoorBoards;
     public int healthStep;
 
-    public int nbDoor;
-    public DoorBoard[] doorBoards;
+    public int nbFence;
+    public FenceBoard[] planks;
 
-    private DoorHealth doorHealth;
+    private FenceHealth doorHealth;
     private bool repair = false;
     private float currentTime;
 
     [SerializeField] float timer = 0.5f;
-    
 
     void Start() {
-        doorBoards = gameObject.GetComponentsInChildren<DoorBoard>();
-        nbDoor = doorBoards.Length;
-        doorHealth = gameObject.GetComponent<DoorHealth>();
-        healthStep = (int)Mathf.Round(doorHealth.maxHealth / (nbDoor-1));
+        planks = gameObject.GetComponentsInChildren<FenceBoard>();
+        nbFence = planks.Length;
+        doorHealth = gameObject.GetComponent<FenceHealth>();
+        healthStep = (int)Mathf.Round(doorHealth.maxHealth / (nbFence-1));
 
-        for (int i = 0; i < nbDoor; i++) {
-            doorBoards[i].IsActive = true;
+        for (int i = 0; i < nbFence; i++) {
+            planks[i].IsActive = true;
         }
 
     }
@@ -51,9 +47,9 @@ public class Fence : MonoBehaviour
     }
 
     private void RepairDoor() {
-        if (doorHealth.currentHealth < doorHealth.maxHealth) {
+        if (doorHealth.CurrentHealth < doorHealth.maxHealth) {
             doorHealth.Heal(20,gameObject);
-            doorHealth.UpdateDoorboards();
+            doorHealth.UpdateFenceBoards();
             Debug.Log("repairing");
         }
         else {

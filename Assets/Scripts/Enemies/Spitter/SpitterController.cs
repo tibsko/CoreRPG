@@ -10,13 +10,11 @@ public class SpitterController : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     private SpitterAttack enemyAttack;
-    private DoorDetector doorDetector;
     private float speed = 2f;
 
     // Start is called before the first frame update
     void Start() {
         isInside = false;
-        doorDetector = GetComponentInChildren<DoorDetector>();
 
         enemyAttack = GetComponent<SpitterAttack>();
 
@@ -60,24 +58,24 @@ public class SpitterController : MonoBehaviour
     }
 
     void Targeting() {
-        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
-        if (isInside) {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
-        else if (door && !isInside) {
-            if (door.currentHealth <= 0) {
-                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-            }
-            else {
-                if (doorDetector.doorDetected) {
-                    target = doorDetector.doorDetected;
-                }
-                isInside = false;
-            }
-        }
-        else {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
+        //DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
+        //if (isInside) {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //}
+        //else if (door && !isInside) {
+        //    if (door.currentHealth <= 0) {
+        //        target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //    }
+        //    else {
+        //        if (doorDetector.doorDetected) {
+        //            target = doorDetector.doorDetected;
+        //        }
+        //        isInside = false;
+        //    }
+        //}
+        //else {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //}
     }
 
 }

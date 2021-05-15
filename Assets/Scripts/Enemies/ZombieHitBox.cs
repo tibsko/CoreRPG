@@ -8,13 +8,13 @@ public class ZombieHitBox : MonoBehaviour
    
     void OnTriggerEnter(Collider collision) {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-        DoorHealth doorHealth = collision.gameObject.GetComponent<DoorHealth>();
+        FenceHealth doorHealth = collision.gameObject.GetComponent<FenceHealth>();
         if (playerHealth) {
             playerHealth.TakeDamage(enemyAttack.attackDamages, gameObject);
         }
         else if (doorHealth) {
             doorHealth.TakeDamage(enemyAttack.attackDamages, gameObject);
-            doorHealth.UpdateDoorboards();
+            doorHealth.UpdateFenceBoards();
         }
     }
 }

@@ -10,7 +10,6 @@ public class BoomerController : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
     private BoomerAttack boomerAttack;
-    private DoorDetector doorDetector;
 
     [SerializeField] float speedRunDistance = 7f;
     [SerializeField] float speedRun = 5f;
@@ -19,7 +18,6 @@ public class BoomerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        doorDetector = GetComponentInChildren<DoorDetector>();
         isInside = false;
 
         agent = GetComponent<NavMeshAgent>();
@@ -66,27 +64,27 @@ public class BoomerController : MonoBehaviour {
     }
 
     void Targeting() {
-        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
-        if (isInside) {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-            agent.stoppingDistance = 2f;
-        }
-        else if (door && !isInside) {
-            if (door.currentHealth <= 0) {
-                target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-                agent.stoppingDistance = 2f;
-            }
-            else {
-                if (doorDetector.doorDetected) {
-                    target = doorDetector.doorDetected;
-                }
-                isInside = false;
-            }
+        //DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
+        //if (isInside) {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //    agent.stoppingDistance = 2f;
+        //}
+        //else if (door && !isInside) {
+        //    if (door.currentHealth <= 0) {
+        //        target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //        agent.stoppingDistance = 2f;
+        //    }
+        //    else {
+        //        if (doorDetector.doorDetected) {
+        //            target = doorDetector.doorDetected;
+        //        }
+        //        isInside = false;
+        //    }
 
-        }
-        else {
-            target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
+        //}
+        //else {
+        //    target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
+        //}
     }
 
 }
