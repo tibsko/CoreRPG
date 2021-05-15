@@ -446,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6078473582528620982}
   - component: {fileID: 6078473582528620986}
-  - component: {fileID: 6078473582528620991}
+  - component: {fileID: 227928632596966112}
   - component: {fileID: 6078473582528620988}
   - component: {fileID: 6078473582528620989}
   - component: {fileID: 6078473582528620984}
@@ -497,7 +497,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6078473582528620991
+--- !u!114 &227928632596966112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -506,13 +506,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6078473582528620983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52116b1a8a2beac4385f8731bbaff616, type: 3}
+  m_Script: {fileID: 11500000, guid: db1ae7e91ba60c540826fbd9da89ed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInside: 0
-  speedRunDistance: 4
-  speedRun: 3
-  speedWalk: 2
+  walkSpeed: 3
+  runSpeed: 4
+  speedRunDistance: 7
+  fenceDetectionRadius: 10
 --- !u!114 &6078473582528620988
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20067,6 +20067,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6017839447166944843, guid: be053cc7e7ab794449e760c4704f784c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 9034810842517644818, guid: be053cc7e7ab794449e760c4704f784c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -28376,7 +28381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1ae7e91ba60c540826fbd9da89ed0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDetectionRadius: 10
+  walkSpeed: 3
+  runSpeed: 4
+  speedRunDistance: 7
+  fenceDetectionRadius: 10
 --- !u!54 &3455527575188878607
 Rigidbody:
   m_ObjectHideFlags: 0

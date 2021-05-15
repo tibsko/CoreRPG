@@ -5,7 +5,13 @@ using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour {
 
-    [SerializeField] float doorDetectionRadius = 3f;
+    [Header("Speed")]
+    [SerializeField] float walkSpeed = 3f;
+    [SerializeField] float runSpeed = 4f;
+    [SerializeField] float speedRunDistance = 7f;
+
+    [Header("Detection")]
+    [SerializeField] float fenceDetectionRadius = 10f;
 
     public bool IsInRoom { get; set; }
     public Transform Target { get; set; }
@@ -14,22 +20,31 @@ public class ZombieController : MonoBehaviour {
     private Animator animator;
     private FenceHealth doorHealth;
 
-    // Start is called before the first frame update
     void Start() {
         IsInRoom = false;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update() {
         Targeting();
+        //If zombie has a target
         if (Target) {
             agent.SetDestination(Target.position);
-            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(Target.position, transform.position);
+
             if (distance <= agent.stoppingDistance) {
                 FaceTarget();
             }
+
+            //Update speed
+            if (Target.CompareTag("Player") && distance <= speedRunDistance) {
+                agent.speed = runSpeed;
+            }
+            else {
+                agent.speed = walkSpeed;
+            }
+
         }
         else {
             Debug.Log($"Zombie {gameObject.name} doesn't have target");
@@ -40,13 +55,23 @@ public class ZombieController : MonoBehaviour {
         }
     }
 
-    void FaceTarget() {
+    private void OnEnable() {
+        agent.SetDestination(Target.position);   
+        agent.isStopped = false;
+    }
+
+    private void OnDisable() {
+        animator.SetFloat("Speed", 0);
+        agent.isStopped = true;
+    }
+
+    private void FaceTarget() {
         Vector3 direction = (Target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    void Targeting() {
+    private void Targeting() {
         if (IsInRoom) {
             Target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
         }
@@ -60,7 +85,7 @@ public class ZombieController : MonoBehaviour {
                 }
             }
             else {
-                Collider[] cols = Physics.OverlapSphere(transform.position, doorDetectionRadius, ReferenceManager.instance.doorLayer);
+                Collider[] cols = Physics.OverlapSphere(transform.position, fenceDetectionRadius, ReferenceManager.instance.doorLayer);
                 if (cols.Length > 0) {
                     Collider closest = transform.position.GetClosest(cols);
                     doorHealth = closest.GetComponent<FenceHealth>();
@@ -71,6 +96,6 @@ public class ZombieController : MonoBehaviour {
 
     public void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, doorDetectionRadius);
+        Gizmos.DrawWireSphere(transform.position, fenceDetectionRadius);
     }
 }
