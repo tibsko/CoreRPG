@@ -63,11 +63,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bouncingRadius: 4
-  bouncingNb: 10
+  bouncingNb: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
   distanceInstantiat: 0.1
+  delay: 0.1
 --- !u!135 &7493720169211630391
 SphereCollider:
   m_ObjectHideFlags: 0

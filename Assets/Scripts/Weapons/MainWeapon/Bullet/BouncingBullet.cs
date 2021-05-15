@@ -17,9 +17,14 @@ public class BouncingBullet : Bullet {
     private Bullet initialBullet;
     private new Rigidbody rigidbody;
 
+    private List<GameObject> enemies = new List<GameObject>();
+    public float delay = .5f;
+    private float timerContact = 0;
+
     // Start is called before the first frame update
     void Start() {
         rigidbody = GetComponent<Rigidbody>();
+        timerContact = 0;
     }
     void Update() {
         Debug.Log(firstEnemy);
@@ -27,21 +32,29 @@ public class BouncingBullet : Bullet {
             rigidbody.velocity = transform.forward * Velocity;
         }
         else {
-            rigidbody.velocity = new Vector3(nextEnemyPosition.x - newInitialPosition.x, 0, nextEnemyPosition.z - newInitialPosition.z).normalized*Velocity;
+            rigidbody.velocity = new Vector3(nextEnemyPosition.x - newInitialPosition.x, 0, nextEnemyPosition.z - newInitialPosition.z).normalized * Velocity;
         }
+        if (timerContact > 0.0)
+            timerContact -= Time.deltaTime;
+      
     }
 
     void OnTriggerEnter(Collider other) {
-        GameObject previousEnemy = null;
+        //GameObject enemyTouched = null;
         if (layerMask.ContainsLayer(other.gameObject.layer)) {
             Vector3 bulletPosition = gameObject.transform.position;
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+
             if (enemyHealth) {
                 enemyHealth.TakeDamage(Damages, gameObject);
-                bouncingNb -= 1;
+                if (timerContact <= 0.0) {
+                    timerContact = delay;
+                    bouncingNb -= 1;
+                    Debug.Log(bouncingNb);
+                }
                 firstEnemy = false;
-                Debug.Log(bouncingNb);
-                previousEnemy = enemyHealth.gameObject;
+                enemies.Add(enemyHealth.gameObject);
+                //enemyTouched = enemyHealth.gameObject;
                 newInitialPosition = transform.position;
             }
 
@@ -52,7 +65,7 @@ public class BouncingBullet : Bullet {
             }
         }
 
-        if (bouncingNb <= 0) {
+        if (bouncingNb < 1) {
             Destroy(gameObject);
             return;
         }
@@ -62,8 +75,8 @@ public class BouncingBullet : Bullet {
                 float distanceMin = 100f;
                 GameObject enemyGo = null;
                 foreach (Collider col in colliders) {
-                    if (previousEnemy) {
-                        if (previousEnemy.name != col.gameObject.name && col.gameObject.GetComponent<GenericHealth>()) {
+                    if (enemies.Count>0) {
+                        if (!enemies.Contains(col.gameObject) && col.gameObject.GetComponent<GenericHealth>()) {
                             float distance = Vector3.Distance(transform.position, col.gameObject.transform.position);
                             if (distance < distanceMin) {
                                 distanceMin = distance;
@@ -71,9 +84,8 @@ public class BouncingBullet : Bullet {
                                 enemyGo = col.gameObject;
                             }
                         }
-
                     }
-                    else { return; }
+                    else if (!firstEnemy && enemies.Count == 0) { Destroy(gameObject); }
                 }
             }
             else {

@@ -159,7 +159,7 @@ MonoBehaviour:
   bulletsPerTap: 1
   spread: 1
   range: 50
-  velocity: 20
+  velocity: 8
   bulletLifeTime: 2
   instantiateInFirePoint: 0
   firePoint: {fileID: 3072305698166753476}
