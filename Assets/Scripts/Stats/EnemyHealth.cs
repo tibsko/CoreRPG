@@ -11,7 +11,7 @@ public class EnemyHealth : GenericHealth {
         gameObject.layer = 0;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<ZombieController>().enabled = false;
+        GetComponent<WalkerController>().enabled = false;
         GetComponent<EnemyAttack>().enabled = false;
         GetComponentInChildren<Animator>().enabled = false;
         GetComponentInChildren<Canvas>().enabled = false;

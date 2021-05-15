@@ -7,7 +7,7 @@ public class SpawnPoint : MonoBehaviour {
 
     public void OnTriggerExit(Collider zombie) {
 
-        ZombieController zombieController = zombie.GetComponent<ZombieController>();
+        WalkerController zombieController = zombie.GetComponent<WalkerController>();
         if (zombieController) {
             zombieController.isInRoom = true;
         }

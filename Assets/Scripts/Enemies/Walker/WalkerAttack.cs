@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieAttack : EnemyAttack {
+public class WalkerAttack : EnemyAttack {
     
 
     private Animator animator;

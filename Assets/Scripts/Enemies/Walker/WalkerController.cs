@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ZombieController : MonoBehaviour {
+public class WalkerController : MonoBehaviour {
     public bool isInRoom;
 
     private Transform target;
     private NavMeshAgent agent;
     private Animator animator;
-    private ZombieAttack enemyAttack;
+    private WalkerAttack enemyAttack;
     private DoorDetector doorDetector;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class ZombieController : MonoBehaviour {
         isInRoom = false;
         doorDetector = GetComponentInChildren<DoorDetector>();
 
-        enemyAttack = GetComponent<ZombieAttack>();
+        enemyAttack = GetComponent<WalkerAttack>();
 
         agent = GetComponent<NavMeshAgent>();
         animator = gameObject.GetComponentInChildren<Animator>();

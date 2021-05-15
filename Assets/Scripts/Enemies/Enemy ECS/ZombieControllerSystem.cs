@@ -12,7 +12,7 @@ class ZombieControllerSystem : ComponentSystem
         private Transform target;
         private NavMeshAgent agent;
         private Animator animator;
-        private ZombieAttack enemyAttack;
+        private WalkerAttack enemyAttack;
         private DoorDetector doorDetector;
     }
     protected override void OnUpdate() {
