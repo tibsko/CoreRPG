@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieHitBox : MonoBehaviour
 {
-    [SerializeField] EnemyAttack enemyAttack;
+    [SerializeField] ZombieAttack enemyAttack;
    
     void OnTriggerEnter(Collider collision) {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();

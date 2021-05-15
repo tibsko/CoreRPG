@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ZombieAttack : MonoBehaviour {
 
-    [SerializeField] protected int attackDamages;
+    public int attackDamages;
     [SerializeField] protected float attackRadius = 1f;
 
     public Transform Target { get => zombieController.Target; }
