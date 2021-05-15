@@ -24,11 +24,17 @@ public class ZombieController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Targeting();
-        agent.SetDestination(Target.position);
-        float distance = Vector3.Distance(Target.position, gameObject.transform.position);
-        if (distance <= agent.stoppingDistance) {
-            FaceTarget();
+        if (Target) {
+            agent.SetDestination(Target.position);
+            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
+            if (distance <= agent.stoppingDistance) {
+                FaceTarget();
+            }
         }
+        else {
+            Debug.Log($"Zombie {gameObject.name} doesn't have target");
+        }
+
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }

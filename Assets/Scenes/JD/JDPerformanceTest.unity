@@ -7591,7 +7591,7 @@ MonoBehaviour:
     m_Bits: 1024
   doorLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131072
 --- !u!1 &576130851
 GameObject:
   m_ObjectHideFlags: 0
@@ -17191,7 +17191,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 123718954475194183}
-        m_MethodName: InctanciateLoot
+        m_MethodName: InctantiateLoot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20006,11 +20006,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6017839446376711031, guid: be053cc7e7ab794449e760c4704f784c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.697
       objectReference: {fileID: 0}
     - target: {fileID: 6017839447166944834, guid: be053cc7e7ab794449e760c4704f784c,
         type: 3}
