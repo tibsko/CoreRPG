@@ -46,21 +46,21 @@ public class EnemyDeath : MonoBehaviour {
     }
 
     ///////////////////////////////////////DEBUG//////////////////////////////////
-    [Range(0, 100)]
-    [SerializeField] float bodyPartMass = 10f;
-    [SerializeField] bool applyMass = false;
+    //[Range(0, 100)]
+    //[SerializeField] float bodyPartMass = 10f;
+    //[SerializeField] bool applyMass = false;
 
-    private void OnDrawGizmos() {
-        if (applyMass) {
-            var main = GetComponent<Rigidbody>();
-            var bodies = GetComponentsInChildren<Rigidbody>(true).ToList();
-            bodies.Remove(main);
+    //private void OnDrawGizmos() {
+    //    if (applyMass) {
+    //        var main = GetComponent<Rigidbody>();
+    //        var bodies = GetComponentsInChildren<Rigidbody>(true).ToList();
+    //        bodies.Remove(main);
 
-            foreach (var body in bodies) {
-                body.mass = bodyPartMass;
-            }
+    //        foreach (var body in bodies) {
+    //            body.mass = bodyPartMass;
+    //        }
 
-            applyMass = false;
-        }
-    }
+    //        applyMass = false;
+    //    }
+    //}
 }
