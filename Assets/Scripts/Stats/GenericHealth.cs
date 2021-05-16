@@ -41,6 +41,7 @@ public class GenericHealth : MonoBehaviour {
     public virtual void Heal(int heal, GameObject source) {
         CurrentHealth = Mathf.Clamp(CurrentHealth + heal, 0, maxHealth);
         healthBar.SetHealth(CurrentHealth);
+        onHeal.Invoke();
     }
 
     public void TakeDamage(float damage, GameObject source) {
@@ -51,6 +52,7 @@ public class GenericHealth : MonoBehaviour {
             damageSources.Add(new DamageSource(source, timerHealth));
             CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
             healthBar.SetHealth(CurrentHealth);
+            onHit.Invoke();
             if (CurrentHealth <= 0) {
                 onDie.Invoke();
             }

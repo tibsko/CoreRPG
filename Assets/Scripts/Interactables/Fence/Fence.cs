@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Fence : MonoBehaviour {
 
-    public int healthStep;
     [SerializeField] float timer = 0.5f;
-    [SerializeField] GameObject[] planks;
+    [SerializeField] Transform planksParent;
 
+    private List<Transform> planks;
     private GenericHealth doorHealth;
     private bool repairing = false;
     private float repairingTime;
+    private float lifePointsPerPlank;
 
     void Start() {
+        planks = planksParent.GetComponentsInChildren<Transform>().ToList();
+        planks.Remove(planksParent);
         doorHealth = gameObject.GetComponent<GenericHealth>();
-        healthStep = (int)Mathf.Round(doorHealth.maxHealth / (planks.Length - 1));
+        lifePointsPerPlank = (float)doorHealth.maxHealth / planks.Count;
 
-        for (int i = 0; i < planks.Length; i++) {
-            planks[i].SetActive(true);
+        for (int i = 0; i < planks.Count; i++) {
+            planks[i].gameObject.SetActive(true);
         }
     }
 
@@ -54,26 +58,9 @@ public class Fence : MonoBehaviour {
 
     public void UpdateFencePlanks() {
 
-
-
-        //    if (doorHealth.CurrentHealth == doorHealth.maxHealth) {
-        //        nbActivePlanks = fenceInteractable.nbPlanks;
-        //    }
-        //    else if (CurrentHealth <= 0) {
-        //        nbActivePlanks = 0;
-        //    }
-        //    else {
-        //        nbActivePlanks = (int)Mathf.Round(CurrentHealth / fenceInteractable.healthStep + 0.7f);
-        //    }
-
-        //    for (int i = 0; i < fenceInteractable.nbPlanks; i++) {
-        //        for (int j = 0; j < nbActivePlanks; j++) {
-        //            fenceInteractable.planks[j].IsActive = true;
-        //        }
-        //        for (int k = nbActivePlanks; k < fenceInteractable.nbPlanks; k++) {
-        //            fenceInteractable.planks[k].IsActive = false;
-        //        }
-        //    }
-        //}
+        for (int i = 0; i < planks.Count; i++) {
+            bool showPlank = doorHealth.CurrentHealth >= i * lifePointsPerPlank + 0.1f;
+            planks[i].gameObject.SetActive(showPlank);
+        }
     }
 }
