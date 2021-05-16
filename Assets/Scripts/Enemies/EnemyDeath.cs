@@ -10,31 +10,16 @@ public class EnemyDeath : MonoBehaviour {
 
     private Rigidbody mainBody;
     private List<Rigidbody> ragdollBodies;
-    private Collider mainCollider;
-    private List<Collider> ragdollColliders;
-
 
     private void Start() {
         mainBody = GetComponent<Rigidbody>();
         ragdollBodies = GetComponentsInChildren<Rigidbody>().ToList();
         ragdollBodies.Remove(mainBody);
-
-        mainCollider = GetComponent<Collider>();
-        ragdollColliders = GetComponentsInChildren<Collider>().ToList();
-        ragdollColliders.Remove(mainCollider);
-
-
-        //foreach (Rigidbody rb in ragdollBodies) {
-        //    rb.detectCollisions = false;
-        //}
-
-        //foreach (Collider col in ragdollColliders) {
-        //    col.enabled = false;
-        //}
     }
 
     public void EnableRagdoll() {
-        gameObject.layer = 0;
+        //gameObject.layer = 0;
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("DeadBody"));
 
         //Disable zombie behaviour
         GetComponent<NavMeshAgent>().enabled = false;
@@ -46,35 +31,27 @@ public class EnemyDeath : MonoBehaviour {
 
         //Activate ragdoll rigidbodies
         mainBody.velocity = Vector3.zero;
-        //mainBody.detectCollisions = false;
         foreach (Rigidbody rb in ragdollBodies) {
-            //rb.detectCollisions = true;
             rb.velocity = Vector3.zero;
             rb.isKinematic = false;
         }
-
-        //Activate ragdoll colliders
-        //mainCollider.enabled = false;
-        //foreach (Collider col in ragdollColliders) {
-        //    col.enabled = true;
-        //}
 
         //Call destruction
         Destroy(gameObject, destroyTimer);
     }
 
-    //void SetLayerRecursively(GameObject obj, int newLayer) {
-    //    if (null == obj) {
-    //        return;
-    //    }
+    void SetLayerRecursively(GameObject obj, int newLayer) {
+        if (null == obj) {
+            return;
+        }
 
-    //    obj.layer = newLayer;
+        obj.layer = newLayer;
 
-    //    foreach (Transform child in obj.transform) {
-    //        if (null == child) {
-    //            continue;
-    //        }
-    //        SetLayerRecursively(child.gameObject, newLayer);
-    //    }
-    //}
+        foreach (Transform child in obj.transform) {
+            if (null == child) {
+                continue;
+            }
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
 }
