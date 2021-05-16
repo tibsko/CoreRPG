@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Fence
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Bullet
   - Interactable
   - BulletEnemy
-  - Detector
+  - EnemyDetector
   - Walkable
   - Collectable
   - Fence

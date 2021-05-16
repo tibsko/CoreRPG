@@ -150,8 +150,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1852030980}
-        m_MethodName: Die
+      - m_Target: {fileID: 1525590108630513576}
+        m_MethodName: EnableRagdoll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cce33e4ecdda74d8b0e9037db74fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
+  destroyTimer: 2
 --- !u!114 &123718955161019166
 MonoBehaviour:
   m_ObjectHideFlags: 0
