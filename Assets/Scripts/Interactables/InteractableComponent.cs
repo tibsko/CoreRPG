@@ -7,19 +7,17 @@ public class InteractableComponent : MonoBehaviour {
     public bool useOnce = false;
     public string textButton;
 
-    private bool used = false;
     private bool hasInteracted = false;
-
-    bool isFocus = false;
-    Transform player;
+    private bool isFocused = false;
+    private Transform player;
 
     public InteractionEvent onInteract;
     public UnityEvent onHoldDown;
     public UnityEvent onHoldUp;
     public void Interact(GameObject player) {
-        if (!useOnce || (useOnce && !used)) {
+        if (!useOnce || (useOnce && !hasInteracted)) {
             onInteract.Invoke(player);
-            used = true;
+            hasInteracted = true;
         }
     }
 
@@ -36,7 +34,7 @@ public class InteractableComponent : MonoBehaviour {
 
     }
     public void OnFocused(Transform playerTransform) {
-        isFocus = true;
+        isFocused = true;
         player = playerTransform;
         HUD.instance.ActivateButton(true);
         HUD.instance.NameButton(textButton);
@@ -44,7 +42,7 @@ public class InteractableComponent : MonoBehaviour {
 
 
     public void OnDeFocused() {
-        isFocus = false;
+        isFocused = false;
         player = null;
         hasInteracted = false;
         HUD.instance.ActivateButton(false);
