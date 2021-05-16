@@ -88,8 +88,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5636915919137229723}
-  - component: {fileID: 5636915919137229724}
   - component: {fileID: 4728183788822682722}
+  - component: {fileID: 5636915919137229724}
   - component: {fileID: -8958262198605268261}
   m_Layer: 12
   m_Name: ShotGun Distributor
@@ -113,6 +113,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4728183788822682722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5636915919137229722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 2.3, z: 0.7}
+  m_Center: {x: 0, y: 0, z: 0.33}
 --- !u!114 &5636915919137229724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,19 +140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 55482946196595460, guid: 3d6b6bd773d3c224a8f026faaaa09018, type: 3}
   weaponPrice: 100
---- !u!65 &4728183788822682722
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5636915919137229722}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3, y: 2.3, z: 0.7}
-  m_Center: {x: 0, y: 0, z: 0.33}
 --- !u!114 &-8958262198605268261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useOnce: 0
-  used: 0
-  hasInteracted: 0
   textButton: Buy melee weapon
   onInteract:
     m_PersistentCalls:
