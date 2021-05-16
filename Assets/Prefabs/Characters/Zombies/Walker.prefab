@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3765737864258545981}
   - component: {fileID: 291095213942029797}
   - component: {fileID: 1852030980}
+  - component: {fileID: 1525590108630513576}
   - component: {fileID: 123718955161019166}
   m_Layer: 10
   m_Name: Walker
@@ -167,7 +168,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   timerHealth: 1
-  timer: 3
+--- !u!114 &1525590108630513576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455527574230520146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cce33e4ecdda74d8b0e9037db74fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
 --- !u!114 &123718955161019166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +404,10 @@ PrefabInstance:
       propertyPath: enemyAttack
       value: 
       objectReference: {fileID: 291095213942029797}
+    - target: {fileID: 1028214534721238, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1187010538823314, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
       propertyPath: m_Name
       value: Standard Zombie
@@ -607,6 +624,11 @@ PrefabInstance:
     - target: {fileID: 7823846344776480000, guid: 808eff5cc9216bf4284a635ba47d6002,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505417056329576824, guid: 808eff5cc9216bf4284a635ba47d6002,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
