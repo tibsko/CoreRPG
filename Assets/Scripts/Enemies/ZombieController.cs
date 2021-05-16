@@ -11,7 +11,7 @@ public class ZombieController : MonoBehaviour {
     [SerializeField] float speedRunDistance = 7f;
 
     [Header("Detection")]
-    [SerializeField] float detectionFrequency = 2f;
+    [SerializeField] float detectionFrequency = 0.1f;
 
     private GenericHealth target;
     public GenericHealth Target {
@@ -24,14 +24,15 @@ public class ZombieController : MonoBehaviour {
                     target = value;
                 }
                 else {
-                    Debug.Log($"Can't asign {value.name} as target beccause it has 0 PV");
+                    Debug.Log($"Can't asign {value.name} as target because it has 0 PV");
                 }
             }
+            else
+                target = value;
         }
     }
     public bool HasLeavedSpawn { get; set; }
 
-    private bool overrideTarget = false;
     private NavMeshAgent agent;
     private Animator animator;
 
@@ -92,11 +93,7 @@ public class ZombieController : MonoBehaviour {
     private void UpdateTarget() {
 
         //If target is dead or null
-        if (!Target || Target.CurrentHealth <= 0) {
-            Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
-        }
-
-        if (Target.CompareTag("Player")) {
+        if (!Target || Target.CurrentHealth <= 0 || Target.CompareTag("Player")) {
             Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
         }
     }

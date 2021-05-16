@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour {
 
-    [SerializeField] GenericHealth connectedFence;
+    private GenericHealth connectedFence;
+
+    private void Start() {
+        connectedFence = GetComponentInParent<GenericHealth>();
+    }
 
     public void OnTriggerStay(Collider other) {
 
