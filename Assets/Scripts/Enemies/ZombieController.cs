@@ -40,12 +40,12 @@ public class ZombieController : MonoBehaviour {
         HasLeavedSpawn = false;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
+
+        //Repeat update target
+        InvokeRepeating(nameof(UpdateTarget), 0, detectionFrequency);
     }
 
     void Update() {
-
-        //Reapeat update target
-        InvokeRepeating(nameof(UpdateTarget), 0, detectionFrequency);
 
         //If zombie has a target
         if (Target) {
