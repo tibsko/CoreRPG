@@ -7,19 +7,13 @@ using UnityEngine.AI;
 public class EnemyDeath : MonoBehaviour {
 
     [SerializeField] float destroyTimer;
+    [SerializeField] GameObject mainBody;
+    [SerializeField] GameObject ragdollBody;
 
-    private Rigidbody mainBody;
-    private List<Rigidbody> ragdollBodies;
-
-    private void Start() {
-        mainBody = GetComponent<Rigidbody>();
-        ragdollBodies = GetComponentsInChildren<Rigidbody>().ToList();
-        ragdollBodies.Remove(mainBody);
-    }
+   
 
     public void EnableRagdoll() {
-        //gameObject.layer = 0;
-        SetLayerRecursively(gameObject, LayerMask.NameToLayer("DeadBody"));
+        gameObject.layer = LayerMask.NameToLayer("DeadBody");
 
         //Disable zombie behaviour
         GetComponent<NavMeshAgent>().enabled = false;
@@ -30,28 +24,43 @@ public class EnemyDeath : MonoBehaviour {
         GetComponentInChildren<Canvas>().enabled = false;
 
         //Activate ragdoll rigidbodies
-        mainBody.velocity = Vector3.zero;
-        foreach (Rigidbody rb in ragdollBodies) {
-            rb.velocity = Vector3.zero;
-            rb.isKinematic = false;
-        }
+        CopyTransformRecursively(mainBody.transform, ragdollBody.transform);
+        mainBody.SetActive(false);
+        ragdollBody.SetActive(true);
 
         //Call destruction
         Destroy(gameObject, destroyTimer);
     }
 
-    void SetLayerRecursively(GameObject obj, int newLayer) {
-        if (null == obj) {
-            return;
-        }
+    public void CopyTransformRecursively(Transform source, Transform destination) {
+        foreach (Transform sourceChild in source.transform) {
+            Transform destinationChild = destination.Find(sourceChild.name);
+            if (destinationChild) {
+                destinationChild.position = sourceChild.position;
+                destinationChild.rotation = sourceChild.rotation;
+                destinationChild.localScale = sourceChild.localScale;
 
-        obj.layer = newLayer;
-
-        foreach (Transform child in obj.transform) {
-            if (null == child) {
-                continue;
+                CopyTransformRecursively(sourceChild, destinationChild);
             }
-            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
+    ///////////////////////////////////////DEBUG//////////////////////////////////
+    [Range(0, 100)]
+    [SerializeField] float bodyPartMass = 10f;
+    [SerializeField] bool applyMass = false;
+
+    private void OnDrawGizmos() {
+        if (applyMass) {
+            var main = GetComponent<Rigidbody>();
+            var bodies = GetComponentsInChildren<Rigidbody>(true).ToList();
+            bodies.Remove(main);
+
+            foreach (var body in bodies) {
+                body.mass = bodyPartMass;
+            }
+
+            applyMass = false;
         }
     }
 }
