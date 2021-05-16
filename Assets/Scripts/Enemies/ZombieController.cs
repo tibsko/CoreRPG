@@ -11,29 +11,48 @@ public class ZombieController : MonoBehaviour {
     [SerializeField] float speedRunDistance = 7f;
 
     [Header("Detection")]
-    [SerializeField] float fenceDetectionRadius = 10f;
+    [SerializeField] float detectionFrequency = 2f;
 
-    public bool IsInSpawn { get; set; }
-    public Transform Target { get; set; }
+    private GenericHealth target;
+    public GenericHealth Target {
+        get {
+            return target;
+        }
+        set {
+            if (value != null) {
+                if (value.CurrentHealth > 0) {
+                    target = value;
+                }
+                else {
+                    Debug.Log($"Can't asign {value.name} as target beccause it has 0 PV");
+                }
+            }
+        }
+    }
+    public bool HasLeavedSpawn { get; set; }
 
-    private bool haseLeavedSpawn = true;
     private bool overrideTarget = false;
     private NavMeshAgent agent;
     private Animator animator;
 
     void Start() {
-        IsInSpawn = true;
+        HasLeavedSpawn = false;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Update() {
-        Targeting();
+
+        //Reapeat update target
+        InvokeRepeating(nameof(UpdateTarget), 0, detectionFrequency);
+
         //If zombie has a target
         if (Target) {
-            agent.SetDestination(Target.position);
-            float distance = Vector3.Distance(Target.position, transform.position);
+            //Update navmesh agent
+            agent.SetDestination(Target.transform.position);
+            float distance = Vector3.Distance(Target.transform.position, transform.position);
 
+            //Update rotation
             if (distance <= agent.stoppingDistance) {
                 FaceTarget();
             }
@@ -46,20 +65,18 @@ public class ZombieController : MonoBehaviour {
                 agent.speed = walkSpeed;
             }
         }
-        else {
-            Debug.Log($"Zombie {gameObject.name} doesn't have target");
-        }
 
+        //Update animator
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
 
-    public void Move(bool move) {
-        agent.isStopped = move;
+    public void SetMove(bool move) {
+        agent.isStopped = !move;
 
         if (move) {
-            if (Target) agent.SetDestination(Target.position);
+            if (Target) agent.SetDestination(Target.transform.position);
         }
         else {
             animator.SetFloat("Speed", 0);
@@ -67,24 +84,20 @@ public class ZombieController : MonoBehaviour {
     }
 
     private void FaceTarget() {
-        Vector3 direction = (Target.position - transform.position).normalized;
+        Vector3 direction = (Target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    private void Targeting() {
+    private void UpdateTarget() {
 
-        if (IsInSpawn) {
-            //Do nothing (Target will be updated by spawner)
+        //If target is dead or null
+        if (!Target || Target.CurrentHealth <= 0) {
+            Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
         }
-        else {
-            if (!overrideTarget)
-                Target = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
-        }
-    }
 
-    public void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, fenceDetectionRadius);
+        if (Target.CompareTag("Player")) {
+            Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
+        }
     }
 }

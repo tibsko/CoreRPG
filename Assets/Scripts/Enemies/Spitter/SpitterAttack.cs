@@ -11,17 +11,17 @@ public class SpitterAttack : ZombieAttack {
 
     protected override void Update() {
         if (Target != null) {
-            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 
             if (Target.CompareTag("Player")) {
                 animator.SetBool("IsAttacking", false);
                 bool attack = distance <= spitDistance;
                 animator.SetBool("IsScreaming", attack);
-                zombieController.Move(!attack);
+                zombieController.SetMove(!attack);
             }
             else if(Target.CompareTag("Fence")) {
                 bool attack = distance <= attackRadius;
-                zombieController.Move(!attack);
+                zombieController.SetMove(!attack);
                 animator.SetBool("IsAttacking", attack);
             }
         }

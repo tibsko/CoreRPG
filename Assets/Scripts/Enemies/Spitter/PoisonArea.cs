@@ -2,29 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonArea : MonoBehaviour
-{
-    [SerializeField] int poisonDamage;
-    [SerializeField] float damageRate;
-    [SerializeField] float lifeTime;
+public class PoisonArea : MonoBehaviour {
 
-    private float countDown;
+    [SerializeField] int damages = 5;
+    [SerializeField] float damageFrequency = 0.5f;
+    [SerializeField] float lifeTime = 5f;
+    [SerializeField] float radius = 2f;
 
-    void Start()
-    {
-        countDown = damageRate;
+    private ParticleSystem particles;
+
+    void Start() {
+        InvokeRepeating(nameof(DamageBurst), 0, damageFrequency);
+        Invoke(nameof(Stop), lifeTime);
     }
 
-    void OnTriggerStay(Collider collider) {
-        PlayerHealth playerHealth = collider.gameObject.GetComponent<PlayerHealth>();
-        if (playerHealth) {
-            countDown -= Time.deltaTime;
-            if (countDown <= 0) {
-                playerHealth.TakeDamage(poisonDamage, gameObject);
-                countDown = damageRate;
+    private void DamageBurst() {
+        Collider[] cols = Physics.OverlapSphere(transform.position, radius, ReferenceManager.instance.playerLayer);
+        foreach (Collider collider in cols) {
+            PlayerHealth playerHealth = collider.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth) {
+                playerHealth.TakeDamage(damages, gameObject);
             }
         }
     }
 
- 
+    private void Stop() {
+        particles.Stop();
+        this.enabled = false;
+        Destroy(gameObject,1);
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

@@ -30,9 +30,22 @@ public class ReferenceManager : MonoBehaviour {
         players = FindObjectsOfType<PlayerController>().ToList();
     }
 
-    public PlayerController GetNearestPlayer(Vector3 pos) {
-        return Player;
-        //return players.OrderBy(p => (p.transform.position - pos).magnitude).First();
+    public PlayerController GetNearestPlayer(Vector3 pos, bool shouldBeAlive = true) {
+
+        if (shouldBeAlive) {
+            return Player;
+
+            ////MULTIPLAYER
+            //List<PlayerController> alivePlayers = new List<PlayerController>();
+            //foreach (PlayerController player in players) {
+            //    if (player.GetComponent<GenericHealth>().CurrentHealth > 0)
+            //        alivePlayers.Add(player);
+            //}
+            //return alivePlayers.OrderBy(p => (p.transform.position - pos).magnitude).First();
+        }
+        else {
+            return players.OrderBy(p => (p.transform.position - pos).magnitude).First();
+        }
     }
 
     public void AddPlayer() {

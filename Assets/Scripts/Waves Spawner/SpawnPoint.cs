@@ -9,23 +9,16 @@ public class SpawnPoint : MonoBehaviour {
     public void OnTriggerStay(Collider other) {
 
         ZombieController zombieController = other.GetComponent<ZombieController>();
-        if (zombieController) {
-            if (zombieController.IsInSpawn) {
-                FenceHealth fenceHealth = connectedFence.GetComponent<FenceHealth>();
-                if (fenceHealth.CurrentHealth > 0)
-                    zombieController.Target = connectedFence.transform;
-                else
-                    zombieController.Target = 
-                        ReferenceManager.instance.GetNearestPlayer(zombieController.transform.position).transform;
-            }
+        if (zombieController && !zombieController.HasLeavedSpawn) {
+            zombieController.Target = connectedFence;
         }
     }
 
     public void OnTriggerExit(Collider other) {
 
         ZombieController zombieController = other.GetComponent<ZombieController>();
-        if (zombieController) {
-            zombieController.IsInSpawn = false;
+        if (zombieController && !zombieController.HasLeavedSpawn) {
+            zombieController.HasLeavedSpawn = true;
             zombieController.Target = null;
         }
     }

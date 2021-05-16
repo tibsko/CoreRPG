@@ -7,7 +7,7 @@ public abstract class ZombieAttack : MonoBehaviour {
     public int attackDamages;
     [SerializeField] protected float attackRadius = 1f;
 
-    public Transform Target { get => zombieController.Target; }
+    public GenericHealth Target { get => zombieController.Target; }
 
 
     protected Animator animator;

@@ -18,7 +18,7 @@ public class BoomerAttack : ZombieAttack {
             return;
         }
         if (Target != null) {
-            float distance = Vector3.Distance(Target.position, gameObject.transform.position);
+            float distance = Vector3.Distance(Target.transform.position, gameObject.transform.position);
 
             if (Target.CompareTag("Player")) {
 
@@ -26,7 +26,7 @@ public class BoomerAttack : ZombieAttack {
                 if (distance <= explosionDistance) {
                     animator.SetBool("IsScreaming", true);
                     Invoke(nameof(BoomerExplose), explosionDelay);
-                    zombieController.Move(false);
+                    zombieController.SetMove(false);
                     isScreaming = true;
                     hasExplosed = true;
                 }
