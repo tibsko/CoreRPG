@@ -14,7 +14,6 @@ public class BouncingBullet : Bullet {
 
     private Vector3 nextEnemyPosition;
     private Vector3 newInitialPosition;
-    private Bullet initialBullet;
     private new Rigidbody rigidbody;
 
     private List<GameObject> enemies = new List<GameObject>();
@@ -40,7 +39,6 @@ public class BouncingBullet : Bullet {
     }
 
     void OnTriggerEnter(Collider other) {
-        //GameObject enemyTouched = null;
         if (layerMask.ContainsLayer(other.gameObject.layer)) {
             Vector3 bulletPosition = gameObject.transform.position;
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
@@ -54,8 +52,10 @@ public class BouncingBullet : Bullet {
                 }
                 firstEnemy = false;
                 enemies.Add(enemyHealth.gameObject);
-                //enemyTouched = enemyHealth.gameObject;
                 newInitialPosition = transform.position;
+                if (bouncingNb < 1) {
+                    Destroy(gameObject);
+                }
             }
 
             //Impact particules
@@ -65,11 +65,8 @@ public class BouncingBullet : Bullet {
             }
         }
 
-        if (bouncingNb < 1) {
-            Destroy(gameObject);
-            return;
-        }
-        else {
+        
+        if(bouncingNb>0) {
             Collider[] colliders = Physics.OverlapSphere(transform.position, bouncingRadius, layerMask);
             if (colliders.Length > 0) {
                 float distanceMin = 100f;

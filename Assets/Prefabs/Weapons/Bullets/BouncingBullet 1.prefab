@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bouncingRadius: 4
-  bouncingNb: 5
+  bouncingNb: 6
   layerMask:
     serializedVersion: 2
     m_Bits: 1024

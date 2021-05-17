@@ -20,6 +20,7 @@ public class MachineGunAuto : MonoBehaviour {
     [SerializeField] int damages;
     [SerializeField] float bulletLifeTime;
     [SerializeField] float timeBetweenBurst;
+    [SerializeField] float distanceMinToShoot;
 
     private bool readyToShoot;
 
@@ -28,7 +29,8 @@ public class MachineGunAuto : MonoBehaviour {
     }
 
     void OnTriggerStay(Collider collider) {
-        if (layerMask.ContainsLayer(collider.gameObject.layer)) {
+        float distance = Vector3.Distance(transform.position, collider.transform.position);
+        if (layerMask.ContainsLayer(collider.gameObject.layer ) && distance > distanceMinToShoot) {
             Rotation(collider.gameObject);
         }
     }
