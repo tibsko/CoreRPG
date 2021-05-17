@@ -4,66 +4,97 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour {
-    public bool isInRoom;
 
-    private Transform target;
+    [Header("Speed")]
+    [SerializeField] float walkSpeed = 3f;
+    [SerializeField] float runSpeed = 4f;
+    [SerializeField] float speedRunDistance = 7f;
+
+    [Header("Detection")]
+    [SerializeField] float detectionFrequency = 0.1f;
+
+    private GenericHealth target;
+    public GenericHealth Target {
+        get {
+            return target;
+        }
+        set {
+            if (value != null) {
+                if (value.CurrentHealth > 0) {
+                    target = value;
+                }
+                else {
+                    Debug.Log($"Can't asign {value.name} as target because it has 0 PV");
+                }
+            }
+            else
+                target = value;
+        }
+    }
+    public bool HasLeavedSpawn { get; set; }
+
     private NavMeshAgent agent;
     private Animator animator;
-    private ZombieAttack enemyAttack;
-    private DoorDetector doorDetector;
 
-    // Start is called before the first frame update
     void Start() {
-        isInRoom = false;
-        doorDetector = GetComponentInChildren<DoorDetector>();
-
-        enemyAttack = GetComponent<ZombieAttack>();
-
-        agent = GetComponent<NavMeshAgent>();
+        HasLeavedSpawn = false;
         animator = gameObject.GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
+        //Repeat update target
+        InvokeRepeating(nameof(UpdateTarget), 0, detectionFrequency);
     }
 
-    // Update is called once per frame
     void Update() {
-        Targeting();
-        enemyAttack.target = target;
-        agent.SetDestination(target.position);
-        float distance = Vector3.Distance(target.position, gameObject.transform.position);
-        if (distance <= agent.stoppingDistance) {
-            FaceTarget();
+
+        //If zombie has a target
+        if (Target) {
+            //Update navmesh agent
+            agent.SetDestination(Target.transform.position);
+            float distance = Vector3.Distance(Target.transform.position, transform.position);
+
+            //Update rotation
+            if (distance <= agent.stoppingDistance) {
+                FaceTarget();
+            }
+
+            //Update speed
+            if (Target.CompareTag("Player") && distance <= speedRunDistance) {
+                agent.speed = runSpeed;
+            }
+            else {
+                agent.speed = walkSpeed;
+            }
         }
+
+        //Update animator
         if (agent.velocity.magnitude > 0.01f) {
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
-
     }
 
-    void FaceTarget() {
-        Vector3 direction = (target.position - transform.position).normalized;
+    public void SetMove(bool move) {
+        agent.isStopped = !move;
+
+        if (move) {
+            if (Target) agent.SetDestination(Target.transform.position);
+        }
+        else {
+            animator.SetFloat("Speed", 0);
+        }
+    }
+
+    private void FaceTarget() {
+        Vector3 direction = (Target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
-    void Targeting() {
-        DoorHealth door = doorDetector.doorDetected.GetComponent<DoorHealth>();
-        if (isInRoom) {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-        }
-        else if (door && !isInRoom) {
-            if (door.currentHealth <= 0) {
-                target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
-            }
-            else {
-                if (doorDetector.doorDetected) {
-                    target = doorDetector.doorDetected;
-                }
-                isInRoom = false;
-            }
-        }
-        else {
-            target = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+    private void UpdateTarget() {
+
+        //If target is dead or null
+        if (!Target || Target.CurrentHealth <= 0 || Target.CompareTag("Player")) {
+            Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
         }
     }
-
 }

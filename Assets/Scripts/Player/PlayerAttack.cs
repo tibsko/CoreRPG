@@ -83,7 +83,7 @@ public class PlayerAttack : MonoBehaviour {
         Vector3 target = transform.position + transform.forward;
 
         foreach (var collider in colliders) {
-            if (LayerManager.instance.enemyLayer.ContainsLayer(collider.gameObject.layer)) {
+            if (ReferenceManager.instance.enemyLayer.ContainsLayer(collider.gameObject.layer)) {
                 float distance = (collider.transform.position - transform.position).magnitude;
                 if (distanceEnemy > distance) {
                     distanceEnemy = distance;

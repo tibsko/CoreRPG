@@ -15,7 +15,7 @@ public class PosableSecondary : Secondary {
     // Start is called before the first frame update
     void Start() {
         posableRenderer = Instantiate(previs, transform.position, Quaternion.identity);
-        player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+        player = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
 
        
     }

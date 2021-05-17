@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour {
 
+    private GenericHealth connectedFence;
 
-    public void OnTriggerExit(Collider zombie) {
+    private void Start() {
+        connectedFence = GetComponentInParent<GenericHealth>();
+    }
 
-        ZombieController zombieController = zombie.GetComponent<ZombieController>();
-        if (zombieController) {
-            zombieController.isInRoom = true;
+    public void OnTriggerStay(Collider other) {
+
+        ZombieController zombieController = other.GetComponent<ZombieController>();
+        if (zombieController && !zombieController.HasLeavedSpawn) {
+            zombieController.Target = connectedFence;
         }
     }
 
+    public void OnTriggerExit(Collider other) {
+
+        ZombieController zombieController = other.GetComponent<ZombieController>();
+        if (zombieController && !zombieController.HasLeavedSpawn) {
+            zombieController.HasLeavedSpawn = true;
+            zombieController.Target = null;
+        }
+    }
 }

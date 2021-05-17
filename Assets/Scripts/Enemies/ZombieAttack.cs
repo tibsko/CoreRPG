@@ -2,37 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieAttack : EnemyAttack {
-    
+public abstract class ZombieAttack : MonoBehaviour {
 
-    private Animator animator;
+    public int attackDamages;
+    [SerializeField] protected float attackRadius = 1f;
 
-    // Start is called before the first frame update
+    public GenericHealth Target { get => zombieController.Target; }
+
+
+    protected Animator animator;
+    protected ZombieController zombieController;
+
     protected void Start() {
-        activatehitbox = false;
+        zombieController = GetComponent<ZombieController>();
         animator = gameObject.GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (target != null) {
-            float distance = Vector3.Distance(target.position, gameObject.transform.position);
-            if (distance < attackRadius) {
-                animator.SetBool("isAttacking", true);
+    //void OnTriggerEnter(Collider collision) {
+    //    PlayerAttack player = collision.GetComponent<PlayerAttack>();
+    //    if (player) {
+    //        transform.LookAt(player.transform.position);
+    //    }
+    //}
 
-            }
-            else {
-                animator.SetBool("isAttacking", false);
-            }
-        }
-    }
-
-
-
-    void OnTriggerEnter(Collider collision) {
-        PlayerAttack player = collision.GetComponent<PlayerAttack>();
-        if (player) {
-            transform.LookAt(player.transform.position);
-        }
-    }
+    protected abstract void Update();
+    protected abstract void DieBehaviour();
 }

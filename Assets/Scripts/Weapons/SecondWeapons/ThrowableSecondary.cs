@@ -15,7 +15,7 @@ public class ThrowableSecondary : Secondary {
     // Start is called before the first frame update
     void Start() {
         //lr = GetComponent<LineRenderer>();
-        player = PlayerManager.instance.GetNearestPlayer(transform.position).transform;
+        player = ReferenceManager.instance.GetNearestPlayer(transform.position).transform;
     }
 
     void Update() {
