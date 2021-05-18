@@ -27,7 +27,6 @@ public class BouncingBullet : Bullet {
         timerContact = 0;
     }
     void Update() {
-        Debug.Log(firstEnemy);
         if (firstEnemy) {
             rigidbody.velocity = transform.forward * Velocity;
         }
@@ -36,7 +35,7 @@ public class BouncingBullet : Bullet {
         }
         if (timerContact > 0.0)
             timerContact -= Time.deltaTime;
-      
+
     }
 
     void OnTriggerEnter(Collider other) {
@@ -64,20 +63,20 @@ public class BouncingBullet : Bullet {
             if (emitter) {
                 emitter.InstantiateParticule(bulletPosition, -transform.forward);
             }
-            else if (effect!=null) {
+            else if (effect != null) {
                 GameObject particule = Instantiate(effect, transform.position, Quaternion.identity);
                 Destroy(particule, 2f);
             }
         }
 
-        
-        if(bouncingNb>0) {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, bouncingRadius, layerMask);
+
+        if (bouncingNb > 0) {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, bouncingRadius, ReferenceManager.instance.enemyLayer);
             if (colliders.Length > 0) {
                 float distanceMin = 100f;
                 GameObject enemyGo = null;
                 foreach (Collider col in colliders) {
-                    if (enemies.Count>0) {
+                    if (enemies.Count > 0) {
                         if (!enemies.Contains(col.gameObject) && col.gameObject.GetComponent<GenericHealth>()) {
                             float distance = Vector3.Distance(transform.position, col.gameObject.transform.position);
                             if (distance < distanceMin) {
@@ -88,6 +87,12 @@ public class BouncingBullet : Bullet {
                         }
                     }
                     else if (!firstEnemy && enemies.Count == 0) { Destroy(gameObject); }
+                    if (nextEnemyPosition == null) {
+                        Destroy(gameObject);
+                    }
+                }
+                if (nextEnemyPosition == null) {
+                    Destroy(gameObject);
                 }
             }
             else {
