@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5667195029400866960}
   - component: {fileID: 7493720169211630391}
   m_Layer: 11
-  m_Name: BouncingBullet 1
+  m_Name: BouncingBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,10 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bouncingRadius: 4
-  bouncingNb: 6
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1024
+  bouncingNb: 4
   distanceInstantiat: 0.1
   effect: {fileID: 4340348782033192159, guid: 0fae97768aa80c8478f3b2bf7d4ab4ed, type: 3}
   delay: 0.1

@@ -5,7 +5,6 @@ using UnityEngine;
 public class BouncingBullet : Bullet {
     [SerializeField] float bouncingRadius;
     [SerializeField] int bouncingNb;
-    [SerializeField] LayerMask layerMask;
     [SerializeField] float distanceInstantiat;
     [SerializeField] GameObject effect;
 
@@ -39,7 +38,7 @@ public class BouncingBullet : Bullet {
     }
 
     void OnTriggerEnter(Collider other) {
-        if (layerMask.ContainsLayer(other.gameObject.layer)) {
+        if (ReferenceManager.instance.enemyLayer.ContainsLayer(other.gameObject.layer)) {
             Vector3 bulletPosition = gameObject.transform.position;
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
 
@@ -87,11 +86,9 @@ public class BouncingBullet : Bullet {
                         }
                     }
                     else if (!firstEnemy && enemies.Count == 0) { Destroy(gameObject); }
-                    if (nextEnemyPosition == null) {
-                        Destroy(gameObject);
-                    }
                 }
-                if (nextEnemyPosition == null) {
+
+                if (!enemyGo) {
                     Destroy(gameObject);
                 }
             }

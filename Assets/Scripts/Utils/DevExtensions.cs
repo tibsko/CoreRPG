@@ -5,6 +5,8 @@ using UnityEngine;
 public static class DevExtensions {
     public static bool ContainsLayer(this LayerMask mask, int layer) {
         return mask == (mask | (1 << layer));
+
+
     }
 
     public static Collider GetClosest(this Vector3 position, ICollection<Collider> collection) {
