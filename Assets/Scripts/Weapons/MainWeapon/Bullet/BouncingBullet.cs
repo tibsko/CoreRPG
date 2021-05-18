@@ -7,6 +7,7 @@ public class BouncingBullet : Bullet {
     [SerializeField] int bouncingNb;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float distanceInstantiat;
+    [SerializeField] GameObject effect;
 
     private bool firstEnemy = true;
 
@@ -62,6 +63,10 @@ public class BouncingBullet : Bullet {
             ImpactParticlesEmitter emitter = other.gameObject.GetComponent<ImpactParticlesEmitter>();
             if (emitter) {
                 emitter.InstantiateParticule(bulletPosition, -transform.forward);
+            }
+            else if (effect!=null) {
+                GameObject particule = Instantiate(effect, transform.position, Quaternion.identity);
+                Destroy(particule, 2f);
             }
         }
 

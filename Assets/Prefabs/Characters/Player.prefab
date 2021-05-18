@@ -1080,7 +1080,7 @@ MonoBehaviour:
   nbMaxWeapon: 2
   weaponPrefabs:
   - {fileID: 1439755198, guid: e8787c105f49c624a89358eea4388636, type: 3}
-  - {fileID: 6675140689865833655, guid: 108da09a4f2fc384fbe04ea54f339006, type: 3}
+  - {fileID: 1439755198, guid: 2f3070c70efc5054cb9037c6e37cd65d, type: 3}
   fireWeaponSlot: {fileID: 6017839446949607336}
   meleeWeaponSlot: {fileID: 1539884655}
   equipedWeapons: []
@@ -1175,9 +1175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondaries: []
-  Space: 0
+  Space: 3
   ActiveSecondary: {fileID: 0}
-  secondarySlot: {fileID: 0}
+  secondarySlot: {fileID: 1704890473}
 --- !u!1 &6017839447291456409
 GameObject:
   m_ObjectHideFlags: 0

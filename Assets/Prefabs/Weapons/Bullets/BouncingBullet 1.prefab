@@ -68,6 +68,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   distanceInstantiat: 0.1
+  effect: {fileID: 4340348782033192159, guid: 0fae97768aa80c8478f3b2bf7d4ab4ed, type: 3}
   delay: 0.1
 --- !u!135 &7493720169211630391
 SphereCollider:
