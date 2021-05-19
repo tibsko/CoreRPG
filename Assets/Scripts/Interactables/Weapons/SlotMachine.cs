@@ -25,9 +25,9 @@ public class SlotMachine : MonoBehaviour
             total += weaponsBuy[i].rate;
             if (rand < total) {
                 Instantiate(weaponsBuy[i].weapon,
-                    transform.position + new Vector3(Random.Range(0f, 1f),
+                    transform.position + new Vector3(0,
                     0,
-                    Random.Range(0f, 1f)),
+                    -2f),
                     Quaternion.identity);
                 break;
             }

@@ -51,7 +51,7 @@ public class BouncingBullet : Bullet {
                 if (timerContact <= 0.0) {
                     timerContact = delay;
                     bouncingNb -= 1;
-                    Debug.Log(bouncingNb);
+
                 }
                 firstEnemy = false;
                 enemies.Add(enemyHealth.gameObject);

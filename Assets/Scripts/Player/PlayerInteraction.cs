@@ -2,66 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
-{
+public class PlayerInteraction : MonoBehaviour {
     [SerializeField] float radiusInteractable = 3.5f;
     [SerializeField] LayerMask interacableLayers;
 
     private InteractableComponent focus;
-    private InteractableComponent interactable;
+    private List<InteractableComponent> interactables = new List<InteractableComponent>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void OnTriggerStay(Collider other) {
+        if (interacableLayers.ContainsLayer(other.gameObject.layer)) {
+            InteractableComponent interactable = other.GetComponent<InteractableComponent>();
+            interactables.Add(interactable);
+            SetFocus();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        DetectInteractable();
-    }
-
-    private void DetectInteractable() {
-        Collider[] interactablesDetected = Physics.OverlapSphere(transform.position, radiusInteractable, interacableLayers);
-        if (interactablesDetected.Length > 0) {
-            foreach (var collider in interactablesDetected) {
-                InteractableComponent interactable = interactablesDetected[0].GetComponent<InteractableComponent>();
-                SetFocus(interactable);
+    private void OnTriggerExit(Collider other) {
+        if (focus) {
+            if (other.gameObject == focus.gameObject) {
+                interactables.Remove(other.GetComponent<InteractableComponent>());
+                RemoveFocus();
             }
         }
-        else
-            RemoveFocus();
     }
 
-    private void SetFocus(InteractableComponent newFocus) {
-        if (newFocus && newFocus != focus) {
-            focus = newFocus;
-            newFocus.OnFocused(transform);
-            interactable = newFocus;
+
+    private void SetFocus() {
+        float distanceMin = 100f;
+        if (interactables.Count > 0) {
+            foreach (InteractableComponent inter in interactables) {
+                float distance = Vector3.Distance(transform.position, inter.gameObject.transform.position);
+                if (distance < distanceMin) {
+                    distanceMin = distance;
+                    focus = inter;
+                }
+            }
+            focus.OnFocused(transform);
         }
+        else { RemoveFocus(); }
     }
 
-    private void RemoveFocus() {
+    public void RemoveFocus() {
         if (focus != null)
             focus.OnDeFocused();
         focus = null;
+        interactables = new List<InteractableComponent>();
+
 
     }
 
 
     public void Interaction() {
-        interactable.Interact(gameObject);
-        //if (interactable.GetType()!=type.DoorInteractable)
-        //interactable = null;
+        if (focus) {
+            focus.Interact(gameObject);
+        }
+        RemoveFocus();
+
     }
 
     public void HoldDownInteraction() {
-        
-        interactable.HoldDownInteract();
+
+        focus.HoldDownInteract();
     }
     public void HoldupInteraction() {
-        interactable.HoldUpInteract();
+        focus.HoldUpInteract();
 
     }
 }
