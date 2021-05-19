@@ -36,8 +36,8 @@ public class BouncingBullet : Bullet {
         }
         if (timerContact > 0.0)
             timerContact -= Time.deltaTime;
-       
-        
+
+
 
     }
 
@@ -51,13 +51,15 @@ public class BouncingBullet : Bullet {
                 if (timerContact <= 0.0) {
                     timerContact = delay;
                     bouncingNb -= 1;
-
                 }
                 firstEnemy = false;
                 enemies.Add(enemyHealth.gameObject);
                 newInitialPosition = transform.position;
                 if (bouncingNb < 1) {
                     Destroy(gameObject);
+                }
+                else {
+                    FindNearestEnemy();
                 }
             }
 
@@ -71,37 +73,31 @@ public class BouncingBullet : Bullet {
                 Destroy(particule, 2f);
             }
         }
+    }
 
-
-        if (bouncingNb > 0) {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, bouncingRadius, ReferenceManager.instance.enemyLayer);
-            if (colliders.Length > 0) {
-                float distanceMin = 100f;
-                GameObject enemyGo = null;
-                foreach (Collider col in colliders) {
-                    if (enemies.Count > 0) {
-                        if (!enemies.Contains(col.gameObject) && col.gameObject.GetComponent<GenericHealth>()) {
-                            float distance = Vector3.Distance(transform.position, col.gameObject.transform.position);
-                            if (distance < distanceMin) {
-                                distanceMin = distance;
-                                nextEnemyPosition = col.transform.position;
-                                enemyGo = col.gameObject;
-                            }
-                        }
+    private void FindNearestEnemy() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, bouncingRadius, ReferenceManager.instance.enemyLayer);
+        if (colliders.Length > 0) {
+            float distanceMin = 100f;
+            GameObject enemyGo = null;
+            foreach (Collider col in colliders) {
+                if (!enemies.Contains(col.gameObject) && col.gameObject.GetComponent<GenericHealth>()) {
+                    float distance = Vector3.Distance(transform.position, col.gameObject.transform.position);
+                    if (distance < distanceMin) {
+                        distanceMin = distance;
+                        nextEnemyPosition = col.transform.position;
+                        enemyGo = col.gameObject;
                     }
-                    else if (!firstEnemy && enemies.Count == 0) { Destroy(gameObject); }
-                }
-
-                if (!enemyGo) {
-                    Destroy(gameObject);
                 }
             }
-            else {
+            if (!enemyGo) {
                 Destroy(gameObject);
             }
         }
+        else {
+            Destroy(gameObject);
+        }
     }
-    
 
     public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime) {
         transform.rotation = Quaternion.Euler(rotation);

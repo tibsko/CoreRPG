@@ -46,8 +46,6 @@ public class PlayerInteraction : MonoBehaviour {
             focus.OnDeFocused();
         focus = null;
         interactables = new List<InteractableComponent>();
-
-
     }
 
 
@@ -56,7 +54,6 @@ public class PlayerInteraction : MonoBehaviour {
             focus.Interact(gameObject);
         }
         RemoveFocus();
-
     }
 
     public void HoldDownInteraction() {
