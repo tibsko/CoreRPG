@@ -7,6 +7,7 @@ public class BouncingBullet : Bullet {
     [SerializeField] int bouncingNb;
     [SerializeField] float distanceInstantiat;
     [SerializeField] GameObject effect;
+    [SerializeField] float lifeTime;
 
     private bool firstEnemy = true;
 
@@ -24,6 +25,7 @@ public class BouncingBullet : Bullet {
     void Start() {
         rigidbody = GetComponent<Rigidbody>();
         timerContact = 0;
+        Destroy(gameObject, lifeTime);
     }
     void Update() {
         if (firstEnemy) {
@@ -34,6 +36,8 @@ public class BouncingBullet : Bullet {
         }
         if (timerContact > 0.0)
             timerContact -= Time.deltaTime;
+       
+        
 
     }
 
@@ -97,12 +101,14 @@ public class BouncingBullet : Bullet {
             }
         }
     }
+    
 
     public override void InitializeBullet(Vector3 rotation, float _damages, float _velocity, float _range, float _lifeTime) {
         transform.rotation = Quaternion.Euler(rotation);
         Damages = _damages;
         Velocity = _velocity;
         Range = _range;
+        lifeTime = _lifeTime;
         initialized = true;
     }
 

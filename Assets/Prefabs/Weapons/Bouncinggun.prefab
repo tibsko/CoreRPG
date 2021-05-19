@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1439755199}
   - component: {fileID: 1439755198}
   m_Layer: 8
-  m_Name: Bouncinggun0
+  m_Name: Bouncinggun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64b7cd034959cfe4d9d67ad612812c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damages: 20
-  autoshootDistance: 5
+  damages: 59
+  autoshootDistance: 8
   overrideAnimator: {fileID: 0}
   onEndAttack:
     m_PersistentCalls:
@@ -160,7 +160,7 @@ MonoBehaviour:
   spread: 1
   range: 50
   velocity: 8
-  bulletLifeTime: 4
+  bulletLifeTime: 3
   instantiateInFirePoint: 0
   firePoint: {fileID: 3072305698166753476}
   bulletPrefab: {fileID: 1186466485596272, guid: de7bfb202c87dd549a5a71802b792cfe,
