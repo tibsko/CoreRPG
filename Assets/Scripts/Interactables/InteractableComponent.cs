@@ -7,7 +7,7 @@ public class InteractableComponent : MonoBehaviour {
     public bool useOnce = false;
     public string textButton;
 
-    private bool hasInteracted = false;
+    public bool hasInteracted;
     private bool isFocused = false;
     private Transform player;
 
@@ -18,6 +18,9 @@ public class InteractableComponent : MonoBehaviour {
         if (!useOnce || (useOnce && !hasInteracted)) {
             onInteract.Invoke(player);
             hasInteracted = true;
+        }
+        else {
+            return;
         }
     }
 
@@ -44,7 +47,7 @@ public class InteractableComponent : MonoBehaviour {
     public void OnDeFocused() {
         isFocused = false;
         player = null;
-        hasInteracted = false;
+        //hasInteracted = false;
         HUD.instance.ActivateButton(false);
 
     }
