@@ -286,9 +286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300020, guid: 5163ae49a0de665458bba61cd20c99b1, type: 3}
   isDefaultweapon: 0
-  damages: 30
   range: 7
-  secondWeaponType: 0
+  display: 1
+  secondaryType: 0
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -344,7 +344,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.19656032
+        value: 0.08544582
         inSlope: 0
         outSlope: 0
         tangentMode: 0

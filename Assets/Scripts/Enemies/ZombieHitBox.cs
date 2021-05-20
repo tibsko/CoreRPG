@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class ZombieHitBox : MonoBehaviour
 {
-    [SerializeField] EnemyAttack enemyAttack;
+    [SerializeField] ZombieAttack enemyAttack;
    
-    public void Start() {
-        
-    }
     void OnTriggerEnter(Collider collision) {
-        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-        DoorHealth doorHealth = collision.gameObject.GetComponent<DoorHealth>();
-        if (playerHealth) {
-            playerHealth.TakeDamage(enemyAttack.attackDamages, gameObject);
-        }
-        else if (doorHealth) {
-            doorHealth.TakeDamage(enemyAttack.attackDamages, gameObject);
-            doorHealth.UpdateDoorboards();
+        GenericHealth health = collision.gameObject.GetComponent<GenericHealth>();
+        if (health) {
+            health.TakeDamage(enemyAttack.attackDamages, gameObject);
         }
     }
 }

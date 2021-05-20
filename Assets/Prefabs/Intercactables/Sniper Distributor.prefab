@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8351499269516804517}
-  - component: {fileID: 8351499269516804514}
   - component: {fileID: 8351499269516804515}
   m_Layer: 12
   m_Name: Sniper Distributor
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8351499269516804514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8351499269516804516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a64986a9b241a44aa2706157a202bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textButton: Buy Sniper
-  weapon: {fileID: 2393722595115796750, guid: f8b4261b2c7f90448af65f0c81d319bc, type: 3}
-  weaponPrice: 300
 --- !u!65 &8351499269516804515
 BoxCollider:
   m_ObjectHideFlags: 0

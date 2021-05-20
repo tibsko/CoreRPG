@@ -2,31 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour
-{
-    //[System.Serializable]
-    //public class SpawnPoint {
-    //    public Transform spawnerTransform;
-    //    public BoxCollider boxCollider;
-    //    public SpawnPoint spawnPoint;
-    //}
+public class Room : MonoBehaviour {
 
-    [SerializeField] List<GameObject> spawnPoints;
+    [SerializeField] bool firstRoom = false;
 
-    public void ActiveRoomSpawners(bool state) {
-        foreach(GameObject spawn in spawnPoints) {
-            spawn.SetActive(state);
+    private bool activated = false;
+    private SpawnPoint[] spawnPoints;
+
+    private void Start() {
+        spawnPoints = GetComponentsInChildren<SpawnPoint>();
+        if (firstRoom) {
+            ActivateRoom();
         }
     }
-    //    // Start is called before the first frame update
-    //    void Start()
-    //{
-        
-    //}
 
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
+    public void ActivateRoom() {
+        if (activated)
+            return;
+
+        activated = true;
+        foreach (SpawnPoint spawn in spawnPoints) {
+            WaveManager.instance.AddSpawner(spawn);
+        }
+    }
 }

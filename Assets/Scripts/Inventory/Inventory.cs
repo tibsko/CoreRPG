@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour {
-    [SerializeField] Transform secondWeaponSlot; 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public List<SecondWeaponItem> secondWeaponsItems=new List<SecondWeaponItem>();
-    public List<SecondWeapon> secondWeapons = new List<SecondWeapon>();
+    public List<SecondaryItem> secondaryItems=new List<SecondaryItem>();
+    public List<Secondary> secondaries = new List<Secondary>();
 
-    public int space = 3;
-    bool exist;
+    public int Space;
 
-    public SecondWeapon ActiveSecondWeapon;
+    public Secondary ActiveSecondary;
+    public SecondaryItem ActiveSecondaryItem;
 
-    public int ActiveSecondWeaponIndex { get; private set; }
-
-    public bool Add(SecondWeapon weapon, int amount) {
-        foreach (SecondWeaponItem sp in secondWeaponsItems) {
-            if (sp.weapon.secondWeaponType == weapon.secondWeaponType) {
+    [SerializeField] Transform secondarySlot;
+    
+    private bool exist;
+    public bool Add(Secondary weapon, int amount) {
+        foreach (SecondaryItem sp in secondaryItems) {
+            if (sp.secondary.secondaryType == weapon.secondaryType) {
                 //sp.weapon = weapon;
                 sp.amount += amount;
                 exist = true;
@@ -31,15 +31,15 @@ public class Inventory : MonoBehaviour {
             }
         }
         if (!exist) {
-            if (secondWeaponsItems.Count >= space) {
+            if (secondaryItems.Count >= Space) {
                 Debug.Log("Not enough room in the inventory");
                 return false;
             }
 
-            SecondWeaponItem secondWeaponItem = new SecondWeaponItem(weapon,amount);
-            GameObject goSecondWeapon = EquipWeapon(secondWeaponItem.weapon);
-            secondWeaponItem.weapon = goSecondWeapon.GetComponent<SecondWeapon>();
-            secondWeaponsItems.Add(secondWeaponItem);
+            SecondaryItem secondWeaponItem = new SecondaryItem(weapon,amount);
+            GameObject goSecondWeapon = EquipWeapon(secondWeaponItem.secondary);
+            secondWeaponItem.secondary = goSecondWeapon.GetComponent<Secondary>();
+            secondaryItems.Add(secondWeaponItem);
             if (onItemChangedCallback != null) {
                 onItemChangedCallback.Invoke();
             }
@@ -52,36 +52,59 @@ public class Inventory : MonoBehaviour {
 
         return true;
     }
-    public void SetActiveWeapon(SecondWeaponItem swi) {
-        for (int i = 0; i < secondWeapons.Count; i++) {
-            secondWeapons[i].gameObject.SetActive(false);
+    public void SetActiveSecondary(SecondaryItem swi) {
+        for (int i = 0; i < secondaries.Count; i++) {
+            secondaries[i].gameObject.SetActive(false);
         }
-        ActiveSecondWeapon = swi.weapon;
-        Debug.Log(ActiveSecondWeapon);
-        foreach (SecondWeapon sw in secondWeapons) {
-            if (sw.secondWeaponType == swi.weapon.secondWeaponType) {
+        ActiveSecondary = swi.secondary;
+        ActiveSecondaryItem = swi;
+        foreach (Secondary sw in secondaries) {
+            if (sw.secondaryType == swi.secondary.secondaryType) {
+
                 sw.gameObject.SetActive(true);
+                MeshRenderer[] renderers = sw.gameObject.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer ren in renderers) {
+                    ren.enabled = sw.display;
+                }
+                if(sw.gameObject.GetComponent<MachineGunAuto>())
+                    sw.gameObject.GetComponent<MachineGunAuto>().enabled = sw.display;
                 break;
             }
         }
        
     }
-    public GameObject EquipWeapon(SecondWeapon secondWeapon) {
+    public void looseBullet() {
+        foreach (SecondaryItem sw in secondaryItems) {
+            if (sw.secondary.secondaryType == ActiveSecondaryItem.secondary.secondaryType) {
+                sw.amount -= 1;
+                onItemChangedCallback.Invoke();
+                if (sw.amount <= 0) {
+                    ActiveSecondaryItem = null;
+                    ActiveSecondary = null;
+                }
+                break;
+            }
+        }
+    }
+    public GameObject EquipWeapon(Secondary secondWeapon) {
 
-        Transform weaponSlot;
-        weaponSlot= secondWeaponSlot;
-        GameObject go = Instantiate(secondWeapon.gameObject, weaponSlot);
+        Transform secondarySlotTemp;
+        secondarySlotTemp= this.secondarySlot;
+        GameObject go = Instantiate(secondWeapon.gameObject, secondarySlotTemp);
         //ParabolicProjectile parabolicProjectile = go.GetComponent<ParabolicProjectile>();
         //if (parabolicProjectile)
         //    parabolicProjectile.enabled = false;
         go.SetActive(false);
         go.layer = gameObject.layer;
-        secondWeapons.Add(go.GetComponent<SecondWeapon>());
+        secondaries.Add(go.GetComponent<Secondary>());
         return go;
     }
 
-    public void Remove(SecondWeaponItem weapon) {
-        secondWeaponsItems.Remove(weapon);
+    public void Remove(SecondaryItem weaponItem) {
+        Debug.Log(weaponItem.amount);
+        Destroy(weaponItem.secondary.gameObject);
+        secondaries.Remove(weaponItem.secondary);
+        secondaryItems.Remove(weaponItem);
         if (onItemChangedCallback != null) {
             onItemChangedCallback.Invoke();
         }
