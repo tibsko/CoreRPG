@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThrowableSecondary : Secondary {
     [SerializeField] GameObject bullet;
     [SerializeField] LineRenderer lr;
+    [SerializeField] Sprite targetSprite;
 
     private ParabolicProjectile parabolicProjectile;
     private Vector3 endPosition;

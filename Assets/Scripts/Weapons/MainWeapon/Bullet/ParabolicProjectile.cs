@@ -21,6 +21,7 @@ public class ParabolicProjectile : MonoBehaviour {
     private Vector3 startPosition;
     private Vector3 endPosition;
     private float animationProjectile;
+    private bool impactInstantiate = false;
 
     private void Start() {
         startPosition = transform.position;
@@ -45,11 +46,12 @@ public class ParabolicProjectile : MonoBehaviour {
                 Vector3 impactPosition = transform.position;
             if(impactDamage)
                 onImpact.Invoke(impactPosition);
-            if (impactEffect) {
+            if (impactEffect && !impactInstantiate) {
                 if (impactOnFloor) {
                     impactPosition.y = collider.transform.position.y; //TODO Improve height calculation
                 }
                 GameObject goEffect =Instantiate(impactEffect, impactPosition, Quaternion.identity);
+                impactInstantiate = true;
                 Destroy(goEffect, impactDelay);
             }
         }
