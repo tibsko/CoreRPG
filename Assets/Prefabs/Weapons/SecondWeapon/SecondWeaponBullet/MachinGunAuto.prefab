@@ -667,7 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 6097770054815336910}
-  rotationSpeed: 20
+  rotationSpeed: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -8,13 +8,25 @@ public class PoisonArea : MonoBehaviour {
     [SerializeField] float damageFrequency = 0.5f;
     [SerializeField] float lifeTime = 5f;
     [SerializeField] float radius = 2f;
+    [SerializeField] GameObject spriteZone;
+    [SerializeField] float maxScale;
 
     private ParticleSystem particles;
+    private float scale;
+
 
     void Start() {
+        
         InvokeRepeating(nameof(DamageBurst), 0, damageFrequency);
+        spriteZone.transform.localScale = Vector3.zero;
+        float rotation = Random.Range(0, 360);
+        spriteZone.transform.Rotate(new Vector3(0, 0, rotation));
+        scale = 0;
+        InvokeRepeating(nameof(SpriteSize), 0f, .05f);
         Invoke(nameof(Stop), lifeTime);
     }
+
+    
 
     private void DamageBurst() {
         Collider[] cols = Physics.OverlapSphere(transform.position, radius, ReferenceManager.instance.playerLayer);
@@ -26,8 +38,15 @@ public class PoisonArea : MonoBehaviour {
         }
     }
 
+    private void SpriteSize() {
+        if (spriteZone.transform.localScale.x < maxScale) {
+            scale += .1f;
+            spriteZone.transform.localScale = Vector3.one * scale;
+        }
+    }
     private void Stop() {
-        particles.Stop();
+        if(particles)
+            particles.Stop();
         this.enabled = false;
         Destroy(gameObject,1);
     }

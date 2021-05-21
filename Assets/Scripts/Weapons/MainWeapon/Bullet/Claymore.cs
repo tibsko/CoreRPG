@@ -11,15 +11,6 @@ public class Claymore : MonoBehaviour {
     [SerializeField] float exploseRadius;
     [SerializeField] float damages;
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
     void OnTriggerEnter(Collider other) {
         if (canExplose) {
             if (layerMask.ContainsLayer(other.gameObject.layer)) {

@@ -120,7 +120,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 4
   speedRunDistance: 7
-  fenceDetectionRadius: 10
+  detectionFrequency: 0.1
 --- !u!54 &1253970159583894483
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182,8 +182,7 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
-  timerHealth: 0.2
-  timer: 0
+  timerHealth: 0.5
 --- !u!114 &215208388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,15 +196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamages: 20
-  activateHitbox: 0
   attackRadius: 2
-  target: {fileID: 0}
+  spitDistance: 5
+  poisonRadius: 2
+  poisonDuration: 5
   dieParticule: {fileID: 3551077037914470400, guid: 640ad46cc1104bb45a3e7df26c6aefd2,
     type: 3}
-  dieRadius: 1
-  poisonTime: 10
-  attackDistance: 4.5
-  isSpitting: 0
 --- !u!114 &-2207503261081765645
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useOnce: 0
   textButton: Good Luck
+  hasInteracted: 0
   onInteract:
     m_PersistentCalls:
       m_Calls:

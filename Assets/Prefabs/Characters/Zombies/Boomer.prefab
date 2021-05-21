@@ -512,7 +512,7 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 4
   speedRunDistance: 7
-  fenceDetectionRadius: 10
+  detectionFrequency: 0.1
 --- !u!114 &6078473582528620988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,8 +578,7 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
-  timerHealth: 0.2
-  timer: 0
+  timerHealth: 0.5
 --- !u!114 &6078473582528620984
 MonoBehaviour:
   m_ObjectHideFlags: 0
