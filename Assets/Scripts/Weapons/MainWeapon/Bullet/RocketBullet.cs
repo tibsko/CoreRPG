@@ -7,10 +7,12 @@ public class RocketBullet : Bullet {
     [SerializeField] LayerMask damagesLayers;
     [SerializeField] float explosionRadius = 5f;
 
+    private ParticleSystem particleSystem;
     private Vector3 startPosition;
 
     void Start() {
         startPosition = transform.position;
+        particleSystem = GetComponent<ParticleSystem>();
 
         if (!initialized) {
             Destroy(gameObject);
@@ -36,20 +38,25 @@ public class RocketBullet : Bullet {
     }
 
     private void OnParticleCollision(GameObject other) {
-        Collider[] cols = Physics.OverlapSphere(transform.position, explosionRadius, damagesLayers);
+
+        List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
+        int numCollisionEvents = particleSystem.GetCollisionEvents(other, collisionEvents);
+
+        Collider[] cols = Physics.OverlapSphere(collisionEvents[0].intersection, explosionRadius, damagesLayers);
         foreach (Collider col in cols) {
             GenericHealth health = col.GetComponent<GenericHealth>();
-        Debug.Log(col.name);
+            Debug.Log(col.name);
             if (health) {
                 health.TakeDamage(Damages, this.gameObject);
             }
         }
         //Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject, 2f);
-    }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    }
+}
+
+private void OnDrawGizmos() {
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(transform.position, explosionRadius);
+}
 }

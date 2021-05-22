@@ -9288,7 +9288,7 @@ GameObject:
   - component: {fileID: 951332249574736608}
   - component: {fileID: 8016689948803802515}
   m_Layer: 0
-  m_Name: Rocket
+  m_Name: RocketBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14144,7 +14144,7 @@ MonoBehaviour:
   damagesLayers:
     serializedVersion: 2
     m_Bits: 263424
-  explosionRadius: 1
+  explosionRadius: 3
 --- !u!114 &8016689948803802515
 MonoBehaviour:
   m_ObjectHideFlags: 0
