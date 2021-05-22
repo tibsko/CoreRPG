@@ -50,13 +50,11 @@ public class RocketBullet : Bullet {
                 health.TakeDamage(Damages, this.gameObject);
             }
         }
-        //Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject, 2f);
+    }
 
-}
-
-private void OnDrawGizmos() {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireSphere(transform.position, explosionRadius);
-}
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 }
