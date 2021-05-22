@@ -30,7 +30,7 @@ public class SpitterAttack : ZombieAttack {
     protected override void DieBehaviour() {
         GameObject poisonEffect = Instantiate(dieParticule, transform.position, Quaternion.identity);
         poisonEffect.transform.localScale = new Vector3(poisonRadius, poisonRadius, poisonRadius);
-        Destroy(poisonEffect, poisonDuration);
         Destroy(gameObject);
+        Destroy(poisonEffect, poisonDuration);
     }
 }

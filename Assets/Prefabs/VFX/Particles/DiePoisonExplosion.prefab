@@ -13870,7 +13870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 5
   damageFrequency: 0.5
-  lifeTime: 0
+  lifeTime: 5
   radius: 2
   spriteZone: {fileID: 2383729908488368784}
   maxScale: 1.34
