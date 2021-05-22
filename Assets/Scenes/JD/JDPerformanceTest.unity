@@ -29454,6 +29454,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6017839447166944833, guid: be053cc7e7ab794449e760c4704f784c,
+        type: 3}
+      propertyPath: weaponPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1439755198, guid: b2ef1a532cd49f647a80ed55572774fd,
+        type: 3}
     - target: {fileID: 6017839447166944834, guid: be053cc7e7ab794449e760c4704f784c,
         type: 3}
       propertyPath: m_RootOrder
@@ -38428,46 +38434,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 354813226}
     m_Modifications:
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: smooth
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1141227341}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: obstruction
-      value: 
-      objectReference: {fileID: 1141227341}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: offSetCam.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: offSetCam.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: rotationCamX
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: followingStep
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615072, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 5290351446730615073, guid: c9b34ae54aa37304785eb949fe666f84,
         type: 3}
       propertyPath: m_RootOrder
@@ -38527,11 +38493,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 5290351446730615076, guid: c9b34ae54aa37304785eb949fe666f84,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b34ae54aa37304785eb949fe666f84, type: 3}

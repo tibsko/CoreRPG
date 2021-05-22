@@ -18,7 +18,7 @@ GameObject:
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5290351446730615073
 Transform:
@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offSetCam: {x: 0, y: 7, z: -7}
-  rotationCamX: 45
-  followingStep: 0.1
+  offSetCam: {x: 0, y: 10, z: -3.5}
+  rotationCamX: 60
+  followingStep: 0.2
+  rotationSpeed: 0.01
   obstruction: {fileID: 0}
 --- !u!114 &8106580050982933070
 MonoBehaviour:

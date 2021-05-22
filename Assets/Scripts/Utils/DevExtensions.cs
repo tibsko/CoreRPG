@@ -9,10 +9,10 @@ public static class DevExtensions {
 
     }
 
-    public static Collider GetClosest(this Vector3 position, ICollection<Collider> collection) {
+    public static GameObject GetClosest(this Vector3 position, ICollection<GameObject> collection) {
         float distance = float.MaxValue;
-        Collider closest = null;
-        foreach (Collider go in collection) {
+        GameObject closest = null;
+        foreach (GameObject go in collection) {
             float newDist = Vector3.Distance(position, go.transform.position);
             if (newDist < distance) {
                 closest = go;
