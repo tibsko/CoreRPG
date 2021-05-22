@@ -5,8 +5,6 @@ using UnityEngine;
 public static class DevExtensions {
     public static bool ContainsLayer(this LayerMask mask, int layer) {
         return mask == (mask | (1 << layer));
-
-
     }
 
     public static GameObject GetClosest(this Vector3 position, ICollection<GameObject> collection) {
@@ -16,7 +14,7 @@ public static class DevExtensions {
             float newDist = Vector3.Distance(position, go.transform.position);
             if (newDist < distance) {
                 closest = go;
-                distance = newDist; 
+                distance = newDist;
             }
         }
 
@@ -36,5 +34,10 @@ public static class DevExtensions {
             }
             SetLayerRecursively(child.gameObject, newLayer);
         }
+    }
+
+    public static bool GetComponent<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponent<T>();
+        return component != null;
     }
 }

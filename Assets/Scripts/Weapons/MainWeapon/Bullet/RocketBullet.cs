@@ -44,11 +44,13 @@ public class RocketBullet : Bullet {
 
         Collider[] cols = Physics.OverlapSphere(collisionEvents[0].intersection, explosionRadius, damagesLayers);
         foreach (Collider col in cols) {
-            GenericHealth health = col.GetComponent<GenericHealth>();
-            Debug.Log(col.name);
-            if (health) {
+            if (col.GetComponent(out GenericHealth health)) {
                 health.TakeDamage(Damages, this.gameObject);
             }
+            //GenericHealth health = col.GetComponent<GenericHealth>();
+            //if (health) {
+            //    health.TakeDamage(Damages, this.gameObject);
+            //}
         }
         Destroy(gameObject, 2f);
     }
