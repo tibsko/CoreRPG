@@ -15,7 +15,7 @@ public class UsableSecondary : Secondary {
 
     public override void Attack() {
         base.Attack();
-        Debug.Log("heal" + healthAmount);
+        Debug2.Log("heal" + healthAmount);
         playerHealth.Heal(healthAmount, gameObject);
         GameObject fx = Instantiate(healEffect, player.transform.position, Quaternion.identity);
         Destroy(fx, 2f);

@@ -41,7 +41,7 @@ public class ParabolicProjectile : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collider) {
-        Debug.Log("collision");
+        Debug2.Log("collision");
         if (collisionMask.ContainsLayer(collider.gameObject.layer)) {
                 Vector3 impactPosition = transform.position;
             if(impactDamage)

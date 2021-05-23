@@ -36,8 +36,18 @@ public static class DevExtensions {
         }
     }
 
-    public static bool GetComponent<T>(this Component gameObject, out T component) {
+    public static bool HasComponent<T>(this Component gameObject, out T component) {
         component = gameObject.GetComponent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInParent<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponentInParent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInChildren<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponentInChildren<T>();
         return component != null;
     }
 }

@@ -14,7 +14,7 @@ public class Claymore : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (canExplose) {
             if (layerMask.ContainsLayer(other.gameObject.layer)) {
-                Debug.Log("Detect");
+                Debug2.Log("Detect");
                 if (impactEffect) {
                     GameObject goEffect = Instantiate(impactEffect, transform.position, Quaternion.identity);
                     Destroy(goEffect, 2f);
@@ -22,7 +22,7 @@ public class Claymore : MonoBehaviour {
                     foreach (Collider col in hitColliders) {
                         GenericHealth health = col.gameObject.GetComponent<GenericHealth>();
                         if (health && dealDamages)
-                            //Debug.Log( col.gameObject.name + Damages);
+                            //Debug2.Log( col.gameObject.name + Damages);
                             health.TakeDamage(damages, this.gameObject);
                     }
                     Destroy(gameObject, .1f);

@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour {
         }
         if (!exist) {
             if (secondaryItems.Count >= Space) {
-                Debug.Log("Not enough room in the inventory");
+                Debug2.Log("Not enough room in the inventory");
                 return false;
             }
 
@@ -101,7 +101,7 @@ public class Inventory : MonoBehaviour {
     }
 
     public void Remove(SecondaryItem weaponItem) {
-        Debug.Log(weaponItem.amount);
+        Debug2.Log(weaponItem.amount);
         Destroy(weaponItem.secondary.gameObject);
         secondaries.Remove(weaponItem.secondary);
         secondaryItems.Remove(weaponItem);

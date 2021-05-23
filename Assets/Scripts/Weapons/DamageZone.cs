@@ -27,7 +27,7 @@ public class DamageZone : MonoBehaviour {
     }
     public void DamagesZone() {
         if (enemies.Count > 0) {
-            Debug.Log(damages);
+            Debug2.Log(damages);
             foreach (GameObject target in enemies) {
                 if (target) {
                     GenericHealth health = target.GetComponent<GenericHealth>();

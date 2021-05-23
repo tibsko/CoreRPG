@@ -14,7 +14,7 @@ public class DebugManager : MonoBehaviour {
 public static class Debug2 {
 
     public static DebugManager activeDebugManager;
-    public static void Log(string message, string chanel) {
+    public static void Log(object message, string chanel = "main") {
         if (activeDebugManager) {
             if (activeDebugManager.activeDebug.Contains(chanel))
                 Debug.Log(message);

@@ -52,18 +52,18 @@ public class PlayerAttack : MonoBehaviour {
     private void HandleAttack() {
         if (startedAiming && AimDirection.magnitude < 0.5f) {
             //Cancel shoot
-            Debug.Log("Cancel shoot");
+            Debug2.Log("Cancel shoot");
         }
         else if (!startedAiming && AimDirection.magnitude < 0.5f) {
-            Debug.Log("Autoshooting");
+            Debug2.Log("Autoshooting");
             AutoAttack();
         }
         else if (startedAiming) {
-            Debug.Log("Aiming shoot");
+            Debug2.Log("Aiming shoot");
             AimedAttack();
         }
         else {
-            Debug.Log("Nothing");
+            Debug2.Log("Nothing");
         }
         startedAiming = false;
 

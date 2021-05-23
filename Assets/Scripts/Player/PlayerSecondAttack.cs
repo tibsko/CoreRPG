@@ -32,7 +32,7 @@ public class PlayerSecondAttack : MonoBehaviour
 
     public void OnAim(Vector2 aim) {
 
-        Debug.Log("Aiming");
+        Debug2.Log("Aiming");
         if (!ActiveSecondary) {
             return;
         }
@@ -57,18 +57,18 @@ public class PlayerSecondAttack : MonoBehaviour
     //private void HandleShoot() {
     //    if (startedAiming && AimDirection.magnitude < 0.5f) {
     //        //Cancel shoot
-    //        Debug.Log("Cancel shoot");
+    //        Debug2.Log("Cancel shoot");
     //    }
     //    else if (!startedAiming && AimDirection.magnitude < 0.5f) {
-    //        Debug.Log("Autoshooting");
+    //        Debug2.Log("Autoshooting");
     //        AutoShoot();
     //    }
     //    else if (startedAiming) {
-    //        Debug.Log("Aiming shoot");
+    //        Debug2.Log("Aiming shoot");
     //        AimShoot();
     //    }
     //    else {
-    //        Debug.Log("Nothing");
+    //        Debug2.Log("Nothing");
     //    }
     //    startedAiming = false;
 
