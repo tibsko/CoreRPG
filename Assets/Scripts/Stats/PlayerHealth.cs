@@ -7,7 +7,7 @@ public class PlayerHealth : GenericHealth {
    private GameObject healEffect;
 
     public void Die() {
-        Debug.Log("you are dead");
+        Debug2.Log("you are dead");
     }
 
     public override void Heal(int heal, GameObject source) {

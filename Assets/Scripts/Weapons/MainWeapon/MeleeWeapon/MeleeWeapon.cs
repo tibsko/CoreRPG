@@ -62,7 +62,7 @@ public class MeleeWeapon : Weapon {
         //rigidbody.AddForce(knockBackVect.normalized * knockBack,ForceMode.VelocityChange);
         //StartCoroutine(ToggleControl(true, 1, rigidbody, control));
 
-        //Debug.Log("Knock back : " + knockBackVect);
+        //Debug2.Log("Knock back : " + knockBackVect);
     }
 
     private IEnumerator ToggleControl(bool status, float delay, Rigidbody rigidbody, MonoBehaviour script) {

@@ -21,7 +21,7 @@ public class Secondary : MonoBehaviour {
     // Start is called before the first frame update
 
     public virtual void Use() {
-        Debug.Log("use");
+        Debug2.Log("use");
     }
 
     public virtual void Attack() {

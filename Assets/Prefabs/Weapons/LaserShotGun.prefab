@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1439755199}
   - component: {fileID: 1439755198}
   m_Layer: 8
-  m_Name: LaserRifle
+  m_Name: LaserShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,15 +153,15 @@ MonoBehaviour:
   magazineSize: 3000
   reloadTime: 0.1
   timeBetweenBurst: 0.5
-  timeBetweenShots: 0.2
+  timeBetweenShots: 0
   delayBeforeShoot: 0.4
   automatic: 0
-  bulletsPerTap: 3
-  spread: 5
+  bulletsPerTap: 7
+  spread: 20
   range: 50
   velocity: 8
   bulletLifeTime: 0.1
-  instantiateInFirePoint: 1
+  instantiateInFirePoint: 0
   firePoint: {fileID: 3072305698166753476}
   bulletPrefab: {fileID: 1062685050423962, guid: 521d9c79f03e6f5418dcd5df3914ce15,
     type: 3}

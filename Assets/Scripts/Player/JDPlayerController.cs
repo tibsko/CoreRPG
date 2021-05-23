@@ -94,7 +94,7 @@ public class JDPlayerController : MonoBehaviour {
         //debugVelocity += "Backward=" + backwardSpeed * Mathf.Clamp(v.z, -1, 0);
         //debugVelocity += "  Forward=" + forwardSpeed * Mathf.Clamp(v.z, 0, 1);
         //debugVelocity += "  Side=" + sideSpeed * v.x;
-        //Debug.Log(debugVelocity);
+        //Debug2.Log(debugVelocity);
         #endregion
 
         float factor = 1;

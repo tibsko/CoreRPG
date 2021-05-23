@@ -51,7 +51,7 @@ public class InventorySlot : MonoBehaviour {
 
     public void UseItem() {
         if (secondaryItem != null) {
-            Debug.Log(inventory.secondaryItems.Count);
+            Debug2.Log(inventory.secondaryItems.Count);
             inventory.SetActiveSecondary(secondaryItem);
         }
     }

@@ -8,7 +8,7 @@ public class WeaponPickUp : MonoBehaviour
    public void PickUp(GameObject player) {
         PlayerWeapons playerWeapons = player.GetComponentInParent<PlayerWeapons>();
         if (playerWeapons) {
-            Debug.Log("Pick Up" + gameObject.name);
+            Debug2.Log("Pick Up" + gameObject.name);
             playerWeapons.AddWeapon(weapon);
             player.GetComponentInChildren<PlayerInteraction>().RemoveFocus() ;
             Destroy(gameObject);

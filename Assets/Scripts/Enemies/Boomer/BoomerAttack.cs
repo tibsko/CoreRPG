@@ -53,7 +53,7 @@ public class BoomerAttack : ZombieAttack {
             foreach (Collider col in colliders) {
                 PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
                 if (playerhealth) {
-                    Debug.Log("Player hitted");
+                    Debug2.Log("Player hitted");
                     playerhealth.TakeDamage(explosionDamages, gameObject);
                 }
                 break;
