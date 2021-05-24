@@ -31,7 +31,7 @@ public class BoomerAttack : ZombieAttack {
                     hasExplosed = true;
                 }
             }
-            else if(Target.CompareTag("Fence")) {
+            else if (Target.CompareTag("Fence")) {
                 if (distance <= attackRadius) {
                     animator.SetBool("IsAttacking", true);
                 }
@@ -51,10 +51,9 @@ public class BoomerAttack : ZombieAttack {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, ReferenceManager.instance.playerLayer);
         if (colliders.Length > 0) {
             foreach (Collider col in colliders) {
-                PlayerHealth playerhealth = col.GetComponent<PlayerHealth>();
-                if (playerhealth) {
+                if (col.HasComponentInParent(out PlayerHealth playerHealth)) {
                     Debug2.Log("Player hitted");
-                    playerhealth.TakeDamage(explosionDamages, gameObject);
+                    playerHealth.TakeDamage(explosionDamages, gameObject);
                 }
                 break;
             }

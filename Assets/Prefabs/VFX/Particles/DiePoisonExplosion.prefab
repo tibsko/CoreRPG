@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2383729908488368784}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 3554230587685200110}
   m_RootOrder: 3
@@ -70,12 +70,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17aebe028ce2dbd44bda43d07ff0d371, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
+  m_Sprite: {fileID: 21300000, guid: 8c928cc5e22fc1f4c826a1ce520d34a3, type: 3}
+  m_Color: {r: 0.12896048, g: 0.3962264, b: 0.1316455, a: 0.47058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.96, y: 2.98}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9293,7 +9293,8 @@ GameObject:
   - component: {fileID: 3554230587685200110}
   - component: {fileID: 3712039040578483592}
   - component: {fileID: 3713060359999837966}
-  - component: {fileID: 8411191062055954599}
+  - component: {fileID: -2138136662803214661}
+  - component: {fileID: 3459302784432979015}
   m_Layer: 0
   m_Name: DiePoisonExplosion
   m_TagString: Untagged
@@ -13856,7 +13857,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8411191062055954599
+--- !u!114 &-2138136662803214661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13865,15 +13866,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 3551077037914470400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68a680003fc38a94386758916ce34ddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 28f42982ae1869d43b9d00e0d36c1934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damages: 5
-  damageFrequency: 0.5
-  lifeTime: 5
-  radius: 2
-  spriteZone: {fileID: 2383729908488368784}
-  maxScale: 1.34
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  damages: 10
+  damageTimeRate: 0.5
+  damageTime: 5
+  effectOnPlayer: {fileID: 6661220337641979393, guid: 25b50097ab4dc9d45bbe37f9e9b3bc67,
+    type: 3}
+--- !u!135 &3459302784432979015
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551077037914470400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5766963931029991710
 GameObject:
   m_ObjectHideFlags: 0

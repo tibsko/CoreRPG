@@ -84,7 +84,6 @@ public class ZombieController : MonoBehaviour {
             if (Target) agent.SetDestination(Target.transform.position);
         }
         else {
-            Debug2.Log("Enemy stopped", "TDEnemyTouch");
             animator.SetFloat("Speed", 0);
         }
     }

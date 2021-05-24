@@ -69,7 +69,7 @@ public class BouncingBullet : Bullet {
                 emitter.InstantiateParticule(bulletPosition, -transform.forward);
             }
             else if (effect != null) {
-                GameObject particule = Instantiate(effect, transform.position, Quaternion.identity);
+                GameObject particule = Instantiate(effect, other.transform);
                 Destroy(particule, 2f);
             }
         }
