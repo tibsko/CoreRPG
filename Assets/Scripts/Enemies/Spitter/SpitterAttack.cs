@@ -15,14 +15,24 @@ public class SpitterAttack : ZombieAttack {
 
             if (Target.CompareTag("Player")) {
                 animator.SetBool("IsAttacking", false);
-                bool attack = distance <= spitDistance;
-                animator.SetBool("IsScreaming", attack);
-                zombieController.SetMove(!attack);
+                if (!zombieController.IsStunned) {
+                    bool attack = distance <= spitDistance;
+                    animator.SetBool("IsScreaming", attack);
+                    zombieController.SetMove(!attack);
+                }
+                else {
+                    animator.SetBool("IsScreaming", false);
+                }
             }
             else if(Target.CompareTag("Fence")) {
-                bool attack = distance <= attackRadius;
-                zombieController.SetMove(!attack);
-                animator.SetBool("IsAttacking", attack);
+                if (!zombieController.IsStunned) {
+                    bool attack = distance <= attackRadius;
+                    zombieController.SetMove(!attack);
+                    animator.SetBool("IsAttacking", attack);
+                }
+                else {
+                    animator.SetBool("IsScreaming", false);
+                }
             }
         }
     }

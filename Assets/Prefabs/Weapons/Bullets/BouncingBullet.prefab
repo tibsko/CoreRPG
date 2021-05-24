@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8502740340140009070}
   - component: {fileID: -5667195029400866960}
   - component: {fileID: 7493720169211630391}
+  - component: {fileID: 7464381711763162874}
   m_Layer: 11
   m_Name: BouncingBullet
   m_TagString: Untagged
@@ -66,7 +67,22 @@ MonoBehaviour:
   bouncingNb: 10
   distanceInstantiat: 0.1
   effect: {fileID: 4340348782033192159, guid: 0fae97768aa80c8478f3b2bf7d4ab4ed, type: 3}
+  lifeTime: 0
   delay: 0.1
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7464381711763162874}
+        m_MethodName: Shocked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &7493720169211630391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -80,6 +96,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7464381711763162874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186466485596272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b667bcf9eaec33d49a1f44c56a75bcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shockDuration: 2
 --- !u!1001 &5416113513787777972
 PrefabInstance:
   m_ObjectHideFlags: 0
