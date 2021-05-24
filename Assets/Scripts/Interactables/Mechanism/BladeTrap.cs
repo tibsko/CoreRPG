@@ -48,7 +48,7 @@ public class BladeTrap : MonoBehaviour {
     }
 
     public void DealDamages(GameObject gameObject) {
-        if (!active)
+        if (!active || waitTimer > 0)
             return;
 
         if (gameObject.HasComponent(out GenericHealth health)) {
