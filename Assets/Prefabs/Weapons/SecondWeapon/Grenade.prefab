@@ -288,12 +288,13 @@ MonoBehaviour:
   isDefaultweapon: 0
   range: 7
   display: 1
-  secondaryType: 0
+  secondaryType: 1
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
   bullet: {fileID: 3710871366938751190, guid: 31751434877de1e42b917c13baabb6e2, type: 3}
   lr: {fileID: 122378076697181833}
+  targetSprite: {fileID: 0}
 --- !u!120 &122378076697181833
 LineRenderer:
   m_ObjectHideFlags: 0

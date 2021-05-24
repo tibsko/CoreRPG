@@ -146,12 +146,13 @@ MonoBehaviour:
   isDefaultweapon: 0
   range: 7
   display: 0
-  secondaryType: 0
+  secondaryType: 1
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
   bullet: {fileID: 7209731463447949499, guid: c604af5bfefada345b6358004df789a6, type: 3}
   lr: {fileID: 6430847992568239087}
+  targetSprite: {fileID: 0}
 --- !u!1001 &6430847991599544094
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -127,7 +127,7 @@ MonoBehaviour:
   isDefaultweapon: 0
   range: 2
   display: 0
-  secondaryType: 3
+  secondaryType: 0
   onEndAttack:
     m_PersistentCalls:
       m_Calls: []
