@@ -34123,6 +34123,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1811032372}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1918711582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 851261217186473808, guid: d8b89d9b46190a841a4339e7c044cb65,
+    type: 3}
+  m_PrefabInstance: {fileID: 851261218557153358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1933712817
 GameObject:
   m_ObjectHideFlags: 0
@@ -38325,6 +38331,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 851261217268187074, guid: d8b89d9b46190a841a4339e7c044cb65,
+        type: 3}
+      propertyPath: GFX
+      value: 
+      objectReference: {fileID: 1918711582}
+    - target: {fileID: 851261217268187074, guid: d8b89d9b46190a841a4339e7c044cb65,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 851261217268187077, guid: d8b89d9b46190a841a4339e7c044cb65,
         type: 3}
       propertyPath: m_RootOrder
@@ -38384,6 +38400,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ElectricTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 851261218282075213, guid: d8b89d9b46190a841a4339e7c044cb65,
+        type: 3}
+      propertyPath: textButton
+      value: Electric Trap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8b89d9b46190a841a4339e7c044cb65, type: 3}
