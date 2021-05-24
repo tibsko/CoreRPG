@@ -58,6 +58,25 @@ public class GenericHealth : MonoBehaviour {
             }
         }
     }
+
+    public void TakeDamageInTime(float damage, float damageTimeRate, float time, GameObject source) {
+        StartCoroutine(DamageOverTimeCoroutine(damage, damageTimeRate, time));
+    }
+    public IEnumerator DamageOverTimeCoroutine(float damage, float damageTimeRate, float time) {
+        float currentTime = time;
+        while (currentTime > 0) {
+            if (CurrentHealth <= 0)
+                break;
+            CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
+            healthBar.SetHealth(CurrentHealth);
+            onHit.Invoke();
+            if (CurrentHealth <= 0) {
+                onDie.Invoke();
+            }
+            currentTime -= damageTimeRate;
+            yield return new WaitForSeconds(damageTimeRate);
+        }
+    }
 }
 
 class DamageSource {

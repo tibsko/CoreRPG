@@ -33,6 +33,7 @@ public class ZombieController : MonoBehaviour {
     }
     public bool HasLeavedSpawn { get; set; }
     public bool IsStunned { get; set; }
+    public bool IsSlowed { get; set; }
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -41,6 +42,8 @@ public class ZombieController : MonoBehaviour {
 
     void Start() {
         HasLeavedSpawn = false;
+        IsStunned = false;
+        IsSlowed = false;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -62,7 +65,7 @@ public class ZombieController : MonoBehaviour {
             }
 
             //Update speed
-            if (!agent.isStopped) {
+            if (!agent.isStopped &&!IsSlowed) {
                 if (Target.CompareTag("Player") && distance <= speedRunDistance) {
                     agent.speed = runSpeed;
                 }
@@ -84,7 +87,6 @@ public class ZombieController : MonoBehaviour {
             if (Target) agent.SetDestination(Target.transform.position);
         }
         else {
-            Debug2.Log("Enemy stopped", "TDEnemyTouch");
             animator.SetFloat("Speed", 0);
         }
     }

@@ -40,5 +40,5 @@ public class Secondary : MonoBehaviour {
         //Attack();
     }
 
-    public enum SecondaryType { Grenade, Claymore, Consumable,Tower}
+    public enum SecondaryType { Utilitaries, Artilery, Consumable}
 }

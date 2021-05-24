@@ -530,7 +530,7 @@ MonoBehaviour:
   explosionDistance: 1
   explosionRadius: 3
   explosionDelay: 0.2
-  explosionDamages: 50
+  explosionDamages: 150
   explosionParticles: {fileID: 4396649191187600218, guid: edba893911befe14e93bebcd61a14c05,
     type: 3}
 --- !u!114 &6078473582528620989
@@ -578,7 +578,7 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
-  timerHealth: 0.5
+  damageSourceTimer: 0.2
 --- !u!114 &6078473582528620984
 MonoBehaviour:
   m_ObjectHideFlags: 0

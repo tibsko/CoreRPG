@@ -1153,7 +1153,7 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
-  timerHealth: 0.1
+  damageSourceTimer: 0.2
 --- !u!114 &6017839447166944839
 MonoBehaviour:
   m_ObjectHideFlags: 0
