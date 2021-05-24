@@ -15,9 +15,11 @@ public class ElectricTrap : MonoBehaviour {
     }
 
     public void Enable() {
-        active = true;
-        GFX.SetActive(true);
-        Invoke(nameof(Disable), lifeTime);
+        if (!active) {
+            active = true;
+            GFX.SetActive(true);
+            Invoke(nameof(Disable), lifeTime);
+        }
     }
 
     public void Disable() {
