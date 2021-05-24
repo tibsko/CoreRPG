@@ -33,9 +33,7 @@ public class InteractableComponent : MonoBehaviour {
     public void HoldUpInteract() {
         onHoldUp.Invoke();
     }
-    void Update() {
 
-    }
     public void OnFocused(Transform playerTransform) {
         isFocused = true;
         player = playerTransform;
