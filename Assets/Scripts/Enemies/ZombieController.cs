@@ -38,7 +38,7 @@ public class ZombieController : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
 
-    
+
 
     void Start() {
         HasLeavedSpawn = false;
@@ -65,7 +65,7 @@ public class ZombieController : MonoBehaviour {
             }
 
             //Update speed
-            if (!agent.isStopped &&!IsSlowed) {
+            if (!agent.isStopped && !IsSlowed) {
                 if (Target.CompareTag("Player") && distance <= speedRunDistance) {
                     agent.speed = runSpeed;
                 }
@@ -82,18 +82,20 @@ public class ZombieController : MonoBehaviour {
     }
 
     public void SetMove(bool move) {
-        agent.isStopped = !move;
-        if (move) {
-            if (Target) agent.SetDestination(Target.transform.position);
-        }
-        else {
-            animator.SetFloat("Speed", 0);
+        if (agent.enabled == true) {
+            agent.isStopped = !move;
+            if (move) {
+                if (Target) agent.SetDestination(Target.transform.position);
+            }
+            else {
+                animator.SetFloat("Speed", 0);
+            }
         }
     }
     public void SetStun(bool stun, float duration) {
         IsStunned = stun;
         SetMove(!stun);
-        if(stun)
+        if (stun)
             StartCoroutine(StopController(duration));
     }
     IEnumerator StopController(float duration) {

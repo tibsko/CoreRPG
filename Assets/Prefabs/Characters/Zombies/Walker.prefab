@@ -184,7 +184,7 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
-  timerHealth: 0.5
+  damageSourceTimer: 0.2
 --- !u!114 &1525590108630513576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3097,9 +3097,21 @@ PrefabInstance:
       propertyPath: enemyAttack
       value: 
       objectReference: {fileID: 291095213942029797}
+    - target: {fileID: 1096936326556296, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1187010538823314, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
       propertyPath: m_Name
       value: Standard Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386377477798634, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449355703912288, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4507433646410060, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
       propertyPath: m_RootOrder
@@ -3144,6 +3156,11 @@ PrefabInstance:
     - target: {fileID: 4507433646410060, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137408799009861850, guid: 808eff5cc9216bf4284a635ba47d6002,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808eff5cc9216bf4284a635ba47d6002, type: 3}
