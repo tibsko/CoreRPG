@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a36244a2c305f4d96461b176a6436f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 500
   healthBar: {fileID: 1261006030}
   onDie:
     m_PersistentCalls:
@@ -479,6 +479,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   damageSourceTimer: 0.2
+--- !u!136 &4845796012391289266
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539423561330314091}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.41269398
+  m_Height: 1.4900322
+  m_Direction: 1
+  m_Center: {x: 0.0991358, y: 0.7431629, z: -0.021206133}
 --- !u!1001 &6541031296670256273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -536,6 +550,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 936d0b12b15d206439e67ae3238d9eaf, type: 3}
+--- !u!1 &6539423561330314091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1928930451228666, guid: 936d0b12b15d206439e67ae3238d9eaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 6541031296670256273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6545691750855773827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4678118984434194, guid: 936d0b12b15d206439e67ae3238d9eaf,

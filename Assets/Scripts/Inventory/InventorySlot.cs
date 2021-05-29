@@ -39,6 +39,7 @@ public class InventorySlot : MonoBehaviour {
 
     public void ClearSLot() {
         secondaryItem = null;
+        secondary = null;
         icon.sprite = null;
         icon.enabled = false;
         nbItem = 0;

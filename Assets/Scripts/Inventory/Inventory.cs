@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public List<SecondaryItem> secondaryItems=new List<SecondaryItem>();
+    public List<SecondaryItem> secondaryItems = new List<SecondaryItem>();
     public List<Secondary> secondaries = new List<Secondary>();
 
     public int Space;
@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour {
     public SecondaryItem ActiveSecondaryItem;
 
     [SerializeField] Transform secondarySlot;
-    
+
     private bool exist;
     public bool Add(Secondary weapon, int amount) {
         foreach (SecondaryItem sp in secondaryItems) {
@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour {
                 return false;
             }
 
-            SecondaryItem secondWeaponItem = new SecondaryItem(weapon,amount);
+            SecondaryItem secondWeaponItem = new SecondaryItem(weapon, amount);
             GameObject goSecondWeapon = EquipWeapon(secondWeaponItem.secondary);
             secondWeaponItem.secondary = goSecondWeapon.GetComponent<Secondary>();
             secondaryItems.Add(secondWeaponItem);
@@ -66,12 +66,12 @@ public class Inventory : MonoBehaviour {
                 foreach (MeshRenderer ren in renderers) {
                     ren.enabled = sw.display;
                 }
-                if(sw.gameObject.GetComponent<MachineGunAuto>())
+                if (sw.gameObject.GetComponent<MachineGunAuto>())
                     sw.gameObject.GetComponent<MachineGunAuto>().enabled = sw.display;
                 break;
             }
         }
-       
+
     }
     public void looseBullet() {
         foreach (SecondaryItem sw in secondaryItems) {
@@ -81,6 +81,14 @@ public class Inventory : MonoBehaviour {
                 if (sw.amount <= 0) {
                     ActiveSecondaryItem = null;
                     ActiveSecondary = null;
+                    for (int i = 0; i < secondaries.Count; i++) {
+                        if (sw.secondary.secondaryType == secondaries[i].secondaryType) {
+                            secondaries.Remove(secondaries[i]);
+                            secondaryItems.Remove(secondaryItems[i]);
+                        }
+                    }
+                   
+
                 }
                 break;
             }
@@ -89,7 +97,7 @@ public class Inventory : MonoBehaviour {
     public GameObject EquipWeapon(Secondary secondWeapon) {
 
         Transform secondarySlotTemp;
-        secondarySlotTemp= this.secondarySlot;
+        secondarySlotTemp = this.secondarySlot;
         GameObject go = Instantiate(secondWeapon.gameObject, secondarySlotTemp);
         //ParabolicProjectile parabolicProjectile = go.GetComponent<ParabolicProjectile>();
         //if (parabolicProjectile)

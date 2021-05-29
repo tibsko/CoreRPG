@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 4856626321936366067}
   - component: {fileID: 4856626321936366064}
   - component: {fileID: 4856626321936366065}
+  - component: {fileID: 7623991343671311593}
   m_Layer: 12
   m_Name: SM_Wep_AAGun_01
   m_TagString: Untagged
@@ -213,6 +214,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &7623991343671311593
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856626321936366070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 1.61
+  m_Direction: 1
+  m_Center: {x: -0.007318586, y: 0.8, z: -0.13581377}
 --- !u!1 &4856626322109618944
 GameObject:
   m_ObjectHideFlags: 0
