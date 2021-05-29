@@ -74,21 +74,15 @@ public class Inventory : MonoBehaviour {
 
     }
     public void looseBullet() {
-        foreach (SecondaryItem sw in secondaryItems) {
-            if (sw.secondary.secondaryType == ActiveSecondaryItem.secondary.secondaryType) {
-                sw.amount -= 1;
+        for(int i = 0; i < secondaryItems.Count; i++) {
+            if (secondaryItems[i].secondary.secondaryType == ActiveSecondaryItem.secondary.secondaryType) {
+                secondaryItems[i].amount -= 1;
                 onItemChangedCallback.Invoke();
-                if (sw.amount <= 0) {
+                if (secondaryItems[i].amount <= 0) {
                     ActiveSecondaryItem = null;
                     ActiveSecondary = null;
-                    for (int i = 0; i < secondaries.Count; i++) {
-                        if (sw.secondary.secondaryType == secondaries[i].secondaryType) {
-                            secondaries.Remove(secondaries[i]);
-                            secondaryItems.Remove(secondaryItems[i]);
-                        }
-                    }
-                   
-
+                    secondaries.Remove(secondaries[i]);
+                    secondaryItems.Remove(secondaryItems[i]);
                 }
                 break;
             }
