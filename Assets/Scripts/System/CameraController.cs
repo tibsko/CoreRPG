@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
     }
 
     void CameraMove() {
-        transform.position = Vector3.Lerp(transform.position, target.position + offSetCam, followingStep);
+        transform.position = Vector3.Lerp(transform.position, target.position + offSetCam, followingStep * Time.deltaTime);
         transform.rotation = Quaternion.AngleAxis(rotationCamX,Vector3.right);
         //this.transform.LookAt(target);
         //this.transform.forward = target.forward;
