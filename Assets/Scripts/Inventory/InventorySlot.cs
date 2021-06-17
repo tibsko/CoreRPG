@@ -39,6 +39,7 @@ public class InventorySlot : MonoBehaviour {
 
     public void ClearSLot() {
         secondaryItem = null;
+        secondary = null;
         icon.sprite = null;
         icon.enabled = false;
         nbItem = 0;
@@ -51,7 +52,7 @@ public class InventorySlot : MonoBehaviour {
 
     public void UseItem() {
         if (secondaryItem != null) {
-            Debug.Log(inventory.secondaryItems.Count);
+            Debug2.Log(inventory.secondaryItems.Count);
             inventory.SetActiveSecondary(secondaryItem);
         }
     }

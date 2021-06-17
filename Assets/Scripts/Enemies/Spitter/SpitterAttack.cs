@@ -15,14 +15,24 @@ public class SpitterAttack : ZombieAttack {
 
             if (Target.CompareTag("Player")) {
                 animator.SetBool("IsAttacking", false);
-                bool attack = distance <= spitDistance;
-                animator.SetBool("IsScreaming", attack);
-                zombieController.SetMove(!attack);
+                if (!zombieController.IsStunned) {
+                    bool attack = distance <= spitDistance;
+                    animator.SetBool("IsScreaming", attack);
+                    zombieController.SetMove(!attack);
+                }
+                else {
+                    animator.SetBool("IsScreaming", false);
+                }
             }
             else if(Target.CompareTag("Fence")) {
-                bool attack = distance <= attackRadius;
-                zombieController.SetMove(!attack);
-                animator.SetBool("IsAttacking", attack);
+                if (!zombieController.IsStunned) {
+                    bool attack = distance <= attackRadius;
+                    zombieController.SetMove(!attack);
+                    animator.SetBool("IsAttacking", attack);
+                }
+                else {
+                    animator.SetBool("IsScreaming", false);
+                }
             }
         }
     }
@@ -30,7 +40,7 @@ public class SpitterAttack : ZombieAttack {
     protected override void DieBehaviour() {
         GameObject poisonEffect = Instantiate(dieParticule, transform.position, Quaternion.identity);
         poisonEffect.transform.localScale = new Vector3(poisonRadius, poisonRadius, poisonRadius);
-        Destroy(poisonEffect, poisonDuration);
         Destroy(gameObject);
+        Destroy(poisonEffect, poisonDuration);
     }
 }

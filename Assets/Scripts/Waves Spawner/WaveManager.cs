@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour {
     public void AddSpawner(SpawnPoint spawnPoint) {
         if (!spawnPoints.Contains(spawnPoint)) {
             spawnPoints.Add(spawnPoint);
-            Debug.Log($"Adding spawner : {spawnPoint.name}");
+            Debug2.Log($"Adding spawner : {spawnPoint.name}");
 
         }
     }
@@ -49,7 +49,7 @@ public class WaveManager : MonoBehaviour {
 
         if (GameObject.FindGameObjectWithTag("Enemy") == null) {
             waveEndedSignal++;
-            Debug.Log("No enemy found");
+            Debug2.Log("No enemy found");
         }
 
         if (waveEndedSignal > 1 && spawnPoints.Count > 0) {
@@ -64,7 +64,7 @@ public class WaveManager : MonoBehaviour {
         totalProbability = 0;
         enemySpawned = 0;
         spawning = true;
-        Debug.Log($"Starting new wave n° {WaveNumber}");
+        Debug2.Log($"Starting new wave n° {WaveNumber}");
 
         //Update spawn rate for each enemy type
         foreach (EnemyProbability prob in SpawnData.enemyRates) {
@@ -78,7 +78,7 @@ public class WaveManager : MonoBehaviour {
 
         //Update spawn amount
         SpawnData.ComputeAmount(WaveNumber);
-        Debug.Log($"Preparing to spawn {SpawnData.EnemyAmount} enemies");
+        Debug2.Log($"Preparing to spawn {SpawnData.EnemyAmount} enemies");
         //Spawn enemies
         InvokeRepeating(nameof(SpawnEnemy), 0, SpawnData.spawnRate);
     }
@@ -86,12 +86,12 @@ public class WaveManager : MonoBehaviour {
     private void SpawnEnemy() {
 
         //if (enemyCount >= SpawnData.maxSimultaneaousEnemies) {
-        //    Debug.Log($"Max simultaneous enemy count reached ({enemyCount})");
+        //    Debug2.Log($"Max simultaneous enemy count reached ({enemyCount})");
         //    return;
         //}
 
         if (enemySpawned >= SpawnData.EnemyAmount) {
-            Debug.Log($"All enemies have been spawned. Stopping spawn.");
+            Debug2.Log($"All enemies have been spawned. Stopping spawn.");
             spawning = false;
             CancelInvoke(nameof(SpawnEnemy));
             return;
@@ -113,7 +113,7 @@ public class WaveManager : MonoBehaviour {
         if (enemy != null) {
             Transform sp = spawnPoints[Random.Range(0, spawnPoints.Count)].transform;
             Instantiate(enemy, sp.position, sp.rotation);
-            Debug.Log($"Spawning enemy ({enemy.name}) on {sp.name} ");
+            Debug2.Log($"Spawning enemy ({enemy.name}) on {sp.name} ");
             enemySpawned++;
         }
     }

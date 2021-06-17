@@ -8,9 +8,10 @@ public class WeaponShop : MonoBehaviour {
     [SerializeField] int weaponPrice;
 
     public void Buy(GameObject player) {
-        PlayerWeapons playerWeapons = player.GetComponent<PlayerWeapons>();
-        PlayerMoney playerMoney = player.GetComponent<PlayerMoney>();
+        PlayerWeapons playerWeapons = player.GetComponentInParent<PlayerWeapons>();
+        PlayerMoney playerMoney = player.GetComponentInParent<PlayerMoney>();
         if (playerWeapons && playerMoney && playerMoney.currentMoney >= weaponPrice) {
+            Debug2.Log("buy weapon");
             playerWeapons.AddWeapon(weapon);
             playerMoney.LooseMoney(weaponPrice);
         }

@@ -14,7 +14,7 @@ public class GenericHealth : MonoBehaviour {
     public UnityEvent onHeal;
     public UnityEvent onHit;
 
-    public float timerHealth = .2f;
+    public float damageSourceTimer = .2f;
 
     private List<DamageSource> damageSources;
     // Start is called before the first frame update
@@ -49,13 +49,32 @@ public class GenericHealth : MonoBehaviour {
             return;
 
         if (damageSources.Find(x => x.go == source) == null) {
-            damageSources.Add(new DamageSource(source, timerHealth));
+            damageSources.Add(new DamageSource(source, damageSourceTimer));
             CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
             healthBar.SetHealth(CurrentHealth);
             onHit.Invoke();
             if (CurrentHealth <= 0) {
                 onDie.Invoke();
             }
+        }
+    }
+
+    public void TakeDamageInTime(float damage, float damageTimeRate, float time, GameObject source) {
+        StartCoroutine(DamageOverTimeCoroutine(damage, damageTimeRate, time));
+    }
+    public IEnumerator DamageOverTimeCoroutine(float damage, float damageTimeRate, float time) {
+        float currentTime = time;
+        while (currentTime > 0) {
+            if (CurrentHealth <= 0)
+                break;
+            CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
+            healthBar.SetHealth(CurrentHealth);
+            onHit.Invoke();
+            if (CurrentHealth <= 0) {
+                onDie.Invoke();
+            }
+            currentTime -= damageTimeRate;
+            yield return new WaitForSeconds(damageTimeRate);
         }
     }
 }

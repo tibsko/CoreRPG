@@ -45,7 +45,7 @@ public class PosableSecondary : Secondary {
         if(posableRenderer.GetComponent<PosablePrevisualisation>().CanPos)
             Attack();
         else {
-            Debug.Log("Can't Pos");
+            Debug2.Log("Can't Pos");
         }
     }
 

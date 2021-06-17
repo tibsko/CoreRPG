@@ -8,7 +8,7 @@ public class SecondaryPickUp : MonoBehaviour
     public int quantity;
 
     public void PickUp(GameObject player) {
-        Inventory inventory = player.GetComponent<Inventory>();
+        Inventory inventory = player.GetComponentInParent<Inventory>();
         if (inventory) {
             bool wasPickedUp = inventory.Add(secondary,quantity);
             if (wasPickedUp) {

@@ -13,15 +13,13 @@ public class FlammeBullet : Bullet {
     private float delay = 1.5f;
     private float countDown;
     private float stepDelay;
-    private Timer lifeTimer;
-    private float lifeTime = 1.8f;
+    private float lifeTime;
 
     private CapsuleCollider capsule;
     private ParticleSystem particles;
 
     // Start is called before the first frame update
     void Start() {
-        lifeTimer = new Timer(lifeTime);
         particles = GetComponent<ParticleSystem>();
         capsule = GetComponent<CapsuleCollider>();
         stepDelay = delay / (endHeight - startHeight);
@@ -31,6 +29,8 @@ public class FlammeBullet : Bullet {
         capsule.height = startHeight;
 
         capsule.center = new Vector3(transform.position.x, transform.position.y, capsule.height * 0.5f);
+
+        Invoke(nameof(Stop), lifeTime);
 
         if (!initialized) {
             Destroy(gameObject);
@@ -52,12 +52,11 @@ public class FlammeBullet : Bullet {
         //else {
         //    capsule.height = endHeight; 
         //}
+    }
 
-        lifeTimer.Tick(Time.deltaTime);
-        if (lifeTimer.Done) {
-            particles.Stop();
-            Destroy(gameObject, 2f);
-        }
+    private void Stop() {
+        particles.Stop();
+        Destroy(gameObject, 1f);
     }
 
     void OnTriggerStay(Collider collider) {

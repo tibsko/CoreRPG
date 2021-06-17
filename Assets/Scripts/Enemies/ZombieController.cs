@@ -24,7 +24,7 @@ public class ZombieController : MonoBehaviour {
                     target = value;
                 }
                 else {
-                    Debug.Log($"Can't asign {value.name} as target because it has 0 PV");
+                    Debug2.Log($"Can't asign {value.name} as target because it has 0 PV");
                 }
             }
             else
@@ -32,12 +32,18 @@ public class ZombieController : MonoBehaviour {
         }
     }
     public bool HasLeavedSpawn { get; set; }
+    public bool IsStunned { get; set; }
+    public bool IsSlowed { get; set; }
 
     private NavMeshAgent agent;
     private Animator animator;
 
+
+
     void Start() {
         HasLeavedSpawn = false;
+        IsStunned = false;
+        IsSlowed = false;
         animator = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -59,11 +65,13 @@ public class ZombieController : MonoBehaviour {
             }
 
             //Update speed
-            if (Target.CompareTag("Player") && distance <= speedRunDistance) {
-                agent.speed = runSpeed;
-            }
-            else {
-                agent.speed = walkSpeed;
+            if (!agent.isStopped && !IsSlowed) {
+                if (Target.CompareTag("Player") && distance <= speedRunDistance) {
+                    agent.speed = runSpeed;
+                }
+                else {
+                    agent.speed = walkSpeed;
+                }
             }
         }
 
@@ -74,14 +82,26 @@ public class ZombieController : MonoBehaviour {
     }
 
     public void SetMove(bool move) {
-        agent.isStopped = !move;
-
-        if (move) {
-            if (Target) agent.SetDestination(Target.transform.position);
+        if (agent.enabled == true) {
+            agent.isStopped = !move;
+            if (move) {
+                if (Target) agent.SetDestination(Target.transform.position);
+            }
+            else {
+                animator.SetFloat("Speed", 0);
+            }
         }
-        else {
-            animator.SetFloat("Speed", 0);
-        }
+    }
+    public void SetStun(bool stun, float duration) {
+        IsStunned = stun;
+        SetMove(!stun);
+        if (stun)
+            StartCoroutine(StopController(duration));
+    }
+    IEnumerator StopController(float duration) {
+        yield return new WaitForSeconds(duration);
+        IsStunned = false;
+        SetMove(true);
     }
 
     private void FaceTarget() {
@@ -91,10 +111,11 @@ public class ZombieController : MonoBehaviour {
     }
 
     private void UpdateTarget() {
-
         //If target is dead or null
         if (!Target || Target.CurrentHealth <= 0 || Target.CompareTag("Player")) {
             Target = ReferenceManager.instance.GetNearestPlayer(transform.position).GetComponent<GenericHealth>();
         }
     }
+
 }
+

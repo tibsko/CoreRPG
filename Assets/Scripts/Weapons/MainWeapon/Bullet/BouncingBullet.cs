@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BouncingBullet : Bullet {
     [SerializeField] float bouncingRadius;
@@ -8,17 +9,18 @@ public class BouncingBullet : Bullet {
     [SerializeField] float distanceInstantiat;
     [SerializeField] GameObject effect;
     [SerializeField] float lifeTime;
-
-    private bool firstEnemy = true;
-
     public float Velocity { get; private set; }
 
+    public float delay = .5f;
+
+    public HitEvent onHit;
+
+    private bool firstEnemy = true;
     private Vector3 nextEnemyPosition;
     private Vector3 newInitialPosition;
     private new Rigidbody rigidbody;
 
     private List<GameObject> enemies = new List<GameObject>();
-    public float delay = .5f;
     private float timerContact = 0;
 
     // Start is called before the first frame update
@@ -36,9 +38,6 @@ public class BouncingBullet : Bullet {
         }
         if (timerContact > 0.0)
             timerContact -= Time.deltaTime;
-
-
-
     }
 
     void OnTriggerEnter(Collider other) {
@@ -47,6 +46,7 @@ public class BouncingBullet : Bullet {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
 
             if (enemyHealth) {
+                onHit.Invoke(other.gameObject);
                 enemyHealth.TakeDamage(Damages, gameObject);
                 if (timerContact <= 0.0) {
                     timerContact = delay;
@@ -69,7 +69,7 @@ public class BouncingBullet : Bullet {
                 emitter.InstantiateParticule(bulletPosition, -transform.forward);
             }
             else if (effect != null) {
-                GameObject particule = Instantiate(effect, transform.position, Quaternion.identity);
+                GameObject particule = Instantiate(effect, other.transform);
                 Destroy(particule, 2f);
             }
         }
@@ -107,6 +107,9 @@ public class BouncingBullet : Bullet {
         lifeTime = _lifeTime;
         initialized = true;
     }
+
+    [System.Serializable]
+    public class HitEvent : UnityEvent<GameObject> { }
 
 }
 

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 787457
+    m_Bits: 263169
 --- !u!54 &-8502740340140009070
 Rigidbody:
   m_ObjectHideFlags: 0

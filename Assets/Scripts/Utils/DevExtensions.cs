@@ -5,18 +5,16 @@ using UnityEngine;
 public static class DevExtensions {
     public static bool ContainsLayer(this LayerMask mask, int layer) {
         return mask == (mask | (1 << layer));
-
-
     }
 
-    public static Collider GetClosest(this Vector3 position, ICollection<Collider> collection) {
+    public static GameObject GetClosest(this Vector3 position, ICollection<GameObject> collection) {
         float distance = float.MaxValue;
-        Collider closest = null;
-        foreach (Collider go in collection) {
+        GameObject closest = null;
+        foreach (GameObject go in collection) {
             float newDist = Vector3.Distance(position, go.transform.position);
             if (newDist < distance) {
                 closest = go;
-                distance = newDist; 
+                distance = newDist;
             }
         }
 
@@ -36,5 +34,35 @@ public static class DevExtensions {
             }
             SetLayerRecursively(child.gameObject, newLayer);
         }
+    }
+
+    public static bool HasComponent<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInParent<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponentInParent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInChildren<T>(this Component gameObject, out T component) {
+        component = gameObject.GetComponentInChildren<T>();
+        return component != null;
+    }
+
+    public static bool HasComponent<T>(this GameObject gameObject, out T component) {
+        component = gameObject.GetComponent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInParent<T>(this GameObject gameObject, out T component) {
+        component = gameObject.GetComponentInParent<T>();
+        return component != null;
+    }
+
+    public static bool HasComponentInChildren<T>(this GameObject gameObject, out T component) {
+        component = gameObject.GetComponentInChildren<T>();
+        return component != null;
     }
 }

@@ -17,10 +17,16 @@ public class HUD : MonoBehaviour
 
 
     [SerializeField] Button interactionButton;
+    [SerializeField] Button interactionButton2;
     [SerializeField] Text textMoney;
 
     public void ActivateButton(bool state) {
         interactionButton.gameObject.SetActive(state);
+
+    }
+
+    public void ActivateButton2(bool state) {
+        interactionButton2.gameObject.SetActive(state);
 
     }
     public void NameButton(string name) {
