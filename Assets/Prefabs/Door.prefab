@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598082489646798607}
   - component: {fileID: 7852705023994036179}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,8 @@ GameObject:
   - component: {fileID: 5906296340818892110}
   - component: {fileID: 5876917153614157512}
   - component: {fileID: 5884751042022174134}
-  m_Layer: 12
+  - component: {fileID: 293606405}
+  m_Layer: 0
   m_Name: SM_Bld_Bunker_Wall_Caution_Door_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,6 +314,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &293606405
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5907756328477292708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8bdaf1557b8b47947bdbcdca0c13e955, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5908010989428722592
 GameObject:
   m_ObjectHideFlags: 0
