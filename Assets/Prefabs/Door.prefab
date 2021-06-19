@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598082489646798607}
   - component: {fileID: 7852705023994036179}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1197202812180159597}
   - component: {fileID: 5654137370090851628}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5591034869924540221}
   - component: {fileID: 2873187198001506734}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2487477960925658862}
-  m_Layer: 0
+  - component: {fileID: 782606766202374260}
+  - component: {fileID: 9170452611642797602}
+  - component: {fileID: 2020578167328628014}
+  m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +171,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782606766202374260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090432880404447684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611ea56c4381e141a311147dcb4e479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useOnce: 1
+  textButton: Open
+  hasInteracted: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9170452611642797602}
+        m_MethodName: Open
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHoldDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onHoldUp:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &9170452611642797602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090432880404447684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc8445a911339824089a596e5f1e97a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectedRooms:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!135 &2020578167328628014
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090432880404447684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: -2.12, y: 0.94, z: 0}
 --- !u!1 &5907756328477292708
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +245,7 @@ GameObject:
   - component: {fileID: 5906296340818892110}
   - component: {fileID: 5876917153614157512}
   - component: {fileID: 5884751042022174134}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SM_Bld_Bunker_Wall_Caution_Door_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +325,7 @@ GameObject:
   - component: {fileID: 5877062186632251084}
   - component: {fileID: 5885347525176219468}
   - component: {fileID: 6014355901833532983}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SM_Bld_Bunker_Wall_Caution_Door_Opening_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335967820240383049}
   - component: {fileID: 5224894950714317207}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
