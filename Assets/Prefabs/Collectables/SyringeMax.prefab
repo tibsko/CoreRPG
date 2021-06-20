@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2543471339335621519}
   - component: {fileID: 3546280579006728115}
   m_Layer: 17
-  m_Name: SringueMax
+  m_Name: SyringeMax
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: {fileID: 2543471339335621519}
-  timer: 2
+  timer: 1
 --- !u!1001 &8724924062068129641
 PrefabInstance:
   m_ObjectHideFlags: 0
