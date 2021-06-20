@@ -21,7 +21,7 @@ public class RoomDoor : MonoBehaviour {
 
             IsOpen = true;
             animator.SetBool("IsOpen", true);
-
+            player.GetComponentInParent<PlayerMoney>().LooseMoney(price);
             foreach (Room room in connectedRooms) {
                 room.ActivateRoom();
             }
