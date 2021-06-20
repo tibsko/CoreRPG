@@ -54,7 +54,7 @@ MonoBehaviour:
   magazineSize: 3000
   reloadTime: 1
   timeBetweenBurst: 0
-  timeBetweenShots: 1
+  timeBetweenShots: 1.5
   delayBeforeShoot: 0.2
   automatic: 0
   bulletsPerTap: 1

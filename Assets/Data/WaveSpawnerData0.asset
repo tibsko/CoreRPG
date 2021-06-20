@@ -24,17 +24,17 @@ MonoBehaviour:
     incrementMinProbability: 0
   - enemyPrefab: {fileID: 1253970159583894485, guid: c3953a6ede3903641b9dcbe556215547,
       type: 3}
-    startWave: 0
-    minProbability: 1
-    maxProbability: 1
-    incrementMaxProbability: 0.1
+    startWave: 5
+    minProbability: 5
+    maxProbability: 0.7
+    incrementMaxProbability: 0.05
     incrementMinProbability: 0
   - enemyPrefab: {fileID: 6078473582528620983, guid: d3bdf12945d1a1e44ad151fcecaf06e3,
       type: 3}
-    startWave: 0
-    minProbability: 0.7
-    maxProbability: 0.9
-    incrementMaxProbability: 0.1
+    startWave: 10
+    minProbability: 0.5
+    maxProbability: 0.7
+    incrementMaxProbability: 0.05
     incrementMinProbability: 0
   increaseFunction: 0
   amountModifier: 2

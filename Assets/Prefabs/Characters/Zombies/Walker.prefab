@@ -215,7 +215,8 @@ MonoBehaviour:
   Loots:
   - collectable: {fileID: 2543471339335621516, guid: e05a9e9e0cb7ab940ac51c94775060d2,
       type: 3}
-    rate: 50
+    rate: 10
+  coin: {fileID: 8983292905516079184, guid: 6d7c1341a21540845b0016cfb4abd5a7, type: 3}
 --- !u!1 &8939825771521790582
 GameObject:
   m_ObjectHideFlags: 0
