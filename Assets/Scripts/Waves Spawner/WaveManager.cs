@@ -68,10 +68,11 @@ public class WaveManager : MonoBehaviour {
 
         //Update spawn rate for each enemy type
         foreach (EnemyProbability prob in SpawnData.enemyRates) {
-            if (prob.startWave >= WaveNumber) {
+            if (prob.startWave <= WaveNumber) {
                 if (prob.startWave != WaveNumber)
                     prob.Increment();
                 prob.CurrentProbability = Random.Range(prob.minProbability, prob.maxProbability);
+                Debug2.Log(prob.CurrentProbability);
                 totalProbability += prob.CurrentProbability;
             }
         }
