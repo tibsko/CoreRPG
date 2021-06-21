@@ -25,7 +25,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 1253970159583894485, guid: c3953a6ede3903641b9dcbe556215547,
       type: 3}
     startWave: 5
-    minProbability: 5
+    minProbability: 0.5
     maxProbability: 0.7
     incrementMaxProbability: 0.05
     incrementMinProbability: 0

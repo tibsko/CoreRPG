@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: {fileID: 8983292905516079187}
-  timer: 1
+  timer: 0.5
 --- !u!135 &6228461517364362502
 SphereCollider:
   m_ObjectHideFlags: 0
