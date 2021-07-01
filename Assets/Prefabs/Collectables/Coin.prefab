@@ -49,7 +49,7 @@ MonoBehaviour:
   moneyAmount: 50
   checkRate: 0.1
   distanceMax: 4
-  speedMove: 0.3
+  speedMove: 2
 --- !u!114 &741294132984313527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: {fileID: 8983292905516079187}
-  timer: 0.5
+  timer: 1
 --- !u!135 &6228461517364362502
 SphereCollider:
   m_ObjectHideFlags: 0

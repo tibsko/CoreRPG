@@ -9,8 +9,9 @@ public class CollectableMoney : CollectableItem
     [SerializeField] float distanceMax;
     [SerializeField] float speedMove;
 
-    void Start() {
-        InvokeRepeating(nameof(MoveToPlayer), 0, checkRate);
+  
+    private void Update() {
+        MoveToPlayer();
     }
 
     public void Earn(GameObject player) {
@@ -28,7 +29,8 @@ public class CollectableMoney : CollectableItem
         PlayerController player = ReferenceManager.instance.GetNearestPlayer(transform.position);
         float distance = Vector3.Distance(player.transform.position, transform.position);
         if (distance < distanceMax && this.enabled) {
-            transform.position = Vector3.Lerp(transform.position, player.transform.position,speedMove);
+            Vector3 direction = (player.transform.position-transform.position).normalized;
+            transform.position += direction*speedMove*Time.deltaTime ;
         }
 
     }
