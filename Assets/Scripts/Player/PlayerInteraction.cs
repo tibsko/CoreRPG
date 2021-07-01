@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour {
     [SerializeField] float radiusInteractable = 3.5f;
@@ -49,8 +50,8 @@ public class PlayerInteraction : MonoBehaviour {
     }
 
 
-    public void Interaction() {
-        if (focus) {
+    public void Interaction(InputAction.CallbackContext context) {
+        if (focus &&context.phase == InputActionPhase.Performed) {
             focus.Interact(gameObject);
         }
         RemoveFocus();

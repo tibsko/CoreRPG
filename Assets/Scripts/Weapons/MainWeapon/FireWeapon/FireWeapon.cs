@@ -60,8 +60,8 @@ public class FireWeapon : Weapon {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
-            Reload();
+        //if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+            //Reload();
 
         //SetText
         //text.SetText(bulletsLeft + " / " + magazineSize);

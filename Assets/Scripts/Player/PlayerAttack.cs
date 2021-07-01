@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour {
 
@@ -33,20 +34,22 @@ public class PlayerAttack : MonoBehaviour {
         startedAiming = false;
     }
 
-    public void OnAim(Vector2 aim) {
+    public void OnAim(InputAction.CallbackContext context) {
         if (!ActiveWeapon) {
             return;
         }
-
-        AimDirection = new Vector3(aim.x, 0, aim.y);
+        Vector2 contextVec2 = context.ReadValue<Vector2>();
+        AimDirection = new Vector3(contextVec2.x, 0, contextVec2.y);
 
         if (AimDirection.magnitude > 0.5f) {
             startedAiming = true;
         }
     }
 
-    public void OnRelease(Vector2 aim) {
-        HandleAttack();
+    public void OnRelease(InputAction.CallbackContext context) {
+        if (context.phase == InputActionPhase.Performed) {
+            HandleAttack();
+        }
     }
 
     private void HandleAttack() {
