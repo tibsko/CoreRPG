@@ -34,6 +34,21 @@ public class PlayerAttack : MonoBehaviour {
         startedAiming = false;
     }
 
+    public void OnMouseAim(Vector2 aim) {
+        if (!ActiveWeapon) {
+            return;
+        }
+        AimDirection = new Vector3(aim.x, 0, aim.y);
+
+        if (AimDirection.magnitude > 0.5f) {
+            startedAiming = true;
+        }
+    }
+
+    public void OnMouseRelease(Vector2 aim) {
+        HandleAttack();
+    }
+
     public void OnAim(InputAction.CallbackContext context) {
         if (!ActiveWeapon) {
             return;
