@@ -155,7 +155,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  timerHealth: 0.2
+  damageSourceTimer: 0.2
 --- !u!1 &5077895296802457098
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useOnce: 0
   textButton: RepairDoor
+  hasInteracted: 0
+  needPress: 1
   onInteract:
     m_PersistentCalls:
       m_Calls: []

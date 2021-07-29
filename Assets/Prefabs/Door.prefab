@@ -187,6 +187,7 @@ MonoBehaviour:
   useOnce: 1
   textButton: Open
   hasInteracted: 0
+  needPress: 0
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -222,6 +223,7 @@ MonoBehaviour:
   connectedRooms:
   - {fileID: 0}
   - {fileID: 0}
+  price: 0
 --- !u!135 &2020578167328628014
 SphereCollider:
   m_ObjectHideFlags: 0

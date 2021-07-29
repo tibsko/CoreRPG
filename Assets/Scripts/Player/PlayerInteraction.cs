@@ -54,15 +54,29 @@ public class PlayerInteraction : MonoBehaviour {
         if (focus) {
             focus.Interact(gameObject);
         }
+     
         RemoveFocus();
     }
+    public void OnInteraction(InputAction.CallbackContext context) {
+        if (focus) {
+            if (!focus.needPress && context.phase == InputActionPhase.Performed) {
+                Interaction();
+            }
+            else if (focus.needPress && context.phase == InputActionPhase.Started) {
+                HoldDownInteraction();
+                Debug.Log("Begining");
+            }
+            else if (focus.needPress && context.phase == InputActionPhase.Disabled) {
+                HoldupInteraction();
+                Debug.Log("End");
+            }
+        }
+    } 
 
     public void HoldDownInteraction() {
-
         focus.HoldDownInteract();
     }
     public void HoldupInteraction() {
         focus.HoldUpInteract();
-
     }
 }
