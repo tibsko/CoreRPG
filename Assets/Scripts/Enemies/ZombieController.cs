@@ -24,7 +24,7 @@ public class ZombieController : MonoBehaviour {
                     target = value;
                 }
                 else {
-                    Debug2.Log($"Can't asign {value.name} as target because it has 0 PV");
+                    //Debug2.Log($"Can't asign {value.name} as target because it has 0 PV");
                 }
             }
             else

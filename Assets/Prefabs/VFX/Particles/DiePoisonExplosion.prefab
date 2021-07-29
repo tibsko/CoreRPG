@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2383729908488368784}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 3554230587685200110}
@@ -9474,7 +9474,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.65882355, g: 0, b: 0.5611862, a: 1}
+      maxColor: {r: 0.26415092, g: 0.013705945, b: 0.15830815, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9944,7 +9944,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 2.48
       mode: 0
       spread: 0
       speed:
@@ -15194,8 +15194,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0.76815224, a: 0}
-        key1: {r: 1, g: 0, b: 0.7606497, a: 0.99834883}
+        key0: {r: 0.26415092, g: 0.013705945, b: 0.15830815, a: 0}
+        key1: {r: 0.26415092, g: 0.013705945, b: 0.15830815, a: 0.99834883}
         key2: {r: 0, g: 0, b: 0, a: 0.9764706}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -19391,7 +19391,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.22
+      value: 1
       mode: 0
       spread: 0
       speed:
@@ -19948,8 +19948,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.4392157, g: 0, b: 0.3510526, a: 0}
-        key1: {r: 0.7058824, g: 0, b: 0.5369289, a: 0.99834883}
+        key0: {r: 0.26415092, g: 0.013705945, b: 0.15830815, a: 0}
+        key1: {r: 0.26415092, g: 0.013705945, b: 0.15830815, a: 0.99834883}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

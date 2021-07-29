@@ -37,11 +37,11 @@ public class Fence : MonoBehaviour {
 
     public void HoldDownInteract() {
         repairing = true;
-        Debug2.Log("Down");
+        //Debug2.Log("Down");
     }
     public void HoldUpInteract() {
         repairing = false;
-        Debug2.Log("Up");
+        //Debug2.Log("Up");
 
     }
 
@@ -49,7 +49,7 @@ public class Fence : MonoBehaviour {
         if (doorHealth.CurrentHealth < doorHealth.maxHealth) {
             doorHealth.Heal(20, gameObject);
             UpdateFencePlanks();
-            Debug2.Log("Repairing");
+            //Debug2.Log("Repairing");
         }
         else {
             repairing = false;
