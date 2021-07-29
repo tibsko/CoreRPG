@@ -15,6 +15,7 @@ public class InteractableComponent : MonoBehaviour {
     public UnityEvent onHoldDown;
     public UnityEvent onHoldUp;
     public void Interact(GameObject player) {
+        Debug2.Log("Interact");
         if (!useOnce || (useOnce && !hasInteracted)) {
             onInteract.Invoke(player);
             hasInteracted = true;

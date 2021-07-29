@@ -49,7 +49,7 @@ MonoBehaviour:
   moneyAmount: 50
   checkRate: 0.1
   distanceMax: 4
-  speedMove: 2
+  speedMove: 10
 --- !u!114 &741294132984313527
 MonoBehaviour:
   m_ObjectHideFlags: 0

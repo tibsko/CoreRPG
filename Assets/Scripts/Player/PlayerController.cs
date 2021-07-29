@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour {
     public void OnMoveInput(InputAction.CallbackContext context) {
         Vector2 contextVec2 = context.ReadValue<Vector2>();
         xzMove = new Vector3(contextVec2.x,0,contextVec2.y);
-        Debug.Log(xzMove);
+
     }
 
     public void Constraint(bool _canMove, bool _canRotate) {

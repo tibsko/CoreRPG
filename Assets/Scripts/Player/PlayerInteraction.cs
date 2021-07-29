@@ -50,8 +50,8 @@ public class PlayerInteraction : MonoBehaviour {
     }
 
 
-    public void Interaction(InputAction.CallbackContext context) {
-        if (focus &&context.phase == InputActionPhase.Performed) {
+    public void Interaction() {
+        if (focus) {
             focus.Interact(gameObject);
         }
         RemoveFocus();
