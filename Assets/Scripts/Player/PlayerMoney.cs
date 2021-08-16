@@ -11,11 +11,6 @@ public class PlayerMoney : MonoBehaviour
         HUD.instance.UpdateMoney(currentMoney);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void AddMoney(int money) {
         currentMoney += money;
         HUD.instance.UpdateMoney(currentMoney);

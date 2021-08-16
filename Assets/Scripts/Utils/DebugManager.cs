@@ -5,6 +5,7 @@ using UnityEngine;
 public class DebugManager : MonoBehaviour {
 
     public List<string> activeDebug;
+    public bool enableDebug = true;
 
     void Awake() {
         Debug2.activeDebugManager = this;

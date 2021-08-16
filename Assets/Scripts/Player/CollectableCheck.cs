@@ -13,7 +13,7 @@ public class CollectableCheck : MonoBehaviour {
     void OnTriggerStay(Collider collider) {
         CollectableItem collectable = collider.GetComponent<CollectableItem>();
         if (collectable && collectable.enabled) {
-            Debug.Log("collect");
+            Debug2.Log("collect");
             collectable.Use(gameObject);
         }
     }

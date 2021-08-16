@@ -15,21 +15,21 @@ public class EnemyDeath : MonoBehaviour {
     public void EnableRagdoll() {
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
 
-        //Disable zombie behaviour
-        GetComponent<NavMeshAgent>().enabled = false;
-        GetComponent<ZombieController>().enabled = false;
-        GetComponent<ZombieAttack>().enabled = false;
-        GetComponent<EnemyHealth>().enabled = false;
-        GetComponentInChildren<Animator>().enabled = false;
-        GetComponentInChildren<Canvas>().enabled = false;
+        ////Disable zombie behaviour
+        //GetComponent<NavMeshAgent>().enabled = false;
+        //GetComponent<ZombieController>().enabled = false;
+        //GetComponent<ZombieAttack>().enabled = false;
+        //GetComponent<EnemyHealth>().enabled = false;
+        //GetComponentInChildren<Animator>().enabled = false;
+        //GetComponentInChildren<Canvas>().enabled = false;
 
-        //Activate ragdoll rigidbodies
-        CopyTransformRecursively(mainBody.transform, ragdollBody.transform);
-        mainBody.SetActive(false);
-        ragdollBody.SetActive(true);
+        ////Activate ragdoll rigidbodies
+        //CopyTransformRecursively(mainBody.transform, ragdollBody.transform);
+        //mainBody.SetActive(false);
+        //ragdollBody.SetActive(true);
 
         //Call destruction
-        Destroy(gameObject, destroyTimer);
+        Destroy(gameObject);
     }
 
     public void CopyTransformRecursively(Transform source, Transform destination) {
