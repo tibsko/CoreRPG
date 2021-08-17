@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponentInChildren<AnimatorBridge>();
     }
 
-    void Update() {
-        CheckGround();
+    void FixedUpdate() {
+        //CheckGround();
         Rotate();
         ApplyGravity();
         Move();

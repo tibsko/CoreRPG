@@ -18,14 +18,14 @@ public class AnimatorBridge : MonoBehaviour {
     }
 
     private void Update() {
-        List<string> keys = new List<string>(this.locksDictonary.Keys); ;
-        for (int i = 0; i < keys.Count; i++) {
-            if (locksDictonary[keys[i]].cooldown > 0) {
-                AnimLock animLock = locksDictonary[keys[i]];
-                animLock.cooldown -= Time.deltaTime;
-                locksDictonary[keys[i]] = animLock;
-            }
-        }
+        //List<string> keys = new List<string>(this.locksDictonary.Keys); ;
+        //for (int i = 0; i < keys.Count; i++) {
+        //    if (locksDictonary[keys[i]].cooldown > 0) {
+        //        AnimLock animLock = locksDictonary[keys[i]];
+        //        animLock.cooldown -= Time.deltaTime;
+        //        locksDictonary[keys[i]] = animLock;
+        //    }
+        //}
     }
 
     public void SetLock(string name, bool state) {

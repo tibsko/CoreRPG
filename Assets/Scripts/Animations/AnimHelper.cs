@@ -10,15 +10,15 @@ public class AnimHelper : StateMachineBehaviour {
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        if (!animatorBridge)
-            animatorBridge = FindObjectOfType<AnimatorBridge>();
+        //if (!animatorBridge)
+        //    animatorBridge = FindObjectOfType<AnimatorBridge>();
 
-        foreach (AnimLock animLock in animLocks) {
-            if (animLock.lockAnimation) {
-                animatorBridge.CancelTrigger(animLock.name);
-                animatorBridge.SetLock(animLock.name, true);
-            }
-        }
+        //foreach (AnimLock animLock in animLocks) {
+        //    if (animLock.lockAnimation) {
+        //        animatorBridge.CancelTrigger(animLock.name);
+        //        animatorBridge.SetLock(animLock.name, true);
+        //    }
+        //}
     }
 
 
@@ -30,14 +30,14 @@ public class AnimHelper : StateMachineBehaviour {
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        foreach (AnimLock animLock in animLocks) {
-            if (animLock.cooldown > 0) {
-                animatorBridge.AddCooldown(animLock.name, animLock.cooldown);
-            }
-            if (animLock.lockAnimation) {
-                animatorBridge.SetLock(animLock.name, false);
-            }
-        }
+        //foreach (AnimLock animLock in animLocks) {
+        //    if (animLock.cooldown > 0) {
+        //        animatorBridge.AddCooldown(animLock.name, animLock.cooldown);
+        //    }
+        //    if (animLock.lockAnimation) {
+        //        animatorBridge.SetLock(animLock.name, false);
+        //    }
+        //}
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

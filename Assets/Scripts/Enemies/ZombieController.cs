@@ -51,7 +51,7 @@ public class ZombieController : MonoBehaviour {
         InvokeRepeating(nameof(UpdateTarget), 0, detectionFrequency);
     }
 
-    void Update() {
+    void FixedUpdate() {
 
         //If zombie has a target
         if (Target) {
