@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour {
     [SerializeField] float rotationSpeed = .1f;
 
     public Transform obstruction;
+    private Vector3 velocity;
 
     // Start is called before the first frame update
     void Start() {
@@ -43,7 +44,8 @@ public class CameraController : MonoBehaviour {
     }
 
     void CameraMove() {
-        transform.position = Vector3.Lerp(transform.position, target.position + offSetCam, followingStep * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, target.position + offSetCam, ref velocity, followingStep);
+      
         transform.rotation = Quaternion.AngleAxis(rotationCamX,Vector3.right);
         //this.transform.LookAt(target);
         //this.transform.forward = target.forward;

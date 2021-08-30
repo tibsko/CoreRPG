@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestDebug : MonoBehaviour
 {
-    void Update()
-    {
+    public GameObject zombieprefab;
+    public Text zCountText;
+    private int zCount = 0;
 
-        Debug2.Log("Collision !", "Physics");
-        Debug2.Log("Fire eveywhere !!!", "Particles");
+    public void SpawnZombie() {
+        Instantiate(zombieprefab, transform.position, transform.rotation);
+        zCount++;
+        zCountText.text = zCount.ToString(); ;
     }
 }
